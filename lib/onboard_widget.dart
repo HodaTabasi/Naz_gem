@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:naz_gem/login.dart';
 
 import 'core/app_button.dart';
 import 'core/app_colors.dart';
@@ -56,8 +57,8 @@ class onboardWidget extends StatelessWidget {
             textAlign: TextAlign.center,
           ),
           getSpace(h: 9.0.h),
-          BtnApp(title: 'login'.tr, prsee: () {
-            Get.offAll((){});
+          BtnApp(title: 'login'.tr, color:mainColor ,textColor:blackTextColor, prsee: () {
+            Get.offAll(()=>LoginScreen());
           }),
           getSpace(h: MediaQuery.of(context).size.height / 7)
         ],

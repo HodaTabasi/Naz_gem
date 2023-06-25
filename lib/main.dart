@@ -25,6 +25,7 @@ class MyApp extends StatelessWidget {
         fallbackLocale: Locale('ar'),
         theme: ThemeData(
           primarySwatch: Colors.blue,
+          fontFamily: 'br'
         ),
         home: OnBoardingScreen(),
       ),

@@ -8,9 +8,11 @@ import 'app_colors.dart';
 class BtnApp extends StatelessWidget {
   late String title;
   late VoidCallback prsee;
+  late Color color;
+  late Color textColor;
 
 
-  BtnApp({required this.title,required this.prsee});
+  BtnApp({required this.title,required this.prsee,required this.color,this.textColor = Colors.white});
 
   @override
   Widget build(BuildContext context) {
@@ -24,11 +26,11 @@ class BtnApp extends StatelessWidget {
           clipBehavior: Clip.hardEdge,
           child: ElevatedButton(
             style: ButtonStyle(
-                backgroundColor: MaterialStateProperty.all(mainColor),
+                backgroundColor: MaterialStateProperty.all(color),
                 padding: MaterialStateProperty.all(EdgeInsets.all(10.r)),
-                textStyle: MaterialStateProperty.all(TextStyle(fontSize: 18.sp,color: blackTextColor))),
+                textStyle: MaterialStateProperty.all(TextStyle(fontSize: 18.sp,color: textColor))),
             onPressed: prsee,
-            child: Text("$title",style: TextStyle(fontSize: 18.sp,color: blackTextColor,fontWeight: FontWeight.w500,fontFamily: 'avenir'),),
+            child: Text("$title",style: TextStyle(fontSize: 18.sp,color: textColor,fontWeight: FontWeight.w500,fontFamily: 'br'),),
 
           ),
         ),

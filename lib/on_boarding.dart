@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:naz_gem/login.dart';
 import 'onboard_widget.dart';
 
 class OnBoardingScreen extends StatefulWidget {
@@ -59,7 +60,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
             padding: EdgeInsets.all(10.0.r),
             child: InkWell(
               onTap: () {
-                Get.offAll((){});
+                Get.offAll(()=>LoginScreen());
               },
               child: Row(
                 children: [
