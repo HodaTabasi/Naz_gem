@@ -1,35 +1,31 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:naz_gem/login.dart';
+import 'package:naz_gem/core/widgets/app_button.dart';
+import 'package:naz_gem/core/widgets/app_text_field.dart';
+import 'package:naz_gem/core/constants/app_widget.dart';
 
-import 'core/app_button.dart';
-import 'core/app_colors.dart';
-import 'core/app_text_field.dart';
-import 'core/app_widget.dart';
-import 'otp_register_screen.dart';
+import '../../../../core/constants/app_colors.dart';
+import '../../../../home_screen.dart';
+import 'new_user.dart';
+import 'otp_container.dart';
 
-class NewUser extends StatefulWidget {
-  const NewUser({Key? key}) : super(key: key);
+class LoginScreen extends StatefulWidget {
+  const LoginScreen({super.key});
 
   @override
-  State<NewUser> createState() => _NewUserState();
+  State<LoginScreen> createState() => _LoginScreenState();
 }
 
-class _NewUserState extends State<NewUser> {
+class _LoginScreenState extends State<LoginScreen> {
   late TextEditingController _mobileController;
-  late TextEditingController _firstNameController;
-  late TextEditingController _lastNameController;
-  late TextEditingController _emailController;
   bool appearOtp = false;
   @override
   void initState() {
     _mobileController = TextEditingController();
-    _firstNameController = TextEditingController();
-    _lastNameController = TextEditingController();
-    _emailController = TextEditingController();
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -60,7 +56,7 @@ class _NewUserState extends State<NewUser> {
                 mainAxisAlignment: MainAxisAlignment.end,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text('new_user'.tr,
+                  Text('login'.tr,
                       style: TextStyle(
                           color: Colors.white,
                           fontSize: 28.sp,
@@ -72,7 +68,7 @@ class _NewUserState extends State<NewUser> {
                           fontSize: 18.sp,
                           fontWeight: FontWeight.bold)),
                   getSpace(h: 10.0.h),
-                  Text('register_sub1'.tr,
+                  Text('login_sub1'.tr,
                       style: TextStyle(
                           color: Colors.white,
                           fontSize: 12.sp,
@@ -105,43 +101,13 @@ class _NewUserState extends State<NewUser> {
                   children: [
                     getSpace(h: 16.0.r),
                     Text(
-                      'name'.tr,
-                      style: TextStyle(fontSize: 16.sp, color: blackTextColor),
-                      textAlign: TextAlign.center,
-                    ),
-                    getSpace(h: 16.0.r),
-                    Row(
-                      children: [
-                        Expanded(
-                          child: SizedBox(
-                            height: 50.h,
-                            child: AppTextField(
-                              textController: _mobileController,
-                              hint: '',
-                            ),
-                          ),
-                        ),
-                        getSpace(w: 50.w),
-                        Expanded(
-                          child: SizedBox(
-                            height: 50.h,
-                            child: AppTextField(
-                              textController: _mobileController,
-                              hint: '',
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                    getSpace(h: 16.0.r),
-                    Text(
                       'mobile_number'.tr,
                       style: TextStyle(fontSize: 16.sp, color: blackTextColor),
                       textAlign: TextAlign.center,
                     ),
                     getSpace(h: 16.0.r),
                     SizedBox(
-                      height: 50.h,
+                      height: 60.h,
                       child: AppTextField(
                         textController: _mobileController,
                         hint: '',
@@ -149,21 +115,19 @@ class _NewUserState extends State<NewUser> {
                       ),
                     ),
                     getSpace(h: 16.0.r),
-                    Text(
-                      'email'.tr,
-                      style: TextStyle(fontSize: 16.sp, color: blackTextColor),
-                      textAlign: TextAlign.center,
+                    Visibility(
+                      visible: appearOtp,
+                      child: const OtpContainer(),
                     ),
-                    getSpace(h: 16.0.r),
-                    SizedBox(
-                      height: 50.h,
-                      child: AppTextField(
-                        textController: _mobileController,
-                        hint: '',
-                      ),
-                    ),
-                    BtnApp(title: 'sure_otp'.tr, color: btnColor, prsee: () {
-                      Get.to(()=>OTPRegisterScreen());
+                    BtnApp(title: appearOtp?'ok'.tr:'sure_otp'.tr, color: btnColor, prsee: () {
+                      if(appearOtp){
+                        Get.offAll(()=>HomeScreen());
+                      }else{
+                        setState(() {
+                          appearOtp = !appearOtp;
+                        });
+                      }
+
                     }),
                     // getSpace(h: 16.0.r),
                     Align(
@@ -174,11 +138,11 @@ class _NewUserState extends State<NewUser> {
                       ),
                     ),
                     BtnApp(
-                        title: 'login'.tr,
+                        title: 'new_user'.tr,
                         color: mainColor,
                         textColor: blackTextColor,
                         prsee: () {
-                          Get.to(()=>LoginScreen());
+                          Get.to(()=>NewUser());
                         }),
                   ],
                 ),
@@ -187,6 +151,6 @@ class _NewUserState extends State<NewUser> {
           ),
         ],
       ),
-    );;
+    );
   }
 }

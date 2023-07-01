@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:naz_gem/login.dart';
 
-import 'core/app_button.dart';
-import 'core/app_colors.dart';
-import 'core/app_widget.dart';
+import '../../../../core/constants/app_colors.dart';
+import '../../../../core/widgets/app_button.dart';
+import '../../../../core/constants/app_widget.dart';
+import 'login.dart';
 import 'otp_container.dart';
 
 class OTPRegisterScreen extends StatefulWidget {

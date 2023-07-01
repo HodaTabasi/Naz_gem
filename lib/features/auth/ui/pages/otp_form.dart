@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import 'SizeConfig.dart';
-import 'core/style.dart';
+import '../../../../SizeConfig.dart';
+import '../../../../core/themes/style.dart';
 
 
 class OtpForm extends StatefulWidget {

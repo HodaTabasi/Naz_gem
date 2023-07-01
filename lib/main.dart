@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:naz_gem/on_boarding.dart';
-import 'package:naz_gem/translations/app_translations.dart';
+
+import 'core/translations/app_translations.dart';
+import 'features/static/on_boarding.dart';
 
 void main() {
   runApp(const MyApp());

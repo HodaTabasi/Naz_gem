@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import 'app_colors.dart';
+import '../constants/app_colors.dart';
 
 class AppTextField extends StatelessWidget {
   AppTextField({
@@ -41,6 +41,7 @@ class AppTextField extends StatelessWidget {
       textInputAction: _textInputAction,
       onSubmitted: _onSubmitted,
       obscureText: _obscureText,
+      textDirection: TextDirection.ltr,
       style: TextStyle(
         fontWeight: FontWeight.w600,
         color: blackTextColor
@@ -50,13 +51,16 @@ class AppTextField extends StatelessWidget {
         hintStyle: TextStyle(),
         // prefixIcon: Icon(_prefixIcon),
         // prefixText: _text,
-        suffixIcon: Align(
-          alignment: AlignmentDirectional.centerEnd,
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Text(_text,style: TextStyle(
-                fontSize: 16.sp,color: blackTextColor,fontFamily: 'tajawal'
-            ),textAlign: TextAlign.center, ),
+        suffixIcon: SizedBox(
+          width: 50.w,
+          child: Align(
+            alignment: AlignmentDirectional.centerEnd,
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(_text,style: TextStyle(
+                  fontSize: 16.sp,color: blackTextColor,fontFamily: 'tajawal'
+              ),textAlign: TextAlign.center, ),
+            ),
           ),
         ),
         // prefixStyle: TextStyle(

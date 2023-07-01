@@ -1,9 +1,7 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 
-import '../SizeConfig.dart';
-import 'app_colors.dart';
+import '../../SizeConfig.dart';
+import '../constants/app_colors.dart';
 
 TextStyle getTextStyle({size,color,weight}){
   return TextStyle(

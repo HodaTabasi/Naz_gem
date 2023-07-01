@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
-import 'core/app_colors.dart';
-import 'core/app_widget.dart';
+import '../../../../core/constants/app_colors.dart';
+import '../../../../core/constants/app_widget.dart';
 import 'otp_form.dart';
 
 class OtpContainer extends StatelessWidget {

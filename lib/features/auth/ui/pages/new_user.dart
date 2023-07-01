@@ -1,32 +1,35 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:naz_gem/core/app_button.dart';
-import 'package:naz_gem/core/app_colors.dart';
-import 'package:naz_gem/core/app_text_field.dart';
-import 'package:naz_gem/core/app_widget.dart';
-import 'package:naz_gem/otp_form.dart';
 
-import 'home_screen.dart';
-import 'new_user.dart';
-import 'otp_container.dart';
+import '../../../../core/constants/app_colors.dart';
+import '../../../../core/widgets/app_button.dart';
+import '../../../../core/widgets/app_text_field.dart';
+import '../../../../core/constants/app_widget.dart';
+import 'login.dart';
+import 'otp_register_screen.dart';
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({super.key});
+class NewUser extends StatefulWidget {
+  const NewUser({Key? key}) : super(key: key);
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  State<NewUser> createState() => _NewUserState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _NewUserState extends State<NewUser> {
   late TextEditingController _mobileController;
+  late TextEditingController _firstNameController;
+  late TextEditingController _lastNameController;
+  late TextEditingController _emailController;
   bool appearOtp = false;
   @override
   void initState() {
     _mobileController = TextEditingController();
+    _firstNameController = TextEditingController();
+    _lastNameController = TextEditingController();
+    _emailController = TextEditingController();
     super.initState();
   }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -57,7 +60,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 mainAxisAlignment: MainAxisAlignment.end,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text('login'.tr,
+                  Text('new_user'.tr,
                       style: TextStyle(
                           color: Colors.white,
                           fontSize: 28.sp,
@@ -69,7 +72,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           fontSize: 18.sp,
                           fontWeight: FontWeight.bold)),
                   getSpace(h: 10.0.h),
-                  Text('login_sub1'.tr,
+                  Text('register_sub1'.tr,
                       style: TextStyle(
                           color: Colors.white,
                           fontSize: 12.sp,
@@ -102,30 +105,65 @@ class _LoginScreenState extends State<LoginScreen> {
                   children: [
                     getSpace(h: 16.0.r),
                     Text(
+                      'name'.tr,
+                      style: TextStyle(fontSize: 16.sp, color: blackTextColor),
+                      textAlign: TextAlign.center,
+                    ),
+                    getSpace(h: 16.0.r),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: SizedBox(
+                            height: 50.h,
+                            child: AppTextField(
+                              textController: _mobileController,
+                              hint: '',
+                            ),
+                          ),
+                        ),
+                        getSpace(w: 50.w),
+                        Expanded(
+                          child: SizedBox(
+                            height: 50.h,
+                            child: AppTextField(
+                              textController: _mobileController,
+                              hint: '',
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    getSpace(h: 16.0.r),
+                    Text(
                       'mobile_number'.tr,
                       style: TextStyle(fontSize: 16.sp, color: blackTextColor),
                       textAlign: TextAlign.center,
                     ),
                     getSpace(h: 16.0.r),
-                    AppTextField(
-                      textController: _mobileController,
-                      hint: '',
-                      text: '+966',
+                    SizedBox(
+                      height: 50.h,
+                      child: AppTextField(
+                        textController: _mobileController,
+                        hint: '',
+                        text: '+966',
+                      ),
                     ),
                     getSpace(h: 16.0.r),
-                    Visibility(
-                      visible: appearOtp,
-                      child: const OtpContainer(),
+                    Text(
+                      'email'.tr,
+                      style: TextStyle(fontSize: 16.sp, color: blackTextColor),
+                      textAlign: TextAlign.center,
                     ),
-                    BtnApp(title: appearOtp?'ok'.tr:'sure_otp'.tr, color: btnColor, prsee: () {
-                      if(appearOtp){
-                        Get.offAll(()=>HomeScreen());
-                      }else{
-                        setState(() {
-                          appearOtp = !appearOtp;
-                        });
-                      }
-
+                    getSpace(h: 16.0.r),
+                    SizedBox(
+                      height: 50.h,
+                      child: AppTextField(
+                        textController: _mobileController,
+                        hint: '',
+                      ),
+                    ),
+                    BtnApp(title: 'sure_otp'.tr, color: btnColor, prsee: () {
+                      Get.to(()=>OTPRegisterScreen());
                     }),
                     // getSpace(h: 16.0.r),
                     Align(
@@ -136,11 +174,11 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                     ),
                     BtnApp(
-                        title: 'new_user'.tr,
+                        title: 'login'.tr,
                         color: mainColor,
                         textColor: blackTextColor,
                         prsee: () {
-                          Get.to(()=>NewUser());
+                          Get.to(()=>LoginScreen());
                         }),
                   ],
                 ),
@@ -149,6 +187,6 @@ class _LoginScreenState extends State<LoginScreen> {
           ),
         ],
       ),
-    );
+    );;
   }
 }
