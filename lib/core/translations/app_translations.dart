@@ -20,6 +20,10 @@ class TranslateWord extends Translations {
       'ok': 'موافق',
       'name': '',
       'email': '',
+      'title': '',
+      'pakages': '',
+      'public_pakage': '',
+      'private_pakage': '',
     },
     'ar': {
       'skip': 'تخطي',
@@ -41,6 +45,11 @@ class TranslateWord extends Translations {
       'ok': 'موافق',
       'name': 'الاسم كامل',
       'email': 'البريد الالكتروني',
+      'title': 'أهلًا بك في نادي ناز',
+      'join': 'انضم إلينا الان',
+      'pakages': 'باقاتنا',
+      'public_pakage': 'الباقات العامة',
+      'private_pakage': 'الباقات الخاصة',
     }
   };
 }

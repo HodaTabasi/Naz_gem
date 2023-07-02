@@ -41,6 +41,7 @@ class onboardWidget extends StatelessWidget {
               style: TextStyle(
                   color: Colors.white,
                   fontWeight: FontWeight.bold,
+                  fontFamily: 'br',
                   fontSize: 33.sp),
               children: <TextSpan>[
                 TextSpan(

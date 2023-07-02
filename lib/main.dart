@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:naz_gem/features/home/ui/pages/home_screen.dart';
 
 import 'core/translations/app_translations.dart';
 import 'features/static/on_boarding.dart';
@@ -28,7 +29,8 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.blue,
           fontFamily: 'br'
         ),
-        home: OnBoardingScreen(),
+        // home: OnBoardingScreen(),
+        home: HomeScreen(),
       ),
     );
   }
