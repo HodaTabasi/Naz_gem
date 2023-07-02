@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:naz_gem/core/constants/app_colors.dart';
+import 'package:naz_gem/core/constants/app_widget.dart';
 import 'package:naz_gem/core/widgets/app_button.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -121,7 +122,7 @@ class _HomeScreenState extends State<HomeScreen> {
               textAlign: TextAlign.center,
             ),
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16.0.r,vertical: 8.r),
+              padding: EdgeInsets.symmetric(horizontal: 16.0.r, vertical: 8.r),
               child: Container(
                 height: 53.h,
                 decoration: BoxDecoration(
@@ -163,33 +164,36 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
             GridView.builder(
+              padding: EdgeInsets.all(16.r),
               physics: NeverScrollableScrollPhysics(),
-                shrinkWrap: true,
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  crossAxisSpacing: 5,
-                  mainAxisSpacing: 5,
-                ),
-                itemBuilder: (context, index) {
+              shrinkWrap: true,
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                crossAxisSpacing: 16.w,
+                mainAxisSpacing: 16.h,
+              ),
+              itemCount: 4,
+              itemBuilder: (context, index) {
                 return Stack(
                   children: [
                     Container(
                       decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10.r),
-                        border: Border.all(
-                          color: boarderColorPakage,
-                          width: 1.2,
-                        ),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.grey.shade400,
-                            blurRadius: 2,
-                            offset: Offset(0,4)
-                          )
-                        ]
-                      ),
+                          borderRadius: BorderRadius.circular(10.r),
+                          border: Border.all(
+                            color: boarderColorPakage,
+                            width: 1,
+                          ),
+                          boxShadow: [
+                            BoxShadow(
+                                color: Colors.grey.shade300,
+                                blurRadius: 2,
+                                offset: Offset(0, 4))
+                          ],
+                          color: Colors.white),
                       child: Column(
+                        // mainAxisAlignment: MainAxisAlignment.center,
                         children: [
+                          getSpace(h: 25.h),
                           Text(
                             "شهر واحد",
                             style: TextStyle(
@@ -198,7 +202,9 @@ class _HomeScreenState extends State<HomeScreen> {
                             ),
                             textAlign: TextAlign.center,
                           ),
+                          getSpace(h: 10.h),
                           Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text(
                                 "1200 ريال",
@@ -212,22 +218,127 @@ class _HomeScreenState extends State<HomeScreen> {
                               Text(
                                 "2000",
                                 style: TextStyle(
-                                  fontSize: 15.sp,
-                                  color: grayTextColor1,
-                                  // fontWeight: FontWeight.w500,
-                                  decoration: TextDecoration.lineThrough
-                                ),
+                                    fontSize: 15.sp,
+                                    color: grayTextColor1,
+                                    // fontWeight: FontWeight.w500,
+                                    decoration: TextDecoration.lineThrough),
                                 textAlign: TextAlign.center,
                               ),
                             ],
                           )
-
                         ],
+                      ),
+                    ),
+                    PositionedDirectional(
+                      bottom: 0,
+                      end: 0,
+                      child: Container(
+                        width: 85.w,
+                        height: 40.h,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.only(
+                                bottomLeft: Radius.circular(12.r),
+                                topRight: Radius.circular(12.r)),
+                            color: mainColor),
+                        child: Text(
+                          'sub'.tr,
+                          style: TextStyle(
+                            color: blackTextColor,
+                            fontSize: 18.sp,
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                    ),
+                    PositionedDirectional(
+                      bottom: 0,
+                      start: 0,
+                      child: SizedBox(
+                        width: 85.w,
+                        height: 40.h,
+                        child: Text(
+                          'details'.tr,
+                          style: TextStyle(
+                            color: sucndryColor1,
+                            fontSize: 18.sp,
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
                       ),
                     )
                   ],
                 );
-                },)
+              },
+            ),
+            Text(
+              'images'.tr,
+              style: TextStyle(
+                fontSize: 20.sp,
+                color: blackTextColor,
+                fontWeight: FontWeight.w500,
+              ),
+              textAlign: TextAlign.center,
+            ),
+            SizedBox(
+              height: 130,
+              child: ListView.builder(
+                itemCount: 5,
+                scrollDirection: Axis.horizontal,
+                itemBuilder: (context, index) {
+                  return Padding(
+                    padding: EdgeInsets.all(8.0.r),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(10.r),
+                      child: Image.network(
+                          "https://www.idonate.ie/images/newimage/sports-clubs-1.jpg",
+                          fit: BoxFit.cover,
+                          width: 120.w,
+                          height: 130.h),
+                    ),
+                  );
+                },
+              ),
+            ),
+            Text(
+              'vedios'.tr,
+              style: TextStyle(
+                fontSize: 20.sp,
+                color: blackTextColor,
+                fontWeight: FontWeight.w500,
+              ),
+              textAlign: TextAlign.center,
+            ),
+            SizedBox(
+              height: 130,
+              child: ListView.builder(
+                itemCount: 5,
+                scrollDirection: Axis.horizontal,
+                itemBuilder: (context, index) {
+                  return Padding(
+                    padding: EdgeInsets.all(8.0.r),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(10.r),
+                      child: Stack(
+                        children: [
+                          Image.network(
+                              "https://www.idonate.ie/images/newimage/sports-clubs-1.jpg",
+                              fit: BoxFit.cover,
+                              width: 120.w,
+                              height: 130.h,),
+                          Positioned(
+                              top: 0,
+                              bottom: 0,
+                              right: 0,
+                              left: 0,
+                              child: SvgPicture.asset(
+                                  "assets/images/video_icon.svg"))
+                        ],
+                      ),
+                    ),
+                  );
+                },
+              ),
+            ),
           ],
         ),
       ),

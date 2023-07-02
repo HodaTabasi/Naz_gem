@@ -24,6 +24,10 @@ class TranslateWord extends Translations {
       'pakages': '',
       'public_pakage': '',
       'private_pakage': '',
+      'sub': '',
+      'details': '',
+      'images': '',
+      'vedios': '',
     },
     'ar': {
       'skip': 'تخطي',
@@ -50,6 +54,10 @@ class TranslateWord extends Translations {
       'pakages': 'باقاتنا',
       'public_pakage': 'الباقات العامة',
       'private_pakage': 'الباقات الخاصة',
+      'sub': 'اشتراك',
+      'details': 'التفاصيل',
+      'images': 'معرض الصور',
+      'vedios': 'الفيديوهات',
     }
   };
 }
