@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:naz_gem/features/booking/ui/pages/booking_screen.dart';
 import 'package:naz_gem/features/home/ui/pages/home_screen.dart';
 
 import 'core/translations/app_translations.dart';
@@ -31,7 +32,7 @@ class MyApp extends StatelessWidget {
           fontFamily: 'br'
         ),
         // home: OnBoardingScreen(),
-        home: Subscrbtions(),
+        home: BookingScreen(),
       ),
     );
   }

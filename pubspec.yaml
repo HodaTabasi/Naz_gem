@@ -39,6 +39,8 @@ dependencies:
   get: ^4.6.5
   flutter_screenutil: any
   flutter_svg: any
+  intl: ^0.17.0
+  carousel_slider: ^4.2.1
 
 dev_dependencies:
   flutter_test:
