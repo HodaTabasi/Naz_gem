@@ -28,6 +28,16 @@ class TranslateWord extends Translations {
       'details': '',
       'images': '',
       'vedios': '',
+      'sure_sub': '',
+      'activate_date': '',
+      'enter_promo': '',
+      'yes': '',
+      'no': '',
+      'payment': '',
+      'pay': '',
+      'q': '',
+      'connect': '',
+      'hint_meg': '',
     },
     'ar': {
       'skip': 'تخطي',
@@ -58,6 +68,16 @@ class TranslateWord extends Translations {
       'details': 'التفاصيل',
       'images': 'معرض الصور',
       'vedios': 'الفيديوهات',
+      'sure_sub': 'تأكيد الاشتراك',
+      'activate_date': 'تاريخ تفعيل الباقة ',
+      'enter_promo': 'الرجاء ادخال البروموكود',
+      'yes': 'نعم',
+      'no': 'لا',
+      'payment': 'المبلغ المستحق :',
+      'pay': 'الدفع الان',
+      'q': 'هل أنت من أعضاء شركاؤنا ؟',
+      'connect': 'التواصل عبر واتساب',
+      'hint_meg': 'الرجاء التوجه لمكتب الاستقبال بالنادي لتأكيد \n عضويتكم و لتفعيل الحساب .. أو التواصل عبر \n الواتس اب',
     }
   };
 }

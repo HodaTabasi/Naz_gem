@@ -5,6 +5,7 @@ import 'package:naz_gem/features/home/ui/pages/home_screen.dart';
 
 import 'core/translations/app_translations.dart';
 import 'features/static/on_boarding.dart';
+import 'features/subscrbtions/ui/pages/subscrbtion_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -23,14 +24,14 @@ class MyApp extends StatelessWidget {
       builder: (context, child) =>  GetMaterialApp(
         debugShowCheckedModeBanner: false,
         translations: TranslateWord(), // your translations
-        locale: Locale('ar'), // translations will be displayed in that locale
-        fallbackLocale: Locale('ar'),
+        locale: const Locale('ar'), // translations will be displayed in that locale
+        fallbackLocale: const Locale('ar'),
         theme: ThemeData(
           primarySwatch: Colors.blue,
           fontFamily: 'br'
         ),
         // home: OnBoardingScreen(),
-        home: HomeScreen(),
+        home: Subscrbtions(),
       ),
     );
   }

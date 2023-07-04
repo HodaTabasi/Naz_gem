@@ -6,6 +6,8 @@ import 'package:naz_gem/core/constants/app_colors.dart';
 import 'package:naz_gem/core/constants/app_widget.dart';
 import 'package:naz_gem/core/widgets/app_button.dart';
 
+import '../../../subscrbtions/ui/pages/subscrbtion_screen.dart';
+
 class HomeScreen extends StatefulWidget {
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -86,7 +88,8 @@ class _HomeScreenState extends State<HomeScreen> {
                           start: 25.w,
                           child: Text("جيم نسائي ومركز لياقة بدنية",
                               style:
-                                  TextStyle(color: mainColor, fontSize: 18.sp)),
+                                  TextStyle(color: mainColor, fontSize: 18.sp)
+                          ),
                         ),
                         PositionedDirectional(
                           bottom: 30.h,
@@ -232,21 +235,26 @@ class _HomeScreenState extends State<HomeScreen> {
                     PositionedDirectional(
                       bottom: 0,
                       end: 0,
-                      child: Container(
-                        width: 85.w,
-                        height: 40.h,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.only(
-                                bottomLeft: Radius.circular(12.r),
-                                topRight: Radius.circular(12.r)),
-                            color: mainColor),
-                        child: Text(
-                          'sub'.tr,
-                          style: TextStyle(
-                            color: blackTextColor,
-                            fontSize: 18.sp,
+                      child: InkWell(
+                        onTap:(){
+                          Get.to(()=>Subscrbtions());
+                        },
+                        child: Container(
+                          width: 85.w,
+                          height: 40.h,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.only(
+                                  bottomLeft: Radius.circular(12.r),
+                                  topRight: Radius.circular(12.r)),
+                              color: mainColor),
+                          child: Text(
+                            'sub'.tr,
+                            style: TextStyle(
+                              color: blackTextColor,
+                              fontSize: 18.sp,
+                            ),
+                            textAlign: TextAlign.center,
                           ),
-                          textAlign: TextAlign.center,
                         ),
                       ),
                     ),
@@ -325,13 +333,16 @@ class _HomeScreenState extends State<HomeScreen> {
                               fit: BoxFit.cover,
                               width: 120.w,
                               height: 130.h,),
-                          Positioned(
-                              top: 0,
-                              bottom: 0,
-                              right: 0,
-                              left: 0,
-                              child: SvgPicture.asset(
-                                  "assets/images/video_icon.svg"))
+                          SizedBox(
+                            width: 120,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                SvgPicture.asset(
+                                    "assets/images/vedio_icon.svg"),
+                              ],
+                            ),
+                          )
                         ],
                       ),
                     ),
