@@ -5,6 +5,7 @@ Color goldenColor = Color(0xffC19741);
 Color blackTextColor = Color(0xff353535);
 Color grayTextColor = Color(0xff7E7E7E);
 Color grayTextColor1 = Color(0xffC0C0C0);
+Color grayBackground = Color(0xffFAFAFA);
 Color boarderColor = Color(0xffD9D9D9);//EBEBEB
 Color boarderColorPakage = Color(0xffEBEBEB);//
 Color btnColor = Color(0xff2c2e3d);
