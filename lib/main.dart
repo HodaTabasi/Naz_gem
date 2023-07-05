@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:naz_gem/features/booking/ui/pages/booking_screen.dart';
+import 'package:naz_gem/features/contact_us/ui/pages/contact_us_page.dart';
 import 'package:naz_gem/features/home/ui/pages/home_screen.dart';
 import 'package:naz_gem/features/more/ui/pages/more_page.dart';
 import 'package:naz_gem/features/notifications/ui/pages/notificaion_page.dart';
@@ -35,7 +36,7 @@ class MyApp extends StatelessWidget {
           fontFamily: 'br'
         ),
         // home: OnBoardingScreen(),
-        home: MyBilles(),
+        home: ContactUsPage(),
       ),
     );
   }

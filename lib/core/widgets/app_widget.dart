@@ -30,14 +30,14 @@ Widget getDivider(){
   );
 }
 
-getAppBar({text ,isBack = false ,height }){
+getAppBar({text ,isBack = false ,height,textColor}){
   return AppBar(
     toolbarHeight: height,
     elevation: 0,
-    backgroundColor: Colors.white,
+    backgroundColor: textColor != null ?Colors.transparent:Colors.white,
     title:  getText(
       text,
-      color: blackTextColor,
+      color: textColor ?? blackTextColor,
       size: 20.sp,
     ),
     centerTitle: true,
@@ -46,7 +46,7 @@ getAppBar({text ,isBack = false ,height }){
         onPressed: () {
           Get.back();
         },
-        icon: Icon(Icons.arrow_back, color: Colors.black)):null,
+        icon:  Icon(Icons.arrow_back, color: textColor != null?Colors.white:Colors.black)):null,
   );
 }
 

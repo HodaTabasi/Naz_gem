@@ -132,6 +132,13 @@ class TranslateWord extends Translations {
       'logout': 'تسجيل خروج',
       'notification': 'الاشعارات',
       'book_now': 'احجز الان',
+      'contact_us': 'تواصل معنا',
+      'contact_info': 'معلومات التواصل',
+      'phone': 'رقم الهاتف : ',
+      'email_c': 'البريد الالكتروني : ',
+      'location': 'الموقع : ',
+      'site': 'الموقع الالكتروني : ',
+      'work_time': 'مواقيت العمل ',
     }
   };
 }
