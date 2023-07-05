@@ -5,6 +5,8 @@ import 'package:get/get.dart';
 import 'package:naz_gem/core/constants/utils.dart';
 
 import '../../../../core/constants/app_colors.dart';
+import '../../../../core/widgets/app_widget.dart';
+import '../widget/itemWidget.dart';
 
 class MorePage extends StatelessWidget {
 
@@ -12,14 +14,10 @@ class MorePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar:  AppBar(
-        toolbarHeight: 60.h,
-        elevation: 0,
-        backgroundColor: Colors.white,
-        title: Text("more".tr,
-            style: TextStyle(color: blackTextColor, fontSize: 20.sp)),
-        centerTitle: true,
-        automaticallyImplyLeading: false,
+      appBar: getAppBar(
+          text: 'more'.tr,
+          isBack: false,
+          height: 60.h
       ),
       body: ListView.builder(
         itemCount: Utils.data.length,
@@ -34,30 +32,4 @@ class MorePage extends StatelessWidget {
   }
 }
 
-class itemWidget extends StatelessWidget {
- final String icon;
- final String text;
-  const itemWidget({
-    super.key,
-    required this.icon,
-    required this.text
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding:  EdgeInsets.symmetric(vertical: 8.0.r),
-      child: ListTile(
-        tileColor: grayBackground,
-        contentPadding: EdgeInsets.all(5.r),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(10.r)
-        ),
-        title: Text(text,style: TextStyle(color: blackTextColor, fontSize: 14.sp)),
-        trailing: Icon(Icons.arrow_forward_ios),
-        leading: SvgPicture.asset(icon),
-      ),
-    );
-  }
-}
 

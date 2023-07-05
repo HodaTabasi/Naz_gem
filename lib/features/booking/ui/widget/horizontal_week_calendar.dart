@@ -129,7 +129,7 @@ class _HorizontalWeekCalendarState extends State<HorizontalWeekCalendar> {
     for (int index = 0; index < 6; index++) {
       DateTime addDate = startOfCurrentWeek.add(Duration(days: (index + 1)));
       currentWeek.add(addDate);
-      if(index == 5){
+      if (index == 5) {
         startOfCurrentWeek = addDate;
       }
     }
@@ -294,6 +294,17 @@ class _HorizontalWeekCalendarState extends State<HorizontalWeekCalendar> {
               //     ),
               //   ],
               // ),
+              Text(
+                ' شهر ${isCurrentYear() ? DateFormat('MMMM', 'ar').format(
+                    currentWeek[0],
+                  ) : DateFormat('MMMM yyyy', 'ar').format(
+                    currentWeek[0],
+                  )}',
+                style: theme.textTheme.titleMedium!.copyWith(
+                  fontWeight: FontWeight.bold,
+                  color: widget.monthColor ?? const Color(0xff353535),
+                ),
+              ),
               const SizedBox(
                 height: 12,
               ),
@@ -351,8 +362,9 @@ class _HorizontalWeekCalendarState extends State<HorizontalWeekCalendar> {
                                                       .withOpacity(.2)
                                               : widget.disabledBackgroundColor ??
                                                   Colors.grey,
-                                      border: (DateFormat('dd-MM-yy')
-                                                  .format(listOfWeeks[ind][weekIndex]) ==
+                                      border: (DateFormat('dd-MM-yy').format(
+                                                  listOfWeeks[ind]
+                                                      [weekIndex]) ==
                                               DateFormat('dd-MM-yy')
                                                   .format(selectedDate))
                                           ? null

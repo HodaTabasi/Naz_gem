@@ -55,6 +55,16 @@ class TranslateWord extends Translations {
       'descount': '',
       'tax': '',
       'total': '',
+      'more': '',
+      'setting': ' ',
+      'contact_w_us': '   ',
+      'policy': ' ',
+      'policy': ' ',
+      'delete_account': ' ',
+      'logout': ' ',
+      'notification': '',
+      'book_now': ' ',
+      'my_bill': ' ',
     },
     'ar': {
       'skip': 'تخطي',
@@ -103,6 +113,7 @@ class TranslateWord extends Translations {
       'expire': 'منتهي',
       'connect_now': 'الاشتراك الحالي',
       'subc': 'اشتراك ',
+      'my_bill': 'فواتيري ',
       'bill_details': 'تفاصيل الفاتورة ',
       'bill_number': 'رقم الفاتورة : ',
       'bill_date': 'التاريخ : ',
@@ -116,9 +127,11 @@ class TranslateWord extends Translations {
       'setting': 'اعدادات الاشتراك',
       'contact_w_us': 'تواصل مع فريق ناز',
       'policy': 'الشروط والأحكام',
+      'policy': 'الشروط والأحكام',
       'delete_account': 'حذف الحساب',
       'logout': 'تسجيل خروج',
       'notification': 'الاشعارات',
+      'book_now': 'احجز الان',
     }
   };
 }

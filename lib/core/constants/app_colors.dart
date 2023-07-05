@@ -14,3 +14,4 @@ Color sucndryColor1 = Color(0xff0058C7); //0058C7
 Color grayColor = Color(0xffF1F1F1);
 Color tabColor = Color(0xffF4F4F4);
 Color itemBackgroundColor = Color(0xffFAFAFA);
+Color redColor = Color(0xffC71B1A);

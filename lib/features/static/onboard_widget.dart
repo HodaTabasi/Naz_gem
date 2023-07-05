@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 import '../../core/constants/app_colors.dart';
-import '../../core/constants/app_widget.dart';
+import '../../core/widgets/app_widget.dart';
 import '../../core/widgets/app_button.dart';
 import '../auth/ui/pages/login.dart';
 

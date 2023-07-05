@@ -3,8 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:naz_gem/core/constants/app_colors.dart';
-import 'package:naz_gem/core/constants/app_widget.dart';
-import 'package:naz_gem/core/widgets/app_button.dart';
+import 'package:naz_gem/core/widgets/app_widget.dart';
 
 import '../../../subscrbtions/ui/pages/subscrbtion_screen.dart';
 
@@ -26,8 +25,11 @@ class _HomeScreenState extends State<HomeScreen> {
           toolbarHeight: 80.h,
           elevation: 0,
           backgroundColor: Colors.white,
-          title: Text("title".tr,
-              style: TextStyle(color: blackTextColor, fontSize: 20.sp)),
+          title: getText(
+            'title'.tr,
+            color: blackTextColor,
+            size: 20.sp,
+          ),
           centerTitle: true,
           actions: [
             Padding(
@@ -77,37 +79,37 @@ class _HomeScreenState extends State<HomeScreen> {
                         PositionedDirectional(
                           top: 35.h,
                           start: 25.w,
-                          child: Text("نادي ناز للسيدات",
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 20.sp,
-                                  fontWeight: FontWeight.bold)),
+                          child: getText("نادي ناز للسيدات",
+                              color: Colors.white,
+                              size: 20.sp,
+                              weight: FontWeight.bold),
                         ),
                         PositionedDirectional(
                           top: 80.h,
                           start: 25.w,
-                          child: Text("جيم نسائي ومركز لياقة بدنية",
-                              style:
-                                  TextStyle(color: mainColor, fontSize: 18.sp)
+                          child: getText(
+                            "جيم نسائي ومركز لياقة بدنية",
+                            color: mainColor,
+                            size: 18.sp,
                           ),
                         ),
                         PositionedDirectional(
                           bottom: 30.h,
                           start: 25.w,
                           child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                                elevation: 0,
-                                backgroundColor: mainColor,
-                                fixedSize: Size(120.w, 40.h),
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(8.r))),
-                            onPressed: () {},
-                            child: Text('join'.tr,
-                                style: TextStyle(
-                                  fontSize: 16,
-                                  color: blackTextColor,
-                                )),
-                          ),
+                              style: ElevatedButton.styleFrom(
+                                  elevation: 0,
+                                  backgroundColor: mainColor,
+                                  fixedSize: Size(120.w, 40.h),
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius:
+                                          BorderRadius.circular(8.r))),
+                              onPressed: () {},
+                              child: getText(
+                                'join'.tr,
+                                color: blackTextColor,
+                                size: 16.sp,
+                              )),
                         )
                       ],
                     ),
@@ -197,36 +199,25 @@ class _HomeScreenState extends State<HomeScreen> {
                         // mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           getSpace(h: 25.h),
-                          Text(
-                            "شهر واحد",
-                            style: TextStyle(
-                              fontSize: 13.sp,
+                          getText("شهر واحد",
                               color: grayTextColor,
-                            ),
-                            textAlign: TextAlign.center,
-                          ),
+                              size: 13.sp,
+                              align: TextAlign.center),
                           getSpace(h: 10.h),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Text(
-                                "1200 ريال",
-                                style: TextStyle(
-                                  fontSize: 20.sp,
+                              getText("2000 ريال",
+                                  color: grayTextColor1,
+                                  size: 15.sp,
+                                  align: TextAlign.center,
+                                  decoration: TextDecoration.lineThrough),
+                              getSpace(w: 10.w),
+                              getText("1200 ريال",
                                   color: blackTextColor,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                                textAlign: TextAlign.center,
-                              ),
-                              Text(
-                                "2000",
-                                style: TextStyle(
-                                    fontSize: 15.sp,
-                                    color: grayTextColor1,
-                                    // fontWeight: FontWeight.w500,
-                                    decoration: TextDecoration.lineThrough),
-                                textAlign: TextAlign.center,
-                              ),
+                                  size: 20.sp,
+                                  weight: FontWeight.bold,
+                                  align: TextAlign.center),
                             ],
                           )
                         ],
@@ -236,8 +227,8 @@ class _HomeScreenState extends State<HomeScreen> {
                       bottom: 0,
                       end: 0,
                       child: InkWell(
-                        onTap:(){
-                          Get.to(()=>Subscrbtions());
+                        onTap: () {
+                          Get.to(() => Subscrbtions());
                         },
                         child: Container(
                           width: 85.w,
@@ -247,14 +238,10 @@ class _HomeScreenState extends State<HomeScreen> {
                                   bottomLeft: Radius.circular(12.r),
                                   topRight: Radius.circular(12.r)),
                               color: mainColor),
-                          child: Text(
-                            'sub'.tr,
-                            style: TextStyle(
+                          child: getText('sub'.tr,
                               color: blackTextColor,
-                              fontSize: 18.sp,
-                            ),
-                            textAlign: TextAlign.center,
-                          ),
+                              size: 18.sp,
+                              align: TextAlign.center),
                         ),
                       ),
                     ),
@@ -264,13 +251,10 @@ class _HomeScreenState extends State<HomeScreen> {
                       child: SizedBox(
                         width: 85.w,
                         height: 40.h,
-                        child: Text(
-                          'details'.tr,
-                          style: TextStyle(
-                            color: sucndryColor1,
-                            fontSize: 18.sp,
-                          ),
-                          textAlign: TextAlign.center,
+                        child: getText('details'.tr,
+                            color:sucndryColor1,
+                            size: 18.sp,
+                            align: TextAlign.center
                         ),
                       ),
                     )
@@ -278,14 +262,11 @@ class _HomeScreenState extends State<HomeScreen> {
                 );
               },
             ),
-            Text(
-              'images'.tr,
-              style: TextStyle(
-                fontSize: 20.sp,
-                color: blackTextColor,
-                fontWeight: FontWeight.w500,
-              ),
-              textAlign: TextAlign.center,
+            getText('images'.tr,
+                color:blackTextColor,
+                weight: FontWeight.w500,
+                size: 20.sp,
+                align: TextAlign.center
             ),
             SizedBox(
               height: 130,
@@ -307,14 +288,11 @@ class _HomeScreenState extends State<HomeScreen> {
                 },
               ),
             ),
-            Text(
-              'vedios'.tr,
-              style: TextStyle(
-                fontSize: 20.sp,
-                color: blackTextColor,
-                fontWeight: FontWeight.w500,
-              ),
-              textAlign: TextAlign.center,
+            getText('vedios'.tr,
+                color:blackTextColor,
+                size: 20.sp,
+                weight: FontWeight.w500,
+                align: TextAlign.center
             ),
             SizedBox(
               height: 130,
@@ -329,10 +307,11 @@ class _HomeScreenState extends State<HomeScreen> {
                       child: Stack(
                         children: [
                           Image.network(
-                              "https://www.idonate.ie/images/newimage/sports-clubs-1.jpg",
-                              fit: BoxFit.cover,
-                              width: 120.w,
-                              height: 130.h,),
+                            "https://www.idonate.ie/images/newimage/sports-clubs-1.jpg",
+                            fit: BoxFit.cover,
+                            width: 120.w,
+                            height: 130.h,
+                          ),
                           SizedBox(
                             width: 120,
                             child: Column(

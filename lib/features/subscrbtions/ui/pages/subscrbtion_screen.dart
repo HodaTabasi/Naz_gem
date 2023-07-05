@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:naz_gem/core/constants/app_widget.dart';
+import 'package:naz_gem/core/widgets/app_widget.dart';
 import 'package:naz_gem/core/widgets/app_button.dart';
 import 'package:naz_gem/core/widgets/app_text_field.dart';
 import 'package:naz_gem/features/auth/ui/widget/date_text_field.dart';
@@ -37,9 +37,12 @@ class _SubscrbtionsState extends State<Subscrbtions> {
         toolbarHeight: 80.h,
         elevation: 0,
         backgroundColor: Colors.white,
-        title: Text("sure_sub".tr,
-            style: TextStyle(color: blackTextColor, fontSize: 20.sp)),
-        centerTitle: true,
+        title: getText(
+          'sure_sub'.tr,
+          color: blackTextColor,
+          size: 20.sp,
+        ),
+         centerTitle: true,
         automaticallyImplyLeading: false,
         leading: IconButton(
             onPressed: () {
@@ -50,9 +53,12 @@ class _SubscrbtionsState extends State<Subscrbtions> {
       body: ListView(
         padding: EdgeInsets.all(16.r),
         children: [
-          Text("q".tr,
-              style: TextStyle(color: blackTextColor, fontSize: 16.sp)),
-          Row(
+          getText(
+            'q'.tr,
+            color: blackTextColor,
+            size: 16.sp,
+          ),
+            Row(
             children: [
               Expanded(
                 child: RadioListTile(
@@ -85,9 +91,12 @@ class _SubscrbtionsState extends State<Subscrbtions> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text("enter_promo".tr,
-                    style: TextStyle(color: blackTextColor, fontSize: 16.sp)),
-                getSpace(h: 8.h),
+                getText(
+                  'enter_promo'.tr,
+                  color: blackTextColor,
+                  size: 16.sp,
+                ),
+                 getSpace(h: 8.h),
                 Row(
                   children: [
                     Expanded(
@@ -113,9 +122,12 @@ class _SubscrbtionsState extends State<Subscrbtions> {
           ),
 
           getSpace(h: 8.h),
-          Text("activate_date".tr,
-              style: TextStyle(color: blackTextColor, fontSize: 16.sp)),
-          getSpace(h:8.h),
+          getText(
+            'activate_date'.tr,
+            color: blackTextColor,
+            size: 16.sp,
+          ),
+           getSpace(h:8.h),
           DataTextField(textController: dateController, hint: '',prefixIcon:'assets/images/calender.svg' ,),
           getSpace(h:16.h),
           Container(
@@ -136,24 +148,21 @@ class _SubscrbtionsState extends State<Subscrbtions> {
                 subtitle: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    Text(
+                    getText(
                       " 2000 ريال",
-                      style: TextStyle(
-                          fontSize: 15.sp,
-                          color: grayTextColor1,
-                          // fontWeight: FontWeight.w500,
-                          decoration: TextDecoration.lineThrough),
-                      textAlign: TextAlign.center,
+                      color: grayTextColor1,
+                      size: 15.sp,
+                      decoration: TextDecoration.lineThrough,
+                      align: TextAlign.center
                     ),
                     getSpace(w:16.r),
-                    Text(
-                      "1200 ريال",
-                      style: TextStyle(
-                        fontSize: 16.sp,
+                    getText(
+                        " 1200 ريال",
                         color: blackTextColor,
-                        fontWeight: FontWeight.w600,
-                      ),
-                      textAlign: TextAlign.center,
+                        size: 16.sp,
+                        weight: FontWeight.w600,
+                        // decoration: TextDecoration.lineThrough,
+                        align: TextAlign.center
                     ),
 
                   ],

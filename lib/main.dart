@@ -35,7 +35,7 @@ class MyApp extends StatelessWidget {
           fontFamily: 'br'
         ),
         // home: OnBoardingScreen(),
-        home: NotificationPage(),
+        home: MyBilles(),
       ),
     );
   }

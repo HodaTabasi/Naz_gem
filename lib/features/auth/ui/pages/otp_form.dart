@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../SizeConfig.dart';
+import '../../../../core/constants/SizeConfig.dart';
 import '../../../../core/themes/style.dart';
 
 

@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:naz_gem/core/constants/app_widget.dart';
+import 'package:naz_gem/core/widgets/app_widget.dart';
 
 import '../../../../core/constants/app_colors.dart';
 import '../widget/horizontal_week_calendar.dart';
@@ -22,14 +21,10 @@ class _BookingScreenState extends State<BookingScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(
-        toolbarHeight: 60.h,
-        elevation: 0,
-        backgroundColor: Colors.white,
-        title: Text("my_booking".tr,
-            style: TextStyle(color: blackTextColor, fontSize: 20.sp)),
-        centerTitle: true,
-        automaticallyImplyLeading: false,
+      appBar:  getAppBar(
+          text: 'my_booking'.tr,
+          isBack: false,
+          height: 60.h
       ),
       body: ListView(
         padding: EdgeInsets.all(8.r),
@@ -61,9 +56,12 @@ class _BookingScreenState extends State<BookingScreen> {
           getSpace(h: 8.h),
           Padding(
             padding: EdgeInsets.all(8.0.r),
-            child: Text("avilable_booking".tr,
-                style: TextStyle(color: blackTextColor, fontSize: 16.sp)),
-          ),
+            child: getText(
+              'avilable_booking'.tr,
+              color: blackTextColor,
+              size: 16.sp,
+            ),
+            ),
           HorizontalWeekCalendar(
             // weekStartFrom: WeekStartFrom.Monday,
             activeBackgroundColor: mainColor,

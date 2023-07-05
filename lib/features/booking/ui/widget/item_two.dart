@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:naz_gem/core/constants/app_widget.dart';
+import 'package:naz_gem/core/widgets/app_widget.dart';
 
 import '../../../../core/constants/app_colors.dart';
 import 'item2_widget/rish_data.dart';
@@ -77,11 +77,11 @@ class ItemTwoWidget extends StatelessWidget {
                       bottomRight: Radius.circular(10.r))),
               child: Padding(
                 padding: EdgeInsets.only(top: 8.0.r),
-                child: Text(
+                child: getText(
                   'book_now'.tr,
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                      color: blackTextColor, fontSize: 16.sp),
+                  color: blackTextColor,
+                  size: 16.sp,
+                  align: TextAlign.center,
                 ),
               ),
             ),

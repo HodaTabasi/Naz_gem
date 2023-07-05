@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 
 import '../../../../core/constants/app_colors.dart';
 import '../../../../core/widgets/app_button.dart';
-import '../../../../core/constants/app_widget.dart';
+import '../../../../core/widgets/app_widget.dart';
 import 'login.dart';
 import 'otp_container.dart';
 
@@ -45,23 +45,23 @@ class _OTPRegisterScreenState extends State<OTPRegisterScreen> {
                 mainAxisAlignment: MainAxisAlignment.end,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text('new_user'.tr,
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 28.sp,
-                          fontWeight: FontWeight.bold)),
+                  getText('new_user'.tr,
+                      color:Colors.white,
+                      size: 28.sp,
+                      weight: FontWeight.bold
+                  ),
                   getSpace(h: 20.0.h),
-                  Text('welcome'.tr,
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 18.sp,
-                          fontWeight: FontWeight.bold)),
+                  getText('welcome'.tr,
+                      color:Colors.white,
+                      size: 18.sp,
+                      weight: FontWeight.bold
+                  ),
                   getSpace(h: 10.0.h),
-                  Text('register_sub1'.tr,
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 12.sp,
-                          fontWeight: FontWeight.normal)),
+                  getText('register_sub1'.tr,
+                      color:Colors.white,
+                      size: 12.sp,
+                      weight: FontWeight.normal
+                  ),
                   getSpace(h: 45.0.h)
                 ],
               ),
@@ -94,11 +94,12 @@ class _OTPRegisterScreenState extends State<OTPRegisterScreen> {
 
                   }),
                   // getSpace(h: 16.0.r),
+
                   Align(
-                    child: Text(
-                      'or'.tr,
-                      style: TextStyle(fontSize: 18.sp, color: blackTextColor),
-                      textAlign: TextAlign.center,
+                    child: getText('or'.tr,
+                        color:blackTextColor,
+                        size: 18.sp,
+                        align: TextAlign.center
                     ),
                   ),
                   BtnApp(

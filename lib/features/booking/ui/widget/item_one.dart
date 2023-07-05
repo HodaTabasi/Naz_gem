@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 import '../../../../core/constants/app_colors.dart';
-import '../../../../core/constants/app_widget.dart';
+import '../../../../core/widgets/app_widget.dart';
 import 'item1_widget/rich_data.dart';
 import 'name_of_exercise_widget.dart';
 
@@ -73,7 +73,7 @@ class ItemOneWidget extends StatelessWidget {
                                   fontSize: 12.sp,
                                   color: Colors.white,
                                   fontFamily: 'br'),
-                              backgroundColor: Colors.red.shade600,
+                              backgroundColor: redColor,
                               shape: RoundedRectangleBorder(
                                   borderRadius:
                                   BorderRadius.circular(8.r))),

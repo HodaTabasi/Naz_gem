@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 import '../../../../core/constants/app_colors.dart';
-import '../../../../core/constants/app_widget.dart';
+import '../../../../core/widgets/app_widget.dart';
 import 'otp_form.dart';
 
 class OtpContainer extends StatelessWidget {
@@ -17,11 +17,17 @@ class OtpContainer extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          'enter_code'.tr,
-          style: TextStyle(fontSize: 14.sp, color: blackTextColor,fontFamily: 'tajawal'),
-          textAlign: TextAlign.center,
+        getText('enter_code'.tr,
+            color:blackTextColor,
+            size: 14.sp,
+            family: 'tajawal',
+            align: TextAlign.center
         ),
+        // Text(
+        //   'enter_code'.tr,
+        //   style: TextStyle(fontSize: 14.sp, color: blackTextColor,fontFamily: 'tajawal'),
+        //   textAlign: TextAlign.center,
+        // ),
         OtpForm(),
         getSpace(h: 10.0.r),
         RichText(

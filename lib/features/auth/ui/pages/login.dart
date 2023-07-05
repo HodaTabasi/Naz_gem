@@ -3,10 +3,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:naz_gem/core/widgets/app_button.dart';
 import 'package:naz_gem/core/widgets/app_text_field.dart';
-import 'package:naz_gem/core/constants/app_widget.dart';
+import 'package:naz_gem/core/widgets/app_widget.dart';
 
+import '../../../../bottom_navigation_page.dart';
 import '../../../../core/constants/app_colors.dart';
-import '../../../home/ui/pages/home_screen.dart';
 import 'new_user.dart';
 import 'otp_container.dart';
 
@@ -41,7 +41,6 @@ class _LoginScreenState extends State<LoginScreen> {
             top: 0,
             left: 0,
             right: 0,
-            // height: 100,
             child: Container(
               height: MediaQuery.of(context).size.height / 2.3,
               padding: EdgeInsets.all(16.r),
@@ -56,23 +55,11 @@ class _LoginScreenState extends State<LoginScreen> {
                 mainAxisAlignment: MainAxisAlignment.end,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text('login'.tr,
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 28.sp,
-                          fontWeight: FontWeight.bold)),
+                  getText('login'.tr,color:Colors.white,size: 28.sp,weight: FontWeight.bold ),
                   getSpace(h: 20.0.h),
-                  Text('welcome'.tr,
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 18.sp,
-                          fontWeight: FontWeight.bold)),
+                  getText('welcome'.tr,color:Colors.white,size: 18.sp,weight: FontWeight.bold ),
                   getSpace(h: 10.0.h),
-                  Text('login_sub1'.tr,
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 12.sp,
-                          fontWeight: FontWeight.normal)),
+                  getText('login_sub1'.tr,color:Colors.white,size: 12.sp,weight: FontWeight.normal ),
                   getSpace(h: 45.0.h)
                 ],
               ),
@@ -100,11 +87,10 @@ class _LoginScreenState extends State<LoginScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     getSpace(h: 16.0.r),
-                    Text(
-                      'mobile_number'.tr,
-                      style: TextStyle(fontSize: 16.sp, color: blackTextColor),
-                      textAlign: TextAlign.center,
-                    ),
+                    getText('mobile_number'.tr,
+                        color:blackTextColor,
+                        size: 16.sp,
+                        align:TextAlign.center),
                     getSpace(h: 16.0.r),
                     SizedBox(
                       height: 60.h,
@@ -121,7 +107,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                     BtnApp(title: appearOtp?'ok'.tr:'sure_otp'.tr, color: btnColor, prsee: () {
                       if(appearOtp){
-                        Get.offAll(()=>HomeScreen());
+                        Get.offAll(()=>BottomNavigationPage());
                       }else{
                         setState(() {
                           appearOtp = !appearOtp;
@@ -131,11 +117,10 @@ class _LoginScreenState extends State<LoginScreen> {
                     }),
                     // getSpace(h: 16.0.r),
                     Align(
-                      child: Text(
-                        'or'.tr,
-                        style: TextStyle(fontSize: 18.sp, color: blackTextColor),
-                        textAlign: TextAlign.center,
-                      ),
+                      child:getText('or'.tr,
+                          color:blackTextColor,
+                          size: 18.sp,
+                          align:TextAlign.center)
                     ),
                     BtnApp(
                         title: 'new_user'.tr,
