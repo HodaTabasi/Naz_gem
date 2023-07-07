@@ -3,10 +3,12 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:naz_gem/core/constants/app_colors.dart';
+import 'package:naz_gem/core/widgets/app_button.dart';
 import 'package:naz_gem/core/widgets/app_widget.dart';
 import 'package:naz_gem/features/notifications/ui/pages/notificaion_page.dart';
 
 import '../../../subscrbtions/ui/pages/subscrbtion_screen.dart';
+import '../widgets/custom_paint.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -37,7 +39,7 @@ class _HomeScreenState extends State<HomeScreen> {
               padding: const EdgeInsets.all(16.0),
               child: InkWell(
                 onTap: () {
-                  Get.to(()=>NotificationPage());
+                  Get.to(() => NotificationPage());
                 }, //
                 child: Center(
                   child: Stack(
@@ -145,10 +147,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                   MediaQuery.of(context).size.width / 2.2,
                                   currentIndex == 0 ? 80 : 50),
                               shape: RoundedRectangleBorder(
-                                  borderRadius:BorderRadius.only(
-                                    topRight: Radius.circular(10.r),
-                                    bottomRight: Radius.circular(10.r)
-                                  )),
+                                  borderRadius: BorderRadius.only(
+                                      topRight: Radius.circular(10.r),
+                                      bottomRight: Radius.circular(10.r))),
                               backgroundColor:
                                   currentIndex == 0 ? blackTextColor : tabColor,
                               elevation: 0),
@@ -171,10 +172,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                   MediaQuery.of(context).size.width / 2.2,
                                   currentIndex == 1 ? 80 : 50),
                               shape: RoundedRectangleBorder(
-                                  borderRadius:BorderRadius.only(
-                                    topLeft: Radius.circular(10.r),
-                                    bottomLeft: Radius.circular(10.r)
-                                  )),
+                                  borderRadius: BorderRadius.only(
+                                      topLeft: Radius.circular(10.r),
+                                      bottomLeft: Radius.circular(10.r))),
                               backgroundColor:
                                   currentIndex == 1 ? mainColor : tabColor,
                               elevation: 0),
@@ -227,12 +227,13 @@ class _HomeScreenState extends State<HomeScreen> {
                     ]),*/
             GridView.builder(
               padding: EdgeInsets.all(16.r),
-              physics: NeverScrollableScrollPhysics(),
+              physics: const NeverScrollableScrollPhysics(),
               shrinkWrap: true,
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
                 crossAxisSpacing: 16.w,
                 mainAxisSpacing: 16.h,
+                childAspectRatio: 3/2.5
               ),
               itemCount: 4,
               itemBuilder: (context, index) {
@@ -272,7 +273,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               getSpace(w: 10.w),
                               getText("1200 ريال",
                                   color: blackTextColor,
-                                  size: 20.sp,
+                                  size: 16.sp,
                                   weight: FontWeight.bold,
                                   align: TextAlign.center),
                             ],
@@ -289,7 +290,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         },
                         child: Container(
                           width: 85.w,
-                          height: 40.h,
+                          height: 35.h,
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.only(
                                   bottomLeft: Radius.circular(12.r),
@@ -297,7 +298,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               color: mainColor),
                           child: getText('sub'.tr,
                               color: blackTextColor,
-                              size: 18.sp,
+                              size: 14.sp,
                               align: TextAlign.center),
                         ),
                       ),
@@ -306,13 +307,15 @@ class _HomeScreenState extends State<HomeScreen> {
                       bottom: 0,
                       start: 0,
                       child: InkWell(
-                        onTap:(){},
+                        onTap: () {
+                          showDitailsDialog(context);
+                        },
                         child: SizedBox(
                           width: 85.w,
-                          height: 40.h,
+                          height: 35.h,
                           child: getText('details'.tr,
                               color: sucndryColor1,
-                              size: 18.sp,
+                              size: 14.sp,
                               align: TextAlign.center),
                         ),
                       ),
@@ -389,6 +392,159 @@ class _HomeScreenState extends State<HomeScreen> {
           ],
         ),
       ),
+    );
+  }
+
+  void showDitailsDialog(BuildContext context) {
+    var w = MediaQuery.of(context).size.width;
+    showDialog(
+      context: context,
+      builder: (context) {
+        return Center(
+          child: Container(
+              width: 350.w,
+              // width: MediaQuery.of(context).size.width-100,
+              // padding:
+              // EdgeInsets.only(left: 16, right: 16, bottom: 16),
+              // margin: EdgeInsets.only(top: 45),
+              decoration: BoxDecoration(
+                shape: BoxShape.rectangle,
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(16),
+                // boxShadow: [
+                //   BoxShadow(
+                //       color: Colors.black, offset: Offset(0, 10), blurRadius: 5),
+                // ]
+              ),
+              child: SingleChildScrollView(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Stack(
+                      children: [
+                        CustomPaint(
+                          size: Size(
+                              350.w, (350.w * 0.46938775510204084).toDouble()),
+                          //You can Replace [WIDTH] with your desired width for Custom Paint and height will be calculated automatically
+                          painter: RPSCustomPainter(),
+                        ),
+                        PositionedDirectional(
+                          top: 20.h,
+                          end: 0,
+                          start: 0,
+                          child: Column(
+                            children: [
+                              getText('3 شهور', color: Colors.white, size: 16.sp),
+                              getSpace(h: 10.h),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  getText("2000 ريال",
+                                      color: grayTextColor1,
+                                      size: 15.sp,
+                                      align: TextAlign.center,
+                                      decoration: TextDecoration.lineThrough),
+                                  getSpace(w: 10.w),
+                                  getText("1200 ريال",
+                                      color: Colors.white,
+                                      size: 20.sp,
+                                      weight: FontWeight.bold,
+                                      align: TextAlign.center),
+                                ],
+                              )
+                            ],
+                          ),
+                        )
+                      ],
+                    ),
+                    // getSpace(h: 8.h),
+                    getText('خصم يوم التأسيس',
+                        size: 20.sp, color: blackTextColor),
+                    // getSpace(h: 8.h),
+                    SizedBox(
+                      height: 72.h,
+                      child: Stack(
+                        children: [
+                          SvgPicture.asset('assets/images/sale1.svg'),
+                          PositionedDirectional(
+                            top: 30.h,
+                            start: 0,
+                            end: 0,
+                            child: getText('20%',
+                                size: 20.sp, color: Colors.black,align: TextAlign.center),
+                          ),
+                        ],
+                      ),
+                    ),
+                    // getSpace(h: 8.h),
+                    getText('تفاصيل الباقة',
+                        size: 16.sp, color: blackTextColor),
+                    Material(
+                      color: Colors.white,
+                      child: ListTile(
+                        leading: SvgPicture.asset('assets/images/gem1.svg'),
+                        title: getText('الحجوزات المسموح بها جلستين',
+                            size: 14.sp, color: blackTextColor) ,
+                      ),
+                    ),
+                    Material(
+                      color: Colors.white,
+                      child: ListTile(
+                        leading: SvgPicture.asset('assets/images/gem1.svg'),
+                        title: getText('مدربين معتمدين',
+                            size: 14.sp, color: blackTextColor) ,
+                      ),
+                    ),
+                    Material(
+                      color: Colors.white,
+                      child: ListTile(
+                        leading: SvgPicture.asset('assets/images/gem1.svg'),
+                        title: getText('أجهزة حديثة متطورة',
+                            size: 14.sp, color: blackTextColor) ,
+                      ),
+                    ),
+                    Material(
+                      color: Colors.white,
+                      child: ListTile(
+                        leading: SvgPicture.asset('assets/images/gem1.svg'),
+                        title: getText('الحجوزات المسموح بها جلستين',
+                            size: 14.sp, color: blackTextColor) ,
+                      ),
+                    ),
+                    Material(
+                      color: Colors.white,
+                      child: ListTile(
+                        leading: SvgPicture.asset('assets/images/gem1.svg'),
+                        title: getText('استشارات في اللياقة والرياضة',
+                            size: 14.sp, color: blackTextColor) ,
+                      ),
+                    ),
+                    Material(
+                      color: Colors.white,
+                      child: ListTile(
+                        leading: SvgPicture.asset('assets/images/gem1.svg'),
+                        title: getText('امكانية استخدام جميع المرافق',
+                            size: 14.sp, color: blackTextColor) ,
+                      ),
+                    ),
+                    BtnApp(title: 'sub'.tr, prsee: (){
+                      Get.to(()=>Subscrbtions());
+                    }, color: btnColor,textColor: Colors.white,),
+                    // getSpace(h: 8.h),
+                    TextButton(
+                      onPressed: (){
+                        Get.back();
+                      },
+                      child: getText('cancel'.tr,
+                          size: 14.sp, color:sucndryColor1 ),
+                    ),
+                    // getSpace(h: 8.h),
+                  ],
+
+                ),
+              )),
+        );
+      },
     );
   }
 }

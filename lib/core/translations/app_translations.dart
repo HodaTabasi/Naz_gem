@@ -190,6 +190,7 @@ class TranslateWord extends Translations {
       'do_out':'هل أنت متأكد انك تريد تسجيل خروج ؟',
       'do_delete':'هل أنت متأكد انك تريد حذف الحساب ؟',
       'back':'العودة لصفحة الرئيسية',
+      'cancel':'الغاء',
     }
   };
 }

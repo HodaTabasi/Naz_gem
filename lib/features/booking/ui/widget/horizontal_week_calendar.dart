@@ -216,6 +216,7 @@ class _HorizontalWeekCalendarState extends State<HorizontalWeekCalendar> {
     return currentWeek.isEmpty
         ? const SizedBox()
         : Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               // Row(
               //   crossAxisAlignment: CrossAxisAlignment.center,
@@ -295,7 +296,7 @@ class _HorizontalWeekCalendarState extends State<HorizontalWeekCalendar> {
               //   ],
               // ),
               Text(
-                ' شهر ${isCurrentYear() ? DateFormat('MMMM', 'ar').format(
+                '${isCurrentYear() ? DateFormat('MMMM', 'ar').format(
                     currentWeek[0],
                   ) : DateFormat('MMMM yyyy', 'ar').format(
                     currentWeek[0],
@@ -304,6 +305,7 @@ class _HorizontalWeekCalendarState extends State<HorizontalWeekCalendar> {
                   fontWeight: FontWeight.bold,
                   color: widget.monthColor ?? const Color(0xff353535),
                 ),
+                textAlign: TextAlign.start,
               ),
               const SizedBox(
                 height: 12,
