@@ -129,11 +129,67 @@ class _HomeScreenState extends State<HomeScreen> {
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 16.0.r, vertical: 8.r),
               child: Container(
-                height: 53.h,
-                decoration: BoxDecoration(
-                    border: Border.all(color: boarderColor, width: 1),
-                    borderRadius: BorderRadius.circular(10)),
-                child: TabBar(
+                  height: 53.h,
+                  decoration: BoxDecoration(
+                      border: Border.all(color: boarderColor, width: 1),
+                      borderRadius: BorderRadius.circular(10)),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                              fixedSize: Size(
+                                  MediaQuery.of(context).size.width / 2.2,
+                                  currentIndex == 0 ? 80 : 50),
+                              shape: RoundedRectangleBorder(
+                                  borderRadius:BorderRadius.only(
+                                    topRight: Radius.circular(10.r),
+                                    bottomRight: Radius.circular(10.r)
+                                  )),
+                              backgroundColor:
+                                  currentIndex == 0 ? blackTextColor : tabColor,
+                              elevation: 0),
+                          onPressed: () {
+                            setState(() {
+                              currentIndex = 0;
+                            });
+                          },
+                          child: Text(
+                            'public_pakage'.tr,
+                            style: TextStyle(
+                                color: currentIndex == 0
+                                    ? Colors.white
+                                    : blackTextColor),
+                          )),
+                      // getSpace(w: 8.r),
+                      ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                              fixedSize: Size(
+                                  MediaQuery.of(context).size.width / 2.2,
+                                  currentIndex == 1 ? 80 : 50),
+                              shape: RoundedRectangleBorder(
+                                  borderRadius:BorderRadius.only(
+                                    topLeft: Radius.circular(10.r),
+                                    bottomLeft: Radius.circular(10.r)
+                                  )),
+                              backgroundColor:
+                                  currentIndex == 1 ? mainColor : tabColor,
+                              elevation: 0),
+                          onPressed: () {
+                            setState(() {
+                              currentIndex = 1;
+                            });
+                          },
+                          child: Text('private_pakage'.tr,
+                              style: TextStyle(
+                                  color: currentIndex == 1
+                                      ? Colors.white
+                                      : blackTextColor)))
+                    ],
+                  )),
+            ),
+            /*
+            * TabBar(
                     onTap: (value) {
                       setState(() {
                         currentIndex = value;
@@ -165,9 +221,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           text: 'private_pakage'.tr,
                         ),
                       ),
-                    ]),
-              ),
-            ),
+                    ]),*/
             GridView.builder(
               padding: EdgeInsets.all(16.r),
               physics: NeverScrollableScrollPhysics(),
@@ -252,10 +306,9 @@ class _HomeScreenState extends State<HomeScreen> {
                         width: 85.w,
                         height: 40.h,
                         child: getText('details'.tr,
-                            color:sucndryColor1,
+                            color: sucndryColor1,
                             size: 18.sp,
-                            align: TextAlign.center
-                        ),
+                            align: TextAlign.center),
                       ),
                     )
                   ],
@@ -263,11 +316,10 @@ class _HomeScreenState extends State<HomeScreen> {
               },
             ),
             getText('images'.tr,
-                color:blackTextColor,
+                color: blackTextColor,
                 weight: FontWeight.w500,
                 size: 20.sp,
-                align: TextAlign.center
-            ),
+                align: TextAlign.center),
             SizedBox(
               height: 130,
               child: ListView.builder(
@@ -289,11 +341,10 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
             getText('vedios'.tr,
-                color:blackTextColor,
+                color: blackTextColor,
                 size: 20.sp,
                 weight: FontWeight.w500,
-                align: TextAlign.center
-            ),
+                align: TextAlign.center),
             SizedBox(
               height: 130,
               child: ListView.builder(
