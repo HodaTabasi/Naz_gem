@@ -37,8 +37,8 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.blue,
           fontFamily: 'br'
         ),
-        // home: OnBoardingScreen(),
-        home: BottomNavigationPage(),
+        home: OnBoardingScreen(),
+        // home: BottomNavigationPage(),
       ),
     );
   }

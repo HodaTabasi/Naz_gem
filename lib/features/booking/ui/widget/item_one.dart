@@ -11,11 +11,13 @@ class ItemOneWidget extends StatelessWidget {
 
   final Color backgroundColor;
   final bool flag;
-  const ItemOneWidget({
+
+  var my ;
+  ItemOneWidget({
     super.key,
     required this.flag,
     required this.backgroundColor,
-
+    this.my = true
   });
 
 
@@ -66,19 +68,22 @@ class ItemOneWidget extends StatelessWidget {
                         ),
                       ),
                       getSpace(w: 16.h),
-                      ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                              fixedSize: Size(95.w, 35.h),
-                              textStyle: TextStyle(
-                                  fontSize: 12.sp,
-                                  color: Colors.white,
-                                  fontFamily: 'br'),
-                              backgroundColor: redColor,
-                              shape: RoundedRectangleBorder(
-                                  borderRadius:
-                                  BorderRadius.circular(8.r))),
-                          onPressed: () {},
-                          child: Text('cancel_booking'.tr))
+                      Opacity(
+                        opacity: my?1:0,
+                        child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                                fixedSize: Size(95.w, 35.h),
+                                textStyle: TextStyle(
+                                    fontSize: 12.sp,
+                                    color: Colors.white,
+                                    fontFamily: 'br'),
+                                backgroundColor: redColor,
+                                shape: RoundedRectangleBorder(
+                                    borderRadius:
+                                    BorderRadius.circular(8.r))),
+                            onPressed: () {},
+                            child: Text('cancel_booking'.tr)),
+                      )
                     ],
                   )
                 ],

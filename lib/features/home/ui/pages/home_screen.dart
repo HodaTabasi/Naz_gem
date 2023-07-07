@@ -4,6 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:naz_gem/core/constants/app_colors.dart';
 import 'package:naz_gem/core/widgets/app_widget.dart';
+import 'package:naz_gem/features/notifications/ui/pages/notificaion_page.dart';
 
 import '../../../subscrbtions/ui/pages/subscrbtion_screen.dart';
 
@@ -35,7 +36,9 @@ class _HomeScreenState extends State<HomeScreen> {
             Padding(
               padding: const EdgeInsets.all(16.0),
               child: InkWell(
-                onTap: () {}, //
+                onTap: () {
+                  Get.to(()=>NotificationPage());
+                }, //
                 child: Center(
                   child: Stack(
                     children: [
@@ -302,13 +305,16 @@ class _HomeScreenState extends State<HomeScreen> {
                     PositionedDirectional(
                       bottom: 0,
                       start: 0,
-                      child: SizedBox(
-                        width: 85.w,
-                        height: 40.h,
-                        child: getText('details'.tr,
-                            color: sucndryColor1,
-                            size: 18.sp,
-                            align: TextAlign.center),
+                      child: InkWell(
+                        onTap:(){},
+                        child: SizedBox(
+                          width: 85.w,
+                          height: 40.h,
+                          child: getText('details'.tr,
+                              color: sucndryColor1,
+                              size: 18.sp,
+                              align: TextAlign.center),
+                        ),
                       ),
                     )
                   ],

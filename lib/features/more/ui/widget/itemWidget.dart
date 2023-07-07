@@ -6,12 +6,15 @@ import '../../../../core/constants/app_colors.dart';
 import '../../../../core/widgets/app_widget.dart';
 
 class itemWidget extends StatelessWidget {
-  final String icon;
-  final String text;
-  const itemWidget({
+  late String icon;
+  late String text;
+  late VoidCallback? onPoress;
+
+   itemWidget({
     super.key,
     required this.icon,
-    required this.text
+    required this.text,
+     this.onPoress
   });
 
   @override
@@ -19,6 +22,7 @@ class itemWidget extends StatelessWidget {
     return Padding(
       padding:  EdgeInsets.symmetric(vertical: 8.0.r),
       child: ListTile(
+        onTap: onPoress,
         tileColor: grayBackground,
         contentPadding: EdgeInsets.all(5.r),
         shape: RoundedRectangleBorder(

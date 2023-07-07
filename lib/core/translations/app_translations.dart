@@ -187,6 +187,9 @@ class TranslateWord extends Translations {
       'upload_image': 'تحميل الصورة',
       'qr':'الباركود',
       'home':'الرئيسية',
+      'do_out':'هل أنت متأكد انك تريد تسجيل خروج ؟',
+      'do_delete':'هل أنت متأكد انك تريد حذف الحساب ؟',
+      'back':'العودة لصفحة الرئيسية',
     }
   };
 }

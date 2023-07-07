@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:naz_gem/features/booking/ui/widget/item_one.dart';
 
 import '../../../../core/constants/app_colors.dart';
+import '../../../../core/widgets/app_widget.dart';
 import '../../../bill/ui/widget/myBillWidgets/sub_item_widget2.dart';
 
 class MyTimePage extends StatefulWidget {
@@ -16,6 +18,12 @@ class _MyTimePageState extends State<MyTimePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
+      appBar:  getAppBar(
+          text: 'my_booking'.tr,
+          isBack: true,
+          height: 80.h,
+      ),
       body: Column(
         children: [
           Padding(
@@ -80,9 +88,10 @@ class _MyTimePageState extends State<MyTimePage> {
           ),
           Expanded(
               child: ListView.builder(
-                itemCount: 7,
+                itemCount: 3,
+            padding: EdgeInsets.all(16.r),
             itemBuilder: (context, index) {
-              return ItemTwoWidget(index: index,);
+              return ItemOneWidget(flag: true,backgroundColor: blackTextColor,my: false,);
             },
           ))
         ],

@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:naz_gem/core/widgets/app_widget.dart';
 
 import '../../../../core/constants/app_colors.dart';
+import 'custom_dialog.dart';
 import 'item2_widget/rish_data.dart';
 import 'name_of_exercise_widget.dart';
 
@@ -21,24 +22,27 @@ class ItemTwoWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: MediaQuery.of(context).size.width,
+      width: MediaQuery
+          .of(context)
+          .size
+          .width,
       height: 220.h,
       margin: EdgeInsets.symmetric(vertical: 5.r),
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10.r),
-          image:  DecorationImage(
+          image: DecorationImage(
               image: AssetImage(image),
               fit: BoxFit.cover)),
       child: Stack(
         children: [
           PositionedDirectional(
               child: Padding(
-                padding:  EdgeInsets.all(16.0.r),
+                padding: EdgeInsets.all(16.0.r),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    getSpace(h:8.r),
+                    getSpace(h: 8.r),
                     Row(
                       children: [
                         CircleAvatar(
@@ -57,10 +61,14 @@ class ItemTwoWidget extends StatelessWidget {
                         ),
                       ],
                     ),
-                    getSpace(h:16.r),
-                    RishWidget(backgroundColor: backgroundColor,icon: Icons.timer_outlined,text: ' 5-6 مسائًا',),
+                    getSpace(h: 16.r),
+                    RishWidget(backgroundColor: backgroundColor,
+                      icon: Icons.timer_outlined,
+                      text: ' 5-6 مسائًا',),
                     getSpace(h: 8.r),
-                    RishWidget(backgroundColor: backgroundColor,icon: Icons.person_outline,text: ' تدريب فردي ',),
+                    RishWidget(backgroundColor: backgroundColor,
+                      icon: Icons.person_outline,
+                      text: ' تدريب فردي ',),
                   ],
                 ),
               )),
@@ -68,20 +76,33 @@ class ItemTwoWidget extends StatelessWidget {
             start: 0,
             end: 0,
             bottom: 0,
-            child: Container(
-              height: 50.h,
-              decoration: BoxDecoration(
-                  color: backgroundColor,
-                  borderRadius: BorderRadius.only(
-                      bottomLeft: Radius.circular(10.r),
-                      bottomRight: Radius.circular(10.r))),
-              child: Padding(
-                padding: EdgeInsets.only(top: 8.0.r),
-                child: getText(
-                  'book_now'.tr,
-                  color: blackTextColor,
-                  size: 16.sp,
-                  align: TextAlign.center,
+            child: InkWell(
+              onTap: () {
+                showDialog(context: context,
+                    builder: (context) => CoustomDialog(
+                      title:'🤩 تم الحجز بنجاح',
+                    image:'done.svg' ,
+                    onClick:(){
+                        Get.back();
+                    },
+                    flag: false,)
+                );
+              },
+              child: Container(
+                height: 50.h,
+                decoration: BoxDecoration(
+                    color: backgroundColor,
+                    borderRadius: BorderRadius.only(
+                        bottomLeft: Radius.circular(10.r),
+                        bottomRight: Radius.circular(10.r))),
+                child: Padding(
+                  padding: EdgeInsets.only(top: 8.0.r),
+                  child: getText(
+                    'book_now'.tr,
+                    color: blackTextColor,
+                    size: 16.sp,
+                    align: TextAlign.center,
+                  ),
                 ),
               ),
             ),
