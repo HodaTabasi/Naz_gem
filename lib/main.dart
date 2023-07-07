@@ -6,11 +6,13 @@ import 'package:naz_gem/features/contact_us/ui/pages/contact_us_page.dart';
 import 'package:naz_gem/features/home/ui/pages/home_screen.dart';
 import 'package:naz_gem/features/more/ui/pages/more_page.dart';
 import 'package:naz_gem/features/notifications/ui/pages/notificaion_page.dart';
+import 'package:naz_gem/features/profile/ui/pages/profile.dart';
 
 import 'core/translations/app_translations.dart';
 import 'features/bill/ui/pages/my_billes.dart';
 import 'features/static/on_boarding.dart';
 import 'features/subscrbtions/ui/pages/subscrbtion_screen.dart';
+import 'navigation_bar/bottom_navigation_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -36,7 +38,7 @@ class MyApp extends StatelessWidget {
           fontFamily: 'br'
         ),
         // home: OnBoardingScreen(),
-        home: ContactUsPage(),
+        home: BottomNavigationPage(),
       ),
     );
   }

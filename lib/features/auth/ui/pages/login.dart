@@ -5,7 +5,7 @@ import 'package:naz_gem/core/widgets/app_button.dart';
 import 'package:naz_gem/core/widgets/app_text_field.dart';
 import 'package:naz_gem/core/widgets/app_widget.dart';
 
-import '../../../../bottom_navigation_page.dart';
+import '../../../../navigation_bar/bottom_navigation_page.dart';
 import '../../../../core/constants/app_colors.dart';
 import 'new_user.dart';
 import 'otp_container.dart';
