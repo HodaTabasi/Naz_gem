@@ -5,7 +5,6 @@ import 'package:naz_gem/features/booking/ui/widget/item_one.dart';
 
 import '../../../../core/constants/app_colors.dart';
 import '../../../../core/widgets/app_widget.dart';
-import '../../../bill/ui/widget/myBillWidgets/sub_item_widget2.dart';
 
 class MyTimePage extends StatefulWidget {
   @override

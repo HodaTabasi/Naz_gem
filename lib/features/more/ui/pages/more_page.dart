@@ -4,7 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:naz_gem/core/constants/utils.dart';
 import 'package:naz_gem/features/contact_us/ui/pages/contact_us_page.dart';
-import 'package:naz_gem/features/my_time/ui/pages/my_time.dart';
+import 'package:naz_gem/features/booking/ui/pages/my_time.dart';
 
 import '../../../../core/constants/app_colors.dart';
 import '../../../../core/widgets/app_widget.dart';
