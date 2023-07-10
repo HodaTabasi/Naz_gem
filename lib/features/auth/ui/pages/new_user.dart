@@ -21,6 +21,7 @@ class _NewUserState extends State<NewUser> {
   late TextEditingController _firstNameController;
   late TextEditingController _lastNameController;
   late TextEditingController _emailController;
+  final _formKey = GlobalKey<FormState>();
   bool appearOtp = false;
   @override
   void initState() {
@@ -116,7 +117,7 @@ class _NewUserState extends State<NewUser> {
                           child: SizedBox(
                             height: 50.h,
                             child: AppTextField(
-                              textController: _mobileController,
+                              textController: _firstNameController,
                               hint: '',
                             ),
                           ),
@@ -126,7 +127,7 @@ class _NewUserState extends State<NewUser> {
                           child: SizedBox(
                             height: 50.h,
                             child: AppTextField(
-                              textController: _mobileController,
+                              textController: _lastNameController,
                               hint: '',
                             ),
                           ),
@@ -158,7 +159,7 @@ class _NewUserState extends State<NewUser> {
                     SizedBox(
                       height: 50.h,
                       child: AppTextField(
-                        textController: _mobileController,
+                        textController: _emailController,
                         hint: '',
                       ),
                     ),

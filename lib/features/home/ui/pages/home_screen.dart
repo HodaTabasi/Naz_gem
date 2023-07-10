@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:naz_gem/core/constants/app_colors.dart';
 import 'package:naz_gem/core/widgets/app_toggle.dart';
 import 'package:naz_gem/core/widgets/app_widget.dart';
+import 'package:naz_gem/features/home/ui/get/home_getx_controller.dart';
 import '../../../subscrbtions/ui/pages/subscrbtion_screen.dart';
 import '../widgets/image_list_widget.dart';
 import '../widgets/pakage_item_widget.dart';
