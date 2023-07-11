@@ -50,6 +50,7 @@ class _QRScreenState extends State<QRScreen> {
                 version: QrVersions.auto,
                 size: 250,
                 gapless: false,
+                foregroundColor: btnColor,
               ),
               Spacer(),
               Padding(

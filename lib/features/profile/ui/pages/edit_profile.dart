@@ -91,7 +91,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                     ],
                   ),
                 ),
-                getSpace(w: 50.w),
+                getSpace(w: 23.w),
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -155,6 +155,8 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
               child: AppTextField(
                 textController: _emailController,
                 hint: '',
+                hasSufix: true,
+                direction: TextDirection.ltr,
               ),
             ),
             getSpace(h: 16.0.r),

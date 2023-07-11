@@ -38,7 +38,7 @@ class NotificationPage extends StatelessWidget {
           itemBuilder: (context, index) {
             return itemWidget(
               text: Utils.data[index].title,
-              icon: Utils.data[index].icon,
+              title: Utils.data[index].icon,
             );
           },),
     );
@@ -46,29 +46,29 @@ class NotificationPage extends StatelessWidget {
 }
 
 class itemWidget extends StatelessWidget {
- final String icon;
+ final String title;
  final String text;
   const itemWidget({
     super.key,
-    required this.icon,
+    required this.title,
     required this.text
   });
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding:  EdgeInsets.symmetric(vertical: 8.0.r),
+      padding:  EdgeInsets.symmetric(vertical: 5.0.r),
       child: Column(
         children: [
           ListTile(
             // tileColor: grayBackground,
-            contentPadding: EdgeInsets.all(5.r),
+            // contentPadding: EdgeInsets.all(5.r),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(10.r)
             ),
             title: getText(text,size: 16.sp ,color:blackTextColor),
             subtitle: getText('تمتعي بخصم 20% على جميع الباقات المتاحة',size:12.sp,color: grayTextColor),
-            trailing: getText('ساعة واحدة',size:12.sp,color: grayTextColor),
+            trailing: getText('ساعة',size:12.sp,color: grayTextColor),
           ),
           getDivider()
         ],

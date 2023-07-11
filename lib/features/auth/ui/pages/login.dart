@@ -97,6 +97,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       child: AppTextField(
                         textController: _mobileController,
                         hint: '',
+                        textInputType: TextInputType.phone,
                         text: '+966',
                       ),
                     ),

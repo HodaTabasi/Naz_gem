@@ -107,9 +107,10 @@ class _OtpFormState extends State<OtpForm>{
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Padding(
-                padding:  EdgeInsets.symmetric(horizontal: 16.r,vertical: 8.0.r),
+                padding:  EdgeInsets.symmetric(horizontal: 8.r,vertical: 8.0.r),
                 child: SizedBox(
-                  width: getProportionateScreenWidth(45),
+                  width: getProportionateScreenWidth(50),
+                  height: getProportionateScreenHeight(50),
                   child: TextFormField(
                     // controller:NewAccountGetxController.to.num1Controller,
                     autofocus: true,
@@ -129,9 +130,10 @@ class _OtpFormState extends State<OtpForm>{
                 ),
               ),
               Padding(
-                padding: EdgeInsets.symmetric(horizontal: 16.r,vertical: 8.0.r),
+                padding: EdgeInsets.symmetric(horizontal: 8.r,vertical: 8.0.r),
                 child: SizedBox(
-                  width: getProportionateScreenWidth(46),
+                  width: getProportionateScreenWidth(50),
+                  height: getProportionateScreenHeight(50),
                   child: TextFormField(
                     // controller: NewAccountGetxController.to.num2Controller,
                     focusNode: pin2FocusNode,
@@ -153,9 +155,10 @@ class _OtpFormState extends State<OtpForm>{
                 ),
               ),
               Padding(
-                padding: EdgeInsets.symmetric(horizontal: 16.r,vertical: 8.0.r),
+                padding: EdgeInsets.symmetric(horizontal: 8.r,vertical: 8.0.r),
                 child: SizedBox(
-                  width: getProportionateScreenWidth(45),
+                  width: getProportionateScreenWidth(50),
+                  height: getProportionateScreenHeight(50),
                   child: TextFormField(
                     // controller: NewAccountGetxController.to.num3Controller,
                     focusNode: pin3FocusNode,
@@ -177,9 +180,10 @@ class _OtpFormState extends State<OtpForm>{
                 ),
               ),
               Padding(
-                padding: EdgeInsets.symmetric(horizontal: 16.r,vertical: 8.0.r),
+                padding: EdgeInsets.symmetric(horizontal: 8.r,vertical: 8.0.r),
                 child: SizedBox(
-                  width: getProportionateScreenWidth(45),
+                  width: getProportionateScreenWidth(50),
+                  height: getProportionateScreenHeight(50),
                   child: TextFormField(
                     // controller: NewAccountGetxController.to.num6Controller,
                     focusNode: pin5FocusNode,

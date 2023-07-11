@@ -28,15 +28,19 @@ class MyApp extends StatelessWidget {
       designSize: const Size(392, 803),
       minTextAdapt: true,
       splitScreenMode: true,
-      builder: (context, child) =>  GetMaterialApp(
+      builder: (context, child) => GetMaterialApp(
         debugShowCheckedModeBanner: false,
-        translations: TranslateWord(), // your translations
-        locale: const Locale('ar'), // translations will be displayed in that locale
+        translations: TranslateWord(),
+        // your translations
+        locale: const Locale('ar'),
+        // translations will be displayed in that locale
         fallbackLocale: const Locale('ar'),
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-          fontFamily: 'br'
-        ),
+        theme: ThemeData(primarySwatch: Colors.blue, fontFamily: 'br'),
+        builder: (context, child) {
+          return MediaQuery(
+              data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
+              child: child!);
+        },
         home: OnBoardingScreen(),
         // home: BottomNavigationPage(),
       ),

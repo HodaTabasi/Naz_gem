@@ -129,67 +129,100 @@ void showDitailsDialog(BuildContext context) {
                       ],
                     ),
                   ),
-                  // getSpace(h: 8.h),
+                  getSpace(h: 8.h),
                   getText('تفاصيل الباقة',
-                      size: 16.sp, color: blackTextColor),
-                  Material(
+                      size: 16.sp, color: blackTextColor,align: TextAlign.center),
+                  Container(
                     color: Colors.white,
-                    child: ListTile(
-                      leading: SvgPicture.asset('assets/images/gem1.svg'),
-                      title: getText('الحجوزات المسموح بها جلستين',
-                          size: 14.sp, color: blackTextColor) ,
+                    padding: EdgeInsets.symmetric(horizontal: 16.r,vertical: 12.r),
+                    child: Row(
+                      children: [
+                         SvgPicture.asset('assets/images/gem1.svg'),
+                         getSpace(w:10.w),
+                         getText('الحجوزات المسموح بها جلستين',
+                            size: 14.sp, color: blackTextColor) ,
+                      ],
+
                     ),
                   ),
-                  Material(
+                  Container(
                     color: Colors.white,
-                    child: ListTile(
-                      leading: SvgPicture.asset('assets/images/gem1.svg'),
-                      title: getText('مدربين معتمدين',
-                          size: 14.sp, color: blackTextColor) ,
+                    padding: EdgeInsets.symmetric(horizontal: 16.r,vertical: 12.r),
+                    child: Row(
+                      children: [
+                        SvgPicture.asset('assets/images/gem1.svg'),
+                        getSpace(w:10.w),
+                        getText('مدربين معتمدين',
+                            size: 14.sp, color: blackTextColor) ,
+                      ],
+
                     ),
                   ),
-                  Material(
+                  Container(
                     color: Colors.white,
-                    child: ListTile(
-                      leading: SvgPicture.asset('assets/images/gem1.svg'),
-                      title: getText('أجهزة حديثة متطورة',
-                          size: 14.sp, color: blackTextColor) ,
+                    padding: EdgeInsets.symmetric(horizontal: 16.r,vertical: 12.r),
+                    child: Row(
+                      children: [
+                       SvgPicture.asset('assets/images/gem1.svg'),
+                        getSpace(w:10.w),
+                       getText('أجهزة حديثة متطورة',
+                            size: 14.sp, color: blackTextColor) ,
+                      ],
+
                     ),
                   ),
-                  Material(
+                  Container(
                     color: Colors.white,
-                    child: ListTile(
-                      leading: SvgPicture.asset('assets/images/gem1.svg'),
-                      title: getText('الحجوزات المسموح بها جلستين',
-                          size: 14.sp, color: blackTextColor) ,
+                    padding: EdgeInsets.symmetric(horizontal: 16.r,vertical: 12.r),
+                    child: Row(
+                      children: [
+                        SvgPicture.asset('assets/images/gem1.svg'),
+                        getSpace(w:10.w),
+                        getText('الحجوزات المسموح بها جلستين',
+                            size: 14.sp, color: blackTextColor) ,
+                      ],
+
                     ),
                   ),
-                  Material(
+                  Container(
                     color: Colors.white,
-                    child: ListTile(
-                      leading: SvgPicture.asset('assets/images/gem1.svg'),
-                      title: getText('استشارات في اللياقة والرياضة',
-                          size: 14.sp, color: blackTextColor) ,
+                    padding: EdgeInsets.symmetric(horizontal: 16.r,vertical: 12.r),
+                    child: Row(
+                      children: [
+                         SvgPicture.asset('assets/images/gem1.svg'),
+                        getSpace(w:10.w),
+                         getText('استشارات في اللياقة والرياضة',
+                            size: 14.sp, color: blackTextColor) ,
+                      ],
+
                     ),
                   ),
-                  Material(
+                  Container(
                     color: Colors.white,
-                    child: ListTile(
-                      leading: SvgPicture.asset('assets/images/gem1.svg'),
-                      title: getText('امكانية استخدام جميع المرافق',
-                          size: 14.sp, color: blackTextColor) ,
+                    padding: EdgeInsets.symmetric(horizontal: 16.r,vertical: 12.r),
+                    child: Row(
+                      children: [
+                        SvgPicture.asset('assets/images/gem1.svg'),
+                        getSpace(w:10.w),
+                        getText('امكانية استخدام جميع المرافق',
+                            size: 14.sp, color: blackTextColor) ,
+                      ],
+
                     ),
                   ),
-                  BtnApp(title: 'sub'.tr, prsee: (){
-                    Get.to(()=>Subscrbtions());
-                  }, color: btnColor,textColor: Colors.white,),
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 16.0.r),
+                    child: BtnApp(title: 'sub'.tr, prsee: (){
+                      Get.to(()=>Subscrbtions());
+                    }, color: btnColor,textColor: Colors.white,),
+                  ),
                   // getSpace(h: 8.h),
                   TextButton(
                     onPressed: (){
                       Get.back();
                     },
                     child: getText('cancel'.tr,
-                        size: 14.sp, color:sucndryColor1 ),
+                        size: 14.sp, color:btnColor ),
                   ),
                   // getSpace(h: 8.h),
                 ],

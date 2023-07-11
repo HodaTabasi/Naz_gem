@@ -56,6 +56,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   ListTile(
                     leading: CircleAvatar(
                       backgroundColor: Colors.grey,
+                      backgroundImage:  NetworkImage("https://1.bp.blogspot.com/-4l0CGOzR_2s/YGAWcctx5XI/AAAAAAAAVkU/ziLQpEpGhFUyhAyz76IUgaHnEibKanltACLcBGAsYHQ/w528-h640/5.jpg"),
                       radius: 40.r,
                     ),
                     title: getText('ديما الشرفا',
@@ -81,7 +82,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         child: SvgPicture.asset('assets/images/qr.svg')
                     ),
                   ),
-                  getSpace(h:8.h),
+                  // getSpace(h:8.h),
                   Padding(
                     padding:  EdgeInsets.all(16.0.r),
                     child: IntrinsicHeight(
@@ -119,7 +120,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             end: 0,
             child: Container(
               padding: EdgeInsets.all(16.r),
-              height: MediaQuery.of(context).size.height - 300.h,
+              height: MediaQuery.of(context).size.height - 340.h,
               decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.only(
@@ -130,8 +131,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   getSpace(h: 16.h),
                   ItemWidget(text:'+966595111957',icon:'assets/images/phonee.svg'),
                   ItemWidget(text:'dimashurafa@gmail.com',icon:'assets/images/emaile.svg'),
-                  ItemWidget(text:'dD/MM/YYYY',icon:'assets/images/birth.svg'),
-                  ItemWidget(text:'185',icon:'assets/images/hh.svg'),
+                  ItemWidgetDate(text:'dD/MM/YYYY',icon:'assets/images/birth.svg'),
+                  ItemWidget(text:'185 سم ',icon:'assets/images/hh.svg'),
                   ItemWidget(text:'+AB',icon:'assets/images/bload.svg'),
 
                 ],
@@ -157,14 +158,62 @@ class ItemWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        DecoratedBox(
+        Container(
+          height: 60.h,
+          padding: EdgeInsets.all(8.r),
+          // margin: EdgeInsets.all(10.r),
           decoration:BoxDecoration(
         color: grayBackground,
             borderRadius: BorderRadius.circular(10)
                   ),
-          child: ListTile(
-            leading:SvgPicture.asset(icon) ,
-            title: getText(text,color: Colors.black,size: 16.sp),
+          child: Row(
+            children: [
+              SvgPicture.asset(icon) ,
+              getSpace(w:10.w),
+              getText(text,color: Colors.black,size: 16.sp),
+            ],
+
+          ),
+        ),
+        getSpace(h: 16.h)
+      ],
+    );
+  }
+}
+
+class ItemWidgetDate extends StatelessWidget {
+  final String icon;
+  final String text;
+  const ItemWidgetDate({
+    super.key,
+    required this.icon,
+    required this.text,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Container(
+          height: 60.h,
+          padding: EdgeInsets.all(5.r),
+          decoration:BoxDecoration(
+              color: grayBackground,
+              borderRadius: BorderRadius.circular(10)
+          ),
+          child: Row(
+            children: [
+              SvgPicture.asset(icon) ,
+              getSpace(w:10.w),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  getText(text,color: Colors.black,size: 16.sp),
+                  getText('25 سنة ',color: grayTextColor,size: 12.sp),
+                ],
+              )
+
+            ],
           ),
         ),
         getSpace(h: 16.h)

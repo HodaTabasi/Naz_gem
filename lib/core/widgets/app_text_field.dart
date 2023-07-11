@@ -12,6 +12,8 @@ class AppTextField extends StatelessWidget {
     String  text = '',
     TextInputType textInputType = TextInputType.text,
     bool obscureText = false,
+    bool hasSufix = false,
+    TextDirection direction = TextDirection.rtl,
     TextInputAction textInputAction = TextInputAction.next,
     Function(String value)? onSubmitted,
   })  : _textController = textController,
@@ -22,14 +24,18 @@ class AppTextField extends StatelessWidget {
         _textInputAction = textInputAction,
         _onSubmitted = onSubmitted,
         _text = text,
+  _hasSufix = hasSufix,
+        _direction = direction,
         super(key: key);
 
   final TextEditingController _textController;
   final String _hint;
   IconData? _prefixIcon;
   String _text;
+  TextDirection _direction;
   final TextInputType _textInputType;
   final bool _obscureText;
+  final bool _hasSufix;
   final TextInputAction _textInputAction;
   final void Function(String value)? _onSubmitted;
 
@@ -41,7 +47,7 @@ class AppTextField extends StatelessWidget {
       textInputAction: _textInputAction,
       onSubmitted: _onSubmitted,
       obscureText: _obscureText,
-      textDirection: TextDirection.ltr,
+      textDirection: _direction,
       style: TextStyle(
         fontWeight: FontWeight.w600,
         color: blackTextColor
@@ -51,8 +57,8 @@ class AppTextField extends StatelessWidget {
         hintStyle: TextStyle(),
         // prefixIcon: Icon(_prefixIcon),
         // prefixText: _text,
-        suffixIcon: SizedBox(
-          width: 50.w,
+        suffixIcon: _hasSufix ?SizedBox(
+          width: 60.w,
           child: Align(
             alignment: AlignmentDirectional.centerEnd,
             child: Padding(
@@ -62,12 +68,12 @@ class AppTextField extends StatelessWidget {
               ),textAlign: TextAlign.center, ),
             ),
           ),
-        ),
+        ):null,
         // prefixStyle: TextStyle(
         //   fontSize: 14.sp,color: blackTextColor
         // ),
         enabledBorder: buildOutlineInputBorder(color:boarderColor),
-        focusedBorder: buildOutlineInputBorder(color: boarderColor),
+        focusedBorder: buildOutlineInputBorder(color: btnColor),
       ),
     );
   }

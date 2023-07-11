@@ -18,7 +18,7 @@ class BtnApp extends StatelessWidget {
     return SizedBox(
       width: double.infinity,
       child: Container(
-        margin: EdgeInsets.all(16.0.r),
+        margin: EdgeInsets.symmetric(vertical: 16.0.r),
         height: 50.h,
         child: ClipRRect(
           borderRadius: BorderRadius.circular(8.0.r),

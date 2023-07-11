@@ -122,7 +122,7 @@ class _NewUserState extends State<NewUser> {
                             ),
                           ),
                         ),
-                        getSpace(w: 50.w),
+                        getSpace(w: 23.w),
                         Expanded(
                           child: SizedBox(
                             height: 50.h,
@@ -147,6 +147,9 @@ class _NewUserState extends State<NewUser> {
                         textController: _mobileController,
                         hint: '',
                         text: '+966',
+                        hasSufix: true,
+                        textInputType: TextInputType.number,
+                        direction: TextDirection.ltr,
                       ),
                     ),
                     getSpace(h: 16.0.r),
@@ -163,6 +166,33 @@ class _NewUserState extends State<NewUser> {
                         hint: '',
                       ),
                     ),
+                    getSpace(h: 18.0.r),
+                    Row(
+                      children: [
+                        Checkbox(value: true,
+                          onChanged: (value) {
+
+                        },
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(3.r)
+                        ),
+                          activeColor: blackTextColor,
+                        ),
+                        Text.rich(
+                          maxLines: 3,
+                          TextSpan(
+                            style:
+                            TextStyle(color: btnColor),
+                            children: [
+                              TextSpan(text: 'من خلال التسجيل فأنت توافق على  '),
+                              TextSpan(text: 'الشروط والأحكام \nوسياسة الاستخدام ',style: TextStyle(color: sucndryColor)),
+                              TextSpan(text: ' الخاصة بنا'),
+                            ],
+                          ),
+                        )
+                      ],
+                    ),
+                    getSpace(h: 16.0.r),
                     BtnApp(title: 'sure_otp'.tr, color: btnColor, prsee: () {
                       Get.to(()=>OTPRegisterScreen());
                     }),

@@ -82,7 +82,7 @@ class _ContactUsPageState extends State<ContactUsPage> {
                           ),
                           boxShadow: [
                             BoxShadow(
-                              color: Colors.grey.shade300,
+                              color: Colors.grey.shade100,
                               offset: Offset(0,2),
                               blurRadius: 3
                             )
@@ -113,7 +113,7 @@ class _ContactUsPageState extends State<ContactUsPage> {
                       size: 18.sp,
                       color: blackTextColor,
                     ),
-                    getSpace(h: 10.h),
+                    getSpace(h: 16.h),
                     DecoratedBox(
                       decoration: BoxDecoration(
                         color: Colors.white,
@@ -123,10 +123,19 @@ class _ContactUsPageState extends State<ContactUsPage> {
                             width: 1
                         ),
                     ),
-                      child: ListTile(
-                        leading: SvgPicture.asset('assets/images/time_work.svg'),
-                        title:getText('السبت - الخميس : 8:00 صباحًا لـ 10:00 مسائًا',color: blackTextColor,size: 14.sp) ,
-                        subtitle: getText('الجمعة : 4:00 لـ 10:00 مسائًا',color: blackTextColor,size: 14.sp),
+                      child: Padding(
+                        padding:  EdgeInsets.symmetric(vertical: 10.0.r),
+                        child: ListTile(
+                          leading: SvgPicture.asset('assets/images/time_work.svg'),
+                          title:Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 5.0),
+                            child: getText('السبت - الخميس : 8:00 صباحًا لـ 10:00 مسائًا',color: blackTextColor,size: 14.sp),
+                          ) ,
+                          subtitle: Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 5.0),
+                            child: getText('الجمعة : 4:00 لـ 10:00 مسائًا',color: blackTextColor,size: 14.sp),
+                          ),
+                        ),
                       ),
                     ),
                     getSpace(h: 16.h),
