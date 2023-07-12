@@ -95,7 +95,6 @@ class _OTPRegisterScreenState extends State<OTPRegisterScreen> {
                         duration: const Duration(milliseconds: 500));
                   }),
                   // getSpace(h: 16.0.r),
-
                   Align(
                     child: getText('or'.tr,
                         color:blackTextColor,

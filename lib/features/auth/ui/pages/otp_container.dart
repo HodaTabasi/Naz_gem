@@ -23,11 +23,6 @@ class OtpContainer extends StatelessWidget {
             family: 'tajawal',
             align: TextAlign.center
         ),
-        // Text(
-        //   'enter_code'.tr,
-        //   style: TextStyle(fontSize: 14.sp, color: blackTextColor,fontFamily: 'tajawal'),
-        //   textAlign: TextAlign.center,
-        // ),
         OtpForm(),
         getSpace(h: 10.0.r),
         RichText(

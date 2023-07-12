@@ -7,6 +7,7 @@ import 'package:naz_gem/core/widgets/app_widget.dart';
 
 import '../../../../navigation_bar/bottom_navigation_page.dart';
 import '../../../../core/constants/app_colors.dart';
+import '../widget/auth_functions.dart';
 import 'new_user.dart';
 import 'otp_container.dart';
 
@@ -45,11 +46,7 @@ class _LoginScreenState extends State<LoginScreen> {
               height: MediaQuery.of(context).size.height / 2.3,
               padding: EdgeInsets.all(16.r),
               width: double.infinity,
-              decoration: const BoxDecoration(
-                  image: DecorationImage(
-                      image: AssetImage(
-                          'assets/images/background_regqstrations.png'),
-                      fit: BoxFit.fill)),
+              decoration: buildBoxDecoration(),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 mainAxisAlignment: MainAxisAlignment.end,
@@ -74,12 +71,7 @@ class _LoginScreenState extends State<LoginScreen> {
               height: MediaQuery.of(context).size.height / 1.64,
               width: double.infinity,
               padding: EdgeInsets.all(16.r),
-              decoration: const BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.only(
-                    topRight: Radius.circular(20),
-                    topLeft: Radius.circular(20),
-                  )),
+              decoration: buildBoxDecoration2(),
               child: SingleChildScrollView(
                 child: Column(
                   mainAxisSize: MainAxisSize.min,

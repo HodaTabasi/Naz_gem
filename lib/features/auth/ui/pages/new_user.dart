@@ -6,6 +6,7 @@ import '../../../../core/constants/app_colors.dart';
 import '../../../../core/widgets/app_button.dart';
 import '../../../../core/widgets/app_text_field.dart';
 import '../../../../core/widgets/app_widget.dart';
+import '../widget/auth_functions.dart';
 import 'login.dart';
 import 'otp_register_screen.dart';
 
@@ -21,7 +22,6 @@ class _NewUserState extends State<NewUser> {
   late TextEditingController _firstNameController;
   late TextEditingController _lastNameController;
   late TextEditingController _emailController;
-  final _formKey = GlobalKey<FormState>();
   bool appearOtp = false;
   @override
   void initState() {
@@ -51,11 +51,7 @@ class _NewUserState extends State<NewUser> {
               height: MediaQuery.of(context).size.height / 2.3,
               padding: EdgeInsets.all(16.r),
               width: double.infinity,
-              decoration: const BoxDecoration(
-                  image: DecorationImage(
-                      image: AssetImage(
-                          'assets/images/background_regqstrations.png'),
-                      fit: BoxFit.fill)),
+              decoration:  buildBoxDecoration(),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 mainAxisAlignment: MainAxisAlignment.end,
@@ -91,12 +87,7 @@ class _NewUserState extends State<NewUser> {
               height: MediaQuery.of(context).size.height / 1.64,
               width: double.infinity,
               padding: EdgeInsets.all(16.r),
-              decoration: const BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.only(
-                    topRight: Radius.circular(20),
-                    topLeft: Radius.circular(20),
-                  )),
+              decoration:  buildBoxDecoration2(),
               child: SingleChildScrollView(
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
@@ -221,6 +212,10 @@ class _NewUserState extends State<NewUser> {
           ),
         ],
       ),
-    );;
+    );
   }
+
+
+
+
 }
