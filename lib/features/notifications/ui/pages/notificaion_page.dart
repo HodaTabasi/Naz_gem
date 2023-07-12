@@ -6,6 +6,7 @@ import 'package:naz_gem/core/constants/utils.dart';
 
 import '../../../../core/constants/app_colors.dart';
 import '../../../../core/widgets/app_widget.dart';
+import '../widget/notification_item.dart';
 
 class NotificationPage extends StatelessWidget {
 
@@ -18,62 +19,17 @@ class NotificationPage extends StatelessWidget {
           isBack: true,
           height: 60.h
       ),
-      // AppBar(
-      //   toolbarHeight: 60.h,
-      //   elevation: 0,
-      //   backgroundColor: Colors.white,
-      //   title: Text("notification".tr,
-      //       style: TextStyle(color: blackTextColor, fontSize: 20.sp)),
-      //   centerTitle: true,
-      //   automaticallyImplyLeading: false,
-      //   leading: IconButton(
-      //       onPressed: () {
-      //         Get.back();
-      //       },
-      //       icon: Icon(Icons.arrow_back, color: Colors.black)),
-      // ),
       body: ListView.builder(
         itemCount: Utils.data.length,
           padding: EdgeInsets.all(16.r),
           itemBuilder: (context, index) {
-            return itemWidget(
-              text: Utils.data[index].title,
-              title: Utils.data[index].icon,
+            return NotificationItemWidget(
+              text: 'تمتعي بخصم 20% على جميع الباقات المتاحة',
+              title: 'خصومات على الاشتراك',
             );
           },),
     );
   }
 }
 
-class itemWidget extends StatelessWidget {
- final String title;
- final String text;
-  const itemWidget({
-    super.key,
-    required this.title,
-    required this.text
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding:  EdgeInsets.symmetric(vertical: 5.0.r),
-      child: Column(
-        children: [
-          ListTile(
-            // tileColor: grayBackground,
-            // contentPadding: EdgeInsets.all(5.r),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(10.r)
-            ),
-            title: getText(text,size: 16.sp ,color:blackTextColor),
-            subtitle: getText('تمتعي بخصم 20% على جميع الباقات المتاحة',size:12.sp,color: grayTextColor),
-            trailing: getText('ساعة',size:12.sp,color: grayTextColor),
-          ),
-          getDivider()
-        ],
-      ),
-    );
-  }
-}
 
