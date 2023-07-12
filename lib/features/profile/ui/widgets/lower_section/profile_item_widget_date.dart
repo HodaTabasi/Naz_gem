@@ -36,7 +36,6 @@ class ProfileItemWidgetDate extends StatelessWidget {
                   getText('25 سنة ',color: grayTextColor,size: 12.sp),
                 ],
               )
-
             ],
           ),
         ),

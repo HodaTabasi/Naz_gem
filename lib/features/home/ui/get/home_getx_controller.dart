@@ -8,6 +8,9 @@ class HomeGetxController extends GetxController {
   Rx<Color> subBackColor = btnColor.obs;
   Rx<Color> subTextColor = Colors.white.obs;
 
+  static HomeGetxController get to =>
+      Get.find<HomeGetxController>();
+
   changeCurrentIndex({index}){
     currentIndex.value = index;
     if(index == 0){

@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
 import '../../../../core/constants/app_colors.dart';
+import '../../../../core/widgets/app_widget.dart';
 
 class QRScreen extends StatefulWidget {
 
@@ -16,17 +17,12 @@ class _QRScreenState extends State<QRScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: btnColor,
-      appBar:  AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        toolbarHeight: 80.h,
-        title: Text('qr'.tr,style: TextStyle(fontSize: 20.sp,color: Colors.white),),
-        centerTitle: true,
-        leading: IconButton(
-            onPressed: () {
-              Get.back();
-            },
-            icon: Icon(Icons.arrow_back, color: Colors.white)),
+      appBar:  getAppBar(
+        text: 'qr'.tr,
+        textColor: Colors.white,
+        height: 80.h,
+        isBack: true,
+
       ),
       body: Center(
         child: Container(
@@ -35,7 +31,7 @@ class _QRScreenState extends State<QRScreen> {
           decoration: BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.circular(15.r),
-            boxShadow: [
+            boxShadow: const [
               BoxShadow(
                 color: Colors.white,
                 blurRadius: 15,
@@ -44,7 +40,7 @@ class _QRScreenState extends State<QRScreen> {
           ),
           child: Column(
             children: [
-              Spacer(),
+              const Spacer(),
               QrImageView(
                 data: 'This is a simple QR code',
                 version: QrVersions.auto,
@@ -52,7 +48,7 @@ class _QRScreenState extends State<QRScreen> {
                 gapless: false,
                 foregroundColor: btnColor,
               ),
-              Spacer(),
+              const Spacer(),
               Padding(
                   padding: EdgeInsets.all(16.r),
                 child: Text.rich(

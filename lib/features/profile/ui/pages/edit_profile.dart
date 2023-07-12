@@ -6,6 +6,7 @@ import '../../../../core/constants/app_colors.dart';
 import '../../../../core/widgets/app_button.dart';
 import '../../../../core/widgets/app_text_field.dart';
 import '../../../../core/widgets/app_widget.dart';
+import '../widgets/profile_functions.dart';
 
 class EditProfileScreen extends StatefulWidget {
 
@@ -18,6 +19,9 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
   late TextEditingController _firstNameController;
   late TextEditingController _lastNameController;
   late TextEditingController _emailController;
+  late TextEditingController _hgtController;
+  late TextEditingController _bdController;
+  late TextEditingController _bloodController;
   bool appearOtp = false;
   @override
   void initState() {
@@ -25,23 +29,22 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
     _firstNameController = TextEditingController();
     _lastNameController = TextEditingController();
     _emailController = TextEditingController();
+    _hgtController = TextEditingController();
+    _bdController = TextEditingController();
+    _bloodController = TextEditingController();
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        toolbarHeight: 80.h,
-        title: Text('edit_profile'.tr,style: TextStyle(fontSize: 20.sp,color: blackTextColor),),
-        centerTitle: true,
-        leading: IconButton(
-            onPressed: () {
-              Get.back();
-            },
-            icon: Icon(Icons.arrow_back, color: Colors.black)),
+      backgroundColor: Colors.white,
+      appBar:getAppBar(
+        text: 'edit_profile'.tr,
+        // textColor: blackTextColor,
+        height: 80.h,
+        isBack: true,
+
       ),
       body:  SingleChildScrollView(
         padding: EdgeInsets.all(16.r),
@@ -51,22 +54,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             getSpace(h: 16.0.r),
-            ListTile(
-              onTap: (){},
-              contentPadding: EdgeInsets.zero,
-             leading: Container(
-               width: 80.w,
-               height: 80.h,
-               decoration: BoxDecoration(
-                 shape: BoxShape.circle,
-                 image: DecorationImage(
-                   image: NetworkImage('https://1.bp.blogspot.com/-4l0CGOzR_2s/YGAWcctx5XI/AAAAAAAAVkU/ziLQpEpGhFUyhAyz76IUgaHnEibKanltACLcBGAsYHQ/w528-h640/5.jpg')
-                 )
-               ),
-
-             ),
-              title: getText('upload_image'.tr,color: sucndryColor1,decoration: TextDecoration.underline),
-            ),
+            buildEditImageListTile(),
 
             getSpace(h: 20.0.r),
             Row(
@@ -127,6 +115,8 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                 textController: _mobileController,
                 hint: '',
                 text: '+966',
+                hasSufix: true,
+                textInputType: TextInputType.number,
               ),
             ),
             getSpace(h: 16.0.r),
@@ -141,6 +131,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
               child: AppTextField(
                 textController: _emailController,
                 hint: '',
+                textInputType: TextInputType.emailAddress,
               ),
             ),
             getSpace(h: 16.0.r),
@@ -153,7 +144,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
             SizedBox(
               height: 50.h,
               child: AppTextField(
-                textController: _emailController,
+                textController: _bdController,
                 hint: '',
                 hasSufix: true,
                 direction: TextDirection.ltr,
@@ -169,7 +160,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
             SizedBox(
               height: 50.h,
               child: AppTextField(
-                textController: _emailController,
+                textController: _hgtController,
                 hint: '',
               ),
             ),
@@ -183,13 +174,13 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
             SizedBox(
               height: 50.h,
               child: AppTextField(
-                textController: _emailController,
+                textController: _bloodController,
                 hint: '',
               ),
             ),
 
             BtnApp(title: 'save'.tr, color: btnColor, prsee: () {
-
+              Get.back();
             }),
             // getSpace(h: 16.0.r),
           ],
@@ -197,4 +188,6 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
       ),
     );
   }
+
+
 }

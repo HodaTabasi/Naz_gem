@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 class ContactInfo {
@@ -14,3 +16,10 @@ List<ContactInfo> infoData = [
   ContactInfo('location'.tr, ' جدة , حي النهضة', 'assets/images/location.svg'),
   ContactInfo('site'.tr, 'dimashurafa@gmail.com', 'assets/images/site.svg'),
 ];
+
+SliverGridDelegateWithFixedCrossAxisCount buildSliverGridDelegateWithFixedCrossAxisCount() {
+  return SliverGridDelegateWithFixedCrossAxisCount(
+      crossAxisCount: 2,
+      crossAxisSpacing: 12.h,
+      mainAxisSpacing: 12.w);
+}

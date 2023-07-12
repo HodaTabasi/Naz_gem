@@ -8,6 +8,7 @@ import 'package:naz_gem/features/more/ui/pages/more_page.dart';
 import 'package:naz_gem/features/notifications/ui/pages/notificaion_page.dart';
 import 'package:naz_gem/features/profile/ui/pages/profile.dart';
 import 'package:naz_gem/features/splash_screen.dart';
+import 'package:naz_gem/features/subscrbtions/ui/get/subscrbtions_getx_controller.dart';
 
 import 'core/translations/app_translations.dart';
 import 'features/bill/ui/pages/my_billes.dart';
@@ -25,6 +26,7 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    Get.put(SubscrbtionGetxController());
     return ScreenUtilInit(
       designSize: const Size(392, 803),
       minTextAdapt: true,
