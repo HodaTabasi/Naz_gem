@@ -194,7 +194,8 @@ class _NewUserState extends State<NewUser> {
                     ),
                     getSpace(h: 16.0.r),
                     BtnApp(title: 'sure_otp'.tr, color: btnColor, prsee: () {
-                      Get.to(()=>OTPRegisterScreen());
+                      Get.to(()=>OTPRegisterScreen(),transition: Transition.downToUp,
+                          duration: const Duration(milliseconds: 500));
                     }),
                     // getSpace(h: 16.0.r),
 
@@ -210,7 +211,8 @@ class _NewUserState extends State<NewUser> {
                         color: mainColor,
                         textColor: blackTextColor,
                         prsee: () {
-                          Get.to(()=>LoginScreen());
+                          Get.to(()=>const LoginScreen(),transition: Transition.downToUp,
+                              duration: const Duration(milliseconds: 500));
                         }),
                   ],
                 ),

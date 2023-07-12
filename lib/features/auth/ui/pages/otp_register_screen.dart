@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import '../../../../core/constants/app_colors.dart';
 import '../../../../core/widgets/app_button.dart';
 import '../../../../core/widgets/app_widget.dart';
+import '../../../../navigation_bar/bottom_navigation_page.dart';
 import 'login.dart';
 import 'otp_container.dart';
 
@@ -90,8 +91,8 @@ class _OTPRegisterScreenState extends State<OTPRegisterScreen> {
                   getSpace(h: 16.0.r),
                   const OtpContainer(),
                   BtnApp(title: 'sure_otp'.tr, color: btnColor, prsee: () {
-
-
+                    Get.offAll(()=>const BottomNavigationPage(),transition: Transition.downToUp,
+                        duration: const Duration(milliseconds: 500));
                   }),
                   // getSpace(h: 16.0.r),
 
@@ -107,7 +108,8 @@ class _OTPRegisterScreenState extends State<OTPRegisterScreen> {
                       color: mainColor,
                       textColor: blackTextColor,
                       prsee: () {
-                        Get.to(()=>LoginScreen());
+                        Get.to(()=>const LoginScreen(),transition: Transition.downToUp,
+                            duration: const Duration(milliseconds: 500));
                       }),
                 ],
               ),

@@ -99,6 +99,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         hint: '',
                         textInputType: TextInputType.phone,
                         text: '+966',
+                        hasSufix: true,
                       ),
                     ),
                     getSpace(h: 16.0.r),
@@ -108,7 +109,8 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                     BtnApp(title: appearOtp?'ok'.tr:'sure_otp'.tr, color: btnColor, prsee: () {
                       if(appearOtp){
-                        Get.offAll(()=>BottomNavigationPage());
+                        Get.offAll(()=>const BottomNavigationPage(),transition: Transition.downToUp,
+                            duration: const Duration(milliseconds: 500));
                       }else{
                         setState(() {
                           appearOtp = !appearOtp;
@@ -128,7 +130,8 @@ class _LoginScreenState extends State<LoginScreen> {
                         color: mainColor,
                         textColor: blackTextColor,
                         prsee: () {
-                          Get.to(()=>NewUser());
+                          Get.to(()=>NewUser(),transition: Transition.downToUp,
+                              duration: const Duration(milliseconds: 500));
                         }),
                   ],
                 ),

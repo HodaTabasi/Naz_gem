@@ -60,7 +60,8 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
             padding: EdgeInsets.all(10.0.r),
             child: InkWell(
               onTap: () {
-                Get.offAll(()=>LoginScreen());
+                Get.offAll(()=>const LoginScreen(),transition: Transition.downToUp,
+                    duration: const Duration(milliseconds: 500));
               },
               child: Row(
                 children: [
