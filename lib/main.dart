@@ -7,6 +7,7 @@ import 'package:naz_gem/features/home/ui/pages/home_screen.dart';
 import 'package:naz_gem/features/more/ui/pages/more_page.dart';
 import 'package:naz_gem/features/notifications/ui/pages/notificaion_page.dart';
 import 'package:naz_gem/features/profile/ui/pages/profile.dart';
+import 'package:naz_gem/features/splash_screen.dart';
 
 import 'core/translations/app_translations.dart';
 import 'features/bill/ui/pages/my_billes.dart';
@@ -41,7 +42,7 @@ class MyApp extends StatelessWidget {
               data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
               child: child!);
         },
-        home: OnBoardingScreen(),
+        home: SplashScreen(),
         // home: BottomNavigationPage(),
       ),
     );
