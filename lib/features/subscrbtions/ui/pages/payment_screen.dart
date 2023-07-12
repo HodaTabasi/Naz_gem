@@ -40,7 +40,8 @@ class _PaymentScreenState extends State<PaymentScreen> {
               whatsapp();
             }, color: btnColor),
             TextButton(onPressed: (){
-              Get.offAll(()=>BottomNavigationPage());
+              Get.offAll(()=>BottomNavigationPage(),transition: Transition.downToUp,
+                  duration: const Duration(milliseconds: 500));
             }, child: getText('back'.tr,size: 16.sp,color: btnColor))
           ],
         ),

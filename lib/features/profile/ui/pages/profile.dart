@@ -38,7 +38,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
         actions: [
           IconButton(
               onPressed: () {
-                Get.to(()=>EditProfileScreen());
+                Get.to(()=>EditProfileScreen(),transition: Transition.downToUp,
+                    duration: const Duration(milliseconds: 500));
               },
               icon: SvgPicture.asset('assets/images/edit.svg'))
         ],
@@ -77,7 +78,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     ),
                     trailing: InkWell(
                       onTap: (){
-                        Get.to(()=>QRScreen());
+                        Get.to(()=>QRScreen(),transition: Transition.downToUp,
+                            duration: const Duration(milliseconds: 500));
                       },
                         child: SvgPicture.asset('assets/images/qr.svg')
                     ),

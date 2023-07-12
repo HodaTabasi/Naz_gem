@@ -26,7 +26,8 @@ AppBar buildAppBar() {
         padding: const EdgeInsets.all(16.0),
         child: InkWell(
           onTap: () {
-            Get.to(() => NotificationPage());
+            Get.to(() => NotificationPage(),transition: Transition.downToUp,
+                duration: const Duration(milliseconds: 500));
           }, //
           child: Center(
             child: Stack(

@@ -171,7 +171,8 @@ class _SubscrbtionsState extends State<Subscrbtions> {
             ],
           ),),
           BtnApp(title: 'pay'.tr, prsee: (){
-            Get.to(()=>PaymentScreen());
+            Get.to(()=>PaymentScreen(),transition: Transition.downToUp,
+                duration: const Duration(milliseconds: 500));
           }, color: btnColor)
         ],
       ),

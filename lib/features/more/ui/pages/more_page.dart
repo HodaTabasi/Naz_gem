@@ -11,41 +11,43 @@ import '../../../../core/widgets/app_widget.dart';
 import '../widget/itemWidget.dart';
 
 class MorePage extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: getAppBar(
-          text: 'more'.tr,
-          isBack: false,
-          height: 60.h
-      ),
+      appBar: getAppBar(text: 'more'.tr, isBack: false, height: 60.h),
       body: ListView.builder(
         itemCount: Utils.data.length,
-          padding: EdgeInsets.all(16.r),
-          itemBuilder: (context, index) {
-            return itemWidget(
-              text: Utils.data[index].title,
-              icon: Utils.data[index].icon,
-              onPoress: ()=>goToFunction(index,context),
-            );
-          },),
+        padding: EdgeInsets.all(16.r),
+        itemBuilder: (context, index) {
+          return itemWidget(
+            text: Utils.data[index].title,
+            icon: Utils.data[index].icon,
+            onPoress: () => goToFunction(index, context),
+          );
+        },
+      ),
     );
   }
 }
 
-
-showAlertDialog(BuildContext context,image,title,content) {
-
+showAlertDialog(BuildContext context, image, title, content) {
   // set up the buttons
   Widget cancelButton = TextButton(
-    child: getText("yes".tr,color: redColor,size: 16.sp,),
-    onPressed:  () {},
+    child: getText(
+      "yes".tr,
+      color: redColor,
+      size: 16.sp,
+    ),
+    onPressed: () {},
   );
   Widget continueButton = TextButton(
-    child: getText("no".tr,color: blackTextColor,size: 16.sp,),
-    onPressed:  () {
+    child: getText(
+      "no".tr,
+      color: blackTextColor,
+      size: 16.sp,
+    ),
+    onPressed: () {
       Get.back();
     },
   );
@@ -57,8 +59,11 @@ showAlertDialog(BuildContext context,image,title,content) {
         children: [
           SvgPicture.asset('assets/images/$image'),
           getSpace(w: 10.w),
-          getText(title,color: blackTextColor,size: 14.sp,),
-
+          getText(
+            title,
+            color: blackTextColor,
+            size: 14.sp,
+          ),
         ],
       ),
     ),
@@ -70,7 +75,6 @@ showAlertDialog(BuildContext context,image,title,content) {
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(15.r),
     ),
-
   );
 
   // show the dialog
@@ -82,26 +86,28 @@ showAlertDialog(BuildContext context,image,title,content) {
   );
 }
 
-goToFunction(int index,context) {
-  switch(index){
+goToFunction(int index, context) {
+  switch (index) {
     case 0:
       break;
     case 1:
-      Get.to(()=>MyTimePage());
+      Get.to(() => MyTimePage(),
+          transition: Transition.downToUp,
+          duration: const Duration(milliseconds: 500));
       break;
     case 2:
-      Get.to(()=>ContactUsPage());
+      Get.to(() => ContactUsPage(),
+          transition: Transition.downToUp,
+          duration: const Duration(milliseconds: 500));
       break;
     case 3:
       break;
     case 4:
-      showAlertDialog(context,'delete_account1.svg',"delete_account".tr,"do_delete".tr);
+      showAlertDialog(
+          context, 'delete_account1.svg', "delete_account".tr, "do_delete".tr);
       break;
     case 5:
-      showAlertDialog(context,'logout1.svg',"logout".tr,"do_out".tr);
+      showAlertDialog(context, 'logout1.svg', "logout".tr, "do_out".tr);
       break;
   }
-
 }
-
-

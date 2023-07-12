@@ -33,21 +33,51 @@ class _BottomNavigationPaheState extends State<BottomNavigationPage> {
       this.index = index;
     });
   }
+  late PageController _pageController;
 
-    @override
-    Widget build(BuildContext context) {
-      return Scaffold(
-        body: pages[index],
-        bottomNavigationBar: TabBarMaterialWidget(
-          index: index,
-          onChangedTab: onChangedTab,
-        ),
-        floatingActionButton: FloatingActionButton(
-          child: SvgPicture.asset('assets/images/bottom_images/calendar.svg'),
-          onPressed: ()=>onChangedTab(2),
-          backgroundColor: btnColor,
-        ),
-        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      );
-    }
+  @override
+  void initState() {
+    super.initState();
+    _pageController = PageController();
   }
+
+  @override
+  void dispose() {
+    _pageController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      // body: pages[index],
+      body : SizedBox.expand(
+        child: PageView(
+          controller: _pageController,
+          onPageChanged: onChangedTab,
+          children: pages,
+        ),
+      ),
+      bottomNavigationBar: TabBarMaterialWidget(
+        index: index,
+        onChangedTab: _onItemTapped,
+      ),
+      floatingActionButton: FloatingActionButton(
+        child: SvgPicture.asset('assets/images/bottom_images/calendar.svg'),
+        onPressed: () => _onItemTapped(2),//onChangedTab(2),
+        backgroundColor: btnColor,
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+    );
+  }
+  void _onItemTapped(int ind) {
+    setState(() {
+      index = ind;
+      //
+      //
+      //using this page controller you can make beautiful animation effects
+      _pageController.animateToPage(index,
+          duration: Duration(milliseconds: 500), curve: Curves.linear);
+    });
+  }
+}
