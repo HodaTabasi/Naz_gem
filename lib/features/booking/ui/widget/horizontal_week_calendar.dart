@@ -120,10 +120,12 @@ class _HorizontalWeekCalendarState extends State<HorizontalWeekCalendar> {
     // listOfWeeks.add(currentWeek);
 
     final date = DateTime.now();
-
-    DateTime startOfCurrentWeek = widget.weekStartFrom == WeekStartFrom.Monday
-        ? getDate(date.subtract(Duration(days: date.weekday - 1)))
-        : getDate(date.subtract(Duration(days: date.weekday % 7)));
+// هاد عشان كل يوم يبدا الاسبوع من التاريخ الحالي ويحسب الحسبة بتعته
+    DateTime startOfCurrentWeek = date;
+    //دي عشان احدد ابدا من اول اسبوع لاخره يظهر عندي سبوع كامل من بداية الاحد
+    // DateTime startOfCurrentWeek = widget.weekStartFrom == WeekStartFrom.Monday
+    //     ? getDate(date.subtract(Duration(days: date.weekday - 1)))
+    //     : getDate(date.subtract(Duration(days: date.weekday % 7)));
 
     currentWeek.add(startOfCurrentWeek);
     for (int index = 0; index < 6; index++) {
