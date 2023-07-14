@@ -306,3 +306,19 @@ SliverGridDelegateWithFixedCrossAxisCount buildSliverGridDelegate() {
       mainAxisSpacing: 16.h,
       childAspectRatio: 3 / 2.5);
 }
+
+Future<dynamic> buildImageDialog(BuildContext context ,url) {
+  return showDialog(context: context, builder: (context) {
+    return Center(
+      child: SizedBox(
+        width: MediaQuery.of(context).size.width- 50.w,
+        // height: MediaQuery.of(context).size.height- 200.h,
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(15.r),
+          child: Image.network(url,fit: BoxFit.fill,height: MediaQuery.of(context).size.height- 250.h),
+        ),
+      ),
+    );
+  },
+  );
+}

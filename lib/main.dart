@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:naz_gem/features/booking/ui/pages/booking_screen.dart';
@@ -12,13 +13,14 @@ import 'package:naz_gem/features/subscrbtions/ui/get/subscrbtions_getx_controlle
 
 import 'core/translations/app_translations.dart';
 import 'features/auth/ui/get/auth_getx_controller.dart';
-import 'features/bill/ui/pages/my_billes.dart';
-import 'features/static/on_boarding.dart';
-import 'features/subscrbtions/ui/pages/subscrbtion_screen.dart';
-import 'navigation_bar/bottom_navigation_page.dart';
 
 void main() {
-  runApp(const MyApp());
+  WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
+      .then((_) {
+    runApp(const MyApp());
+  });
+  // runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {

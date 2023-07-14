@@ -81,7 +81,7 @@ class ItemTwoWidget extends StatelessWidget {
                 showDialog(context: context,
                     builder: (context) => CoustomDialog(
                       title:'🤩 تم الحجز بنجاح',
-                    image:'done.svg' ,
+                    image:'sad_face.svg' ,
                     onClick:(){
                         Get.back();
                     },
