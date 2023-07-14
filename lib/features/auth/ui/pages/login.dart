@@ -22,6 +22,7 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   late TextEditingController _mobileController;
   bool appearOtp = false;
+
   @override
   void initState() {
     _mobileController = TextEditingController();
@@ -54,11 +55,20 @@ class _LoginScreenState extends State<LoginScreen> {
                 mainAxisAlignment: MainAxisAlignment.end,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  getText('login'.tr,color:Colors.white,size: 28.sp,weight: FontWeight.bold ),
+                  getText('login'.tr,
+                      color: Colors.white,
+                      size: 28.sp,
+                      weight: FontWeight.bold),
                   getSpace(h: 20.0.h),
-                  getText('welcome'.tr,color:Colors.white,size: 18.sp,weight: FontWeight.bold ),
+                  getText('welcome'.tr,
+                      color: Colors.white,
+                      size: 18.sp,
+                      weight: FontWeight.bold),
                   getSpace(h: 10.0.h),
-                  getText('login_sub1'.tr,color:Colors.white,size: 12.sp,weight: FontWeight.normal ),
+                  getText('login_sub1'.tr,
+                      color: Colors.white,
+                      size: 12.sp,
+                      weight: FontWeight.normal),
                   getSpace(h: 45.0.h)
                 ],
               ),
@@ -75,8 +85,9 @@ class _LoginScreenState extends State<LoginScreen> {
               padding: EdgeInsets.all(16.r),
               decoration: buildBoxDecoration2(),
               child: SingleChildScrollView(
-                physics:BouncingScrollPhysics(),
+                physics: BouncingScrollPhysics(),
                 child: Form(
+                  key: AuthGetxController.to.loginKey,
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     mainAxisAlignment: MainAxisAlignment.start,
@@ -84,9 +95,9 @@ class _LoginScreenState extends State<LoginScreen> {
                     children: [
                       getSpace(h: 16.0.r),
                       getText('mobile_number'.tr,
-                          color:blackTextColor,
+                          color: blackTextColor,
                           size: 16.sp,
-                          align:TextAlign.center),
+                          align: TextAlign.center),
                       getSpace(h: 16.0.r),
                       SizedBox(
                         // height: 60.h,
@@ -97,7 +108,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           text: '+966',
                           hasSufix: true,
                           isEnabled: !appearOtp,
-                          onSubmitted:AuthGetxController.to.mobileValidation,
+                          onSubmitted: AuthGetxController.to.mobileValidation,
                         ),
                       ),
                       getSpace(h: 16.0.r),
@@ -105,30 +116,37 @@ class _LoginScreenState extends State<LoginScreen> {
                         visible: appearOtp,
                         child: const OtpContainer(),
                       ),
-                      BtnApp(title: appearOtp?'ok'.tr:'sure_otp'.tr, color: btnColor, prsee: () {
-                        if(appearOtp){
-                          Get.offAll(()=>const BottomNavigationPage(),transition: Transition.downToUp,
-                              duration: const Duration(milliseconds: 500));
-                        }else{
-                          setState(() {
-                            appearOtp = !appearOtp;
-                          });
-                        }
+                      BtnApp(
+                          title: appearOtp ? 'ok'.tr : 'sure_otp'.tr,
+                          color: btnColor,
+                          prsee: () {
+                            if(AuthGetxController.to.loginKey.currentState!.validate()){
 
-                      }),
+                              if (appearOtp) {
+                                Get.offAll(() => const BottomNavigationPage(),
+                                    transition: Transition.downToUp,
+                                    duration: const Duration(milliseconds: 500));
+                              } else {
+                                setState(() {
+                                  appearOtp = !appearOtp;
+                                });
+                              }
+                            }
+
+                          }),
                       // getSpace(h: 16.0.r),
                       Align(
-                        child:getText('or'.tr,
-                            color:blackTextColor,
-                            size: 18.sp,
-                            align:TextAlign.center)
-                      ),
+                          child: getText('or'.tr,
+                              color: blackTextColor,
+                              size: 18.sp,
+                              align: TextAlign.center)),
                       BtnApp(
                           title: 'new_user'.tr,
                           color: mainColor,
                           textColor: blackTextColor,
                           prsee: () {
-                            Get.to(()=>NewUser(),transition: Transition.downToUp,
+                            Get.to(() => NewUser(),
+                                transition: Transition.downToUp,
                                 duration: const Duration(milliseconds: 500));
                           }),
                     ],

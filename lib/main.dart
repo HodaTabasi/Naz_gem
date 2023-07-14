@@ -2,17 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:naz_gem/features/booking/ui/pages/booking_screen.dart';
-import 'package:naz_gem/features/contact_us/ui/pages/contact_us_page.dart';
-import 'package:naz_gem/features/home/ui/pages/home_screen.dart';
-import 'package:naz_gem/features/more/ui/pages/more_page.dart';
-import 'package:naz_gem/features/notifications/ui/pages/notificaion_page.dart';
-import 'package:naz_gem/features/profile/ui/pages/profile.dart';
 import 'package:naz_gem/features/splash_screen.dart';
 import 'package:naz_gem/features/subscrbtions/ui/get/subscrbtions_getx_controller.dart';
 
 import 'core/translations/app_translations.dart';
 import 'features/auth/ui/get/auth_getx_controller.dart';
+import 'features/profile/ui/get/edit_profile_getx_controller.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -31,6 +26,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     Get.put(SubscrbtionGetxController());
     Get.put(AuthGetxController());
+    Get.put(EditProfileGetxController());
     return ScreenUtilInit(
       designSize: const Size(392, 803),
       minTextAdapt: true,

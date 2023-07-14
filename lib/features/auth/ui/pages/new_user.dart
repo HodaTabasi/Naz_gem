@@ -6,6 +6,7 @@ import '../../../../core/constants/app_colors.dart';
 import '../../../../core/widgets/app_button.dart';
 import '../../../../core/widgets/app_text_field.dart';
 import '../../../../core/widgets/app_widget.dart';
+import '../get/auth_getx_controller.dart';
 import '../widget/auth_functions.dart';
 import 'login.dart';
 import 'otp_register_screen.dart';
@@ -25,6 +26,7 @@ class _NewUserState extends State<NewUser> {
   bool appearOtp = false;
 
   bool checkValue = false;
+
   @override
   void initState() {
     _mobileController = TextEditingController();
@@ -33,6 +35,7 @@ class _NewUserState extends State<NewUser> {
     _emailController = TextEditingController();
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -54,29 +57,26 @@ class _NewUserState extends State<NewUser> {
               height: MediaQuery.of(context).size.height / 2.3,
               padding: EdgeInsets.all(16.r),
               width: double.infinity,
-              decoration:  buildBoxDecoration(),
+              decoration: buildBoxDecoration(),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 mainAxisAlignment: MainAxisAlignment.end,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   getText('new_user'.tr,
-                      color:Colors.white,
+                      color: Colors.white,
                       size: 28.sp,
-                    weight: FontWeight.bold
-                  ),
+                      weight: FontWeight.bold),
                   getSpace(h: 20.0.h),
                   getText('welcome'.tr,
-                      color:Colors.white,
+                      color: Colors.white,
                       size: 18.sp,
-                      weight: FontWeight.bold
-                  ),
+                      weight: FontWeight.bold),
                   getSpace(h: 10.0.h),
                   getText('register_sub1'.tr,
-                      color:Colors.white,
+                      color: Colors.white,
                       size: 12.sp,
-                      weight: FontWeight.normal
-                  ),
+                      weight: FontWeight.normal),
                   getSpace(h: 45.0.h)
                 ],
               ),
@@ -90,128 +90,142 @@ class _NewUserState extends State<NewUser> {
               height: MediaQuery.of(context).size.height / 1.64,
               width: double.infinity,
               padding: EdgeInsets.all(16.r),
-              decoration:  buildBoxDecoration2(),
+              decoration: buildBoxDecoration2(),
               child: SingleChildScrollView(
-                physics:BouncingScrollPhysics(),
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    getSpace(h: 16.0.r),
-                    getText('name'.tr,
-                        color:blackTextColor,
-                        size: 16.sp,
-                        align: TextAlign.center
-                    ),
+                physics: BouncingScrollPhysics(),
+                child: Form(
+                  key: AuthGetxController.to.newUserKey,
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      getSpace(h: 16.0.r),
+                      getText('name'.tr,
+                          color: blackTextColor,
+                          size: 16.sp,
+                          align: TextAlign.center),
 
-                    getSpace(h: 16.0.r),
-                    Row(
-                      children: [
-                        Expanded(
-                          child: SizedBox(
-                            height: 50.h,
-                            child: AppTextField(
-                              textController: _firstNameController,
-                              hint: '',
+                      getSpace(h: 16.0.r),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: SizedBox(
+                              // height: 50.h,
+                              child: AppTextField(
+                                textController: _firstNameController,
+                                hint: '',
+                                onSubmitted:
+                                    AuthGetxController.to.nameValidation,
+                              ),
                             ),
                           ),
-                        ),
-                        getSpace(w: 23.w),
-                        Expanded(
-                          child: SizedBox(
-                            height: 50.h,
-                            child: AppTextField(
-                              textController: _lastNameController,
-                              hint: '',
+                          getSpace(w: 23.w),
+                          Expanded(
+                            child: SizedBox(
+                              // height: 50.h,
+                              child: AppTextField(
+                                  textController: _lastNameController,
+                                  hint: '',
+                                  onSubmitted:
+                                      AuthGetxController.to.nameValidation),
                             ),
                           ),
-                        ),
-                      ],
-                    ),
-                    getSpace(h: 16.0.r),
-                    getText('mobile_number'.tr,
-                        color:blackTextColor,
-                        size: 16.sp,
-                        align: TextAlign.center
-                    ),
-                    getSpace(h: 16.0.r),
-                    SizedBox(
-                      height: 50.h,
-                      child: AppTextField(
-                        textController: _mobileController,
-                        hint: '',
-                        text: '+966',
-                        hasSufix: true,
-                        textInputType: TextInputType.number,
-                        direction: TextDirection.rtl,
+                        ],
                       ),
-                    ),
-                    getSpace(h: 16.0.r),
-                    getText('email'.tr,
-                        color:blackTextColor,
-                        size: 16.sp,
-                        align: TextAlign.center
-                    ),
-                    getSpace(h: 16.0.r),
-                    SizedBox(
-                      height: 50.h,
-                      child: AppTextField(
-                        textController: _emailController,
-                        hint: '',
+                      getSpace(h: 16.0.r),
+                      getText('mobile_number'.tr,
+                          color: blackTextColor,
+                          size: 16.sp,
+                          align: TextAlign.center),
+                      getSpace(h: 16.0.r),
+                      SizedBox(
+                        // height: 50.h,
+                        child: AppTextField(
+                            textController: _mobileController,
+                            hint: '',
+                            text: '+966',
+                            hasSufix: true,
+                            textInputType: TextInputType.number,
+                            direction: TextDirection.rtl,
+                            onSubmitted:
+                                AuthGetxController.to.mobileValidation),
                       ),
-                    ),
-                    getSpace(h: 18.0.r),
-                    Row(
-                      children: [
-                        Checkbox(value: checkValue,
-                          onChanged: (value) {
-                          setState(() {
-                            checkValue = value!;
-                          });
-                        },
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(3.r)
-                        ),
-                          activeColor: blackTextColor,
-                        ),
-                        Text.rich(
-                          maxLines: 3,
-                          TextSpan(
-                            style:
-                            TextStyle(color: btnColor),
-                            children: [
-                              TextSpan(text: 'من خلال التسجيل فأنت توافق على  '),
-                              TextSpan(text: 'الشروط والأحكام \nوسياسة الاستخدام ',style: TextStyle(color: sucndryColor)),
-                              TextSpan(text: ' الخاصة بنا'),
-                            ],
+                      getSpace(h: 16.0.r),
+                      getText(
+                        'email'.tr,
+                        color: blackTextColor,
+                        size: 16.sp,
+                        align: TextAlign.center,
+                      ),
+                      getSpace(h: 16.0.r),
+                      SizedBox(
+                        // height: 50.h,
+                        child: AppTextField(
+                            textController: _emailController,
+                            hint: '',
+                            onSubmitted: AuthGetxController.to.emailValidation),
+                      ),
+                      getSpace(h: 18.0.r),
+                      Row(
+                        children: [
+                          Checkbox(
+                            value: checkValue,
+                            onChanged: (value) {
+                              setState(() {
+                                checkValue = value!;
+                              });
+                            },
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(3.r)),
+                            activeColor: blackTextColor,
                           ),
-                        )
-                      ],
-                    ),
-                    getSpace(h: 16.0.r),
-                    BtnApp(title: 'sure_otp'.tr, color: btnColor, prsee: () {
-                      Get.to(()=>OTPRegisterScreen(),transition: Transition.downToUp,
-                          duration: const Duration(milliseconds: 500));
-                    }),
-                    // getSpace(h: 16.0.r),
+                          Text.rich(
+                            maxLines: 3,
+                            TextSpan(
+                              style: TextStyle(color: btnColor),
+                              children: [
+                                TextSpan(
+                                    text: 'من خلال التسجيل فأنت توافق على  '),
+                                TextSpan(
+                                    text: 'الشروط والأحكام \nوسياسة الاستخدام ',
+                                    style: TextStyle(color: sucndryColor)),
+                                TextSpan(text: ' الخاصة بنا'),
+                              ],
+                            ),
+                          )
+                        ],
+                      ),
+                      getSpace(h: 16.0.r),
+                      BtnApp(
+                          title: 'sure_otp'.tr,
+                          color: btnColor,
+                          prsee: () {
+                            if (AuthGetxController.to.loginKey.currentState!
+                                .validate()) {
+                              Get.to(() => OTPRegisterScreen(),
+                                  transition: Transition.downToUp,
+                                  duration: const Duration(milliseconds: 500));
+                            }
+                          }),
+                      // getSpace(h: 16.0.r),
 
-                    Align(
-                      child: getText('or'.tr,
-                          color:blackTextColor,
-                          size: 18.sp,
-                          align: TextAlign.center
-                      )
-                    ),
-                    BtnApp(
-                        title: 'login'.tr,
-                        color: mainColor,
-                        textColor: blackTextColor,
-                        prsee: () {
-                          Get.to(()=>const LoginScreen(),transition: Transition.downToUp,
-                              duration: const Duration(milliseconds: 500));
-                        }),
-                  ],
+                      Align(
+                          child: getText('or'.tr,
+                              color: blackTextColor,
+                              size: 18.sp,
+                              align: TextAlign.center)),
+                      BtnApp(
+                          title: 'login'.tr,
+                          color: mainColor,
+                          textColor: blackTextColor,
+                          prsee: () {
+                            Get.to(() => const LoginScreen(),
+                                transition: Transition.downToUp,
+                                duration: const Duration(milliseconds: 500));
+                          }),
+                    ],
+                  ),
                 ),
               ),
             ),
@@ -220,8 +234,4 @@ class _NewUserState extends State<NewUser> {
       ),
     );
   }
-
-
-
-
 }

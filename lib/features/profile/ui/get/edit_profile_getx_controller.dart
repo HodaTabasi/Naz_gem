@@ -1,14 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
-class AuthGetxController extends GetxController {
+class EditProfileGetxController extends GetxController {
   RxString mobile = RxString('');
   RxString mobileErrorText = RxString('');
-  GlobalKey<FormState> loginKey = GlobalKey<FormState>();
-  GlobalKey<FormState> newUserKey = GlobalKey<FormState>();
+  GlobalKey<FormState> profileKey = GlobalKey<FormState>();
 
-  static AuthGetxController get to =>
-      Get.find<AuthGetxController>();
+  static EditProfileGetxController get to =>
+      Get.find<EditProfileGetxController>();
 
   String? mobileValidation(String? value) {
     if(value == null){

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:naz_gem/features/profile/ui/get/edit_profile_getx_controller.dart';
 
 import '../../../../core/constants/app_colors.dart';
 import '../../../../core/widgets/app_button.dart';
@@ -106,10 +107,11 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                       ),
                       getSpace(h: 16.h),
                       SizedBox(
-                        height: 50.h,
+                        // height: 50.h,
                         child: AppTextField(
                           textController: _firstNameController,
                           hint: '',
+                          onSubmitted: EditProfileGetxController.to.nameValidation,
                         ),
                       ),
                     ],
@@ -127,10 +129,11 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                       ),
                       getSpace(h: 16.h),
                       SizedBox(
-                        height: 50.h,
+                        // height: 50.h,
                         child: AppTextField(
                           textController: _lastNameController,
                           hint: '',
+                          onSubmitted: EditProfileGetxController.to.nameValidation,
                         ),
                       ),
                     ],
@@ -146,7 +149,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
             ),
             getSpace(h: 16.0.r),
             SizedBox(
-              height: 50.h,
+              // height: 50.h,
               child: AppTextField(
                 textController: _mobileController,
                 hint: '',
@@ -154,6 +157,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                 hasSufix: true,
                 isEnabled: false,
                 textInputType: TextInputType.number,
+                onSubmitted: EditProfileGetxController.to.mobileValidation,
               ),
             ),
             getSpace(h: 16.0.r),
@@ -164,11 +168,12 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
             ),
             getSpace(h: 16.0.r),
             SizedBox(
-              height: 50.h,
+              // height: 50.h,
               child: AppTextField(
                 textController: _emailController,
                 hint: '',
                 textInputType: TextInputType.emailAddress,
+                onSubmitted: EditProfileGetxController.to.emailValidation,
               ),
             ),
             getSpace(h: 16.0.r),
@@ -199,10 +204,11 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
             ),
             getSpace(h: 16.0.r),
             SizedBox(
-              height: 50.h,
+              // height: 50.h,
               child: AppTextField(
                 textController: _hgtController,
                 hint: '',
+                onSubmitted: EditProfileGetxController.to.nameValidation,
               ),
             ),
             getSpace(h: 16.0.r),
@@ -213,10 +219,11 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
             ),
             getSpace(h: 16.0.r),
             SizedBox(
-              height: 50.h,
+              // height: 50.h,
               child: AppTextField(
                 textController: _bloodController,
                 hint: '',
+                onSubmitted: EditProfileGetxController.to.nameValidation,
               ),
             ),
 
