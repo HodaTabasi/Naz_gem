@@ -23,13 +23,13 @@ class ContactInfoItemWidget extends StatelessWidget {
               color: boarderColor,
               width: 1
           ),
-          boxShadow: [
-            BoxShadow(
-                color: Colors.grey.shade100,
-                offset: const Offset(0,2),
-                blurRadius: 3
-            )
-          ]
+          // boxShadow: [
+          //   BoxShadow(
+          //       color: Colors.grey.shade100,
+          //       offset: const Offset(0,2),
+          //       blurRadius: 3
+          //   )
+          // ]
       ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,

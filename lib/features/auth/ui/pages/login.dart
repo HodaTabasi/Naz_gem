@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:naz_gem/core/widgets/app_button.dart';
 import 'package:naz_gem/core/widgets/app_text_field.dart';
 import 'package:naz_gem/core/widgets/app_widget.dart';
+import 'package:naz_gem/features/auth/ui/get/auth_getx_controller.dart';
 
 import '../../../../navigation_bar/bottom_navigation_page.dart';
 import '../../../../core/constants/app_colors.dart';
@@ -31,6 +32,7 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       extendBodyBehindAppBar: true,
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
@@ -73,59 +75,64 @@ class _LoginScreenState extends State<LoginScreen> {
               padding: EdgeInsets.all(16.r),
               decoration: buildBoxDecoration2(),
               child: SingleChildScrollView(
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    getSpace(h: 16.0.r),
-                    getText('mobile_number'.tr,
-                        color:blackTextColor,
-                        size: 16.sp,
-                        align:TextAlign.center),
-                    getSpace(h: 16.0.r),
-                    SizedBox(
-                      height: 60.h,
-                      child: AppTextField(
-                        textController: _mobileController,
-                        hint: '',
-                        textInputType: TextInputType.phone,
-                        text: '+966',
-                        hasSufix: true,
-                      ),
-                    ),
-                    getSpace(h: 16.0.r),
-                    Visibility(
-                      visible: appearOtp,
-                      child: const OtpContainer(),
-                    ),
-                    BtnApp(title: appearOtp?'ok'.tr:'sure_otp'.tr, color: btnColor, prsee: () {
-                      if(appearOtp){
-                        Get.offAll(()=>const BottomNavigationPage(),transition: Transition.downToUp,
-                            duration: const Duration(milliseconds: 500));
-                      }else{
-                        setState(() {
-                          appearOtp = !appearOtp;
-                        });
-                      }
-
-                    }),
-                    // getSpace(h: 16.0.r),
-                    Align(
-                      child:getText('or'.tr,
+                physics:BouncingScrollPhysics(),
+                child: Form(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      getSpace(h: 16.0.r),
+                      getText('mobile_number'.tr,
                           color:blackTextColor,
-                          size: 18.sp,
-                          align:TextAlign.center)
-                    ),
-                    BtnApp(
-                        title: 'new_user'.tr,
-                        color: mainColor,
-                        textColor: blackTextColor,
-                        prsee: () {
-                          Get.to(()=>NewUser(),transition: Transition.downToUp,
+                          size: 16.sp,
+                          align:TextAlign.center),
+                      getSpace(h: 16.0.r),
+                      SizedBox(
+                        // height: 60.h,
+                        child: AppTextField(
+                          textController: _mobileController,
+                          hint: '',
+                          textInputType: TextInputType.phone,
+                          text: '+966',
+                          hasSufix: true,
+                          isEnabled: !appearOtp,
+                          onSubmitted:AuthGetxController.to.mobileValidation,
+                        ),
+                      ),
+                      getSpace(h: 16.0.r),
+                      Visibility(
+                        visible: appearOtp,
+                        child: const OtpContainer(),
+                      ),
+                      BtnApp(title: appearOtp?'ok'.tr:'sure_otp'.tr, color: btnColor, prsee: () {
+                        if(appearOtp){
+                          Get.offAll(()=>const BottomNavigationPage(),transition: Transition.downToUp,
                               duration: const Duration(milliseconds: 500));
-                        }),
-                  ],
+                        }else{
+                          setState(() {
+                            appearOtp = !appearOtp;
+                          });
+                        }
+
+                      }),
+                      // getSpace(h: 16.0.r),
+                      Align(
+                        child:getText('or'.tr,
+                            color:blackTextColor,
+                            size: 18.sp,
+                            align:TextAlign.center)
+                      ),
+                      BtnApp(
+                          title: 'new_user'.tr,
+                          color: mainColor,
+                          textColor: blackTextColor,
+                          prsee: () {
+                            Get.to(()=>NewUser(),transition: Transition.downToUp,
+                                duration: const Duration(milliseconds: 500));
+                          }),
+                    ],
+                  ),
                 ),
               ),
             ),

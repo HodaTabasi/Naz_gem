@@ -23,10 +23,13 @@ class ButtonWidget extends StatelessWidget {
       style: ElevatedButton.styleFrom(
           elevation: 0,
           fixedSize: size,
+          disabledBackgroundColor: color,
           backgroundColor: color,
+          shadowColor: Colors.transparent,
+          foregroundColor: color,
           shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(8.r))),
-      onPressed: onPress,
+      onPressed: null,
       child: getText(text,
           color: blackTextColor, size: 12.sp, family: 'br'),
     );

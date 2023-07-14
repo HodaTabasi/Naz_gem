@@ -31,7 +31,7 @@ class ItemTwoWidget extends StatelessWidget {
         Visibility(
           visible: index != 0,
           child: ButtonWidget(
-            size: Size(65.w, 20.h),
+            size: Size(75.w, 20.h),
             text: 'expire'.tr,
             color: boarderColor,
             onPress: () {},

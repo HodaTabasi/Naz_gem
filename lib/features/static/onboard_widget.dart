@@ -58,10 +58,13 @@ class onboardWidget extends StatelessWidget {
             textAlign: TextAlign.center,
           ),
           getSpace(h: 9.0.h),
-          BtnApp(title: 'login'.tr, color:mainColor ,textColor:blackTextColor, prsee: () {
-            Get.offAll(()=>const LoginScreen(),transition: Transition.downToUp,
-                duration: const Duration(milliseconds: 500));
-          }),
+          Padding(
+            padding:  EdgeInsets.all(16.0.r),
+            child: BtnApp(title: 'login'.tr, color:mainColor ,textColor:blackTextColor, prsee: () {
+              Get.offAll(()=>const LoginScreen(),transition: Transition.downToUp,
+                  duration: const Duration(milliseconds: 500));
+            }),
+          ),
           getSpace(h: MediaQuery.of(context).size.height / 7)
         ],
       ),

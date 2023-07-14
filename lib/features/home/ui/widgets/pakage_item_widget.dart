@@ -25,12 +25,12 @@ class PakageItemWidget extends StatelessWidget {
                   color: boarderColorPakage,
                   width: 1,
                 ),
-                boxShadow: [
-                  BoxShadow(
-                      color: Colors.grey.shade300,
-                      blurRadius: 2,
-                      offset: Offset(0, 4))
-                ],
+                // boxShadow: [
+                //   BoxShadow(
+                //       color: Colors.grey.shade300,
+                //       blurRadius: 2,
+                //       offset: Offset(0, 4))
+                // ],
                 color: Colors.white),
             child: Column(
               // mainAxisAlignment: MainAxisAlignment.center,

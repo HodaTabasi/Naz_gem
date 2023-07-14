@@ -19,11 +19,11 @@ AppBar buildAppBar() {
     ),
     centerTitle: true,
     automaticallyImplyLeading: false,
-    leading: IconButton(
-        onPressed: () {
-          Get.back();
-        },
-        icon: Icon(Icons.arrow_back, color: Colors.white)),
+    // leading: IconButton(
+    //     onPressed: () {
+    //       Get.back();
+    //     },
+    //     icon: Icon(Icons.arrow_back, color: Colors.white)),
     actions: [
       IconButton(
           onPressed: () {

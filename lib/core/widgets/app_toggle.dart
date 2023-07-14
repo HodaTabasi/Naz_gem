@@ -16,7 +16,7 @@ class AppToggle extends StatelessWidget {
         return Padding(
           padding: EdgeInsets.symmetric(horizontal: 16.0.r, vertical: 8.r),
           child: Container(
-              height: 53.h,
+              height: 48.h,
               decoration: BoxDecoration(
                   border: Border.all(color: boarderColor, width: 1),
                   borderRadius: BorderRadius.circular(10)),

@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 
 import '../../../../core/constants/app_colors.dart';
 import '../../../../core/widgets/app_button.dart';
+import '../../../../core/widgets/app_date_text_field.dart';
 import '../../../../core/widgets/app_text_field.dart';
 import '../../../../core/widgets/app_widget.dart';
 import '../widgets/profile_functions.dart';
@@ -22,6 +23,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
   late TextEditingController _hgtController;
   late TextEditingController _bdController;
   late TextEditingController _bloodController;
+  DateTime currentDate = DateTime.now();
   bool appearOtp = false;
   @override
   void initState() {
@@ -35,6 +37,42 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
     super.initState();
   }
 
+  Future<void> _selectDate(BuildContext context) async {
+    final DateTime? pickedDate = await showDatePicker(
+        context: context,
+        initialDate: currentDate,
+        cancelText: 'الغاء الامر',
+        confirmText: 'حسنا',
+        textDirection: TextDirection.rtl,
+        helpText: 'حدد التاريخ',
+        firstDate: DateTime(1900),
+        lastDate: DateTime(2050),
+      builder: (context, child) {
+        return Theme(
+          data: Theme.of(context).copyWith(
+            colorScheme: ColorScheme.light(
+              primary: btnColor, // <-- SEE HERE
+              onPrimary: Colors.white, // <-- SEE HERE
+              onSurface: blackTextColor, // <-- SEE HERE
+            ),
+            textButtonTheme: TextButtonThemeData(
+              style: TextButton.styleFrom(
+                primary: btnColor, // button text color
+              ),
+            ),
+          ),
+          child: child!,
+        );
+      },
+    );
+    if (pickedDate != null && pickedDate != currentDate)
+      setState(() {
+        currentDate = pickedDate;
+        _bdController.text = '${currentDate.day} /${currentDate.month} / ${currentDate.year}';
+      });
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,7 +82,6 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
         // textColor: blackTextColor,
         height: 80.h,
         isBack: true,
-
       ),
       body:  SingleChildScrollView(
         padding: EdgeInsets.all(16.r),
@@ -53,9 +90,8 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            getSpace(h: 16.0.r),
+            getSpace(h: 14.0.r),
             buildEditImageListTile(),
-
             getSpace(h: 20.0.r),
             Row(
               children: [
@@ -116,6 +152,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                 hint: '',
                 text: '+966',
                 hasSufix: true,
+                isEnabled: false,
                 textInputType: TextInputType.number,
               ),
             ),
@@ -143,11 +180,15 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
             getSpace(h: 16.0.r),
             SizedBox(
               height: 50.h,
-              child: AppTextField(
+              child: AppDateTextField(
                 textController: _bdController,
-                hint: '',
+                hint: 'dD/MM/YYYY',
                 hasSufix: true,
+                isEnabled: false,
                 direction: TextDirection.ltr,
+                onSubmitted: () {
+                  _selectDate(context);
+                },
               ),
             ),
             getSpace(h: 16.0.r),

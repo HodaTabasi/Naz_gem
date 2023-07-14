@@ -11,6 +11,7 @@ import 'package:naz_gem/features/splash_screen.dart';
 import 'package:naz_gem/features/subscrbtions/ui/get/subscrbtions_getx_controller.dart';
 
 import 'core/translations/app_translations.dart';
+import 'features/auth/ui/get/auth_getx_controller.dart';
 import 'features/bill/ui/pages/my_billes.dart';
 import 'features/static/on_boarding.dart';
 import 'features/subscrbtions/ui/pages/subscrbtion_screen.dart';
@@ -27,6 +28,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Get.put(SubscrbtionGetxController());
+    Get.put(AuthGetxController());
     return ScreenUtilInit(
       designSize: const Size(392, 803),
       minTextAdapt: true,

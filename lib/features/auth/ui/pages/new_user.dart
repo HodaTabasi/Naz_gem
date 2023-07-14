@@ -23,6 +23,8 @@ class _NewUserState extends State<NewUser> {
   late TextEditingController _lastNameController;
   late TextEditingController _emailController;
   bool appearOtp = false;
+
+  bool checkValue = false;
   @override
   void initState() {
     _mobileController = TextEditingController();
@@ -35,6 +37,7 @@ class _NewUserState extends State<NewUser> {
   Widget build(BuildContext context) {
     return Scaffold(
       extendBodyBehindAppBar: true,
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
@@ -89,6 +92,7 @@ class _NewUserState extends State<NewUser> {
               padding: EdgeInsets.all(16.r),
               decoration:  buildBoxDecoration2(),
               child: SingleChildScrollView(
+                physics:BouncingScrollPhysics(),
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   mainAxisAlignment: MainAxisAlignment.start,
@@ -140,7 +144,7 @@ class _NewUserState extends State<NewUser> {
                         text: '+966',
                         hasSufix: true,
                         textInputType: TextInputType.number,
-                        direction: TextDirection.ltr,
+                        direction: TextDirection.rtl,
                       ),
                     ),
                     getSpace(h: 16.0.r),
@@ -160,9 +164,11 @@ class _NewUserState extends State<NewUser> {
                     getSpace(h: 18.0.r),
                     Row(
                       children: [
-                        Checkbox(value: true,
+                        Checkbox(value: checkValue,
                           onChanged: (value) {
-
+                          setState(() {
+                            checkValue = value!;
+                          });
                         },
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(3.r)

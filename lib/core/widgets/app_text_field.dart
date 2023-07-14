@@ -13,51 +13,53 @@ class AppTextField extends StatelessWidget {
     TextInputType textInputType = TextInputType.text,
     bool obscureText = false,
     bool hasSufix = false,
+    bool isEnabled = true,
     TextDirection direction = TextDirection.rtl,
     TextInputAction textInputAction = TextInputAction.next,
-    Function(String value)? onSubmitted,
+    String? Function(String? value)? onSubmitted,
   })  : _textController = textController,
         _hint = hint,
-        _prefixIcon = prefixIcon,
         _textInputType = textInputType,
         _obscureText = obscureText,
         _textInputAction = textInputAction,
         _onSubmitted = onSubmitted,
         _text = text,
+        _isEnabled = isEnabled,
   _hasSufix = hasSufix,
         _direction = direction,
         super(key: key);
 
   final TextEditingController _textController;
   final String _hint;
-  IconData? _prefixIcon;
   String _text;
   TextDirection _direction;
   final TextInputType _textInputType;
   final bool _obscureText;
   final bool _hasSufix;
+  final bool _isEnabled;
   final TextInputAction _textInputAction;
-  final void Function(String value)? _onSubmitted;
+  final String? Function(String? value)? _onSubmitted;
 
   @override
   Widget build(BuildContext context) {
-    return TextField(
+    return TextFormField(
       controller: _textController,
       keyboardType: _textInputType,
       textInputAction: _textInputAction,
-      onSubmitted: _onSubmitted,
+      autovalidateMode:AutovalidateMode.onUserInteraction ,
+      // onSubmitted: _onSubmitted,
       obscureText: _obscureText,
       textDirection: _direction,
       style: TextStyle(
         fontWeight: FontWeight.w600,
         color: blackTextColor
       ),
+      validator: _onSubmitted,
       decoration: InputDecoration(
         hintText: _hint,
-        hintStyle: TextStyle(),
-        // prefixIcon: Icon(_prefixIcon),
-        // prefixText: _text,
-        suffixIcon: _hasSufix ?SizedBox(
+        hintStyle: const TextStyle(),
+        contentPadding:  EdgeInsets.symmetric(vertical: 13.0.r, horizontal: 13.0.r),
+        prefixIcon: _hasSufix ?SizedBox(
           width: 60.w,
           child: Align(
             alignment: AlignmentDirectional.centerEnd,
@@ -69,11 +71,14 @@ class AppTextField extends StatelessWidget {
             ),
           ),
         ):null,
-        // prefixStyle: TextStyle(
-        //   fontSize: 14.sp,color: blackTextColor
-        // ),
+        fillColor: grayBackground,
+        filled: !_isEnabled,
+        enabled: _isEnabled,
         enabledBorder: buildOutlineInputBorder(color:boarderColor),
         focusedBorder: buildOutlineInputBorder(color: btnColor),
+        disabledBorder: buildOutlineInputBorder(color: boarderColor),
+        errorBorder: buildOutlineInputBorder(color:redColor),
+        focusedErrorBorder: buildOutlineInputBorder(color:redColor),
       ),
     );
   }

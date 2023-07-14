@@ -27,7 +27,7 @@ class _SplashScreenState extends State<SplashScreen> {
         child:      Stack(
           children: [
             AnimatedPositioned(
-              onEnd: () => Get.to(()=>OnBoardingScreen(),transition: Transition.downToUp,
+              onEnd: () => Get.offAll(()=>OnBoardingScreen(),transition: Transition.downToUp,
                   duration: const Duration(milliseconds: 500)),
                 height: play?MediaQuery.of(context).size.height/1.5.h : 0,
                 left: 0,
