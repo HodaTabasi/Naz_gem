@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:naz_gem/core/get/general_getx_controller.dart';
 
 import '../../../../core/constants/app_colors.dart';
 import '../../../../core/widgets/app_button.dart';
 import '../../../../core/widgets/app_text_field.dart';
 import '../../../../core/widgets/app_widget.dart';
-import '../get/auth_getx_controller.dart';
 import '../widget/auth_functions.dart';
 import 'login.dart';
 import 'otp_register_screen.dart';
@@ -92,9 +92,9 @@ class _NewUserState extends State<NewUser> {
               padding: EdgeInsets.all(16.r),
               decoration: buildBoxDecoration2(),
               child: SingleChildScrollView(
-                physics: BouncingScrollPhysics(),
+                physics: const BouncingScrollPhysics(),
                 child: Form(
-                  key: AuthGetxController.to.newUserKey,
+                  key: GeneralGetxController.to.newUserKey,
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     mainAxisAlignment: MainAxisAlignment.start,
@@ -116,7 +116,7 @@ class _NewUserState extends State<NewUser> {
                                 textController: _firstNameController,
                                 hint: '',
                                 onSubmitted:
-                                    AuthGetxController.to.nameValidation,
+                                GeneralGetxController.to.nameValidation,
                               ),
                             ),
                           ),
@@ -128,7 +128,7 @@ class _NewUserState extends State<NewUser> {
                                   textController: _lastNameController,
                                   hint: '',
                                   onSubmitted:
-                                      AuthGetxController.to.nameValidation),
+                                  GeneralGetxController.to.nameValidation),
                             ),
                           ),
                         ],
@@ -149,7 +149,7 @@ class _NewUserState extends State<NewUser> {
                             textInputType: TextInputType.number,
                             direction: TextDirection.rtl,
                             onSubmitted:
-                                AuthGetxController.to.mobileValidation),
+                            GeneralGetxController.to.mobileValidation),
                       ),
                       getSpace(h: 16.0.r),
                       getText(
@@ -164,7 +164,7 @@ class _NewUserState extends State<NewUser> {
                         child: AppTextField(
                             textController: _emailController,
                             hint: '',
-                            onSubmitted: AuthGetxController.to.emailValidation),
+                            onSubmitted: GeneralGetxController.to.emailValidation),
                       ),
                       getSpace(h: 18.0.r),
                       Row(
@@ -186,11 +186,11 @@ class _NewUserState extends State<NewUser> {
                               style: TextStyle(color: btnColor),
                               children: [
                                 TextSpan(
-                                    text: 'من خلال التسجيل فأنت توافق على  '),
+                                    text: 'm1'.tr),
                                 TextSpan(
-                                    text: 'الشروط والأحكام \nوسياسة الاستخدام ',
+                                    text: 'm2'.tr,
                                     style: TextStyle(color: sucndryColor)),
-                                TextSpan(text: ' الخاصة بنا'),
+                                TextSpan(text: 'm3'.tr),
                               ],
                             ),
                           )
@@ -201,7 +201,7 @@ class _NewUserState extends State<NewUser> {
                           title: 'sure_otp'.tr,
                           color: btnColor,
                           prsee: () {
-                            if (AuthGetxController.to.loginKey.currentState!
+                            if (GeneralGetxController.to.newUserKey.currentState!
                                 .validate()) {
                               Get.to(() => OTPRegisterScreen(),
                                   transition: Transition.downToUp,

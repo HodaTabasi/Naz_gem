@@ -6,6 +6,7 @@ import 'package:naz_gem/core/widgets/app_text_field.dart';
 import 'package:naz_gem/core/widgets/app_widget.dart';
 import 'package:naz_gem/features/auth/ui/get/auth_getx_controller.dart';
 
+import '../../../../core/get/general_getx_controller.dart';
 import '../../../../navigation_bar/bottom_navigation_page.dart';
 import '../../../../core/constants/app_colors.dart';
 import '../widget/auth_functions.dart';
@@ -87,7 +88,7 @@ class _LoginScreenState extends State<LoginScreen> {
               child: SingleChildScrollView(
                 physics: BouncingScrollPhysics(),
                 child: Form(
-                  key: AuthGetxController.to.loginKey,
+                  key: GeneralGetxController.to.loginKey,
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     mainAxisAlignment: MainAxisAlignment.start,
@@ -108,7 +109,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           text: '+966',
                           hasSufix: true,
                           isEnabled: !appearOtp,
-                          onSubmitted: AuthGetxController.to.mobileValidation,
+                          onSubmitted: GeneralGetxController.to.mobileValidation,
                         ),
                       ),
                       getSpace(h: 16.0.r),
@@ -120,7 +121,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           title: appearOtp ? 'ok'.tr : 'sure_otp'.tr,
                           color: btnColor,
                           prsee: () {
-                            if(AuthGetxController.to.loginKey.currentState!.validate()){
+                            if(GeneralGetxController.to.loginKey.currentState!.validate()){
 
                               if (appearOtp) {
                                 Get.offAll(() => const BottomNavigationPage(),
@@ -145,7 +146,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           color: mainColor,
                           textColor: blackTextColor,
                           prsee: () {
-                            Get.to(() => NewUser(),
+                            Get.offAll(() => NewUser(),
                                 transition: Transition.downToUp,
                                 duration: const Duration(milliseconds: 500));
                           }),
