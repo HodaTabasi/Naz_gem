@@ -101,6 +101,13 @@ class TranslateWord extends Translations {
       'upload_image': ' ',
       'qr':'',
       'home':'',
+      'do_out':'',
+      'do_delete':'',
+      'back':'',
+      'cancel':'',
+      'm1':'  ',
+      'm2':' ',
+      'm3':'  ',
     },
     'ar': {
       'skip': 'تخطي',

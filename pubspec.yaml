@@ -45,6 +45,14 @@ dependencies:
   url_launcher: ^6.1.11
   youtube_player_flutter: ^8.1.2
   get_storage: ^2.1.1
+  #clean code part pakage for it
+  # Functional programming things
+  dartz: ^0.10.1
+  # Value equality
+  equatable: ^2.0.5
+  # Remote API
+  internet_connection_checker: ^1.0.0+1
+  http: ^0.13.6
 #  animations: ^2.0.7
 
 dev_dependencies:
