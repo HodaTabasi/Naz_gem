@@ -7,6 +7,7 @@ import 'package:naz_gem/core/widgets/app_text_field.dart';
 import 'package:naz_gem/core/widgets/app_widget.dart';
 import 'package:naz_gem/features/auth/ui/get/auth_getx_controller.dart';
 
+import '../../../../core/constants/snackbar_message.dart';
 import '../../../../core/get/general_getx_controller.dart';
 import '../../../../navigation_bar/bottom_navigation_page.dart';
 import '../../../../core/constants/app_colors.dart';
@@ -139,7 +140,10 @@ class _LoginScreenState extends State<LoginScreen> {
                                       Get.offAll(() => const BottomNavigationPage(),
                                           transition: Transition.downToUp,
                                           duration:
-                                          const Duration(milliseconds: 500));
+                                          const Duration(milliseconds: 300));
+                                    }else {
+                                      SnackBarMessage().showErrorSnackBar(
+                                          message: controller.responseMessage, context: context);
                                     }
 
                                   } else {

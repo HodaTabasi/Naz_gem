@@ -7,6 +7,8 @@ import 'package:naz_gem/features/auth/domain/entities/user.dart';
 import 'package:naz_gem/features/auth/ui/get/auth_getx_controller.dart';
 
 import '../../../../core/constants/app_colors.dart';
+import '../../../../core/constants/snackbar_message.dart';
+import '../../../../core/strings/failures.dart';
 import '../../../../core/widgets/app_button.dart';
 import '../../../../core/widgets/app_text_field.dart';
 import '../../../../core/widgets/app_widget.dart';
@@ -222,15 +224,13 @@ class _NewUserState extends State<NewUser> {
                                           transition: Transition.downToUp,
                                           duration: const Duration(milliseconds: 300));
                                     }else {
-                                      //TODO snackbar
+                                      SnackBarMessage().showErrorSnackBar(
+                                          message: controller.responseMessage, context: context);
                                     }
-
                                   }else {
-                                    //TODO snackbar
+                                    SnackBarMessage().showErrorSnackBar(
+                                        message: CHECK_MESSAGE, context: context);
                                   }
-
-                                }else {
-                                  //TODO snackbar
                                 }
                               }),
                           // getSpace(h: 16.0.r),
