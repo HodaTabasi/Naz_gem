@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:naz_gem/core/widgets/app_button.dart';
 import 'package:naz_gem/core/widgets/app_text_field.dart';
 import 'package:naz_gem/core/widgets/app_widget.dart';
@@ -22,11 +23,11 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   late TextEditingController _mobileController;
-  bool appearOtp = false;
+
 
   @override
   void initState() {
-    _mobileController = TextEditingController();
+    _mobileController = TextEditingController(text: '05921511051127');
     super.initState();
   }
 
@@ -40,123 +41,138 @@ class _LoginScreenState extends State<LoginScreen> {
         elevation: 0,
         toolbarHeight: 80,
       ),
-      body: Stack(
-        children: [
-          Positioned(
-            top: 0,
-            left: 0,
-            right: 0,
-            child: Container(
-              height: MediaQuery.of(context).size.height / 2.3,
-              padding: EdgeInsets.all(16.r),
-              width: double.infinity,
-              decoration: buildBoxDecoration(),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                mainAxisAlignment: MainAxisAlignment.end,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  getText('login'.tr,
-                      color: Colors.white,
-                      size: 28.sp,
-                      weight: FontWeight.bold),
-                  getSpace(h: 20.0.h),
-                  getText('welcome'.tr,
-                      color: Colors.white,
-                      size: 18.sp,
-                      weight: FontWeight.bold),
-                  getSpace(h: 10.0.h),
-                  getText('login_sub1'.tr,
-                      color: Colors.white,
-                      size: 12.sp,
-                      weight: FontWeight.normal),
-                  getSpace(h: 45.0.h)
-                ],
-              ),
-            ),
-          ),
-          Positioned(
-            bottom: 0,
-            left: 0,
-            right: 0,
-            // height: 100,
-            child: Container(
-              height: MediaQuery.of(context).size.height / 1.64,
-              width: double.infinity,
-              padding: EdgeInsets.all(16.r),
-              decoration: buildBoxDecoration2(),
-              child: SingleChildScrollView(
-                physics: BouncingScrollPhysics(),
-                child: Form(
-                  key: GeneralGetxController.to.loginKey,
+      body: GetBuilder<AuthGetxController>(
+        builder: (controller) {
+          return Stack(
+            children: [
+              Positioned(
+                top: 0,
+                left: 0,
+                right: 0,
+                child: Container(
+                  height: MediaQuery.of(context).size.height / 2.3,
+                  padding: EdgeInsets.all(16.r),
+                  width: double.infinity,
+                  decoration: buildBoxDecoration(),
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
-                    mainAxisAlignment: MainAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.end,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      getSpace(h: 16.0.r),
-                      getText('mobile_number'.tr,
-                          color: blackTextColor,
-                          size: 16.sp,
-                          align: TextAlign.center),
-                      getSpace(h: 16.0.r),
-                      SizedBox(
-                        // height: 60.h,
-                        child: AppTextField(
-                          textController: _mobileController,
-                          hint: '',
-                          textInputType: TextInputType.phone,
-                          text: '+966',
-                          hasSufix: true,
-                          isEnabled: !appearOtp,
-                          onSubmitted: GeneralGetxController.to.mobileValidation,
-                        ),
-                      ),
-                      getSpace(h: 16.0.r),
-                      Visibility(
-                        visible: appearOtp,
-                        child: const OtpContainer(),
-                      ),
-                      BtnApp(
-                          title: appearOtp ? 'ok'.tr : 'sure_otp'.tr,
-                          color: btnColor,
-                          prsee: () {
-                            if(GeneralGetxController.to.loginKey.currentState!.validate()){
-
-                              if (appearOtp) {
-                                Get.offAll(() => const BottomNavigationPage(),
-                                    transition: Transition.downToUp,
-                                    duration: const Duration(milliseconds: 500));
-                              } else {
-                                setState(() {
-                                  appearOtp = !appearOtp;
-                                });
-                              }
-                            }
-
-                          }),
-                      // getSpace(h: 16.0.r),
-                      Align(
-                          child: getText('or'.tr,
-                              color: blackTextColor,
-                              size: 18.sp,
-                              align: TextAlign.center)),
-                      BtnApp(
-                          title: 'new_user'.tr,
-                          color: mainColor,
-                          textColor: blackTextColor,
-                          prsee: () {
-                            Get.offAll(() => NewUser(),
-                                transition: Transition.downToUp,
-                                duration: const Duration(milliseconds: 500));
-                          }),
+                      getText('login'.tr,
+                          color: Colors.white,
+                          size: 28.sp,
+                          weight: FontWeight.bold),
+                      getSpace(h: 20.0.h),
+                      getText('welcome'.tr,
+                          color: Colors.white,
+                          size: 18.sp,
+                          weight: FontWeight.bold),
+                      getSpace(h: 10.0.h),
+                      getText('login_sub1'.tr,
+                          color: Colors.white,
+                          size: 12.sp,
+                          weight: FontWeight.normal),
+                      getSpace(h: 45.0.h)
                     ],
                   ),
                 ),
               ),
-            ),
-          ),
-        ],
+              Positioned(
+                bottom: 0,
+                left: 0,
+                right: 0,
+                // height: 100,
+                child: Container(
+                  height: MediaQuery.of(context).size.height / 1.64,
+                  width: double.infinity,
+                  padding: EdgeInsets.all(16.r),
+                  decoration: buildBoxDecoration2(),
+                  child: SingleChildScrollView(
+                    physics: BouncingScrollPhysics(),
+                    child: Form(
+                      key: GeneralGetxController.to.loginKey,
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          getSpace(h: 16.0.r),
+                          getText('mobile_number'.tr,
+                              color: blackTextColor,
+                              size: 16.sp,
+                              align: TextAlign.center),
+                          getSpace(h: 16.0.r),
+                          SizedBox(
+                            // height: 60.h,
+                            child: AppTextField(
+                              textController: _mobileController,
+                              hint: '',
+                              textInputType: TextInputType.phone,
+                              text: '+966',
+                              hasSufix: true,
+                              isEnabled: !controller.appearOtp,
+                              onSubmitted:
+                                  GeneralGetxController.to.mobileValidation,
+                            ),
+                          ),
+                          getSpace(h: 16.0.r),
+                          Visibility(
+                            visible: controller.appearOtp,
+                            child: const OtpContainer(),
+                          ),
+                          getSpace(h: 8.0.r),
+                          Visibility(
+                            visible: controller.appearOtp,
+                            child: getText('رمز التحقق هو : ${GetStorage().read('otp') }  ',color: redColor,size: 16.sp,align: TextAlign.center),
+                          ),
+                          BtnApp(
+                              title: controller.appearOtp ? 'ok'.tr : 'sure_otp'.tr,
+                              color: btnColor,
+                              prsee: () {
+                                if (GeneralGetxController.to.loginKey.currentState!
+                                    .validate()) {
+                                  if (controller.appearOtp) {
+                                    controller.login(phone: _mobileController.text,otp: GetStorage().read('otp'));
+                                    print(controller.isLogin);
+                                    if(controller.isLogin){
+                                      Get.offAll(() => const BottomNavigationPage(),
+                                          transition: Transition.downToUp,
+                                          duration:
+                                          const Duration(milliseconds: 500));
+                                    }
+
+                                  } else {
+                                  controller.sendOtp(phone: _mobileController.text);
+                                      // controller.appearOtp = !controller.appearOtp;
+                                  }
+                                }
+                              }),
+
+                          // getSpace(h: 16.0.r),
+                          Align(
+                              child: getText('or'.tr,
+                                  color: blackTextColor,
+                                  size: 18.sp,
+                                  align: TextAlign.center)),
+                          BtnApp(
+                              title: 'new_user'.tr,
+                              color: mainColor,
+                              textColor: blackTextColor,
+                              prsee: () {
+                                Get.offAll(() => NewUser(),
+                                    transition: Transition.downToUp,
+                                    duration: const Duration(milliseconds: 300));
+                              }),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          );
+        }
       ),
     );
   }

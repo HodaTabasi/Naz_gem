@@ -4,7 +4,8 @@ import 'package:naz_gem/core/network/app_setting.dart';
 import 'package:naz_gem/features/profile/data/data_source/profile_remote_data_source.dart';
 
 import 'package:http/http.dart' as http;
-import 'package:naz_gem/features/profile/data/model/user_modle.dart';
+
+import '../../../auth/data/model/user_modle.dart';
 
 class ProfileRemoteDataSourceImp extends ProfileRemoteDataSource {
   final http.Client client;

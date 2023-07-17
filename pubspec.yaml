@@ -45,6 +45,8 @@ dependencies:
   url_launcher: ^6.1.11
   youtube_player_flutter: ^8.1.2
   get_storage: ^2.1.1
+  #loading dialog
+  flutter_easyloading: ^3.0.5
   #clean code part pakage for it
   # Functional programming things
   dartz: ^0.10.1

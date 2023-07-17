@@ -1,5 +1,5 @@
 //Base Url
-const  String baseUrl = '';
+const  String baseUrl = 'https://demo.nazclub.tech/api';
 
 //AUTH Collection
 //post
