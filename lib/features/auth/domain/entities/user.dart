@@ -45,4 +45,9 @@ class User extends Equatable {
         profileImage,
         length
       ];
+
+  @override
+  String toString() {
+    return 'User{firstName: $firstName, lastName: $lastName, phone: $phone, email: $email, type: $type, updatedAt: $updatedAt, createdAt: $createdAt, id: $id, identifier: $identifier, birthdate: $birthdate, length: $length, bloodType: $bloodType, profileImage: $profileImage}';
+  }
 }

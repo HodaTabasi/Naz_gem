@@ -13,6 +13,7 @@
    <application
         android:label="naz_gem"
         android:name="${applicationName}"
+       android:requestLegacyExternalStorage="true"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"

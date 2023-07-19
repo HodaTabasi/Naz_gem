@@ -5,6 +5,8 @@ import 'package:get_storage/get_storage.dart';
 import 'package:naz_gem/features/home/ui/pages/home_screen.dart';
 import 'package:naz_gem/features/static/on_boarding.dart';
 
+import '../navigation_bar/bottom_navigation_page.dart';
+
 class SplashScreen extends StatefulWidget {
   @override
   State<SplashScreen> createState() => _SplashScreenState();
@@ -31,7 +33,7 @@ class _SplashScreenState extends State<SplashScreen> {
             AnimatedPositioned(
                 onEnd: () {
                   if (GetStorage().hasData('token')) {
-                    Get.offAll(() => HomeScreen(),
+                    Get.offAll(() => BottomNavigationPage(),
                         transition: Transition.downToUp,
                         duration: const Duration(milliseconds: 500));
                   } else {
