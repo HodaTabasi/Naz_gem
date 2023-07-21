@@ -34,3 +34,14 @@ const  String checkPartner = '/trainee/partners/check-code';
 //get
 const  String getAllTrainingSession = '/trainee/training-sessions';
 const  String getTrainDetails = '/trainee/training-sessions/{id}';
+
+//gallary
+//get
+const  String getGalleriesApi = '/trainee/galleries';
+
+//sliders
+//get
+const  String getSlidersApi = '/trainee/sliders';
+
+//contact
+const  String contactApi = '/trainee/contact-informations';
