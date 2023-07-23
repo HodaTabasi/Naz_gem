@@ -223,11 +223,11 @@ class _NewUserState extends State<NewUser> {
                                           transition: Transition.downToUp,
                                           duration: const Duration(milliseconds: 300));
                                     }else {
-                                      SnackBarMessage().showErrorSnackBar(
+                                      SnackBarMessage.showErrorSnackBar(
                                           message: controller.responseMessage, context: context);
                                     }
                                   }else {
-                                    SnackBarMessage().showErrorSnackBar(
+                                    SnackBarMessage.showErrorSnackBar(
                                         message: CHECK_MESSAGE, context: context);
                                   }
                                 }

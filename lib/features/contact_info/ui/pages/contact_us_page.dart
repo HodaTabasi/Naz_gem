@@ -4,17 +4,24 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:naz_gem/core/constants/app_colors.dart';
 import 'package:naz_gem/core/widgets/app_widget.dart';
-import 'package:naz_gem/features/contact_us/ui/widgets/contact_class.dart';
+import 'package:naz_gem/features/contact_info/ui/get/contact_getx_controller.dart';
+import 'package:naz_gem/features/contact_info/ui/widgets/contact_class.dart';
 
 import '../widgets/ContactLowerSctionsWidget.dart';
 import '../widgets/ContactUpperSectionsWidget.dart';
 
-class ContactUsPage extends StatefulWidget {
+class ContactInfoPage extends StatefulWidget {
   @override
-  State<ContactUsPage> createState() => _ContactUsPageState();
+  State<ContactInfoPage> createState() => _ContactInfoPageState();
 }
 
-class _ContactUsPageState extends State<ContactUsPage> {
+class _ContactInfoPageState extends State<ContactInfoPage> {
+
+  @override
+  void initState() {
+  ContactGetxController.to.getContact();
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(

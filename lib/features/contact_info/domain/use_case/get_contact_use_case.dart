@@ -1,5 +1,5 @@
 import 'package:dartz/dartz.dart';
-import 'package:naz_gem/features/contact_us/domain/entities/contact.dart';
+import 'package:naz_gem/features/contact_info/domain/entities/contact.dart';
 
 import '../../../../core/error/failures.dart';
 import '../repository/contact_repo.dart';

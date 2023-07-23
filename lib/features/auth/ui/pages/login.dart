@@ -142,7 +142,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                           duration:
                                           const Duration(milliseconds: 300));
                                     }else {
-                                      SnackBarMessage().showErrorSnackBar(
+                                      SnackBarMessage.showErrorSnackBar(
                                           message: controller.responseMessage, context: context);
                                     }
 

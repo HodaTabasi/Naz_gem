@@ -7,7 +7,7 @@ import 'package:get/get.dart';
 import '../../../../core/constants/app_colors.dart';
 import '../../../../core/widgets/app_widget.dart';
 import '../../../booking/ui/pages/my_time.dart';
-import '../../../contact_us/ui/pages/contact_us_page.dart';
+import '../../../contact_info/ui/pages/contact_us_page.dart';
 
 showAlertDialog(BuildContext context, image, title, content) {
   // set up the buttons
@@ -74,7 +74,7 @@ goToFunction(int index, context) {
           duration: const Duration(milliseconds: 500));
       break;
     case 2:
-      Get.to(() => ContactUsPage(),
+      Get.to(() => ContactInfoPage(),
           transition: Transition.downToUp,
           duration: const Duration(milliseconds: 500));
       break;

@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:url_launcher/url_launcher.dart';
+
+import '../../../../core/constants/snackbar_message.dart';
 
 class ContactInfo {
   final String title;
-  final String text;
+   String text;
   final String image;
 
   ContactInfo(this.title, this.text, this.image);
@@ -22,4 +25,10 @@ SliverGridDelegateWithFixedCrossAxisCount buildSliverGridDelegateWithFixedCrossA
       crossAxisCount: 2,
       crossAxisSpacing: 12.h,
       mainAxisSpacing: 12.w);
+}
+
+Future<void> launch(Uri url,context) async {
+  await canLaunchUrl(url)
+      ? await launchUrl(url)
+      : SnackBarMessage.showErrorSnackBar(message: 'خطا في الرابط', context: context);
 }

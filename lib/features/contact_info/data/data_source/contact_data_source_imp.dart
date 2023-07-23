@@ -3,8 +3,9 @@ import 'dart:convert';
 import 'package:dartz/dartz.dart';
 import 'package:naz_gem/core/network/app_setting.dart';
 import 'package:naz_gem/core/network/headers_data.dart';
+import 'package:naz_gem/core/strings/failures.dart';
 
-import 'package:naz_gem/features/contact_us/data/model/ContactModel.dart';
+import 'package:naz_gem/features/contact_info/data/model/ContactModel.dart';
 
 import '../../../../core/error/exceptions.dart';
 import 'contact_data_source.dart';
@@ -38,15 +39,16 @@ class ContactDataSourceImp extends ContactDataSource {
       Uri.parse(baseUrl + contactApi),
       headers: headers,
     );
-
+    print(response.body);
+    final  decodedJson = json.decode(response.body);
     if (response.statusCode == 200) {
-      final  decodedJson = json.decode(response.body);
       final List<ContactModel> postModels = decodedJson['data']
           .map<ContactModel>((jsonPostModel) => ContactModel.fromJson(jsonPostModel))
           .toList();
 
       return postModels;
     } else {
+      SERVER_FAILURE_MESSAGE = decodedJson['message'];
       throw ServerException();
     }
   }

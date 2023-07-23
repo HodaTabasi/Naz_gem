@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:naz_gem/features/contact_us/ui/widgets/contact_class.dart';
+import 'package:naz_gem/features/contact_info/ui/widgets/contact_class.dart';
 
 import '../../../../core/constants/app_colors.dart';
 import '../../../../core/widgets/app_widget.dart';

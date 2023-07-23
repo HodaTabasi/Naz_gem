@@ -1,9 +1,9 @@
 import 'package:dartz/dartz.dart';
 import 'package:naz_gem/core/error/failures.dart';
 import 'package:naz_gem/core/network/network_info.dart';
-import 'package:naz_gem/features/contact_us/data/data_source/contact_data_source.dart';
-import 'package:naz_gem/features/contact_us/domain/entities/contact.dart';
-import 'package:naz_gem/features/contact_us/domain/repository/contact_repo.dart';
+import 'package:naz_gem/features/contact_info/data/data_source/contact_data_source.dart';
+import 'package:naz_gem/features/contact_info/domain/entities/contact.dart';
+import 'package:naz_gem/features/contact_info/domain/repository/contact_repo.dart';
 
 import '../../../../core/error/exceptions.dart';
 
