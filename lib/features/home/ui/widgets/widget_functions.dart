@@ -10,9 +10,11 @@ import 'package:naz_gem/features/home/domain/entities/packages.dart';
 import 'package:naz_gem/features/home/ui/get/home_getx_controller.dart';
 
 import '../../../../core/constants/app_colors.dart';
+import '../../../../core/constants/utils.dart';
 import '../../../../core/widgets/app_button.dart';
 import '../../../../core/widgets/app_widget.dart';
 import '../../../notifications/ui/pages/notificaion_page.dart';
+import '../../../subscrbtions/ui/get/subscrbtions_getx_controller.dart';
 import '../../../subscrbtions/ui/pages/subscrbtion_screen.dart';
 import 'custom_paint.dart';
 
@@ -57,14 +59,13 @@ AppBar buildAppBar() {
 
 void showDitailsDialog(BuildContext context, Package currentPackag) {
   var w = MediaQuery.of(context).size.width;
-  var priceAfterDiscount;
-  if(currentPackag.discounts!.isNotEmpty){
-    priceAfterDiscount = currentPackag.discounts!.first.ratio! * num.parse(currentPackag.price!) / 100;
-    print(priceAfterDiscount);
-  }
+  var priceAfterDiscount =  getDiscount(currentPackag);
+  // if(currentPackag.discounts!.isNotEmpty){
+  //   priceAfterDiscount = currentPackag.discounts!.first.ratio! * num.parse(currentPackag.price!) / 100;
+  //   print(priceAfterDiscount);
+  // }
   final details = json.decode(currentPackag.details!);
-  print(details);
-  print(json.decode(currentPackag.details!));
+
 
   showDialog(
     context: context,
@@ -132,7 +133,7 @@ void showDitailsDialog(BuildContext context, Package currentPackag) {
                   // getSpace(h: 8.h),
                   Visibility(
                     visible:currentPackag.discounts!.isNotEmpty,
-                    child: getText('${currentPackag.discounts!.first.name??''}',
+                    child: getText('${currentPackag.discounts!.isNotEmpty?currentPackag.discounts!.first.name:''}',
                         size: 20.sp, color: blackTextColor),
                   ),
                   // getSpace(h: 8.h),
@@ -147,7 +148,7 @@ void showDitailsDialog(BuildContext context, Package currentPackag) {
                             top: 30.h,
                             start: 0,
                             end: 0,
-                            child: getText('${currentPackag.discounts!.first.ratio??''}%',
+                            child: getText('${currentPackag.discounts!.isNotEmpty?currentPackag.discounts!.first.ratio:''}%',
                                 size: 20.sp, color: Colors.black,align: TextAlign.center),
                           ),
                         ],
@@ -179,6 +180,7 @@ void showDitailsDialog(BuildContext context, Package currentPackag) {
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: 16.0.r,vertical: 0.r),
                     child: BtnApp(title: 'sub'.tr, prsee: (){
+                      SubscrbtionGetxController.to.package = currentPackag;
                       Get.to(()=>Subscrbtions());
                     }, color: btnColor,textColor: Colors.white,),
                   ),

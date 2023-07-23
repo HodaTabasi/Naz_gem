@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:naz_gem/core/constants/snackbar_message.dart';
 
 import '../../../../core/constants/app_colors.dart';
 import '../../../../core/widgets/app_text_field.dart';
@@ -38,14 +39,21 @@ class PromoCodeWidget extends StatelessWidget {
                           textController: promoController,
                           hint: '',
                           hasSufix: false,
-                          textInputType: TextInputType.number,
+                          textInputType: TextInputType.text,
                         ))),
                 getSpace(w: 16.0.w),
                 DecoratedBox(
                   decoration: BoxDecoration(
                       color: btnColor, borderRadius: BorderRadius.circular(5)),
                   child: IconButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        SubscrbtionGetxController.to.checkPromoCode(promoController.text);
+                        if(SubscrbtionGetxController.to.checkResponse != null){
+                          SnackBarMessage.showSuccessSnackBar(message: 'تم تفعيل الاشتراك', context: context);
+                        }else {
+                          SnackBarMessage.showErrorSnackBar(message: SubscrbtionGetxController.to.responseMessage, context: context);
+                        }
+                      },
                       icon: const Icon(Icons.arrow_forward),
                       color: Colors.white),
                 ),

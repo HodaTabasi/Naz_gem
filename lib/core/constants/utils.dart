@@ -35,3 +35,11 @@ String mapFailureToMessage(Failure failure) {
       return "Unexpected Error , Please try again later .";
   }
 }
+
+getDiscount(currentPackag){
+  if(currentPackag.discounts!.isNotEmpty){
+    var priceAfterDiscount = currentPackag.discounts!.first.ratio! * num.parse(currentPackag.price!) / 100;
+    print(priceAfterDiscount);
+    return priceAfterDiscount;
+  }
+}

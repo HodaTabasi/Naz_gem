@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:naz_gem/core/network/app_setting.dart';
+import 'package:naz_gem/core/network/headers_data.dart';
 
 import 'package:naz_gem/features/subscrbtions/data/data_source/partner_remote_data_source.dart';
 
@@ -22,7 +23,7 @@ class PartnerRemoteDataSourceImp extends PartnerRemoteDataSource {
     };
     final response = await client.post(
         Uri.parse(baseUrl + checkPartner),
-        headers: {"Content-Type": "application/json"},
+        headers: headers,
         body:map
     );
     final  decodedJson = json.decode(response.body);

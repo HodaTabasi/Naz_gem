@@ -1,5 +1,7 @@
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
+import 'package:naz_gem/features/home/domain/entities/packages.dart';
+import 'package:naz_gem/features/subscrbtions/data/repository/CheckRepoImp.dart';
 import 'package:naz_gem/features/subscrbtions/domain/entities/check_response.dart';
 import 'package:naz_gem/features/subscrbtions/domain/repository/check_repo.dart';
 
@@ -8,7 +10,8 @@ import '../../domain/use_case/chec_use_case.dart';
 
 class SubscrbtionGetxController extends GetxController {
   String responseMessage  = '';
-  late CheckResponse checkResponse ;
+  CheckResponse? checkResponse ;
+  late Package package;
 
 
   static SubscrbtionGetxController get to =>
@@ -23,7 +26,7 @@ class SubscrbtionGetxController extends GetxController {
 
   checkPromoCode(String promoCode){
     EasyLoading.show(indicator: EasyLoading().indicatorWidget);
-    CheckUseCase(repository: Get.find<CheckRepo>())
+    CheckUseCase(repository: Get.find<CheckRepoImp>())
         .call(promoCode)
         .then((value) => value.fold((failure) {
       EasyLoading.dismiss();

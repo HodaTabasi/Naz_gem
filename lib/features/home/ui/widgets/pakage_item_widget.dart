@@ -6,7 +6,9 @@ import 'package:naz_gem/features/home/ui/get/home_getx_controller.dart';
 import 'package:naz_gem/features/home/ui/widgets/widget_functions.dart';
 
 import '../../../../core/constants/app_colors.dart';
+import '../../../../core/constants/utils.dart';
 import '../../../../core/widgets/app_widget.dart';
+import '../../../subscrbtions/ui/get/subscrbtions_getx_controller.dart';
 import '../../../subscrbtions/ui/pages/subscrbtion_screen.dart';
 
 class PakageItemWidget extends StatelessWidget {
@@ -18,11 +20,11 @@ class PakageItemWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetX<HomeGetxController>(builder: (controller) {
-       var priceAfterDiscount;
-      if(currentPackag.discounts!.isNotEmpty){
-        priceAfterDiscount = currentPackag.discounts!.first.ratio! * num.parse(currentPackag.price!) / 100;
-        print(priceAfterDiscount);
-      }
+       var priceAfterDiscount = getDiscount(currentPackag);
+      // if(currentPackag.discounts!.isNotEmpty){
+      //   priceAfterDiscount = currentPackag.discounts!.first.ratio! * num.parse(currentPackag.price!) / 100;
+      //   print(priceAfterDiscount);
+      // }
 
       return Stack(
         children: [
@@ -74,9 +76,10 @@ class PakageItemWidget extends StatelessWidget {
             end: 0,
             child: InkWell(
               onTap: () {
+                SubscrbtionGetxController.to.package = currentPackag;
                 Get.to(() => Subscrbtions(),
                     transition: Transition.downToUp,
-                    duration: const Duration(milliseconds: 500));
+                    duration: const Duration(milliseconds: 300));
               },
               child: Container(
                 width: 85.w,

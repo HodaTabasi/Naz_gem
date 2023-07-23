@@ -66,7 +66,7 @@ class _SubscrbtionsState extends State<Subscrbtions> {
           TotalAmountWidget(),
           BtnApp(title: 'pay'.tr, prsee: () {
             Get.to(() => PaymentScreen(), transition: Transition.downToUp,
-                duration: const Duration(milliseconds: 500));
+                duration: const Duration(milliseconds: 300));
           }, color: btnColor)
         ],
       ),

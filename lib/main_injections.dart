@@ -8,6 +8,7 @@ import 'package:naz_gem/features/contact_info/domain/repository/contact_repo.dar
 import 'package:naz_gem/features/home/data/data_source/package_data_source_imp.dart';
 import 'package:naz_gem/features/home/ui/get/home_getx_controller.dart';
 import 'package:naz_gem/features/profile/data/repository/profile_repo_imp.dart';
+import 'package:naz_gem/features/subscrbtions/data/data_source/partner_remote_data_source.dart';
 
 import 'core/get/general_getx_controller.dart';
 import 'features/auth/data/data_source/auth_remote_dataSource_imp.dart';
@@ -18,6 +19,8 @@ import 'features/home/data/data_source/package_data_source.dart';
 import 'features/home/data/repository/home_repo_imp.dart';
 import 'features/profile/data/data_source/profile_remote_dataSource_imp.dart';
 import 'features/profile/ui/get/edit_profile_getx_controller.dart';
+import 'features/subscrbtions/data/data_source/partner_remote_dataSource_imp.dart';
+import 'features/subscrbtions/data/repository/CheckRepoImp.dart';
 import 'features/subscrbtions/ui/get/subscrbtions_getx_controller.dart';
 import 'package:http/http.dart' as http;
 
@@ -42,6 +45,8 @@ class MainInjection implements Bindings {
     Get.put(ContactRepoImp(contactDataSource: ContactDataSourceImp(client:connect),
         networkInfo: networkInfoImpl));
     Get.put(HomeRepoImp(dataSource: PackageDataSourceImp(client:connect),
+        networkInfo: networkInfoImpl));
+    Get.put(CheckRepoImp(partnerRemoteDataSource: PartnerRemoteDataSourceImp(client:connect),
         networkInfo: networkInfoImpl));
   }
 
