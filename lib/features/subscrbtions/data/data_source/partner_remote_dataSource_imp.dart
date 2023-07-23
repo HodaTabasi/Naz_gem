@@ -1,11 +1,14 @@
-import 'package:dartz/dartz.dart';
+import 'dart:convert';
+
 import 'package:naz_gem/core/network/app_setting.dart';
 
-import 'package:naz_gem/features/auth/data/model/user_modle.dart';
 import 'package:naz_gem/features/subscrbtions/data/data_source/partner_remote_data_source.dart';
 
 
 import 'package:http/http.dart' as http;
+import 'package:naz_gem/features/subscrbtions/data/model/check_response_model.dart';
+
+import '../../../../core/error/exceptions.dart';
 
 class PartnerRemoteDataSourceImp extends PartnerRemoteDataSource {
   final http.Client client;
@@ -13,7 +16,7 @@ class PartnerRemoteDataSourceImp extends PartnerRemoteDataSource {
   PartnerRemoteDataSourceImp({required this.client});
 
   @override
-  Future<Unit> check(String promoCode) async {
+  Future<CheckResponseModel> check(String promoCode) async {
     var map = {
       'promo_code':promoCode,
     };
@@ -22,7 +25,16 @@ class PartnerRemoteDataSourceImp extends PartnerRemoteDataSource {
         headers: {"Content-Type": "application/json"},
         body:map
     );
-    throw UnimplementedError();
+    final  decodedJson = json.decode(response.body);
+    if (response.statusCode == 200) {
+
+      final CheckResponseModel responseModel  =
+      CheckResponseModel.fromJson(decodedJson['data']);
+
+      return responseModel;
+    } else {
+      throw ServerException();
+    }
   }
 
 }

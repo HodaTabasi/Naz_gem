@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:naz_gem/core/get/general_getx_controller.dart';
-import 'package:naz_gem/features/auth/data/model/user_modle.dart';
 import 'package:naz_gem/features/auth/domain/entities/user.dart';
 import 'package:naz_gem/features/auth/ui/get/auth_getx_controller.dart';
 
@@ -41,10 +40,10 @@ class _NewUserState extends State<NewUser> {
 
   @override
   void initState() {
-    _mobileController = TextEditingController(text: '05921511052138');
-    _firstNameController = TextEditingController(text: 'huda');
-    _lastNameController = TextEditingController(text: 'ahmed');
-    _emailController = TextEditingController(text: 'hoda.angel.1994@gmail.com');
+    _mobileController = TextEditingController();
+    _firstNameController = TextEditingController();
+    _lastNameController = TextEditingController();
+    _emailController = TextEditingController();
     super.initState();
   }
 

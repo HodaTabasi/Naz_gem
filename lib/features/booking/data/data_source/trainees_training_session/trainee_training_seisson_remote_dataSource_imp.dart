@@ -2,7 +2,8 @@ import 'package:dartz/dartz.dart';
 import 'package:naz_gem/core/network/app_setting.dart';
 
 import 'package:http/http.dart' as http;
-import 'package:naz_gem/features/booking/data/data_source/training_session/trainees_training_session_remote_data_source.dart';
+import 'package:naz_gem/core/network/headers_data.dart';
+import 'package:naz_gem/features/booking/data/data_source/trainees_training_session/trainees_training_session_remote_data_source.dart';
 
 class TrainingSessionRemoteDataSourceImp extends TraineesTrainingSessionRemoteDataSource {
   final http.Client client;
@@ -13,7 +14,7 @@ class TrainingSessionRemoteDataSourceImp extends TraineesTrainingSessionRemoteDa
   Future<Unit> cancelUserTrainingSession(String id) async {
     final response = await client.put(
       Uri.parse(baseUrl + updateReservation.replaceFirst('{id}', id)),
-      headers: {"Content-Type": "application/json"},
+      headers: headers,
     );
     throw UnimplementedError();
   }
@@ -22,7 +23,7 @@ class TrainingSessionRemoteDataSourceImp extends TraineesTrainingSessionRemoteDa
   Future<Unit> getUserTrainingSessions() async {
     final response = await client.get(
       Uri.parse(baseUrl + getAllReservations),
-      headers: {"Content-Type": "application/json"},
+      headers: headers,
     );
     throw UnimplementedError();
   }
