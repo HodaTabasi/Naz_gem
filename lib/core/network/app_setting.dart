@@ -21,10 +21,11 @@ const  String packageDetails = '/trainee/packages/{id}';
 //get
 const  String getAllReservations = '/trainee/sessions/reservations';
 const  String getReservationDetails = '/trainee/sessions/reservations/{id}';
+const  String getReservationHistory = '/trainee/sessions/reservation/history';
 //put
-const  String updateReservation = '/trainee/sessions/reservations/{id}';
+const  String cancelReservation = '/trainee/sessions/reservations/{id}';
 //post
-const  String postReserve = '/trainee/sessions/reservations';
+const  String makeNewReserve = '/trainee/sessions/reservations';
 
 //Partners
 //post

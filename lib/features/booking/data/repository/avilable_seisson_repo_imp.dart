@@ -5,9 +5,9 @@ import 'package:naz_gem/core/network/network_info.dart';
 
 import 'package:naz_gem/features/booking/domain/entities/session.dart';
 
-import '../../../../../core/error/exceptions.dart';
-import '../../../domain/repository/avilabe_repo.dart';
-import '../../data_source/avilable_training_session/Training_session_remote_data_source.dart';
+import '../../../../core/error/exceptions.dart';
+import '../../domain/repository/avilabe_repo.dart';
+import '../data_source/avilable_training_session/Training_session_remote_data_source.dart';
 
 class AvialbleRepoImp extends AvailableRepo {
   NetworkInfo networkInfo;
