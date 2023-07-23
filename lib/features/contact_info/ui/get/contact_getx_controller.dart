@@ -6,6 +6,7 @@ import 'package:naz_gem/features/contact_info/domain/repository/contact_repo.dar
 import 'package:naz_gem/features/contact_info/domain/use_case/get_contact_use_case.dart';
 
 import '../../../../core/constants/utils.dart';
+import '../../domain/use_case/logout_use_case.dart';
 import '../widgets/contact_class.dart';
 
 class ContactGetxController extends GetxController {
@@ -38,7 +39,7 @@ class ContactGetxController extends GetxController {
 
   logout() {
     EasyLoading.show(indicator: EasyLoading().indicatorWidget);
-    GetContactUseCase(repository: Get.find<ContactRepoImp>())
+    LogoutUseCase(repository: Get.find<ContactRepoImp>())
         .call()
         .then((value) =>
         value.fold((failure) {

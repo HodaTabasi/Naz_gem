@@ -6,7 +6,7 @@ import '../repository/contact_repo.dart';
 class LogoutUseCase {
   final ContactRepo repository;
 
-  LogoutUseCase(this.repository);
+  LogoutUseCase({required this.repository});
 
   Future<Either<Failure, Unit>> call() async {
     return await repository.logout();
