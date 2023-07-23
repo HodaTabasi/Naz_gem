@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
+import 'package:naz_gem/features/home/data/repository/home_repo_imp.dart';
 import 'package:naz_gem/features/home/domain/entities/gallery.dart';
 import 'package:naz_gem/features/home/domain/entities/packages.dart';
 import 'package:naz_gem/features/home/domain/repository/homeRepo.dart';
@@ -25,6 +26,7 @@ class HomeGetxController extends GetxController {
 
   //data
   RxList<Package> packages = <Package>[].obs;
+  RxList<Package> currentPackages = <Package>[].obs;
   late Rx<Package> packageDeitails;
 
   RxList<MySlider> sliders = <MySlider>[].obs;
@@ -39,15 +41,17 @@ class HomeGetxController extends GetxController {
     if (index == 0) {
       subBackColor.value = btnColor;
       subTextColor.value = Colors.white;
+      currentPackages.value = packages.where((p0) => p0.categoryId == 2).toList();
     } else {
       subBackColor.value = mainColor;
       subTextColor.value = blackTextColor;
+      currentPackages.value = packages.where((p0) => p0.categoryId == 1).toList();
     }
   }
 
   getPackages() {
     packagesLoading.value = true;
-    GetPackagesUseCase(repository: Get.find<HomeRepo>())
+    GetPackagesUseCase(repository: Get.find<HomeRepoImp>())
         .call()
         .then((value) => value.fold((failure) {
               EasyLoading.dismiss();
@@ -56,12 +60,13 @@ class HomeGetxController extends GetxController {
             }, (packages) async {
               packagesLoading.value = false;
               this.packages.value = packages;
-            }));
+              currentPackages.value = packages.where((p0) => p0.categoryId == 1 ).toList();
+    }));
   }
 
   getPackage(id) {
     packagesLoading.value = true;
-    GetPackageUseCase(repository: Get.find<HomeRepo>())
+    GetPackageUseCase(repository: Get.find<HomeRepoImp>())
         .call(id)
         .then((value) => value.fold((failure) {
               packagesLoading.value = false;
@@ -74,7 +79,7 @@ class HomeGetxController extends GetxController {
 
   getSliders() {
     slidersLoading.value = true;
-    GetSliderUseCase(repository: Get.find<HomeRepo>())
+    GetSliderUseCase(repository: Get.find<HomeRepoImp>())
         .call()
         .then((value) => value.fold((failure) {
               slidersLoading.value = false;
@@ -88,7 +93,7 @@ class HomeGetxController extends GetxController {
 
   getGalleries() {
     galleriesLoading.value = true;
-    GetGalleryUseCase(repository: Get.find<HomeRepo>())
+    GetGalleryUseCase(repository: Get.find<HomeRepoImp>())
         .call()
         .then((value) => value.fold((failure) {
               galleriesLoading.value = false;

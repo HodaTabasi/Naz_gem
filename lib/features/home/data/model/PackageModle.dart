@@ -1,3 +1,4 @@
+import 'package:naz_gem/features/home/data/model/discount_model.dart';
 import 'package:naz_gem/features/home/domain/entities/packages.dart';
 
 class PackageModel extends Package {
@@ -30,9 +31,9 @@ class PackageModel extends Package {
     model.categoryId = json['category_id'];
     model.category = json['category'];
     if (json['discounts'] != null) {
-      model.discounts = <String>[];
+      model.discounts = <DiscountModel>[];
       json['discounts'].forEach((v) {
-        model.discounts!.add(v);
+        model.discounts!.add(DiscountModel.fromJson(v));
       });
     }
     return model;

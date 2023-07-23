@@ -6,8 +6,6 @@ import 'package:naz_gem/features/home/ui/get/home_getx_controller.dart';
 import '../constants/app_colors.dart';
 
 class AppToggle extends StatelessWidget {
-
-
   @override
   Widget build(BuildContext context) {
     return GetX<HomeGetxController>(

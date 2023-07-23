@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:naz_gem/features/home/domain/entities/discount.dart';
 
 class Package extends Equatable {
   int? id;
@@ -8,7 +9,7 @@ class Package extends Equatable {
   String? details;
   int? categoryId;
   String? category;
-  List<String>? discounts;
+  List<Discount>? discounts;
 
   Package(
       {this.id,

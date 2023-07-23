@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:naz_gem/features/home/domain/entities/packages.dart';
 import 'package:naz_gem/features/home/ui/get/home_getx_controller.dart';
 import 'package:naz_gem/features/home/ui/widgets/widget_functions.dart';
 
@@ -9,13 +10,20 @@ import '../../../../core/widgets/app_widget.dart';
 import '../../../subscrbtions/ui/pages/subscrbtion_screen.dart';
 
 class PakageItemWidget extends StatelessWidget {
-  const PakageItemWidget({
+  Package currentPackag;
+  PakageItemWidget(this.currentPackag,  {
     super.key,
   });
 
   @override
   Widget build(BuildContext context) {
     return GetX<HomeGetxController>(builder: (controller) {
+       var priceAfterDiscount;
+      if(currentPackag.discounts!.isNotEmpty){
+        priceAfterDiscount = currentPackag.discounts!.first.ratio! * num.parse(currentPackag.price!) / 100;
+        print(priceAfterDiscount);
+      }
+
       return Stack(
         children: [
           Container(
@@ -36,19 +44,22 @@ class PakageItemWidget extends StatelessWidget {
               // mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 getSpace(h: 25.h),
-                getText("شهر واحد",
+                getText(currentPackag.durationTypeName,
                     color: grayTextColor, size: 13.sp, align: TextAlign.center),
                 getSpace(h: 10.h),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    getText("2000 ريال",
-                        color: grayTextColor1,
-                        size: 15.sp,
-                        align: TextAlign.center,
-                        decoration: TextDecoration.lineThrough),
+                    Visibility(
+                      visible:currentPackag.discounts!.isNotEmpty,
+                      child: getText("${currentPackag.price} ريال ",
+                          color: grayTextColor1,
+                          size: 15.sp,
+                          align: TextAlign.center,
+                          decoration: TextDecoration.lineThrough),
+                    ),
                     getSpace(w: 10.w),
-                    getText("1200 ريال",
+                    getText("${priceAfterDiscount ?? currentPackag.price} ريال",
                         color: blackTextColor,
                         size: 16.sp,
                         weight: FontWeight.bold,
@@ -88,7 +99,7 @@ class PakageItemWidget extends StatelessWidget {
             start: 0,
             child: InkWell(
               onTap: () {
-                showDitailsDialog(context);
+                showDitailsDialog(context,currentPackag);
               },
               child: SizedBox(
                 width: 85.w,

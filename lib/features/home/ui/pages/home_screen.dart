@@ -21,49 +21,73 @@ class _HomeScreenState extends State<HomeScreen> {
   int currentIndex = 0;
 
   @override
+  void initState() {
+    HomeGetxController.to.getSliders();
+    HomeGetxController.to.getGalleries();
+    HomeGetxController.to.getPackages();
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: buildAppBar(),
-      body: ListView(
-        children: [
-          buildSlider(),
-          getText('pakages'.tr,
-              color: blackTextColor,
-              size: 20.sp,
-              weight: FontWeight.w500,
-              align: TextAlign.center),
-          AppToggle(),
-          GridView.builder(
-            padding: EdgeInsets.all(16.r),
-            physics: const NeverScrollableScrollPhysics(),
-            shrinkWrap: true,
-            gridDelegate: buildSliverGridDelegate(),
-            itemCount: 4,
-            itemBuilder: (context, index) {
-              return PakageItemWidget();
-            },
-          ),
-          getText('images'.tr,
-              color: blackTextColor,
-              weight: FontWeight.w500,
-              size: 20.sp,
-              align: TextAlign.center),
-          ImagesListWidget(),
-          getText('vedios'.tr,
-              color: blackTextColor,
-              size: 20.sp,
-              weight: FontWeight.w500,
-              align: TextAlign.center),
-          VideosListWidget(),
-        ],
-      ),
+      body: GetX<HomeGetxController>(builder: (controller) {
+        return ListView(
+          children: [
+            controller.slidersLoading.value
+                ? Center(
+                    child: CircularProgressIndicator(
+                    color: mainColor,
+                  ))
+                : buildSlider(controller),
+            getText('pakages'.tr,
+                color: blackTextColor,
+                size: 20.sp,
+                weight: FontWeight.w500,
+                align: TextAlign.center),
+            AppToggle(),
+            controller.packagesLoading.value?Center(
+                child: CircularProgressIndicator(
+                  color: mainColor,
+                )):GridView.builder(
+              padding: EdgeInsets.all(16.r),
+              physics: const NeverScrollableScrollPhysics(),
+              shrinkWrap: true,
+              gridDelegate: buildSliverGridDelegate(),
+              itemCount: controller.currentPackages.length,
+              itemBuilder: (context, index) {
+                return PakageItemWidget(controller.currentPackages[index]);
+              },
+            ),
+            controller.galleriesLoading.value
+                ? Center(
+                    child: CircularProgressIndicator(
+                    color: mainColor,
+                  ))
+                : Column(
+                    children: [
+                      getText('images'.tr,
+                          color: blackTextColor,
+                          weight: FontWeight.w500,
+                          size: 20.sp,
+                          align: TextAlign.center),
+                      ImagesListWidget(controller),
+                      getText('vedios'.tr,
+                          color: blackTextColor,
+                          size: 20.sp,
+                          weight: FontWeight.w500,
+                          align: TextAlign.center),
+                      VideosListWidget(controller),
+                    ],
+                  )
+          ],
+        );
+      }),
     );
   }
 }
-
-
-
 
 /*
             * TabBar(

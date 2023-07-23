@@ -14,7 +14,7 @@ import '../../../../core/network/app_setting.dart';
 class PackageDataSourceImp extends PackageDataSource {
   final http.Client client;
 
-  PackageDataSourceImp(this.client);
+  PackageDataSourceImp({required this.client});
 
   @override
   Future<List<PackageModel>> getAllPackages() async {

@@ -1,7 +1,13 @@
+import 'dart:convert';
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:naz_gem/features/contact_info/ui/widgets/contact_class.dart';
+import 'package:naz_gem/features/home/domain/entities/packages.dart';
+import 'package:naz_gem/features/home/ui/get/home_getx_controller.dart';
 
 import '../../../../core/constants/app_colors.dart';
 import '../../../../core/widgets/app_button.dart';
@@ -49,8 +55,17 @@ AppBar buildAppBar() {
   );
 }
 
-void showDitailsDialog(BuildContext context) {
+void showDitailsDialog(BuildContext context, Package currentPackag) {
   var w = MediaQuery.of(context).size.width;
+  var priceAfterDiscount;
+  if(currentPackag.discounts!.isNotEmpty){
+    priceAfterDiscount = currentPackag.discounts!.first.ratio! * num.parse(currentPackag.price!) / 100;
+    print(priceAfterDiscount);
+  }
+  final details = json.decode(currentPackag.details!);
+  print(details);
+  print(json.decode(currentPackag.details!));
+
   showDialog(
     context: context,
     builder: (context) {
@@ -88,18 +103,21 @@ void showDitailsDialog(BuildContext context) {
                         start: 0,
                         child: Column(
                           children: [
-                            getText('3 شهور', color: Colors.white, size: 16.sp),
+                            getText('${currentPackag.durationTypeName}', color: Colors.white, size: 16.sp),
                             getSpace(h: 10.h),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                getText("2000 ريال",
-                                    color: grayTextColor1,
-                                    size: 15.sp,
-                                    align: TextAlign.center,
-                                    decoration: TextDecoration.lineThrough),
+                                Visibility(
+                                  visible:currentPackag.discounts!.isNotEmpty,
+                                  child: getText("${currentPackag.price} ريال",
+                                      color: grayTextColor1,
+                                      size: 15.sp,
+                                      align: TextAlign.center,
+                                      decoration: TextDecoration.lineThrough),
+                                ),
                                 getSpace(w: 10.w),
-                                getText("1200 ريال",
+                                getText("${priceAfterDiscount ?? currentPackag.price} ريال",
                                     color: Colors.white,
                                     size: 20.sp,
                                     weight: FontWeight.bold,
@@ -112,120 +130,67 @@ void showDitailsDialog(BuildContext context) {
                     ],
                   ),
                   // getSpace(h: 8.h),
-                  getText('خصم يوم التأسيس',
-                      size: 20.sp, color: blackTextColor),
+                  Visibility(
+                    visible:currentPackag.discounts!.isNotEmpty,
+                    child: getText('${currentPackag.discounts!.first.name??''}',
+                        size: 20.sp, color: blackTextColor),
+                  ),
                   // getSpace(h: 8.h),
-                  SizedBox(
-                    height: 72.h,
-                    child: Stack(
-                      children: [
-                        SvgPicture.asset('assets/images/sale1.svg'),
-                        PositionedDirectional(
-                          top: 30.h,
-                          start: 0,
-                          end: 0,
-                          child: getText('20%',
-                              size: 20.sp, color: Colors.black,align: TextAlign.center),
-                        ),
-                      ],
+                  Visibility(
+                    visible:currentPackag.discounts!.isNotEmpty,
+                    child: SizedBox(
+                      height: 72.h,
+                      child: Stack(
+                        children: [
+                          SvgPicture.asset('assets/images/sale1.svg'),
+                          PositionedDirectional(
+                            top: 30.h,
+                            start: 0,
+                            end: 0,
+                            child: getText('${currentPackag.discounts!.first.ratio??''}%',
+                                size: 20.sp, color: Colors.black,align: TextAlign.center),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                   getSpace(h: 8.h),
                   getText('تفاصيل الباقة',
                       size: 16.sp, color: blackTextColor,align: TextAlign.center),
-                  Container(
-                    color: Colors.white,
-                    padding: EdgeInsets.symmetric(horizontal: 16.r,vertical: 12.r),
-                    child: Row(
-                      children: [
-                         SvgPicture.asset('assets/images/gem1.svg'),
-                         getSpace(w:10.w),
-                         getText('الحجوزات المسموح بها جلستين',
-                            size: 14.sp, color: blackTextColor) ,
-                      ],
+                  ListView.builder(
+                    physics: const NeverScrollableScrollPhysics(),
+                    shrinkWrap: true,
+                    itemCount: details.length,
+                    itemBuilder: (context, index) {
+                      return Container(
+                        color: Colors.white,
+                        padding: EdgeInsets.symmetric(horizontal: 16.r,vertical: 10.r),
+                        child: Row(
+                          children: [
+                            SvgPicture.asset('assets/images/gem1.svg'),
+                            getSpace(w:10.w),
+                            getText('${details[index]['value']}',
+                                size: 14.sp, color: blackTextColor) ,
+                          ],
 
-                    ),
-                  ),
-                  Container(
-                    color: Colors.white,
-                    padding: EdgeInsets.symmetric(horizontal: 16.r,vertical: 12.r),
-                    child: Row(
-                      children: [
-                        SvgPicture.asset('assets/images/gem1.svg'),
-                        getSpace(w:10.w),
-                        getText('مدربين معتمدين',
-                            size: 14.sp, color: blackTextColor) ,
-                      ],
-
-                    ),
-                  ),
-                  Container(
-                    color: Colors.white,
-                    padding: EdgeInsets.symmetric(horizontal: 16.r,vertical: 12.r),
-                    child: Row(
-                      children: [
-                       SvgPicture.asset('assets/images/gem1.svg'),
-                        getSpace(w:10.w),
-                       getText('أجهزة حديثة متطورة',
-                            size: 14.sp, color: blackTextColor) ,
-                      ],
-
-                    ),
-                  ),
-                  Container(
-                    color: Colors.white,
-                    padding: EdgeInsets.symmetric(horizontal: 16.r,vertical: 12.r),
-                    child: Row(
-                      children: [
-                        SvgPicture.asset('assets/images/gem1.svg'),
-                        getSpace(w:10.w),
-                        getText('الحجوزات المسموح بها جلستين',
-                            size: 14.sp, color: blackTextColor) ,
-                      ],
-
-                    ),
-                  ),
-                  Container(
-                    color: Colors.white,
-                    padding: EdgeInsets.symmetric(horizontal: 16.r,vertical: 12.r),
-                    child: Row(
-                      children: [
-                         SvgPicture.asset('assets/images/gem1.svg'),
-                        getSpace(w:10.w),
-                         getText('استشارات في اللياقة والرياضة',
-                            size: 14.sp, color: blackTextColor) ,
-                      ],
-
-                    ),
-                  ),
-                  Container(
-                    color: Colors.white,
-                    padding: EdgeInsets.symmetric(horizontal: 16.r,vertical: 12.r),
-                    child: Row(
-                      children: [
-                        SvgPicture.asset('assets/images/gem1.svg'),
-                        getSpace(w:10.w),
-                        getText('امكانية استخدام جميع المرافق',
-                            size: 14.sp, color: blackTextColor) ,
-                      ],
-
-                    ),
-                  ),
+                        ),
+                      );
+                  },),
                   Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 16.0.r),
+                    padding: EdgeInsets.symmetric(horizontal: 16.0.r,vertical: 0.r),
                     child: BtnApp(title: 'sub'.tr, prsee: (){
                       Get.to(()=>Subscrbtions());
                     }, color: btnColor,textColor: Colors.white,),
                   ),
                   // getSpace(h: 8.h),
-                  TextButton(
-                    onPressed: (){
+                  GestureDetector(
+                    onTap: (){
                       Get.back();
                     },
                     child: getText('cancel'.tr,
                         size: 14.sp, color:btnColor ),
                   ),
-                  // getSpace(h: 8.h),
+                  getSpace(h: 12.h),
                 ],
 
               ),
@@ -235,11 +200,11 @@ void showDitailsDialog(BuildContext context) {
   );
 }
 
-SizedBox buildSlider() {
+SizedBox buildSlider(HomeGetxController controller) {
   return SizedBox(
     height: 230.h,
     child: ListView.builder(
-      itemCount: 3,
+      itemCount: controller.sliders.length,
       scrollDirection: Axis.horizontal,
       shrinkWrap: true,
       padding: EdgeInsets.all(8.r),
@@ -250,16 +215,16 @@ SizedBox buildSlider() {
           margin: EdgeInsets.symmetric(horizontal: 4.r),
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(15.r),
-              image: const DecorationImage(
+              image: DecorationImage(
                 image:
-                AssetImage('assets/images/slider_background.png'),
+                NetworkImage(controller.sliders[index].image!),
               )),
           child: Stack(
             children: [
               PositionedDirectional(
                 top: 35.h,
                 start: 25.w,
-                child: getText("نادي ناز للسيدات",
+                child: getText(controller.sliders[index].title!,
                     color: Colors.white,
                     size: 20.sp,
                     weight: FontWeight.bold),
@@ -268,7 +233,7 @@ SizedBox buildSlider() {
                 top: 80.h,
                 start: 25.w,
                 child: getText(
-                  "جيم نسائي ومركز لياقة بدنية",
+                  controller.sliders[index].description!,
                   color: mainColor,
                   size: 18.sp,
                 ),
@@ -284,7 +249,9 @@ SizedBox buildSlider() {
                         shape: RoundedRectangleBorder(
                             borderRadius:
                             BorderRadius.circular(8.r))),
-                    onPressed: () {},
+                    onPressed: () {
+                      launch(Uri.parse(controller.sliders[index].url!), context);
+                    },
                     child: getText(
                       'join'.tr,
                       color: blackTextColor,

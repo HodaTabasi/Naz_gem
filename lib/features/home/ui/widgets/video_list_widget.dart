@@ -1,12 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:naz_gem/features/home/ui/get/home_getx_controller.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
+import '../../domain/entities/gallery.dart';
+
 class VideosListWidget extends StatefulWidget {
-  const VideosListWidget({
+  HomeGetxController controller;
+   VideosListWidget(this.controller, {
     super.key,
   });
+  late List<Gallery> videos = controller.galleries.where((p0) => p0.typeName == 'vedio').toList();
 
   @override
   State<VideosListWidget> createState() => _VideosListWidgetState();
@@ -30,33 +35,33 @@ class _VideosListWidgetState extends State<VideosListWidget> {
     return SizedBox(
       height: 130,
       child: ListView.builder(
-        itemCount: 5,
+        itemCount: widget.videos.length,
         scrollDirection: Axis.horizontal,
         itemBuilder: (context, index) {
           return InkWell(
             onTap: () {
-              showDialog(
-                context: context,
-                builder: (context) {
-                  return Dialog(
-                    child: DecoratedBox(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadiusDirectional.circular(20.r)
-                      ),
-                      child: YoutubePlayer(
-                        controller: _controller,
-                        showVideoProgressIndicator: true,
-                        aspectRatio: 3/3,
-                        onReady: () {
-                      _controller.addListener(() {
-
-                      },);
-                      },
-                      ),
-                    ),
-                  );
-                },
-              );
+              // showDialog(
+              //   context: context,
+              //   builder: (context) {
+              //     return Dialog(
+              //       child: DecoratedBox(
+              //         decoration: BoxDecoration(
+              //           borderRadius: BorderRadiusDirectional.circular(20.r)
+              //         ),
+              //         child: YoutubePlayer(
+              //           controller: _controller,
+              //           showVideoProgressIndicator: true,
+              //           aspectRatio: 3/3,
+              //           onReady: () {
+              //         _controller.addListener(() {
+              //
+              //         },);
+              //         },
+              //         ),
+              //       ),
+              //     );
+              //   },
+              // );
             },
             child: Padding(
               padding: EdgeInsets.all(8.0.r),

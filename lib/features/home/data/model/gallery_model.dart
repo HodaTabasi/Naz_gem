@@ -15,7 +15,7 @@ class GalleryModel extends Gallery {
         id: json['id'],
         title: json['title'],
         type: json['type'],
-        typeName: json['typeName'],
+        typeName: json['type_name'],
         attachment: json['attachment']);
   }
 
