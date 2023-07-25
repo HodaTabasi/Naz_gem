@@ -7,5 +7,5 @@ abstract class TraineesTrainingSessionRemoteDataSource {
   Future<ReservationSessionModel> getUserTrainingSession(String id);
   Future<Unit> cancelUserTrainingSession(String id);
   Future<List<ReservationSessionModel>> getUserTrainingSessionHistory();
-  Future<ReservationSessionModel> reservationNewTrainingSession();
+  Future<ReservationSessionModel> reservationNewTrainingSession(String id);
 }

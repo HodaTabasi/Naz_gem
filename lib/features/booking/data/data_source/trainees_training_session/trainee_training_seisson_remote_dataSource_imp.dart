@@ -91,8 +91,10 @@ class TraineesTrainingSessionRemoteDataSourceImp extends TraineesTrainingSession
   }
 
   @override
-  Future<ReservationSessionModel> reservationNewTrainingSession() async {
-    var map = {};
+  Future<ReservationSessionModel> reservationNewTrainingSession(String id) async {
+    var map = {
+      'training_session_id':id
+    };
     final response = await client.post(
       Uri.parse(baseUrl + makeNewReserve),
       headers: headers,

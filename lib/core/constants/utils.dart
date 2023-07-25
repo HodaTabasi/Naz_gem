@@ -1,7 +1,10 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 import '../error/failures.dart';
 import '../strings/failures.dart';
+import '../widgets/app_widget.dart';
 
 class Utils {
    static List<MYData> data = [
@@ -43,3 +46,4 @@ getDiscount(currentPackag){
     return priceAfterDiscount;
   }
 }
+

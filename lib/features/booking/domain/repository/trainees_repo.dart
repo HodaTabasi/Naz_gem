@@ -8,5 +8,5 @@ abstract class TraineesRepo {
   Future<Either<Failure, ReservationSession>> getUserTrainingSession(String id);
   Future<Either<Failure, Unit>> cancelUserTrainingSession(String id);
   Future<Either<Failure, List<ReservationSession>>> getUserTrainingSessionHistory();
-  Future<Either<Failure, ReservationSession>> reservationNewTrainingSession();
+  Future<Either<Failure, ReservationSession>> reservationNewTrainingSession(String id);
 }

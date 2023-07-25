@@ -22,9 +22,14 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   void initState() {
-    HomeGetxController.to.getSliders();
-    HomeGetxController.to.getGalleries();
-    HomeGetxController.to.getPackages();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      HomeGetxController.to.getSliders();
+      HomeGetxController.to.getGalleries();
+      HomeGetxController.to.getPackages();
+    });
+
+
     super.initState();
   }
 

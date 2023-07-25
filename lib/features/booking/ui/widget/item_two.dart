@@ -3,6 +3,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:naz_gem/core/widgets/app_widget.dart';
+import 'package:naz_gem/features/booking/domain/entities/session.dart';
+import 'package:naz_gem/features/booking/ui/get/user_session_getx_controller.dart';
 
 import '../../../../core/constants/app_colors.dart';
 import 'custom_dialog.dart';
@@ -12,11 +14,13 @@ import 'name_of_exercise_widget.dart';
 class ItemTwoWidget extends StatelessWidget {
   final String image;
   final Color backgroundColor;
+  final Session session;
 
   const ItemTwoWidget({
     super.key,
     required this.image,
-    required this.backgroundColor
+    required this.backgroundColor,
+    required this.session
   });
 
   @override
@@ -56,15 +60,15 @@ class ItemTwoWidget extends StatelessWidget {
                               fontWeight: FontWeight.bold,
                               fontSize: 16.sp
                           ),
-                          text1: 'زومبا -',
-                          text2: ' ك. أوكسانا',
+                          text1: '${session.sessionType} -',
+                          text2: ' ${session.name}',
                         ),
                       ],
                     ),
                     getSpace(h: 16.r),
                     RishWidget(backgroundColor: backgroundColor,
                       icon: Icons.timer_outlined,
-                      text: ' 5-6 مسائًا',),
+                      text: ' ${session.startAt?.split(":").first}-${session.endAt!.split(":").first} مسائًا',),
                     getSpace(h: 8.r),
                     RishWidget(backgroundColor: backgroundColor,
                       icon: Icons.person_outline,
@@ -77,16 +81,20 @@ class ItemTwoWidget extends StatelessWidget {
             end: 0,
             bottom: 0,
             child: InkWell(
-              onTap: () {
-                showDialog(context: context,
-                    builder: (context) => CoustomDialog(
-                      title:'🤩 تم الحجز بنجاح',
-                    image:'sad_face.svg' ,
-                    onClick:(){
-                        Get.back();
-                    },
-                    flag: false,)
-                );
+              onTap: () async {
+                bool done = await UserSessionGetxController.to.reservationUserSessions(session.id.toString());
+                if(done){
+                  showDialog(context: context,
+                      builder: (context) => CoustomDialog(
+                        title:'🤩 تم الحجز بنجاح',
+                        image:'new_done.svg' ,
+                        onClick:(){
+                          Get.back();
+                        },
+                        flag: false,)
+                  );
+                }
+
               },
               child: Container(
                 height: 50.h,

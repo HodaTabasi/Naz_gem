@@ -73,10 +73,10 @@ class TraineesRepoImp extends TraineesRepo {
   }
 
   @override
-  Future<Either<Failure, ReservationSession>> reservationNewTrainingSession() async {
+  Future<Either<Failure, ReservationSession>> reservationNewTrainingSession(String id) async {
     if (await networkInfo.isConnected) {
       try {
-        ReservationSession session = await trainingSessionRemoteDataSource.reservationNewTrainingSession();
+        ReservationSession session = await trainingSessionRemoteDataSource.reservationNewTrainingSession(id);
         return Right(session);
       } on ServerException {
         return Left(ServerFailure());

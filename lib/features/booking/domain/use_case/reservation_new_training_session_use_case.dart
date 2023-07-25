@@ -9,7 +9,7 @@ class ReservationNewTrainingSessionsUseCase {
 
   ReservationNewTrainingSessionsUseCase({required this.repository});
 
-  Future<Either<Failure, ReservationSession>> call() async {
-    return await repository.reservationNewTrainingSession();
+  Future<Either<Failure, ReservationSession>> call(id) async {
+    return await repository.reservationNewTrainingSession(id);
   }
 }

@@ -50,3 +50,12 @@ getAppBar({text ,isBack = false ,height,textColor}){
   );
 }
 
+Center buildCenterNoData(String message) {
+  return Center(
+    child: Padding(
+      padding:  EdgeInsets.all(16.0.r),
+      child: getText(message,size: 16.sp,weight: FontWeight.bold),
+    ),
+  );
+}
+

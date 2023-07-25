@@ -33,4 +33,9 @@ class Session {
         this.instructor,
         this.instructorId,
         this.instructorIdentifier});
+
+  @override
+  String toString() {
+    return 'Session{id: $id, name: $name, date: $date, startAt: $startAt, endAt: $endAt, capacity: $capacity, availableSeats: $availableSeats, status: $status, statusName: $statusName, sessionType: $sessionType, sessionTypeId: $sessionTypeId, category: $category, categoryId: $categoryId, instructor: $instructor, instructorId: $instructorId, instructorIdentifier: $instructorIdentifier}';
+  }
 }

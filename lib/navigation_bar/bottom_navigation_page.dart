@@ -38,26 +38,27 @@ class _BottomNavigationPaheState extends State<BottomNavigationPage> {
   @override
   void initState() {
     super.initState();
-    _pageController = PageController();
+    // _pageController = PageController();
   }
 
   @override
   void dispose() {
-    _pageController.dispose();
+    // _pageController.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // body: pages[index],
-      body : SizedBox.expand(
-        child: PageView(
-          controller: _pageController,
-          onPageChanged: onChangedTab,
-          children: pages,
-        ),
-      ),
+      body: pages[index],
+      // body : SizedBox.expand(
+      //   child: PageView(
+      //     controller: _pageController,
+      //     onPageChanged: onChangedTab,
+      //     children: pages,
+      //     physics: const NeverScrollableScrollPhysics(),
+      //   ),
+      // ),
       bottomNavigationBar: TabBarMaterialWidget(
         index: index,
         onChangedTab: _onItemTapped,
@@ -76,8 +77,8 @@ class _BottomNavigationPaheState extends State<BottomNavigationPage> {
       //
       //
       //using this page controller you can make beautiful animation effects
-      _pageController.animateToPage(index,
-          duration: Duration(milliseconds: 500), curve: Curves.linear);
+      // _pageController.animateToPage(index,
+      //     duration: Duration(milliseconds: 300), curve: Curves.linear);
     });
   }
 }
