@@ -33,14 +33,12 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: buildAppBar(),
-      body: GetX<HomeGetxController>(builder: (controller) {
+      body: GetX<HomeGetxController>
+        (builder: (controller) {
         return ListView(
           children: [
             controller.slidersLoading.value
-                ? Center(
-                    child: CircularProgressIndicator(
-                    color: mainColor,
-                  ))
+                ? buildSizedBoxLoading(context)
                 : buildSlider(controller),
             getText('pakages'.tr,
                 color: blackTextColor,
@@ -48,24 +46,21 @@ class _HomeScreenState extends State<HomeScreen> {
                 weight: FontWeight.w500,
                 align: TextAlign.center),
             AppToggle(),
-            controller.packagesLoading.value?Center(
-                child: CircularProgressIndicator(
-                  color: mainColor,
-                )):GridView.builder(
-              padding: EdgeInsets.all(16.r),
-              physics: const NeverScrollableScrollPhysics(),
-              shrinkWrap: true,
-              gridDelegate: buildSliverGridDelegate(),
-              itemCount: controller.currentPackages.length,
-              itemBuilder: (context, index) {
-                return PakageItemWidget(controller.currentPackages[index]);
-              },
-            ),
+            controller.packagesLoading.value
+                ? buildSizedBoxLoading(context)
+                : GridView.builder(
+                    padding: EdgeInsets.all(16.r),
+                    physics: const NeverScrollableScrollPhysics(),
+                    shrinkWrap: true,
+                    gridDelegate: buildSliverGridDelegate(),
+                    itemCount: controller.currentPackages.length,
+                    itemBuilder: (context, index) {
+                      return PakageItemWidget(
+                          controller.currentPackages[index]);
+                    },
+                  ),
             controller.galleriesLoading.value
-                ? Center(
-                    child: CircularProgressIndicator(
-                    color: mainColor,
-                  ))
+                ? buildSizedBoxLoading(context)
                 : Column(
                     children: [
                       getText('images'.tr,
@@ -85,6 +80,16 @@ class _HomeScreenState extends State<HomeScreen> {
           ],
         );
       }),
+    );
+  }
+
+  SizedBox buildSizedBoxLoading(BuildContext context) {
+    return SizedBox(
+      height: MediaQuery.of(context).size.height / 3,
+      child: Center(
+          child: CircularProgressIndicator(
+        color: mainColor,
+      )),
     );
   }
 }

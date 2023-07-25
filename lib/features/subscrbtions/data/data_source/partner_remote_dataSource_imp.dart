@@ -10,6 +10,7 @@ import 'package:http/http.dart' as http;
 import 'package:naz_gem/features/subscrbtions/data/model/check_response_model.dart';
 
 import '../../../../core/error/exceptions.dart';
+import '../../../../core/strings/failures.dart';
 
 class PartnerRemoteDataSourceImp extends PartnerRemoteDataSource {
   final http.Client client;
@@ -28,12 +29,11 @@ class PartnerRemoteDataSourceImp extends PartnerRemoteDataSource {
     );
     final  decodedJson = json.decode(response.body);
     if (response.statusCode == 200) {
-
       final CheckResponseModel responseModel  =
       CheckResponseModel.fromJson(decodedJson['data']);
-
       return responseModel;
     } else {
+      SERVER_FAILURE_MESSAGE = decodedJson['message'];
       throw ServerException();
     }
   }

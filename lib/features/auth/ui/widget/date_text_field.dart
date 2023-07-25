@@ -13,7 +13,7 @@ class DataTextField extends StatelessWidget {
     TextInputType textInputType = TextInputType.text,
     bool obscureText = false,
     TextInputAction textInputAction = TextInputAction.next,
-    Function(String value)? onSubmitted,
+    required VoidCallback onSubmitted,
   })  : _textController = textController,
         _hint = hint,
         _prefixIcon = prefixIcon,
@@ -29,43 +29,48 @@ class DataTextField extends StatelessWidget {
   final TextInputType _textInputType;
   final bool _obscureText;
   final TextInputAction _textInputAction;
-  final void Function(String value)? _onSubmitted;
+  final VoidCallback _onSubmitted;
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 50.h,
-      child: TextField(
-        controller: _textController,
-        keyboardType: _textInputType,
-        textInputAction: _textInputAction,
-        onSubmitted: _onSubmitted,
-        obscureText: _obscureText,
-        textDirection: TextDirection.ltr,
-        style: TextStyle(
-          fontWeight: FontWeight.w600,
-          color: blackTextColor
-        ),
-        decoration: InputDecoration(
-          hintText: _hint,
-          hintStyle: TextStyle(),
-          // prefixIcon: Icon(_prefixIcon),
-          // prefixText: _text,
-          suffixIcon: SizedBox(
-            width: 50.w,
-            child: Align(
-              alignment: AlignmentDirectional.centerEnd,
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: SvgPicture.asset(_prefixIcon!),
+    return InkWell(
+      onTap: _onSubmitted,
+      child: SizedBox(
+        height: 50.h,
+        child: TextField(
+          controller: _textController,
+          keyboardType: _textInputType,
+          textInputAction: _textInputAction,
+          enabled: false,
+          // onSubmitted: _onSubmitted,
+          obscureText: _obscureText,
+          textDirection: TextDirection.rtl,
+          style: TextStyle(
+            fontWeight: FontWeight.w600,
+            color: blackTextColor
+          ),
+          decoration: InputDecoration(
+            hintText: _hint,
+            hintStyle: TextStyle(),
+            // prefixIcon: Icon(_prefixIcon),
+            // prefixText: _text,
+            suffixIcon: SizedBox(
+              width: 50.w,
+              child: Align(
+                alignment: AlignmentDirectional.centerEnd,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: SvgPicture.asset(_prefixIcon!),
+                ),
               ),
             ),
+            // prefixStyle: TextStyle(
+            //   fontSize: 14.sp,color: blackTextColor
+            // ),
+            enabledBorder: buildOutlineInputBorder(color:boarderColor),
+            focusedBorder: buildOutlineInputBorder(color: boarderColor),
+            disabledBorder: buildOutlineInputBorder(color:boarderColor),
           ),
-          // prefixStyle: TextStyle(
-          //   fontSize: 14.sp,color: blackTextColor
-          // ),
-          enabledBorder: buildOutlineInputBorder(color:boarderColor),
-          focusedBorder: buildOutlineInputBorder(color: boarderColor),
         ),
       ),
     );

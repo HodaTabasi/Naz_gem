@@ -38,7 +38,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
             }, color: btnColor),
             TextButton(onPressed: (){
               Get.offAll(()=>const BottomNavigationPage(),transition: Transition.downToUp,
-                  duration: const Duration(milliseconds: 500));
+                  duration: const Duration(milliseconds: 300));
             }, child: getText('back'.tr,size: 16.sp,color: btnColor))
           ],
         ),

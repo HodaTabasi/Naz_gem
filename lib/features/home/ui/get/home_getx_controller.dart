@@ -58,9 +58,9 @@ class HomeGetxController extends GetxController {
               packagesLoading.value = false;
               responseMessage = mapFailureToMessage(failure);
             }, (packages) async {
-              packagesLoading.value = false;
+              currentPackages.value = packages.where((p0) => p0.categoryId == 2 ).toList();
               this.packages.value = packages;
-              currentPackages.value = packages.where((p0) => p0.categoryId == 1 ).toList();
+              packagesLoading.value = false;
     }));
   }
 

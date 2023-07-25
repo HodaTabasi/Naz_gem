@@ -27,6 +27,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
   late TextEditingController _bloodController;
   DateTime currentDate = DateTime.now();
   bool appearOtp = false;
+  String dropdownValue = 'A+';
 
   User get user {
     return User(
@@ -35,7 +36,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
        email: _emailController.text,
        phone: _mobileController.text,
       birthdate:_bdController.text,
-      bloodType: _bloodController.text,
+      bloodType: dropdownValue,
       length: _hgtController.text,
       profileImage: EditProfileGetxController.to.file!.path
       );
@@ -215,6 +216,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                   child: AppTextField(
                     textController: _hgtController,
                     hint: '',
+                    textInputType: TextInputType.number,
                     onSubmitted: GeneralGetxController.to.nameValidation,
                   ),
                 ),
@@ -222,15 +224,48 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                 getText('blood'.tr,
                     color: blackTextColor, size: 16.sp, align: TextAlign.center),
                 getSpace(h: 16.0.r),
-                SizedBox(
-                  // height: 50.h,
-                  child: AppTextField(
-                    textController: _bloodController,
-                    hint: '',
-                    onSubmitted: GeneralGetxController.to.nameValidation,
+                // SizedBox(
+                //   // height: 50.h,
+                //   child: AppTextField(
+                //     textController: _bloodController,
+                //     hint: '',
+                //     onSubmitted: GeneralGetxController.to.nameValidation,
+                //   ),
+                // ),
+                Container(
+                  height: 55.h,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(15.r),
+                    border: Border.all(
+                      color: boarderColor,
+                      // width: 0.5
+                    )
+                  ),
+                  padding: EdgeInsets.symmetric(horizontal: 16.r),
+                  child: DropdownButton<String>(
+                    isExpanded: true,
+                    // Step 3.
+                    value: dropdownValue,
+                    underline: Center(),
+                    // Step 4.
+                    items: <String>['A+','A-','B+','B-','O+','O-','AB+','AB-']
+                        .map<DropdownMenuItem<String>>((String value) {
+                      return DropdownMenuItem<String>(
+                        value: value,
+                        child: Text(
+                          value,
+                          style: TextStyle(fontSize: 18.sp),
+                        ),
+                      );
+                    }).toList(),
+                    // Step 5.
+                    onChanged: (String? newValue) {
+                      setState(() {
+                        dropdownValue = newValue!;
+                      });
+                    },
                   ),
                 ),
-
                 BtnApp(
                     title: 'save'.tr,
                     color: btnColor,

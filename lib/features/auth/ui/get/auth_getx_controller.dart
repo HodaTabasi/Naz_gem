@@ -21,21 +21,21 @@ class AuthGetxController extends GetxController {
 
 
 
-  login({phone, otp}) {
+  Future<bool> login({phone, otp}) {
     EasyLoading.show(indicator: EasyLoading().indicatorWidget);
-    LoginUseCase(repository: Get.find<AuthRepoImpl>())
+    return LoginUseCase(repository: Get.find<AuthRepoImpl>())
         .call(phone,otp.toString())
         .then((value) => value.fold((failure) {
       EasyLoading.dismiss();
       responseMessage = mapFailureToMessage(failure);
-      isLogin = false;
       update();
+      return  false;
     }, (user) async {
       EasyLoading.dismiss();
       String jsonString = jsonEncode(user);
       await GetStorage().write('user', jsonString);
-      isLogin = true;
       update();
+      return  true;
     }));
   }
 

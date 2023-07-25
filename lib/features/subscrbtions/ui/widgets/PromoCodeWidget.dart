@@ -18,7 +18,8 @@ class PromoCodeWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<SubscrbtionGetxController>(builder: (controller) {
+    return GetBuilder<SubscrbtionGetxController>
+      (builder: (controller) {
       return Visibility(
         visible: controller.groupValue == 0,
         child: Column(
@@ -46,9 +47,9 @@ class PromoCodeWidget extends StatelessWidget {
                   decoration: BoxDecoration(
                       color: btnColor, borderRadius: BorderRadius.circular(5)),
                   child: IconButton(
-                      onPressed: () {
-                        SubscrbtionGetxController.to.checkPromoCode(promoController.text);
-                        if(SubscrbtionGetxController.to.checkResponse != null){
+                      onPressed: () async {
+                        bool done = await SubscrbtionGetxController.to.checkPromoCode(promoController.text);
+                        if(done){
                           SnackBarMessage.showSuccessSnackBar(message: 'تم تفعيل الاشتراك', context: context);
                         }else {
                           SnackBarMessage.showErrorSnackBar(message: SubscrbtionGetxController.to.responseMessage, context: context);

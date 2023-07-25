@@ -130,13 +130,13 @@ class _LoginScreenState extends State<LoginScreen> {
                           BtnApp(
                               title: controller.appearOtp ? 'ok'.tr : 'sure_otp'.tr,
                               color: btnColor,
-                              prsee: () {
+                              prsee: () async {
                                 if (GeneralGetxController.to.loginKey.currentState!
                                     .validate()) {
                                   if (controller.appearOtp) {
-                                    controller.login(phone: _mobileController.text,otp: GetStorage().read('otp'));
-                                    print(controller.isLogin);
-                                    if(controller.isLogin){
+                                    bool isLogin = await controller.login(phone: _mobileController.text,otp: GetStorage().read('otp'));
+                                    print(isLogin);
+                                    if(isLogin){
                                       Get.offAll(() => const BottomNavigationPage(),
                                           transition: Transition.downToUp,
                                           duration:

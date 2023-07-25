@@ -10,52 +10,62 @@ import '../../../../core/constants/app_colors.dart';
 import '../../../../core/widgets/app_widget.dart';
 
 class TotalAmountWidget extends StatelessWidget {
-  TotalAmountWidget({
-    super.key,
-  });
+
 Package package = SubscrbtionGetxController.to.package;
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 120.h,
-      alignment: AlignmentDirectional.center,
-      decoration: const BoxDecoration(
-        image: DecorationImage(
-            image: AssetImage('assets/images/background1.png'),
-            fit: BoxFit.fill
-        ),
-      ),
-      child: Stack(
-        children: [
-          ListTile(
-            leading: SvgPicture.asset('assets/images/icon.svg'),
-            title: Text('payment'.tr),
-            subtitle: Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Visibility(
-                  visible:package.discounts!.isNotEmpty,
-                  child: getText(
-                      " ${package.price} ريال",
-                      color: grayTextColor1,
-                      size: 15.sp,
-                      decoration: TextDecoration.lineThrough,
-                      align: TextAlign.center
-                  ),
-                ),
-                getSpace(w: 16.r),
-                getText(
-                    " ${getDiscount(package) ?? package.price} ريال",
+    var price = getDiscount(package)?? package.price;
+    return GetBuilder<SubscrbtionGetxController>(
+      builder: (controller) {
+        return Container(
+          height: 120.h,
+          alignment: AlignmentDirectional.center,
+          decoration: const BoxDecoration(
+            image: DecorationImage(
+                image: AssetImage('assets/images/background1.png'),
+                fit: BoxFit.fill
+            ),
+          ),
+          child: Stack(
+            children: [
+              ListTile(
+                leading: SvgPicture.asset('assets/images/icon.svg'),
+                title: Text('payment'.tr),
+                subtitle: controller.checkResponse != null?Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Visibility(
+                      visible:controller.checkResponse != null,
+                      child: getText(
+                          " ${getDiscount(package) ?? package.price} ريال",
+                          color: grayTextColor1,
+                          size: 15.sp,
+                          decoration: TextDecoration.lineThrough,
+                          align: TextAlign.center
+                      ),
+                    ),
+                    getSpace(w: 16.r),
+                    getText(
+                        " ${num.parse(controller.checkResponse!.discountAvg!) * num.parse(price) / 100} ريال",
+                        color: blackTextColor,
+                        size: 16.sp,
+                        weight: FontWeight.w600,
+                        // decoration: TextDecoration.lineThrough,
+                        align: TextAlign.center
+                    ),
+                  ],
+                ): getText(
+                    " ${price} ريال",
                     color: blackTextColor,
                     size: 16.sp,
                     weight: FontWeight.w600,
                     // decoration: TextDecoration.lineThrough,
-                    align: TextAlign.center
+                    align: TextAlign.start
                 ),
-              ],
-            ),
-          )
-        ],
-      ),);
+              )
+            ],
+          ),);
+      }
+    );
   }
 }
