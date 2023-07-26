@@ -27,7 +27,7 @@ class SessionModel extends Session {
             capacity: capacity,
             availableSeats: availableSeats,
             statusName: statusName,
-            sessionType: statusName,
+            sessionType: sessionType,
             sessionTypeId: sessionTypeId,
             category: category,
             categoryId: categoryId,

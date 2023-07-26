@@ -83,12 +83,12 @@ goToFunction(int index, context) {
     case 1:
       Get.to(() => MyTimePage(),
           transition: Transition.downToUp,
-          duration: const Duration(milliseconds: 500));
+          duration: const Duration(milliseconds: 300));
       break;
     case 2:
       Get.to(() => ContactInfoPage(),
           transition: Transition.downToUp,
-          duration: const Duration(milliseconds: 500));
+          duration: const Duration(milliseconds: 300));
       break;
     case 3:
       break;

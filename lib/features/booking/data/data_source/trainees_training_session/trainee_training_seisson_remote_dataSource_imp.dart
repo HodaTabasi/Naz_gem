@@ -78,9 +78,10 @@ class TraineesTrainingSessionRemoteDataSourceImp extends TraineesTrainingSession
       Uri.parse(baseUrl + getReservationHistory),
       headers: headers,
     );
-    final  decodedJson = json.decode(response.body) ;
-    if (response.statusCode == 200) {
 
+    final  decodedJson = json.decode(response.body) ;
+
+    if (response.statusCode == 200) {
       final List<ReservationSessionModel> postModels = decodedJson['data']
           .map<ReservationSessionModel>((jsonPostModel) => ReservationSessionModel.fromJson(jsonPostModel))
           .toList();

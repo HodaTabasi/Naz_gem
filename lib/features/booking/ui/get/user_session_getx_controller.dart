@@ -6,6 +6,7 @@ import 'package:naz_gem/features/booking/domain/entities/reservation_session.dar
 import '../../../../core/constants/utils.dart';
 import '../../data/repository/trainees_repo_imp.dart';
 import '../../domain/use_case/cancel_session_use_case.dart';
+import '../../domain/use_case/get_training_session_history.dart';
 import '../../domain/use_case/get_user_training_session_use_case.dart';
 import '../../domain/use_case/get_user_training_sessions_use_case.dart';
 import '../../domain/use_case/reservation_new_training_session_use_case.dart';
@@ -16,6 +17,7 @@ class UserSessionGetxController extends GetxController {
   RxMap<String, List<ReservationSession>> map =
       <String, List<ReservationSession>>{}.obs;
   RxString currentDate = DateFormat('yyyy-MM-dd').format(DateTime.now()).obs;
+  RxMap<int,List<ReservationSession>> reservationHistory = <int,List<ReservationSession>>{}.obs;
 
   static UserSessionGetxController get to =>
       Get.find<UserSessionGetxController>();
@@ -70,6 +72,24 @@ class UserSessionGetxController extends GetxController {
         .then((value) => value.fold((failure) {}, (session) async {}));
   }
 
+  getUserSessionsHistory() {
+    userSessionLoading.value = true;
+    EasyLoading.show(indicator: EasyLoading().indicatorWidget);
+    GetUserSessionsHistoryUseCase(
+        repository: Get.find<TraineesRepoImp>())
+        .call()
+        .then((value) => value.fold((failure) {
+         userSessionLoading.value = false;
+         EasyLoading.dismiss();
+         responseMessage = mapFailureToMessage(failure);
+    }, (session) async {
+          getMapData(session);
+          EasyLoading.dismiss();
+      userSessionLoading.value = false;
+    }));
+  }
+
+
   void filtterByDate(List<ReservationSession> session) {
     putDataToMap();
     for (ReservationSession s in session) {
@@ -90,6 +110,18 @@ class UserSessionGetxController extends GetxController {
       index + 1;
       var s = DateFormat('yyyy-MM-dd').format(addDate);
       map[s] = [];
+    }
+  }
+
+  void getMapData(List<ReservationSession> session) {
+    reservationHistory[0] = [];
+    reservationHistory[1] = [];
+    for (ReservationSession s in session) {
+      if (s.trainingSession?.categoryId == 2) {
+        reservationHistory[0]?.add(s);
+      } else {
+        reservationHistory[1]?.add(s);
+      }
     }
   }
 }

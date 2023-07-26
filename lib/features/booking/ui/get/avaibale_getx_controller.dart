@@ -44,14 +44,6 @@ class AvailableGetxController extends GetxController {
   }
 
 
-  getUserSessionsHistory() {
-    GetUserSessionsHistoryUseCase(repository: Get.find<TraineesRepoImp>())
-        .call()
-        .then((value) => value.fold((failure) {}, (session) async {}));
-  }
-
-
-
   //عمل فلتر للداتا كل واحدة في مكانها الصحيح
   void filtterByDate(List<Session> session) {
     putDataToMap();
