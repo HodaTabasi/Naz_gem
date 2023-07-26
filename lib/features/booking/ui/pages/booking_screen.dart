@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:naz_gem/core/widgets/app_widget.dart';
+import 'package:naz_gem/features/booking/ui/get/user_session_getx_controller.dart';
 
 import '../../../../core/constants/app_colors.dart';
 import '../get/avaibale_getx_controller.dart';
@@ -22,6 +23,7 @@ class _BookingScreenState extends State<BookingScreen> {
   @override
   void initState() {
     AvailableGetxController.to.getAllAvailableSessions();
+    UserSessionGetxController.to.getUserSessions();
     super.initState();
   }
 
@@ -47,17 +49,38 @@ class _BookingScreenState extends State<BookingScreen> {
               // monthColor: Colors.purple,
               onDateChange: (date) {
                 setState(() {
-                  var selectedDate = date;
-                  print("xgdfgdf");
+                  UserSessionGetxController.to.currentDate.value =
+                      DateFormat('yyyy-MM-dd').format(date);
+                  print(UserSessionGetxController.to.currentDate.value);
                 });
               },
             ),
             getSpace(h: 8.h),
-            ListViewWidget(
-                item: ItemOneWidget(
-              flag: flag,
-              backgroundColor: mainColor,
-            )),
+            UserSessionGetxController.to.userSessionLoading.value
+                ? buildSizedBoxLoading(context)
+                : UserSessionGetxController
+                .to
+                .map[UserSessionGetxController.to.currentDate.value]!
+                .isEmpty
+                ? buildCenterNoData('لا يوجد مواعيد متاحة'):
+            ListView.builder(
+              itemCount: UserSessionGetxController
+                  .to
+                  .map[UserSessionGetxController.to.currentDate.value]!
+                  .length,
+              shrinkWrap: true,
+              padding: EdgeInsets.all(8.r),
+              physics: const NeverScrollableScrollPhysics(),
+              itemBuilder: (context, index) {
+                return ItemOneWidget(
+                  flag: flag,
+                  backgroundColor: mainColor,
+                  reservationSession: UserSessionGetxController.to.map[
+                  UserSessionGetxController
+                      .to.currentDate.value]![index],
+                );
+              },
+            ),
             getSpace(h: 8.h),
             Padding(
               padding: EdgeInsets.all(8.0.r),

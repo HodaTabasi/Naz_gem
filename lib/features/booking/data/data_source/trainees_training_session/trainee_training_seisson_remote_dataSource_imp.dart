@@ -17,14 +17,16 @@ class TraineesTrainingSessionRemoteDataSourceImp extends TraineesTrainingSession
   TraineesTrainingSessionRemoteDataSourceImp({required this.client});
 
   @override
-  Future<Unit> cancelUserTrainingSession(String id) async {
+  Future<ReservationSessionModel> cancelUserTrainingSession(String id) async {
     final response = await client.put(
       Uri.parse(baseUrl + cancelReservation.replaceFirst('{id}', id)),
       headers: headers,
     );
     final  decodedJson = json.decode(response.body) ;
     if (response.statusCode == 200) {
-      return Future.value(unit);
+      final ReservationSessionModel postModels =
+      ReservationSessionModel.fromJson(decodedJson['data']);
+      return postModels;
     } else {
       SERVER_FAILURE_MESSAGE = decodedJson['message'] ;
       throw ServerException();

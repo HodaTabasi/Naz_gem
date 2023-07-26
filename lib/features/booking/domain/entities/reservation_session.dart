@@ -17,4 +17,9 @@ ReservationSession(
       this.createdAt,
       this.updatedAt,
       this.trainingSession});
+
+@override
+  String toString() {
+    return 'ReservationSession{id: $id, status: $status, traineeId: $traineeId, trainingSessionId: $trainingSessionId, createdAt: $createdAt, updatedAt: $updatedAt, trainingSession: $trainingSession}';
+}
 }

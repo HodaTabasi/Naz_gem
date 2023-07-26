@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:naz_gem/core/constants/snackbar_message.dart';
 import 'package:naz_gem/features/auth/ui/pages/login.dart';
 import 'package:naz_gem/features/contact_info/ui/get/contact_getx_controller.dart';
@@ -22,6 +23,7 @@ showAlertDialog(BuildContext context, image, title, content) {
     ),
     onPressed: () {
        ContactGetxController.to.logout();
+       GetStorage().erase();
        if(ContactGetxController.to.isLogout){
          Get.offAll(()=>const LoginScreen());
        }else {

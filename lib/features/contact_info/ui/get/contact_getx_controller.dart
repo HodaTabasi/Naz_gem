@@ -37,20 +37,21 @@ class ContactGetxController extends GetxController {
         }));
   }
 
-  logout() {
+  Future<bool> logout() {
     EasyLoading.show(indicator: EasyLoading().indicatorWidget);
-    LogoutUseCase(repository: Get.find<ContactRepoImp>())
+    return LogoutUseCase(repository: Get.find<ContactRepoImp>())
         .call()
         .then((value) =>
         value.fold((failure) {
           EasyLoading.dismiss();
           responseMessage = mapFailureToMessage(failure);
-          isLogout = false;
           update();
+          return false;
         }, (unit) {
           EasyLoading.dismiss();
-          isLogout = true;
           update();
+          return true;
+
         }));
   }
 

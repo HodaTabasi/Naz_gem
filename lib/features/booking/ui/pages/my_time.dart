@@ -90,7 +90,8 @@ class _MyTimePageState extends State<MyTimePage> {
                 itemCount: 3,
             padding: EdgeInsets.all(16.r),
             itemBuilder: (context, index) {
-              return ItemOneWidget(flag: true,backgroundColor: blackTextColor,my: false,);
+                  return Center();
+              // return ItemOneWidget(flag: true,backgroundColor: blackTextColor,my: false,);
             },
           ))
         ],

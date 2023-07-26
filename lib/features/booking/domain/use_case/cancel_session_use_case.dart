@@ -9,7 +9,7 @@ class CancelSessionUseCase {
 
   CancelSessionUseCase({required this.repository});
 
-  Future<Either<Failure, Unit>> call(String id) async {
+  Future<Either<Failure, ReservationSession>> call(String id) async {
     return await repository.cancelUserTrainingSession(id);
   }
 }

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:naz_gem/features/booking/domain/entities/reservation_session.dart';
+import 'package:naz_gem/features/booking/ui/get/user_session_getx_controller.dart';
 
 import '../../../../core/constants/app_colors.dart';
 import '../../../../core/widgets/app_widget.dart';
@@ -11,13 +13,15 @@ class ItemOneWidget extends StatelessWidget {
 
   final Color backgroundColor;
   final bool flag;
+  ReservationSession reservationSession;
 
   var my ;
   ItemOneWidget({
     super.key,
     required this.flag,
     required this.backgroundColor,
-    this.my = true
+    this.my = true,
+    required this.reservationSession,
   });
 
 
@@ -50,13 +54,13 @@ class ItemOneWidget extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   nameOfExerciseWidget(
-                    text1: 'زومبا -',
-                    text2: ' ك. أوكسانا',
+                    text1: '${reservationSession.trainingSession?.sessionType} -',
+                    text2: ' ${reservationSession.trainingSession?.name}',
                   ),
                   Row(
                     children: [
                       RishWidget(
-                        text: ' 5-6 مسائًا',
+                        text: ' ${reservationSession.trainingSession?.startAt?.split(":").first}-${reservationSession.trainingSession?.endAt!.split(":").first} مسائًا',
                         icon: Icons.timer_outlined,
                       ),
                       getSpace(w: 8.h),
@@ -81,7 +85,9 @@ class ItemOneWidget extends StatelessWidget {
                                 shape: RoundedRectangleBorder(
                                     borderRadius:
                                     BorderRadius.circular(8.r))),
-                            onPressed: () {},
+                            onPressed: () {
+                              UserSessionGetxController.to.cancelUserSessions(reservationSession.id.toString(),date: reservationSession.trainingSession?.date);
+                            },
                             child: Text('cancel_booking'.tr)),
                       )
                     ],

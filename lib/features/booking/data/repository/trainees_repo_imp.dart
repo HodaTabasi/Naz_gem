@@ -17,11 +17,11 @@ class TraineesRepoImp extends TraineesRepo {
   TraineesRepoImp({required this.networkInfo,required this.trainingSessionRemoteDataSource});
 
   @override
-  Future<Either<Failure, Unit>> cancelUserTrainingSession(String id) async {
+  Future<Either<Failure, ReservationSession>> cancelUserTrainingSession(String id) async {
     if (await networkInfo.isConnected) {
       try {
-        await trainingSessionRemoteDataSource.cancelUserTrainingSession(id);
-        return Right(unit);
+        ReservationSession reservationSession = await trainingSessionRemoteDataSource.cancelUserTrainingSession(id);
+        return Right(reservationSession);
       } on ServerException {
         return Left(ServerFailure());
       }
