@@ -17,9 +17,7 @@ class ContactLowerSctionsWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<ContactGetxController>(
-      builder: (controller) {
-        return Container(
+    return Container(
           padding: EdgeInsets.all(16.r),
           height: MediaQuery.of(context).size.height - 210.h,
           decoration: BoxDecoration(
@@ -59,13 +57,12 @@ class ContactLowerSctionsWidget extends StatelessWidget {
                 getSpace(h: 16.h),
                 const WorkTimeWidget(),
                 getSpace(h: 16.h),
-                ScoialMediaItemWidget(controller)
+                ScoialMediaItemWidget(ContactGetxController.to)
               ],
             ),
           ),
         );
-      }
-    );
+
   }
 
 

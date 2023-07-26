@@ -11,29 +11,33 @@ import '../widgets/contact_class.dart';
 
 class ContactGetxController extends GetxController {
   var responseMessage = '';
-  List<Contact> contacts = [];
+  RxList<Contact> contacts = <Contact>[].obs;
   bool isLogout = false;
   String facebook = '';
   String instagram = '';
   String youtube = '';
   String twitter = '';
+  RxBool pageLoading = false.obs;
 
   static ContactGetxController get to => Get.find<ContactGetxController>();
 
   getContact() {
-    EasyLoading.show(indicator: EasyLoading().indicatorWidget);
+    pageLoading.value = true;
+    // EasyLoading.show(indicator: EasyLoading().indicatorWidget);
     GetContactUseCase(repository: Get.find<ContactRepoImp>())
         .call()
         .then((value) =>
         value.fold((failure) {
-          EasyLoading.dismiss();
+          // EasyLoading.dismiss();
           responseMessage = mapFailureToMessage(failure);
-          update();
+          pageLoading.value = false;
+          // update();
         }, (contacts) {
-          this.contacts = contacts;
+          this.contacts.value = contacts;
           putDataToInfoList(contacts);
-          EasyLoading.dismiss();
-          update();
+          pageLoading.value = false;
+          // EasyLoading.dismiss();
+          // update();
         }));
   }
 

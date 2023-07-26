@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:loading_indicator/loading_indicator.dart';
 import 'package:naz_gem/core/constants/app_colors.dart';
 import 'package:naz_gem/core/widgets/app_toggle.dart';
 import 'package:naz_gem/core/widgets/app_widget.dart';
@@ -90,11 +91,15 @@ class _HomeScreenState extends State<HomeScreen> {
 
   SizedBox buildSizedBoxLoading(BuildContext context) {
     return SizedBox(
-      height: MediaQuery.of(context).size.height / 3,
-      child: Center(
-          child: CircularProgressIndicator(
-        color: mainColor,
-      )),
+      height: MediaQuery.of(context).size.height / 2.5.h,
+      child:  Transform.scale(
+        scale: 0.2,
+        child:  LoadingIndicator(
+          indicatorType: Indicator.ballSpinFadeLoader,/// Required, The loading type of the widget
+          colors:  [mainColor,btnColor],       /// Optional, The color collections
+          /// Optional, the stroke backgroundColor
+        ),
+      ),
     );
   }
 }

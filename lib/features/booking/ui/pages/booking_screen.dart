@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+import 'package:loading_indicator/loading_indicator.dart';
 import 'package:naz_gem/core/widgets/app_widget.dart';
 import 'package:naz_gem/features/booking/ui/get/user_session_getx_controller.dart';
 
@@ -10,7 +11,6 @@ import '../get/avaibale_getx_controller.dart';
 import '../widget/horizontal_week_calendar.dart';
 import '../widget/item_one.dart';
 import '../widget/item_two.dart';
-import '../widget/list_item_widget.dart';
 
 class BookingScreen extends StatefulWidget {
   @override
@@ -116,7 +116,8 @@ class _BookingScreenState extends State<BookingScreen> {
                         .to
                         .map[AvailableGetxController.to.currentDate.value]!
                         .isEmpty
-                    ? buildCenterNoData('لا يوجد مواعيد متاحة')
+                    ? SizedBox(
+                child: buildCenterNoData('لا يوجد مواعيد متاحة'))
                     : ListView.builder(
                         itemCount: AvailableGetxController
                             .to
@@ -141,13 +142,17 @@ class _BookingScreenState extends State<BookingScreen> {
     );
   }
 
-  SizedBox buildSizedBoxLoading(BuildContext context) {
+  buildSizedBoxLoading(BuildContext context) {
     return SizedBox(
-      height: MediaQuery.of(context).size.height / 4,
-      child: Center(
-          child: CircularProgressIndicator(
-        color: mainColor,
-      )),
+      height: MediaQuery.of(context).size.height/2.5.h,
+      child: Transform.scale(
+      scale: 0.2,
+        child:  LoadingIndicator(
+            indicatorType: Indicator.ballSpinFadeLoader,/// Required, The loading type of the widget
+            colors:  [mainColor,btnColor],       /// Optional, The color collections
+          /// Optional, the stroke backgroundColor
+        ),
+      ),
     );
   }
 }
