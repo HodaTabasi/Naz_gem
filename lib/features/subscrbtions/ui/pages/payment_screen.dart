@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:lottie/lottie.dart';
 import 'package:naz_gem/core/constants/app_colors.dart';
 import 'package:naz_gem/core/widgets/app_widget.dart';
 
@@ -24,6 +25,8 @@ class _PaymentScreenState extends State<PaymentScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            // Load a Lottie file from your assets
+            // Lottie.asset('assets/images/json_images/animation_lk52989k.json'),
             Image.asset('assets/images/done_pay.png'),
             getSpace(h: 8.r),
             getText(

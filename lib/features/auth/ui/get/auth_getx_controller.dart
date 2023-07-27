@@ -55,21 +55,22 @@ class AuthGetxController extends GetxController {
             }));
   }
 
-  createAccount({user}) {
+ Future<bool> createAccount({user}) {
     EasyLoading.show(indicator: EasyLoading().indicatorWidget);
-    CreateAccountUseCase(repository: Get.find<AuthRepoImpl>())
+    return CreateAccountUseCase(repository: Get.find<AuthRepoImpl>())
         .call(user)
         .then((value) => value.fold((failure) {
-          print("Fgdfgd $responseMessage");
       EasyLoading.dismiss();
       responseMessage = mapFailureToMessage(failure);
-      isCreated = false;
-      update();
+          update();
+      return false;
+
     }, (user) async {
       EasyLoading.dismiss();
-      isCreated = true;
+
       phone = user.phone;
       update();
+      return true;
     }));
   }
 }

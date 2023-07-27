@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:intl/intl.dart';
 import 'package:loading_indicator/loading_indicator.dart';
 import 'package:naz_gem/core/widgets/app_widget.dart';
@@ -38,8 +39,11 @@ class _BookingScreenState extends State<BookingScreen> {
           children: [
             HorizontalWeekCalendar(
               // weekStartFrom: WeekStartFrom.Monday,
-              activeBackgroundColor: mainColor,
-              activeTextColor: blackTextColor,
+              activeBackgroundColor:
+              GetStorage().read("package_typ") == 1 ? mainColor : btnColor,
+              activeTextColor: GetStorage().read("package_typ") == 1
+                  ? blackTextColor
+                  : Colors.white,
               inactiveBackgroundColor: Colors.grey.withOpacity(.2),
               inactiveTextColor: Colors.grey,
               disabledTextColor: blackTextColor,
@@ -59,28 +63,30 @@ class _BookingScreenState extends State<BookingScreen> {
             UserSessionGetxController.to.userSessionLoading.value
                 ? buildSizedBoxLoading(context)
                 : UserSessionGetxController
-                .to
-                .map[UserSessionGetxController.to.currentDate.value]!
-                .isEmpty
-                ? buildCenterNoData('لا يوجد مواعيد متاحة'):
-            ListView.builder(
-              itemCount: UserSessionGetxController
-                  .to
-                  .map[UserSessionGetxController.to.currentDate.value]!
-                  .length,
-              shrinkWrap: true,
-              padding: EdgeInsets.all(8.r),
-              physics: const NeverScrollableScrollPhysics(),
-              itemBuilder: (context, index) {
-                return ItemOneWidget(
-                  flag: flag,
-                  backgroundColor: mainColor,
-                  reservationSession: UserSessionGetxController.to.map[
-                  UserSessionGetxController
-                      .to.currentDate.value]![index],
-                );
-              },
-            ),
+                        .to
+                        .map[UserSessionGetxController.to.currentDate.value]!
+                        .isEmpty
+                    ? buildCenterNoData('لا يوجد مواعيد متاحة')
+                    : ListView.builder(
+                        itemCount: UserSessionGetxController
+                            .to
+                            .map[
+                                UserSessionGetxController.to.currentDate.value]!
+                            .length,
+                        shrinkWrap: true,
+                        padding: EdgeInsets.all(8.r),
+                        physics: const NeverScrollableScrollPhysics(),
+                        itemBuilder: (context, index) {
+                          return ItemOneWidget(
+                            flag: flag,
+                            backgroundColor: GetStorage().read("package_typ") == 1 ? mainColor : btnColor,
+                            reservationSession:
+                                UserSessionGetxController.to.map[
+                                    UserSessionGetxController
+                                        .to.currentDate.value]![index],
+                          );
+                        },
+                      ),
             getSpace(h: 8.h),
             Padding(
               padding: EdgeInsets.all(8.0.r),
@@ -92,8 +98,11 @@ class _BookingScreenState extends State<BookingScreen> {
             ),
             HorizontalWeekCalendar(
               // weekStartFrom: WeekStartFrom.Monday,
-              activeBackgroundColor: mainColor,
-              activeTextColor: blackTextColor,
+              activeBackgroundColor:
+                  GetStorage().read("package_typ") == 1 ? mainColor : btnColor,
+              activeTextColor: GetStorage().read("package_typ") == 1
+                  ? blackTextColor
+                  : Colors.white,
               inactiveBackgroundColor: Colors.grey.withOpacity(.2),
               inactiveTextColor: Colors.grey,
               disabledTextColor: blackTextColor,
@@ -116,8 +125,7 @@ class _BookingScreenState extends State<BookingScreen> {
                         .to
                         .map[AvailableGetxController.to.currentDate.value]!
                         .isEmpty
-                    ? SizedBox(
-                child: buildCenterNoData('لا يوجد مواعيد متاحة'))
+                    ? SizedBox(child: buildCenterNoData('لا يوجد مواعيد متاحة'))
                     : ListView.builder(
                         itemCount: AvailableGetxController
                             .to
@@ -128,8 +136,10 @@ class _BookingScreenState extends State<BookingScreen> {
                         physics: const NeverScrollableScrollPhysics(),
                         itemBuilder: (context, index) {
                           return ItemTwoWidget(
-                            image: 'assets/images/card_background.png',
-                            backgroundColor: mainColor,
+                            image: GetStorage().read("package_typ") == 1
+                                ? 'assets/images/card_background.png'
+                                : 'assets/images/card_background2.png',
+                            backgroundColor: GetStorage().read("package_typ") == 1 ? mainColor : btnColor,
                             session: AvailableGetxController.to.map[
                                 AvailableGetxController
                                     .to.currentDate.value]![index],
@@ -144,12 +154,16 @@ class _BookingScreenState extends State<BookingScreen> {
 
   buildSizedBoxLoading(BuildContext context) {
     return SizedBox(
-      height: MediaQuery.of(context).size.height/2.5.h,
+      height: MediaQuery.of(context).size.height / 2.5.h,
       child: Transform.scale(
-      scale: 0.2,
-        child:  LoadingIndicator(
-            indicatorType: Indicator.ballSpinFadeLoader,/// Required, The loading type of the widget
-            colors:  [mainColor,btnColor],       /// Optional, The color collections
+        scale: 0.2,
+        child: LoadingIndicator(
+          indicatorType: Indicator.ballSpinFadeLoader,
+
+          /// Required, The loading type of the widget
+          colors: [mainColor, btnColor],
+
+          /// Optional, The color collections
           /// Optional, the stroke backgroundColor
         ),
       ),

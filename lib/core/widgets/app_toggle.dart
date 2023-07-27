@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:naz_gem/features/home/ui/get/home_getx_controller.dart';
 
 import '../constants/app_colors.dart';
@@ -34,7 +35,7 @@ class AppToggle extends StatelessWidget {
                           controller.currentIndex == 0 ? btnColor : tabColor,
                           elevation: 0),
                       onPressed: () {
-
+                        GetStorage().write('package_typ', 2);
                           controller.changeCurrentIndex(index: 0);
 
                       },
@@ -59,6 +60,7 @@ class AppToggle extends StatelessWidget {
                           controller.currentIndex == 1 ? mainColor : tabColor,
                           elevation: 0),
                       onPressed: () {
+                          GetStorage().write('package_typ', 1);
                           controller.changeCurrentIndex(index: 1);
 
                       },

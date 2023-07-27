@@ -96,11 +96,11 @@ class _OTPRegisterScreenState extends State<OTPRegisterScreen> {
                       BtnApp(
                           title: 'sure_otp'.tr,
                           color: btnColor,
-                          prsee: () {
-                            controller.login(
+                          prsee: () async {
+                            bool login = await controller.login(
                                 phone: controller.phone,
                                 otp: GetStorage().read('otp'));
-                            if(controller.isLogin){
+                            if(login){
                               Get.offAll(() => const BottomNavigationPage(),
                                   transition: Transition.downToUp,
                                   duration: const Duration(milliseconds: 300));

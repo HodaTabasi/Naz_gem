@@ -213,12 +213,12 @@ class _NewUserState extends State<NewUser> {
                           BtnApp(
                               title: 'sure_otp'.tr,
                               color: btnColor,
-                              prsee: () {
+                              prsee: () async {
                                 if (GeneralGetxController.to.newUserKey.currentState!
                                     .validate()) {
                                   if(checkValue){
-                                    controller.createAccount(user: user);
-                                    if(controller.isCreated){
+                                    bool result = await controller.createAccount(user: user);
+                                    if(result){
                                       Get.to(() => OTPRegisterScreen(),
                                           transition: Transition.downToUp,
                                           duration: const Duration(milliseconds: 300));

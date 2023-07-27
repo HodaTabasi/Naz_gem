@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:lottie/lottie.dart';
 
 import '../../../../core/widgets/app_widget.dart';
 
@@ -48,7 +49,8 @@ class CoustomDialog extends StatelessWidget {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
-              SvgPicture.asset("assets/images/$image"),
+              Lottie.asset('assets/images/json_images/$image',height: 130.h,width:130.w),
+              // SvgPicture.asset("assets/images/$image"),
               getSpace(h: 16.h),
               Text(
                 "$title",

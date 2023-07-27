@@ -21,10 +21,10 @@ showAlertDialog(BuildContext context, image, title, content) {
       color: redColor,
       size: 16.sp,
     ),
-    onPressed: () {
-       ContactGetxController.to.logout();
-       GetStorage().erase();
-       if(ContactGetxController.to.isLogout){
+    onPressed: () async {
+       bool done = await ContactGetxController.to.logout();
+       if(done){
+         GetStorage().erase();
          Get.offAll(()=>const LoginScreen());
        }else {
          SnackBarMessage.showErrorSnackBar(message: ContactGetxController.to.responseMessage, context: context);

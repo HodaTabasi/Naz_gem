@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:naz_gem/core/widgets/app_widget.dart';
 import 'package:naz_gem/features/booking/domain/entities/session.dart';
 import 'package:naz_gem/features/booking/ui/get/user_session_getx_controller.dart';
@@ -87,7 +88,7 @@ class ItemTwoWidget extends StatelessWidget {
                   showDialog(context: context,
                       builder: (context) => CoustomDialog(
                         title:'🤩 تم الحجز بنجاح',
-                        image:'new_done.svg' ,
+                        image:'animation_lk5219r6.json' ,
                         onClick:(){
                           Get.back();
                         },
@@ -107,7 +108,7 @@ class ItemTwoWidget extends StatelessWidget {
                   padding: EdgeInsets.only(top: 8.0.r),
                   child: getText(
                     'book_now'.tr,
-                    color: blackTextColor,
+                    color: GetStorage().read("package_typ") == 1 ? blackTextColor :Colors.white ,
                     size: 16.sp,
                     align: TextAlign.center,
                   ),
