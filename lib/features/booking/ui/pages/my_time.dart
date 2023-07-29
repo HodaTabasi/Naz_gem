@@ -103,7 +103,7 @@ class _MyTimePageState extends State<MyTimePage> {
                       itemBuilder: (context, index) {
                         return ItemOneWidget(
                           flag: true,
-                          backgroundColor: blackTextColor,
+                          backgroundColor: currentIndex ==0 ?blackTextColor:mainColor,
                           my: false,
                           reservationSession: controller
                               .reservationHistory[currentIndex]![index],

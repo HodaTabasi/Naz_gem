@@ -34,19 +34,19 @@ AppBar buildAppBar() {
         padding: const EdgeInsets.all(16.0),
         child: InkWell(
           onTap: () {
-            Get.to(() => NotificationPage(),transition: Transition.downToUp,
+            Get.to(() => NotificationPage(),
+                transition: Transition.downToUp,
                 duration: const Duration(milliseconds: 500));
           }, //
           child: Center(
             child: Stack(
               children: [
-                SvgPicture.asset("assets/images/notification.svg",
-                    width: 19.w),
+                SvgPicture.asset("assets/images/notification.svg", width: 19.w),
                 PositionedDirectional(
                     child: CircleAvatar(
-                      radius: 4,
-                      backgroundColor: mainColor,
-                    ))
+                  radius: 4,
+                  backgroundColor: mainColor,
+                ))
               ],
             ),
           ),
@@ -59,13 +59,12 @@ AppBar buildAppBar() {
 
 void showDitailsDialog(BuildContext context, Package currentPackag) {
   var w = MediaQuery.of(context).size.width;
-  var priceAfterDiscount =  getDiscount(currentPackag);
+  var priceAfterDiscount = getDiscount(currentPackag);
   // if(currentPackag.discounts!.isNotEmpty){
   //   priceAfterDiscount = currentPackag.discounts!.first.ratio! * num.parse(currentPackag.price!) / 100;
   //   print(priceAfterDiscount);
   // }
   final details = json.decode(currentPackag.details!);
-
 
   showDialog(
     context: context,
@@ -104,13 +103,14 @@ void showDitailsDialog(BuildContext context, Package currentPackag) {
                         start: 0,
                         child: Column(
                           children: [
-                            getText('${currentPackag.durationTypeName}', color: Colors.white, size: 16.sp),
+                            getText('${currentPackag.durationTypeName}',
+                                color: Colors.white, size: 16.sp),
                             getSpace(h: 10.h),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Visibility(
-                                  visible:currentPackag.discounts!.isNotEmpty,
+                                  visible: currentPackag.discounts!.isNotEmpty,
                                   child: getText("${currentPackag.price} ريال",
                                       color: grayTextColor1,
                                       size: 15.sp,
@@ -118,7 +118,8 @@ void showDitailsDialog(BuildContext context, Package currentPackag) {
                                       decoration: TextDecoration.lineThrough),
                                 ),
                                 getSpace(w: 10.w),
-                                getText("${priceAfterDiscount ?? currentPackag.price} ريال",
+                                getText(
+                                    "${priceAfterDiscount ?? currentPackag.price} ريال",
                                     color: Colors.white,
                                     size: 20.sp,
                                     weight: FontWeight.bold,
@@ -132,13 +133,15 @@ void showDitailsDialog(BuildContext context, Package currentPackag) {
                   ),
                   // getSpace(h: 8.h),
                   Visibility(
-                    visible:currentPackag.discounts!.isNotEmpty,
-                    child: getText('${currentPackag.discounts!.isNotEmpty?currentPackag.discounts!.first.name:''}',
-                        size: 20.sp, color: blackTextColor),
+                    visible: currentPackag.discounts!.isNotEmpty,
+                    child: getText(
+                        '${currentPackag.discounts!.isNotEmpty ? currentPackag.discounts!.first.name : ''}',
+                        size: 20.sp,
+                        color: blackTextColor),
                   ),
                   // getSpace(h: 8.h),
                   Visibility(
-                    visible:currentPackag.discounts!.isNotEmpty,
+                    visible: currentPackag.discounts!.isNotEmpty,
                     child: SizedBox(
                       height: 72.h,
                       child: Stack(
@@ -148,8 +151,11 @@ void showDitailsDialog(BuildContext context, Package currentPackag) {
                             top: 30.h,
                             start: 0,
                             end: 0,
-                            child: getText('${currentPackag.discounts!.isNotEmpty?currentPackag.discounts!.first.ratio:''}%',
-                                size: 20.sp, color: Colors.black,align: TextAlign.center),
+                            child: getText(
+                                '${currentPackag.discounts!.isNotEmpty ? currentPackag.discounts!.first.ratio : ''}%',
+                                size: 20.sp,
+                                color: Colors.black,
+                                align: TextAlign.center),
                           ),
                         ],
                       ),
@@ -157,7 +163,9 @@ void showDitailsDialog(BuildContext context, Package currentPackag) {
                   ),
                   getSpace(h: 8.h),
                   getText('تفاصيل الباقة',
-                      size: 16.sp, color: blackTextColor,align: TextAlign.center),
+                      size: 16.sp,
+                      color: blackTextColor,
+                      align: TextAlign.center),
                   ListView.builder(
                     physics: const NeverScrollableScrollPhysics(),
                     shrinkWrap: true,
@@ -165,36 +173,41 @@ void showDitailsDialog(BuildContext context, Package currentPackag) {
                     itemBuilder: (context, index) {
                       return Container(
                         color: Colors.white,
-                        padding: EdgeInsets.symmetric(horizontal: 16.r,vertical: 10.r),
+                        padding: EdgeInsets.symmetric(
+                            horizontal: 16.r, vertical: 10.r),
                         child: Row(
                           children: [
                             SvgPicture.asset('assets/images/gem1.svg'),
-                            getSpace(w:10.w),
+                            getSpace(w: 10.w),
                             getText('${details[index]['value']}',
-                                size: 14.sp, color: blackTextColor) ,
+                                size: 14.sp, color: blackTextColor),
                           ],
-
                         ),
                       );
-                  },),
+                    },
+                  ),
                   Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 16.0.r,vertical: 0.r),
-                    child: BtnApp(title: 'sub'.tr, prsee: (){
-                      SubscrbtionGetxController.to.package = currentPackag;
-                      Get.to(()=>Subscrbtions());
-                    }, color: btnColor,textColor: Colors.white,),
+                    padding:
+                        EdgeInsets.symmetric(horizontal: 16.0.r, vertical: 0.r),
+                    child: BtnApp(
+                      title: 'sub'.tr,
+                      prsee: () {
+                        SubscrbtionGetxController.to.package = currentPackag;
+                        Get.to(() => Subscrbtions());
+                      },
+                      color: btnColor,
+                      textColor: Colors.white,
+                    ),
                   ),
                   // getSpace(h: 8.h),
                   GestureDetector(
-                    onTap: (){
+                    onTap: () {
                       Get.back();
                     },
-                    child: getText('cancel'.tr,
-                        size: 14.sp, color:btnColor ),
+                    child: getText('cancel'.tr, size: 14.sp, color: btnColor),
                   ),
                   getSpace(h: 12.h),
                 ],
-
               ),
             )),
       );
@@ -218,8 +231,7 @@ SizedBox buildSlider(HomeGetxController controller) {
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(15.r),
               image: DecorationImage(
-                image:
-                NetworkImage(controller.sliders[index].image!),
+                image: NetworkImage(controller.sliders[index].image!),
               )),
           child: Stack(
             children: [
@@ -227,9 +239,7 @@ SizedBox buildSlider(HomeGetxController controller) {
                 top: 35.h,
                 start: 25.w,
                 child: getText(controller.sliders[index].title!,
-                    color: Colors.white,
-                    size: 20.sp,
-                    weight: FontWeight.bold),
+                    color: Colors.white, size: 20.sp, weight: FontWeight.bold),
               ),
               PositionedDirectional(
                 top: 80.h,
@@ -249,10 +259,10 @@ SizedBox buildSlider(HomeGetxController controller) {
                         backgroundColor: mainColor,
                         fixedSize: Size(120.w, 40.h),
                         shape: RoundedRectangleBorder(
-                            borderRadius:
-                            BorderRadius.circular(8.r))),
+                            borderRadius: BorderRadius.circular(8.r))),
                     onPressed: () {
-                      launch(Uri.parse(controller.sliders[index].url!), context);
+                      launch(
+                          Uri.parse(controller.sliders[index].url!), context);
                     },
                     child: getText(
                       'join'.tr,
@@ -276,18 +286,56 @@ SliverGridDelegateWithFixedCrossAxisCount buildSliverGridDelegate() {
       childAspectRatio: 3 / 2.5);
 }
 
-Future<dynamic> buildImageDialog(BuildContext context ,url) {
-  return showDialog(context: context, builder: (context) {
-    return Center(
-      child: SizedBox(
-        width: MediaQuery.of(context).size.width- 50.w,
-        // height: MediaQuery.of(context).size.height- 200.h,
-        child: ClipRRect(
-          borderRadius: BorderRadius.circular(15.r),
-          child: Image.network(url,fit: BoxFit.fill,height: MediaQuery.of(context).size.height- 250.h),
+Future<dynamic> buildImageDialog(BuildContext context, url) {
+  return showDialog(
+    context: context,
+    builder: (context) {
+      return Center(
+        child: SizedBox(
+          width: MediaQuery.of(context).size.width - 50.w,
+          // height: MediaQuery.of(context).size.height- 200.h,
+          child: Stack(
+            children: [
+              DecoratedBox(
+                decoration: BoxDecoration(
+                  // color: Colors.white,
+                  borderRadius: BorderRadius.circular(15.r),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.grey,
+                        blurRadius: 5,
+                        blurStyle: BlurStyle.normal,
+                        // spreadRadius: 5,
+                      )
+                    ]),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(15.r),
+                  child: DecoratedBox(
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      border: Border.all(color: mainColor, width: 0.5),
+                    ),
+                    child: Image.network(url,
+                        fit: BoxFit.fill,
+                        height: MediaQuery.of(context).size.height - 250.h),
+                  ),
+                ),
+              ),
+              PositionedDirectional(
+                end: 5,
+                  child: IconButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    icon: Icon(
+                      Icons.clear,
+                      color: Colors.red,
+                    ),
+                  )),
+            ],
+          ),
         ),
-      ),
-    );
-  },
+      );
+    },
   );
 }

@@ -41,7 +41,7 @@ class MyApp extends StatelessWidget {
         locale: const Locale('ar'),
         // translations will be displayed in that locale
         fallbackLocale: const Locale('ar'),
-        theme: ThemeData(primarySwatch: Colors.blue, fontFamily: 'br'),
+        theme: ThemeData(primarySwatch: Colors.grey, fontFamily: 'br'),
           builder:EasyLoading.init(builder: (context, child) {
             return MediaQuery(
                 data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
