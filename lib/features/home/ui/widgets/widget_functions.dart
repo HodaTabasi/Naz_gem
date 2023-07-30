@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -58,12 +57,7 @@ AppBar buildAppBar() {
 }
 
 void showDitailsDialog(BuildContext context, Package currentPackag) {
-  var w = MediaQuery.of(context).size.width;
   var priceAfterDiscount = getDiscount(currentPackag);
-  // if(currentPackag.discounts!.isNotEmpty){
-  //   priceAfterDiscount = currentPackag.discounts!.first.ratio! * num.parse(currentPackag.price!) / 100;
-  //   print(priceAfterDiscount);
-  // }
   final details = json.decode(currentPackag.details!);
 
   showDialog(
@@ -300,7 +294,7 @@ Future<dynamic> buildImageDialog(BuildContext context, url) {
                 decoration: BoxDecoration(
                   // color: Colors.white,
                   borderRadius: BorderRadius.circular(15.r),
-                    boxShadow: [
+                    boxShadow: const [
                       BoxShadow(
                         color: Colors.grey,
                         blurRadius: 5,
@@ -327,7 +321,7 @@ Future<dynamic> buildImageDialog(BuildContext context, url) {
                     onPressed: () {
                       Navigator.pop(context);
                     },
-                    icon: Icon(
+                    icon: const Icon(
                       Icons.clear,
                       color: Colors.red,
                     ),

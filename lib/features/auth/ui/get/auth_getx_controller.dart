@@ -19,8 +19,6 @@ class AuthGetxController extends GetxController {
   String responseMessage = '';
   late String phone = '' ;
 
-
-
   Future<bool> login({phone, otp}) {
     EasyLoading.show(indicator: EasyLoading().indicatorWidget);
     return LoginUseCase(repository: Get.find<AuthRepoImpl>())
@@ -39,19 +37,21 @@ class AuthGetxController extends GetxController {
     }));
   }
 
-  sendOtp({phone}) {
+  Future<bool> sendOtp({phone}) {
     EasyLoading.show(indicator: EasyLoading().indicatorWidget);
-    SendOtpUseCase(repository: Get.find<AuthRepoImpl>())
+    return SendOtpUseCase(repository: Get.find<AuthRepoImpl>())
         .call(phone)
         .then((value) => value.fold((failure) {
               EasyLoading.dismiss();
               responseMessage = mapFailureToMessage(failure);
               update();
+              return false;
             }, (apiResponse) {
               EasyLoading.dismiss();
               responseMessage = apiResponse.message!;
               appearOtp = apiResponse.status!;
               update();
+              return true;
             }));
   }
 

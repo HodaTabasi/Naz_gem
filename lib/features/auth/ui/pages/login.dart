@@ -90,7 +90,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   padding: EdgeInsets.all(16.r),
                   decoration: buildBoxDecoration2(),
                   child: SingleChildScrollView(
-                    physics: BouncingScrollPhysics(),
+                    physics: const BouncingScrollPhysics(),
                     child: Form(
                       key: GeneralGetxController.to.loginKey,
                       child: Column(
@@ -147,9 +147,12 @@ class _LoginScreenState extends State<LoginScreen> {
                                     }
 
                                   } else {
-                                  controller.sendOtp(phone: _mobileController.text);
-                                      // controller.appearOtp = !controller.appearOtp;
-                                  }
+                                  bool sended = await controller.sendOtp(phone: _mobileController.text);
+                                  print("object $sended");
+                                  if(!sended){
+                                    SnackBarMessage.showErrorSnackBar(
+                                        message: controller.responseMessage, context: context);
+                                  }                                  }
                                 }
                               }),
 

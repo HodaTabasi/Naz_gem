@@ -6,7 +6,7 @@ class Session {
   String? endAt;
   int? capacity;
   int? availableSeats;
-  String? status;
+  int? status;
   String? statusName;
   String? sessionType;
   int? sessionTypeId;
