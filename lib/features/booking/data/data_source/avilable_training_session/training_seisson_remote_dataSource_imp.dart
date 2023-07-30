@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:get_storage/get_storage.dart';
 import 'package:naz_gem/core/network/app_setting.dart';
 
 
@@ -25,6 +26,7 @@ class TrainingSessionRemoteDataSourceImp extends TrainingSessionRemoteDataSource
       );
       final  decodedJson = json.decode(response.body);
       if (response.statusCode == 200) {
+        GetStorage().write('lastPage',decodedJson['meta']['last_page']);
         final List<SessionModel> listModels = decodedJson['data']
             .map<SessionModel>((jsonPostModel) => SessionModel.fromJson(jsonPostModel))
             .toList();

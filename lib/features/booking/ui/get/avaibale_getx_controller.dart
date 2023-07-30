@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:intl/intl.dart';
 import 'package:naz_gem/features/booking/domain/use_case/get_session_use_case.dart';
 
@@ -22,20 +23,24 @@ class AvailableGetxController extends GetxController {
   static AvailableGetxController get to => Get.find<AvailableGetxController>();
 
   getAllAvailableSessions({date, page}) {
-    avilableSessionLoading.value = true;
+    page >1 ?isPageLoading.value = true:avilableSessionLoading.value = true;
+
     GetAllSessionsUseCase(repository: Get.find<AvialbleRepoImp>())
         .call(date: date)
         .then((value) => value.fold((failure) {
               responseMessage = mapFailureToMessage(failure);
               avilableSessionLoading.value = false;
+              isPageLoading.value = false;
             }, (session) async {
               if (date != currentDate) {
                 sessionsDay.clear();
-                currentDate.value = DateFormat('yyyy-MM-dd').format(date);
+                currentDate.value = date;
+                lastPage = GetStorage().read("lastPage");
               }
               sessionsDay.addAll(session);
               // filtterByDate(session);
               avilableSessionLoading.value = false;
+              isPageLoading.value = false;
             }));
   }
 
