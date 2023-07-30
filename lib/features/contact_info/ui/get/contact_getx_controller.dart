@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 import 'package:naz_gem/features/contact_info/data/repository/contact_repo_imp.dart';
@@ -12,6 +14,7 @@ import '../widgets/contact_class.dart';
 class ContactGetxController extends GetxController {
   var responseMessage = '';
   RxList<Contact> contacts = <Contact>[].obs;
+  List workingHour = [];
   bool isLogout = false;
   String facebook = '';
   String instagram = '';
@@ -77,8 +80,8 @@ class ContactGetxController extends GetxController {
         .where((element) => element.key == 'website')
         .first
         .value ?? '';
-
-
+     //مواعيد العمل
+    workingHour = json.decode(contacts.where((element) => element.key == 'working_hours').first.value!);
     /// constant
     facebook = contacts
         .where((element) => element.key == 'facebook')

@@ -6,7 +6,6 @@ import 'package:loading_indicator/loading_indicator.dart';
 import 'package:naz_gem/core/constants/app_colors.dart';
 import 'package:naz_gem/core/widgets/app_widget.dart';
 import 'package:naz_gem/features/contact_info/ui/get/contact_getx_controller.dart';
-import 'package:naz_gem/features/contact_info/ui/widgets/contact_class.dart';
 
 import '../widgets/ContactLowerSctionsWidget.dart';
 import '../widgets/ContactUpperSectionsWidget.dart';
