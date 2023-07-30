@@ -31,10 +31,10 @@ class AvialbleRepoImp extends AvailableRepo {
   }
 
   @override
-  Future<Either<Failure, List<Session>>> getAllTrainingSessions() async {
+  Future<Either<Failure, List<Session>>> getAllTrainingSessions(date,page) async {
     if (await networkInfo.isConnected) {
       try {
-        final sessions = await trainingSessionRemoteDataSource.getAllTrainingSessions();
+        final sessions = await trainingSessionRemoteDataSource.getAllTrainingSessions(date,page);
         return Right(sessions);
       } on ServerException {
         return Left(ServerFailure());

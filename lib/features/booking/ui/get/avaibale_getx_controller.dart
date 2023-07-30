@@ -1,38 +1,40 @@
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-import 'package:naz_gem/features/booking/data/repository/trainees_repo_imp.dart';
-import 'package:naz_gem/features/booking/domain/repository/trainees_repo.dart';
-import 'package:naz_gem/features/booking/domain/use_case/cancel_session_use_case.dart';
 import 'package:naz_gem/features/booking/domain/use_case/get_session_use_case.dart';
-import 'package:naz_gem/features/booking/domain/use_case/get_user_training_sessions_use_case.dart';
 
 import '../../../../core/constants/utils.dart';
 import '../../data/repository/avilable_seisson_repo_imp.dart';
 import '../../domain/entities/session.dart';
-import '../../domain/repository/avilabe_repo.dart';
 import '../../domain/use_case/get_all_session_use_case.dart';
-import '../../domain/use_case/get_training_session_history.dart';
-import '../../domain/use_case/get_user_training_session_use_case.dart';
-import '../../domain/use_case/reservation_new_training_session_use_case.dart';
 
 class AvailableGetxController extends GetxController {
   RxBool avilableSessionLoading = false.obs;
-  RxMap<String, List<Session>> map = <String, List<Session>>{}.obs;
+  RxBool isPageLoading = false.obs;
+
+  // RxMap<String, List<Session>> map = <String, List<Session>>{}.obs;
+  RxList<Session> sessionsDay = <Session>[].obs;
   RxString currentDate = DateFormat('yyyy-MM-dd').format(DateTime.now()).obs;
 
   String responseMessage = '';
+  int lastPage = 1;
+  int currentPage = 1;
 
   static AvailableGetxController get to => Get.find<AvailableGetxController>();
 
-  getAllAvailableSessions() {
+  getAllAvailableSessions({date, page}) {
     avilableSessionLoading.value = true;
     GetAllSessionsUseCase(repository: Get.find<AvialbleRepoImp>())
-        .call()
+        .call(date: date)
         .then((value) => value.fold((failure) {
-           responseMessage = mapFailureToMessage(failure);
+              responseMessage = mapFailureToMessage(failure);
               avilableSessionLoading.value = false;
             }, (session) async {
-              filtterByDate(session);
+              if (date != currentDate) {
+                sessionsDay.clear();
+                currentDate.value = DateFormat('yyyy-MM-dd').format(date);
+              }
+              sessionsDay.addAll(session);
+              // filtterByDate(session);
               avilableSessionLoading.value = false;
             }));
   }
@@ -43,29 +45,26 @@ class AvailableGetxController extends GetxController {
         .then((value) => value.fold((failure) {}, (session) async {}));
   }
 
+//عمل فلتر للداتا كل واحدة في مكانها الصحيح
+// void filtterByDate(List<Session> session) {
+//   putDataToMap();
+//   for(Session s in session){
+//     if(map.containsKey(s.date)){
+//       map[s.date]?.add(s);
+//     }else {
+//       map[s.date!] = [];
+//       map[s.date]?.add(s);
+//     }
+//   }
+// }
 
-  //عمل فلتر للداتا كل واحدة في مكانها الصحيح
-  void filtterByDate(List<Session> session) {
-    putDataToMap();
-    for(Session s in session){
-      if(map.containsKey(s.date)){
-        map[s.date]?.add(s);
-      }else {
-        map[s.date!] = [];
-        map[s.date]?.add(s);
-      }
-    }
-  }
-
-  putDataToMap(){
-    var startOfCurrentWeek = DateTime.now();
-    for (int index = 0; index < 6; index++) {
-      DateTime addDate = startOfCurrentWeek.add(Duration(days: (index)));
-      index + 1;
-      var s = DateFormat('yyyy-MM-dd').format(addDate);
-      map[s] = [];
-    }
-  }
+// putDataToMap(){
+//   var startOfCurrentWeek = DateTime.now();
+//   for (int index = 0; index < 6; index++) {
+//     DateTime addDate = startOfCurrentWeek.add(Duration(days: (index)));
+//     index + 1;
+//     var s = DateFormat('yyyy-MM-dd').format(addDate);
+//     map[s] = [];
+//   }
+// }
 }
-
-

@@ -20,12 +20,30 @@ class BookingScreen extends StatefulWidget {
 
 class _BookingScreenState extends State<BookingScreen> {
   var flag = true;
+  late ScrollController scrollController;
 
   @override
   void initState() {
-    AvailableGetxController.to.getAllAvailableSessions();
+    scrollController = ScrollController();
+    scrollController.addListener(_listener);
+
+    AvailableGetxController.to.getAllAvailableSessions(
+        date: AvailableGetxController.to.currentDate, page: 1);
     UserSessionGetxController.to.getUserSessions();
     super.initState();
+  }
+
+  void _listener() {
+    if (scrollController.position.pixels ==
+        scrollController.position.maxScrollExtent) {
+      AvailableGetxController.to.currentPage++;
+      if (AvailableGetxController.to.currentPage <=
+          AvailableGetxController.to.lastPage) {
+        AvailableGetxController.to.getAllAvailableSessions(
+            date: AvailableGetxController.to.currentDate,
+            page: AvailableGetxController.to.currentPage);
+      }
+    }
   }
 
   @override
@@ -40,7 +58,7 @@ class _BookingScreenState extends State<BookingScreen> {
             HorizontalWeekCalendar(
               // weekStartFrom: WeekStartFrom.Monday,
               activeBackgroundColor:
-              GetStorage().read("package_typ") == 1 ? mainColor : btnColor,
+                  GetStorage().read("package_typ") == 1 ? mainColor : btnColor,
               activeTextColor: GetStorage().read("package_typ") == 1
                   ? blackTextColor
                   : Colors.white,
@@ -79,7 +97,10 @@ class _BookingScreenState extends State<BookingScreen> {
                         itemBuilder: (context, index) {
                           return ItemOneWidget(
                             flag: flag,
-                            backgroundColor: GetStorage().read("package_typ") == 1 ? mainColor : btnColor,
+                            backgroundColor:
+                                GetStorage().read("package_typ") == 1
+                                    ? mainColor
+                                    : btnColor,
                             reservationSession:
                                 UserSessionGetxController.to.map[
                                     UserSessionGetxController
@@ -112,9 +133,7 @@ class _BookingScreenState extends State<BookingScreen> {
               // monthColor: Colors.purple,
               onDateChange: (date) {
                 setState(() {
-                  AvailableGetxController.to.currentDate.value =
-                      DateFormat('yyyy-MM-dd').format(date);
-                  print(AvailableGetxController.to.currentDate.value);
+                  AvailableGetxController.to.getAllAvailableSessions(date:DateFormat('yyyy-MM-dd').format(date),page: 1);
                 });
               },
             ),
@@ -123,14 +142,13 @@ class _BookingScreenState extends State<BookingScreen> {
                 ? buildSizedBoxLoading(context)
                 : AvailableGetxController
                         .to
-                        .map[AvailableGetxController.to.currentDate.value]!
+                        .sessionsDay
                         .isEmpty
                     ? SizedBox(child: buildCenterNoData('لا يوجد مواعيد متاحة'))
                     : ListView.builder(
                         itemCount: AvailableGetxController
                             .to
-                            .map[AvailableGetxController.to.currentDate.value]!
-                            .length,
+                            .sessionsDay.length,
                         shrinkWrap: true,
                         padding: EdgeInsets.all(8.r),
                         physics: const NeverScrollableScrollPhysics(),
@@ -139,13 +157,17 @@ class _BookingScreenState extends State<BookingScreen> {
                             image: GetStorage().read("package_typ") == 1
                                 ? 'assets/images/card_background.png'
                                 : 'assets/images/card_background2.png',
-                            backgroundColor: GetStorage().read("package_typ") == 1 ? mainColor : btnColor,
-                            session: AvailableGetxController.to.map[
-                                AvailableGetxController
-                                    .to.currentDate.value]![index],
+                            backgroundColor:
+                                GetStorage().read("package_typ") == 1
+                                    ? mainColor
+                                    : btnColor,
+                            session: AvailableGetxController.to.sessionsDay[index],
                           );
                         },
-                      )
+                      ),
+            getSpace(h: 10.h),
+            if (AvailableGetxController.to.isPageLoading.value)
+              buildSizedBoxLoading(context)
           ],
         );
       }),

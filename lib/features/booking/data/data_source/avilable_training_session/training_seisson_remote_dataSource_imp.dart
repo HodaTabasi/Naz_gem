@@ -18,9 +18,9 @@ class TrainingSessionRemoteDataSourceImp extends TrainingSessionRemoteDataSource
   TrainingSessionRemoteDataSourceImp({required this.client});
 
   @override
-  Future<List<SessionModel>> getAllTrainingSessions() async {
+  Future<List<SessionModel>> getAllTrainingSessions(date,page) async {
       final response = await client.get(
-        Uri.parse(baseUrl + getAllTrainingSession),
+        Uri.parse('$baseUrl$getAllTrainingSession?date=$date&page=$page'),
         headers: headers,
       );
       final  decodedJson = json.decode(response.body);

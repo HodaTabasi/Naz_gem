@@ -9,7 +9,7 @@ class GetAllSessionsUseCase {
 
   GetAllSessionsUseCase({required this.repository});
 
-  Future<Either<Failure, List<Session>>> call() async {
-    return await repository.getAllTrainingSessions();
+  Future<Either<Failure, List<Session>>> call({date,page}) async {
+    return await repository.getAllTrainingSessions(date,page);
   }
 }
