@@ -33,7 +33,7 @@ class ProfileItemWidgetDate extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   getText(text,color: Colors.black,size: 16.sp),
-                  getText('25 سنة ',color: grayTextColor,size: 12.sp),
+                  getText('${getAge(text)} سنة ',color: grayTextColor,size: 12.sp),
                 ],
               )
             ],
@@ -42,5 +42,9 @@ class ProfileItemWidgetDate extends StatelessWidget {
         getSpace(h: 16.h)
       ],
     );
+  }
+
+  getAge(String text) {
+    return DateTime.now().year - int.parse(text.split("-").first);
   }
 }

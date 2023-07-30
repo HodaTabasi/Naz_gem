@@ -27,6 +27,11 @@ class UserModel extends User {
             profileImage: profileImage);
 
   factory UserModel.fromJson(Map<String, dynamic> json) {
+    print(json);
+    // print(json.containsKey('length'));
+    // print(json.containsKey('blood_type'));
+    // print(json.containsKey('profile_image'));
+
     UserModel user = UserModel(
       phone: json['phone'],
       email: json['email'],
@@ -34,16 +39,13 @@ class UserModel extends User {
       id: json['id'],
       lastName: json['last_name'],
       firstName: json['first_name'],
+      length: json['length'].toString()??'',
+      bloodType: json['blood_type']??'',
+      profileImage: json['profile_image']
     );
     if (json.containsKey('birthdate')) {
       user.birthdate = json['birthdate'];
-    } else if (json.containsKey('length')) {
-      user.length = json['length'];
-    } else if (json.containsKey('blood_type')) {
-      user.bloodType = json['blood_type']??'';
-    } else if (json.containsKey('profile_image')) {
-      user.profileImage = json['profile_image'];
-    } else if (json.containsKey('type')) {
+    }else if (json.containsKey('type')) {
       user.type = json['type'];
     }
 

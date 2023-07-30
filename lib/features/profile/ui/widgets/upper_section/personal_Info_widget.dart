@@ -21,7 +21,7 @@ class PersonalInfoWidget extends StatelessWidget {
         leading: CircleAvatar(
           backgroundColor: Colors.grey,
           backgroundImage: NetworkImage(controller.myUser.profileImage != null
-              ? '$baseUrlImage${controller.myUser.profileImage!}'
+              ? controller.myUser.profileImage!
               : "https://1.bp.blogspot.com/-4l0CGOzR_2s/YGAWcctx5XI/AAAAAAAAVkU/ziLQpEpGhFUyhAyz76IUgaHnEibKanltACLcBGAsYHQ/w528-h640/5.jpg"),
           radius: 40.r,
         ),
