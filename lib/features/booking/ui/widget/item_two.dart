@@ -8,6 +8,7 @@ import 'package:naz_gem/features/booking/domain/entities/session.dart';
 import 'package:naz_gem/features/booking/ui/get/user_session_getx_controller.dart';
 
 import '../../../../core/constants/app_colors.dart';
+import '../../../../core/constants/snackbar_message.dart';
 import 'custom_dialog.dart';
 import 'item2_widget/rish_data.dart';
 import 'name_of_exercise_widget.dart';
@@ -89,6 +90,16 @@ class ItemTwoWidget extends StatelessWidget {
                       builder: (context) => CoustomDialog(
                         title:'🤩 تم الحجز بنجاح',
                         image:'animation_lk5219r6.json' ,
+                        onClick:(){
+                          Get.back();
+                        },
+                        flag: false,)
+                  );
+                }else {
+                  showDialog(context: context,
+                      builder: (context) => CoustomDialog(
+                        title:'${UserSessionGetxController.to.responseMessage}',
+                        image:'animation_lk527tw6.json' ,
                         onClick:(){
                           Get.back();
                         },

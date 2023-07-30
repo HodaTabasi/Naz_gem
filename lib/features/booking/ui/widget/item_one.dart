@@ -5,17 +5,18 @@ import 'package:naz_gem/features/booking/domain/entities/reservation_session.dar
 import 'package:naz_gem/features/booking/ui/get/user_session_getx_controller.dart';
 
 import '../../../../core/constants/app_colors.dart';
+import '../../../../core/constants/snackbar_message.dart';
 import '../../../../core/widgets/app_widget.dart';
 import 'item1_widget/rich_data.dart';
 import 'name_of_exercise_widget.dart';
 
 class ItemOneWidget extends StatelessWidget {
-
   final Color backgroundColor;
   final bool flag;
   ReservationSession reservationSession;
 
-  var my ;
+  var my;
+
   ItemOneWidget({
     super.key,
     required this.flag,
@@ -23,8 +24,6 @@ class ItemOneWidget extends StatelessWidget {
     this.my = true,
     required this.reservationSession,
   });
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -54,13 +53,15 @@ class ItemOneWidget extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   nameOfExerciseWidget(
-                    text1: '${reservationSession.trainingSession?.sessionType} -',
+                    text1:
+                        '${reservationSession.trainingSession?.sessionType} -',
                     text2: ' ${reservationSession.trainingSession?.name}',
                   ),
                   Row(
                     children: [
                       RishWidget(
-                        text: ' ${reservationSession.trainingSession?.startAt?.split(":").first}-${reservationSession.trainingSession?.endAt!.split(":").first} مسائًا',
+                        text:
+                            ' ${reservationSession.trainingSession?.startAt?.split(":").first}-${reservationSession.trainingSession?.endAt!.split(":").first} مسائًا',
                         icon: Icons.timer_outlined,
                       ),
                       getSpace(w: 8.h),
@@ -73,7 +74,7 @@ class ItemOneWidget extends StatelessWidget {
                       ),
                       getSpace(w: 16.h),
                       Opacity(
-                        opacity: my?1:0,
+                        opacity: my ? 1 : 0,
                         child: ElevatedButton(
                             style: ElevatedButton.styleFrom(
                                 fixedSize: Size(95.w, 35.h),
@@ -83,12 +84,27 @@ class ItemOneWidget extends StatelessWidget {
                                     fontFamily: 'br'),
                                 backgroundColor: redColor,
                                 shape: RoundedRectangleBorder(
-                                    borderRadius:
-                                    BorderRadius.circular(8.r))),
-                            onPressed: () {
-                              UserSessionGetxController.to.cancelUserSessions(reservationSession.id.toString(),date: reservationSession.trainingSession?.date);
+                                    borderRadius: BorderRadius.circular(8.r))),
+                            onPressed: () async {
+                              bool done = await UserSessionGetxController.to
+                                  .cancelUserSessions(
+                                      reservationSession.id.toString(),
+                                      date: reservationSession
+                                          .trainingSession?.date);
+                              if (!done) {
+                                SnackBarMessage.showErrorSnackBar(
+                                    message: UserSessionGetxController
+                                        .to.responseMessage,
+                                    context: context);
+                              }
                             },
-                            child: Text('cancel_booking'.tr)),
+                            child: Text(
+                              'cancel_booking'.tr,
+                              style: TextStyle(
+                                  fontSize: 12.sp,
+                                  color: Colors.white,
+                                  fontFamily: 'br'),
+                            )),
                       )
                     ],
                   )

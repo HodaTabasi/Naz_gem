@@ -46,7 +46,7 @@ class PakageItemWidget extends StatelessWidget {
               // mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 getSpace(h: 25.h),
-                getText(currentPackag.durationTypeName,
+                getText('${controller.getName(currentPackag)}',
                     color: grayTextColor, size: 13.sp, align: TextAlign.center),
                 getSpace(h: 10.h),
                 Row(
@@ -117,3 +117,5 @@ class PakageItemWidget extends StatelessWidget {
     });
   }
 }
+
+

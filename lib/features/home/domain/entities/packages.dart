@@ -5,6 +5,8 @@ class Package extends Equatable {
   int? id;
   String? name;
   String? price;
+  int? sessionsCount;
+  int? duration;
   String? durationTypeName;
   String? details;
   int? categoryId;
@@ -19,6 +21,8 @@ class Package extends Equatable {
         this.details,
         this.categoryId,
         this.category,
+        this.duration,
+        this.sessionsCount,
         this.discounts});
 
   @override

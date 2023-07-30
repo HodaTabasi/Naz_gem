@@ -49,6 +49,14 @@ class HomeGetxController extends GetxController {
     }
   }
 
+  getName(Package currentPackag) {
+    if( currentPackag.categoryId == 2){
+      return '${currentPackag.duration} ${currentPackag.durationTypeName}';
+    }else if(currentPackag.categoryId == 1){
+      return '${currentPackag.sessionsCount} كلاس ';
+    }
+  }
+
   getPackages() {
     packagesLoading.value = true;
     GetPackagesUseCase(repository: Get.find<HomeRepoImp>())

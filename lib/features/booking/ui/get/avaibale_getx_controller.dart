@@ -36,6 +36,8 @@ class AvailableGetxController extends GetxController {
                 sessionsDay.clear();
                 currentDate.value = date;
                 lastPage = GetStorage().read("lastPage");
+              }else if(page <= 1){
+                sessionsDay.clear();
               }
               sessionsDay.addAll(session);
               // filtterByDate(session);

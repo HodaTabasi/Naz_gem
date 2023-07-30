@@ -32,23 +32,29 @@ class UserSessionGetxController extends GetxController {
               responseMessage = mapFailureToMessage(failure);
               return false;
             }, (session) async {
+          print("object");
               EasyLoading.dismiss();
+              map[session.trainingSession?.date]!.add(session);
               update();
               return true;
             }));
   }
 
-  cancelUserSessions(String id,{date}) {
+  Future<bool> cancelUserSessions(String id,{date}) {
     EasyLoading.show(indicator: EasyLoading().indicatorWidget);
-    CancelSessionUseCase(repository: Get.find<TraineesRepoImp>())
+    return CancelSessionUseCase(repository: Get.find<TraineesRepoImp>())
         .call(id)
         .then((value) => value.fold((failure) {
           EasyLoading.dismiss();
           responseMessage = mapFailureToMessage(failure);
+          update();
+          return false;
     }, (session) async {
           EasyLoading.dismiss();
+          print(date);
           map[date]?.remove(session);
-          refresh();
+          update();
+          return true;
     }));
   }
 
@@ -105,7 +111,7 @@ class UserSessionGetxController extends GetxController {
 
   putDataToMap() {
     var startOfCurrentWeek = DateTime.now();
-    for (int index = 0; index < 6; index++) {
+    for (int index = 0; index < 7; index++) {
       DateTime addDate = startOfCurrentWeek.add(Duration(days: (index)));
       index + 1;
       var s = DateFormat('yyyy-MM-dd').format(addDate);

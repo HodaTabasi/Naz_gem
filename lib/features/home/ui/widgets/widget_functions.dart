@@ -97,7 +97,7 @@ void showDitailsDialog(BuildContext context, Package currentPackag) {
                         start: 0,
                         child: Column(
                           children: [
-                            getText('${currentPackag.durationTypeName}',
+                            getText('${HomeGetxController.to.getName(currentPackag)}',
                                 color: Colors.white, size: 16.sp),
                             getSpace(h: 10.h),
                             Row(
