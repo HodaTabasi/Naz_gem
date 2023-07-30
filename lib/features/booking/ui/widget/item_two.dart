@@ -74,7 +74,7 @@ class ItemTwoWidget extends StatelessWidget {
                     getSpace(h: 8.r),
                     RishWidget(backgroundColor: backgroundColor,
                       icon: Icons.person_outline,
-                      text: ' تدريب فردي ',),
+                      text: ' المقاعد المتاحة :${session.availableSeats} ',),
                   ],
                 ),
               )),
