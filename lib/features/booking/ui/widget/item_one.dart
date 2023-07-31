@@ -8,6 +8,7 @@ import '../../../../core/constants/app_colors.dart';
 import '../../../../core/constants/snackbar_message.dart';
 import '../../../../core/constants/utils.dart';
 import '../../../../core/widgets/app_widget.dart';
+import '../get/avaibale_getx_controller.dart';
 import 'item1_widget/rich_data.dart';
 import 'name_of_exercise_widget.dart';
 
@@ -47,7 +48,7 @@ class ItemOneWidget extends StatelessWidget {
                     bottomRight: Radius.circular(10.r))),
           ),
           PositionedDirectional(
-              end: my?8.w:0.w,
+              end: my ? 8.w : 0.w,
               bottom: 20.h,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
@@ -61,7 +62,8 @@ class ItemOneWidget extends StatelessWidget {
                   Row(
                     children: [
                       RishWidget(
-                        text: ' ${getTimeFrom24(reservationSession.trainingSession!)} ',
+                        text:
+                            ' ${getTimeFrom24(reservationSession.trainingSession!)} ',
                         icon: Icons.timer_outlined,
                       ),
                       getSpace(w: 8.h),
@@ -96,6 +98,10 @@ class ItemOneWidget extends StatelessWidget {
                                     message: UserSessionGetxController
                                         .to.responseMessage,
                                     context: context);
+                              } else {
+                                AvailableGetxController.to
+                                    .increaseAvailableSession(
+                                        reservationSession.trainingSession);
                               }
                             },
                             child: Text(

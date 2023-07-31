@@ -52,6 +52,16 @@ class AvailableGetxController extends GetxController {
         .then((value) => value.fold((failure) {}, (session) async {}));
   }
 
+  decreaseAvailableSession(session){
+    int index =sessionsDay.indexWhere((element) => element == session);
+    sessionsDay[index].availableSeats = sessionsDay[index].availableSeats! - 1;
+  }
+  increaseAvailableSession(session){
+    int index = sessionsDay.indexWhere((element) => element == session);
+    sessionsDay[index].availableSeats = sessionsDay[index].availableSeats! + 1;
+
+  }
+
 //عمل فلتر للداتا كل واحدة في مكانها الصحيح
 // void filtterByDate(List<Session> session) {
 //   putDataToMap();

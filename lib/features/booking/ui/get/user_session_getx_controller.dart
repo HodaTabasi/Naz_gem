@@ -14,10 +14,10 @@ import '../../domain/use_case/reservation_new_training_session_use_case.dart';
 class UserSessionGetxController extends GetxController {
   var responseMessage = '';
   RxBool userSessionLoading = false.obs;
-  RxMap<String, List<ReservationSession>> map =
-      <String, List<ReservationSession>>{}.obs;
+  RxMap<String, RxList<ReservationSession>> map =
+      <String, RxList<ReservationSession>>{}.obs;
   RxString currentDate = DateFormat('yyyy-MM-dd').format(DateTime.now()).obs;
-  RxMap<int,RxList<ReservationSession>> reservationHistory = <int,RxList<ReservationSession>>{}.obs;
+  RxMap<int,List<ReservationSession>> reservationHistory = <int,List<ReservationSession>>{}.obs;
 
   static UserSessionGetxController get to =>
       Get.find<UserSessionGetxController>();
@@ -52,7 +52,8 @@ class UserSessionGetxController extends GetxController {
     }, (session) async {
           EasyLoading.dismiss();
           print(date);
-          map[date]?.remove(session);
+          map[date]?.removeWhere((element) => element.trainingSession?.date == date,);
+          map[date]?.refresh();
           update();
           return true;
     }));
@@ -102,7 +103,7 @@ class UserSessionGetxController extends GetxController {
       if (map.containsKey(s.trainingSession?.date)) {
         map[s.trainingSession?.date]?.add(s);
       } else {
-        map[s.trainingSession!.date!] = [];
+        map[s.trainingSession!.date!] = <ReservationSession>[].obs;
         map[s.trainingSession?.date]?.add(s);
       }
     }
@@ -115,7 +116,7 @@ class UserSessionGetxController extends GetxController {
       DateTime addDate = startOfCurrentWeek.add(Duration(days: (index)));
       index + 1;
       var s = DateFormat('yyyy-MM-dd').format(addDate);
-      map[s] = [];
+      map[s] = <ReservationSession>[].obs;
     }
   }
 

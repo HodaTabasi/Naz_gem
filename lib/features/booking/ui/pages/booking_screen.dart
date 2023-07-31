@@ -26,11 +26,16 @@ class _BookingScreenState extends State<BookingScreen> {
   void initState() {
     scrollController = ScrollController();
     scrollController.addListener(_listener);
-
-    AvailableGetxController.to.getAllAvailableSessions(
+     AvailableGetxController.to.getAllAvailableSessions(
         date: AvailableGetxController.to.currentDate, page: 1);
     UserSessionGetxController.to.getUserSessions();
     super.initState();
+  }
+  @override
+  void dispose() {
+    AvailableGetxController.to.currentDate.value = DateFormat('yyyy-MM-dd').format(DateTime.now());
+    UserSessionGetxController.to.currentDate.value = DateFormat('yyyy-MM-dd').format(DateTime.now());
+    super.dispose();
   }
 
   void _listener() {
@@ -88,8 +93,7 @@ class _BookingScreenState extends State<BookingScreen> {
                     : ListView.builder(
                         itemCount: UserSessionGetxController
                             .to
-                            .map[
-                                UserSessionGetxController.to.currentDate.value]!
+                            .map[UserSessionGetxController.to.currentDate.value]!.value
                             .length,
                         shrinkWrap: true,
                         padding: EdgeInsets.all(8.r),
@@ -104,7 +108,7 @@ class _BookingScreenState extends State<BookingScreen> {
                             reservationSession:
                                 UserSessionGetxController.to.map[
                                     UserSessionGetxController
-                                        .to.currentDate.value]![index],
+                                        .to.currentDate.value]!.value[index],
                           );
                         },
                       ),
