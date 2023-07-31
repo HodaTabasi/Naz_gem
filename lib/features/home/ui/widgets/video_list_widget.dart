@@ -8,10 +8,14 @@ import '../../domain/entities/gallery.dart';
 
 class VideosListWidget extends StatefulWidget {
   HomeGetxController controller;
-   VideosListWidget(this.controller, {
+
+  VideosListWidget(
+    this.controller, {
     super.key,
   });
-  late List<Gallery> videos = controller.galleries.where((p0) => p0.typeName == 'vedio').toList();
+
+  late List<Gallery> videos =
+      controller.galleries.where((p0) => p0.typeName == 'Yotube').toList();
 
   @override
   State<VideosListWidget> createState() => _VideosListWidgetState();
@@ -19,9 +23,10 @@ class VideosListWidget extends StatefulWidget {
 
 class _VideosListWidgetState extends State<VideosListWidget> {
   late YoutubePlayerController _controller;
+
   @override
   void initState() {
-     _controller = YoutubePlayerController(
+    _controller = YoutubePlayerController(
       initialVideoId: 'iLnmTe5Q2Qw',
       flags: const YoutubePlayerFlags(
         autoPlay: true,
@@ -30,6 +35,7 @@ class _VideosListWidgetState extends State<VideosListWidget> {
     );
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -70,7 +76,9 @@ class _VideosListWidgetState extends State<VideosListWidget> {
                 child: Stack(
                   children: [
                     Image.network(
-                      "https://www.idonate.ie/images/newimage/sports-clubs-1.jpg",
+                      widget.videos[index].thumbnailPath != null
+                          ? widget.videos[index].thumbnailPath!
+                          : "https://www.idonate.ie/images/newimage/sports-clubs-1.jpg",
                       fit: BoxFit.cover,
                       width: 120.w,
                       height: 130.h,

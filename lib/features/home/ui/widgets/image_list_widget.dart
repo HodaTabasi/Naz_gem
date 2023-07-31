@@ -10,7 +10,7 @@ class ImagesListWidget extends StatelessWidget {
    ImagesListWidget(this.controller ,{
     super.key,
   });
-  late List<Gallery> images = controller.galleries.where((p0) => p0.typeName == 'image').toList();
+  late List<Gallery> images = controller.galleries.where((p0) => p0.typeName == 'Image').toList();
   @override
   Widget build(BuildContext context) {
     return SizedBox(

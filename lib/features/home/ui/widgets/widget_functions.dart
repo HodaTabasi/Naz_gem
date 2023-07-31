@@ -286,7 +286,7 @@ Future<dynamic> buildImageDialog(BuildContext context, url) {
     builder: (context) {
       return Center(
         child: SizedBox(
-          width: MediaQuery.of(context).size.width - 50.w,
+          width: MediaQuery.of(context).size.width - 20.w,
           // height: MediaQuery.of(context).size.height- 200.h,
           child: Stack(
             children: [
