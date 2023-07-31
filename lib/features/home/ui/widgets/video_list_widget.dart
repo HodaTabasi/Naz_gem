@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 import 'package:naz_gem/features/home/ui/get/home_getx_controller.dart';
+import 'package:naz_gem/features/home/ui/pages/show_vedio.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 import '../../domain/entities/gallery.dart';
@@ -22,19 +24,19 @@ class VideosListWidget extends StatefulWidget {
 }
 
 class _VideosListWidgetState extends State<VideosListWidget> {
-  late YoutubePlayerController _controller;
+  // late YoutubePlayerController _controller;
 
-  @override
-  void initState() {
-    _controller = YoutubePlayerController(
-      initialVideoId: 'iLnmTe5Q2Qw',
-      flags: const YoutubePlayerFlags(
-        autoPlay: true,
-        mute: false,
-      ),
-    );
-    super.initState();
-  }
+  // @override
+  // void initState() {
+  //   _controller = YoutubePlayerController(
+  //     initialVideoId: 'iLnmTe5Q2Qw',
+  //     flags: const YoutubePlayerFlags(
+  //       autoPlay: true,
+  //       mute: false,
+  //     ),
+  //   );
+  //   super.initState();
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -46,24 +48,18 @@ class _VideosListWidgetState extends State<VideosListWidget> {
         itemBuilder: (context, index) {
           return InkWell(
             onTap: () {
+              Get.to(()=>VideoPlayerScreen(widget.videos[index].yotubeVedioUrl!.split("=").last));
               // showDialog(
               //   context: context,
               //   builder: (context) {
               //     return Dialog(
-              //       child: DecoratedBox(
+              //       child: Container(
+              //         width: MediaQuery.of(context).size.width,
               //         decoration: BoxDecoration(
+              //           color: Colors.transparent,
               //           borderRadius: BorderRadiusDirectional.circular(20.r)
               //         ),
-              //         child: YoutubePlayer(
-              //           controller: _controller,
-              //           showVideoProgressIndicator: true,
-              //           aspectRatio: 3/3,
-              //           onReady: () {
-              //         _controller.addListener(() {
-              //
-              //         },);
-              //         },
-              //         ),
+              //         child: ShowVideo(widget.videos[index].yotubeVedioUrl!.split("=").last),
               //       ),
               //     );
               //   },
