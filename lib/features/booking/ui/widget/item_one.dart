@@ -6,6 +6,7 @@ import 'package:naz_gem/features/booking/ui/get/user_session_getx_controller.dar
 
 import '../../../../core/constants/app_colors.dart';
 import '../../../../core/constants/snackbar_message.dart';
+import '../../../../core/constants/utils.dart';
 import '../../../../core/widgets/app_widget.dart';
 import 'item1_widget/rich_data.dart';
 import 'name_of_exercise_widget.dart';
@@ -46,7 +47,7 @@ class ItemOneWidget extends StatelessWidget {
                     bottomRight: Radius.circular(10.r))),
           ),
           PositionedDirectional(
-              end: 30.w,
+              end: my?8.w:0.w,
               bottom: 20.h,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
@@ -60,8 +61,7 @@ class ItemOneWidget extends StatelessWidget {
                   Row(
                     children: [
                       RishWidget(
-                        text:
-                            ' ${reservationSession.trainingSession?.startAt?.split(":").first}-${reservationSession.trainingSession?.endAt!.split(":").first} مسائًا',
+                        text: ' ${getTimeFrom24(reservationSession.trainingSession!)} ',
                         icon: Icons.timer_outlined,
                       ),
                       getSpace(w: 8.h),

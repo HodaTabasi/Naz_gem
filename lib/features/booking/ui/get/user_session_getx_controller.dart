@@ -17,7 +17,7 @@ class UserSessionGetxController extends GetxController {
   RxMap<String, List<ReservationSession>> map =
       <String, List<ReservationSession>>{}.obs;
   RxString currentDate = DateFormat('yyyy-MM-dd').format(DateTime.now()).obs;
-  RxMap<int,List<ReservationSession>> reservationHistory = <int,List<ReservationSession>>{}.obs;
+  RxMap<int,RxList<ReservationSession>> reservationHistory = <int,RxList<ReservationSession>>{}.obs;
 
   static UserSessionGetxController get to =>
       Get.find<UserSessionGetxController>();
@@ -120,8 +120,8 @@ class UserSessionGetxController extends GetxController {
   }
 
   void getMapData(List<ReservationSession> session) {
-    reservationHistory[0] = [];
-    reservationHistory[1] = [];
+    reservationHistory[0] = <ReservationSession>[].obs;
+    reservationHistory[1] = <ReservationSession>[].obs;
     for (ReservationSession s in session) {
       if (s.trainingSession?.categoryId == 2) {
         reservationHistory[0]?.add(s);

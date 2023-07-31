@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 
+import '../../features/booking/domain/entities/session.dart';
 import '../error/failures.dart';
 import '../strings/failures.dart';
 import '../widgets/app_widget.dart';
@@ -45,5 +47,14 @@ getDiscount(currentPackag){
     print(priceAfterDiscount);
     return priceAfterDiscount;
   }
+}
+
+getTimeFrom24(Session session) {
+  DateTime start = DateTime.parse('${session.date} ${session.startAt}');
+  DateTime end = DateTime.parse('${session.date} ${session.endAt}');
+  String s= DateFormat.jm().format(start).split(" ").first;
+  String e = DateFormat.jm().format(end).split(' ').first;
+  String time = DateFormat.jm().format(end).split(' ').last == 'PM' ?'مسائًا':'صباحا';
+  return '$s - $e  $time ';
 }
 

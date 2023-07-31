@@ -3,12 +3,14 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:intl/intl.dart';
 import 'package:naz_gem/core/widgets/app_widget.dart';
 import 'package:naz_gem/features/booking/domain/entities/session.dart';
 import 'package:naz_gem/features/booking/ui/get/user_session_getx_controller.dart';
 
 import '../../../../core/constants/app_colors.dart';
 import '../../../../core/constants/snackbar_message.dart';
+import '../../../../core/constants/utils.dart';
 import 'custom_dialog.dart';
 import 'item2_widget/rish_data.dart';
 import 'name_of_exercise_widget.dart';
@@ -70,7 +72,7 @@ class ItemTwoWidget extends StatelessWidget {
                     getSpace(h: 16.r),
                     RishWidget(backgroundColor: backgroundColor,
                       icon: Icons.timer_outlined,
-                      text: ' ${session.startAt?.split(":").first}-${session.endAt!.split(":").first} مسائًا',),
+                      text: ' ${getTimeFrom24(session)}  ',),
                     getSpace(h: 8.r),
                     RishWidget(backgroundColor: backgroundColor,
                       icon: Icons.person_outline,
@@ -131,5 +133,7 @@ class ItemTwoWidget extends StatelessWidget {
       ),
     );
   }
+
+
 }
 
