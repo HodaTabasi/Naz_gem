@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import '../../navigation_bar/bottom_navigation_page.dart';
 import '../auth/ui/pages/login.dart';
 import 'onboard_widget.dart';
 
@@ -60,16 +61,16 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
             padding: EdgeInsets.all(10.0.r),
             child: InkWell(
               onTap: () {
-                Get.offAll(()=>const LoginScreen(),transition: Transition.downToUp,
+                Get.offAll(()=>const BottomNavigationPage(),transition: Transition.downToUp,
                     duration: const Duration(milliseconds: 500));
               },
               child: Row(
                 children: [
-                  Text("skip".tr, style: TextStyle(fontSize: 16.sp)),
+                  Text("skip".tr, style: TextStyle(fontSize: 16.sp,color: Colors.white)),
                   SizedBox(
                     width: 8.h,
                   ),
-                  Icon(Icons.arrow_forward_ios_rounded),
+                  Icon(Icons.arrow_forward_ios_rounded,color: Colors.white),
                 ],
               ),
             ),

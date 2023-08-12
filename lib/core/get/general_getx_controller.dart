@@ -12,20 +12,20 @@ class GeneralGetxController extends GetxController {
       Get.find<GeneralGetxController>();
 
   String? mobileValidation(String? value) {
-    if(value == null){
-      return 'enter Phone number';
+    if(value == null || value.isEmpty){
+      return 'lenght_condation'.tr;
     }else if(!GetUtils.isPhoneNumber(value)){
-      return 'enter valid Phone number';
+      return 'valid_phone'.tr;
     } else {
       return null;
     }
   }
 
   String? emailValidation(String? value) {
-    if(value == null){
-      return 'enter email ';
+    if(value == null || value.isEmpty){
+      return 'lenght_condation'.tr;
     }else if(!GetUtils.isEmail(value)){
-      return 'enter valid email ';
+      return 'valid_email'.tr;
     } else {
       return null;
     }
@@ -34,8 +34,10 @@ class GeneralGetxController extends GetxController {
 
   String? nameValidation(String? value) {
     if(value == null || value.isEmpty){
-      return 'enter required Filed ';
-    } else {
+      return 'lenght_condation'.tr;
+    } else if(value.length < 4) {
+      return 'valid_name'.tr;
+    }else {
       return null;
     }
   }

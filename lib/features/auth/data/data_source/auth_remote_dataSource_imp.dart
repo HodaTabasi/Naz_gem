@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:get_storage/get_storage.dart';
 import 'package:naz_gem/core/network/app_setting.dart';
@@ -20,21 +21,24 @@ class AuthRemoteDataSourceImp extends AuthRemoteDataSource {
   @override
   Future<UserModel> createAccount(UserModel userModel) async {
     var map = {
-      "first_name":userModel.firstName,
-      "last_name":userModel.lastName,
-      "phone":userModel.phone,
-      "email":userModel.email,
+      "first_name":userModel.firstName.toString(),
+      "last_name":userModel.lastName.toString(),
+      "phone":userModel.phone.toString(),
+      "email":userModel.email.toString(),
     };
 
     print(map);
+    print(Uri.parse(baseUrl + createUser));
 
     final response = await client.post(
       Uri.parse(baseUrl + createUser),
-      // headers: {"Content-Type": "application/json"},
+      headers: {'Accept': "application/json"},
        body:map
     );
+    print("dgdg ${response.body}");
+
+
     var  decodedJson = json.decode(response.body);
-    print(response.body);
     if (response.statusCode == 201) {
       GetStorage().write('otp', decodedJson['otp_code']);
       return UserModel.fromJson(decodedJson['user']);
@@ -52,7 +56,7 @@ class AuthRemoteDataSourceImp extends AuthRemoteDataSource {
     };
     final response = await client.post(
         Uri.parse(baseUrl + loginUser),
-        // headers: {"Content-Type": "application/json"},
+        headers: {'Accept': "application/json"},
         body:map
     );
     var  decodedJson = json.decode(response.body);
@@ -72,7 +76,7 @@ class AuthRemoteDataSourceImp extends AuthRemoteDataSource {
     };
     final response = await client.post(
         Uri.parse(baseUrl + sendOTPApi),
-        // headers: {"Content-Type": "application/json"},
+        headers: {'Accept': "application/json"},
         body:map
     );
     var  decodedJson = json.decode(response.body);

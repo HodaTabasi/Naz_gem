@@ -108,6 +108,10 @@ class TranslateWord extends Translations {
       'm1':'  ',
       'm2':' ',
       'm3':'  ',
+      'lenght_condation':'  ',
+      'valid_phone':'  ',
+      'valid_email':'  ',
+      'valid_name':'  ',
     },
     'ar': {
       'skip': 'تخطي',
@@ -201,6 +205,10 @@ class TranslateWord extends Translations {
       'm1':'من خلال التسجيل فأنت توافق على  ',
       'm2':'مالشروط والأحكام \nوسياسة الاستخدام ',
       'm3':' الخاصة بنا ',
+      'lenght_condation':' هذا الحقل اجباري ',
+      'valid_phone':' يجب ان يحتوي رقم الهاتف على 10 ارقام ',
+      'valid_email':' يجب ان يحتوي على صيغة ايميل ',
+      'valid_name':' يجب ان يكون طول النص اكبر من 4 احرف ',
     }
   };
 }

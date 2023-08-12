@@ -32,7 +32,7 @@ class _SplashScreenState extends State<SplashScreen> {
           children: [
             AnimatedPositioned(
                 onEnd: () {
-                  if (GetStorage().hasData('token')) {
+                  if (GetStorage().read("token") != null) {
                     Get.offAll(() => BottomNavigationPage(),
                         transition: Transition.downToUp,
                         duration: const Duration(milliseconds: 500));

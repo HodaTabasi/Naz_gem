@@ -18,6 +18,22 @@ class AuthGetxController extends GetxController {
   bool isCreated = false;
   String responseMessage = '';
   late String phone = '' ;
+  TextEditingController num1Controller = TextEditingController();
+  TextEditingController num2Controller = TextEditingController();
+  TextEditingController num3Controller = TextEditingController();
+  TextEditingController num6Controller = TextEditingController();
+
+  bool checkControllerEmpty(){
+    if(num1Controller.text.isNotEmpty &&
+    num2Controller.text.isNotEmpty &&
+    num3Controller.text.isNotEmpty &&
+    num6Controller.text.isNotEmpty){
+      return true;
+    }else {
+      return false;
+    }
+  }
+
 
   Future<bool> login({phone, otp}) {
     EasyLoading.show(indicator: EasyLoading().indicatorWidget);

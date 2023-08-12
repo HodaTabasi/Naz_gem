@@ -6,6 +6,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../core/constants/SizeConfig.dart';
 import '../../../../core/themes/style.dart';
+import '../get/auth_getx_controller.dart';
 
 
 class OtpForm extends StatefulWidget {
@@ -95,6 +96,10 @@ class _OtpFormState extends State<OtpForm>{
       focusNode.requestFocus();
     }
   }
+  void previousField(String value, FocusNode focusNode) {
+      focusNode.requestFocus();
+
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -112,7 +117,7 @@ class _OtpFormState extends State<OtpForm>{
                   width: getProportionateScreenWidth(50),
                   height: getProportionateScreenHeight(50),
                   child: TextFormField(
-                    // controller:NewAccountGetxController.to.num1Controller,
+                    controller:AuthGetxController.to.num1Controller,
                     autofocus: true,
                     focusNode: pin1FocusNode,
                     obscureText: false,
@@ -123,6 +128,7 @@ class _OtpFormState extends State<OtpForm>{
                     decoration: otpInputDecoration,
                     maxLength: 1,
                     onChanged: (value) {
+                      print("object");
                       nextField(value, pin2FocusNode!);
                       // _getClipboardText();
                     },
@@ -135,7 +141,7 @@ class _OtpFormState extends State<OtpForm>{
                   width: getProportionateScreenWidth(50),
                   height: getProportionateScreenHeight(50),
                   child: TextFormField(
-                    // controller: NewAccountGetxController.to.num2Controller,
+                    controller: AuthGetxController.to.num2Controller,
                     focusNode: pin2FocusNode,
                     inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                     obscureText: false,
@@ -145,7 +151,12 @@ class _OtpFormState extends State<OtpForm>{
                     decoration: otpInputDecoration,
                     maxLength: 1,
                     onChanged: (value){
-                      nextField(value, pin3FocusNode!);
+                      if (value.isEmpty) {
+                        previousField(value, pin1FocusNode!);
+                      } else {
+                        nextField(value, pin3FocusNode!);
+                      }
+
                       // if(value.length == 0){
                       //   pin2FocusNode!.requestFocus();
                       // }
@@ -160,7 +171,7 @@ class _OtpFormState extends State<OtpForm>{
                   width: getProportionateScreenWidth(50),
                   height: getProportionateScreenHeight(50),
                   child: TextFormField(
-                    // controller: NewAccountGetxController.to.num3Controller,
+                    controller: AuthGetxController.to.num3Controller,
                     focusNode: pin3FocusNode,
                     inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                     obscureText: false,
@@ -170,7 +181,12 @@ class _OtpFormState extends State<OtpForm>{
                     decoration: otpInputDecoration,
                     maxLength: 1,
                     onChanged: (value) {
-                      nextField(value, pin5FocusNode!);
+                      if (value.isEmpty) {
+                        previousField(value, pin2FocusNode!);
+                      } else {
+                        nextField(value, pin5FocusNode!);
+                      }
+
                       // if(value.length == 0){
                       //   pin2FocusNode!.requestFocus();
                       // }
@@ -185,7 +201,7 @@ class _OtpFormState extends State<OtpForm>{
                   width: getProportionateScreenWidth(50),
                   height: getProportionateScreenHeight(50),
                   child: TextFormField(
-                    // controller: NewAccountGetxController.to.num6Controller,
+                    controller: AuthGetxController.to.num6Controller,
                     focusNode: pin5FocusNode,
                     inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                     obscureText: false,
@@ -195,10 +211,13 @@ class _OtpFormState extends State<OtpForm>{
                     decoration: otpInputDecoration,
                     maxLength: 1,
                     onChanged: (value) {
-                      if (value.length == 1) {
+
+                      if (value.isEmpty) {
+                        previousField(value, pin3FocusNode!);
+                      } else {
                         pin5FocusNode!.unfocus();
                         onPress();
-                        }
+                      }
                     },
                   ),
                 ),

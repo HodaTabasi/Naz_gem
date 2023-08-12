@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 import '../constants/app_colors.dart';
 
@@ -62,12 +63,13 @@ class AppTextField extends StatelessWidget {
         prefixIcon: _hasSufix ?SizedBox(
           width: 60.w,
           child: Align(
-            alignment: AlignmentDirectional.centerEnd,
+            alignment: AlignmentDirectional.center,
             child: Padding(
               padding: const EdgeInsets.all(8.0),
-              child: Text(_text,style: TextStyle(
-                  fontSize: 16.sp,color: blackTextColor,fontFamily: 'tajawal'
-              ),textAlign: TextAlign.center, ),
+              child: SvgPicture.asset('assets/images/sa.svg'),
+              // child: Text(_text,style: TextStyle(
+              //     fontSize: 16.sp,color: blackTextColor,fontFamily: 'tajawal'
+              // ),textAlign: TextAlign.center, ),
             ),
           ),
         ):null,

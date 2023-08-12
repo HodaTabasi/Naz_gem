@@ -7,7 +7,7 @@ class SnackBarMessage {
       SnackBar(
         content: Text(
           message,
-          style: TextStyle(color: Colors.white),
+          style: TextStyle(color: Colors.white,fontFamily: 'br'),
         ),
         backgroundColor: Colors.green,
       ),
@@ -20,7 +20,7 @@ class SnackBarMessage {
       SnackBar(
         content: Text(
           message,
-          style: TextStyle(color: Colors.white),
+          style: TextStyle(color: Colors.white,fontFamily: 'br'),
         ),
         backgroundColor: Colors.redAccent,
       ),

@@ -8,14 +8,11 @@ import 'package:naz_gem/features/auth/data/repository/auth_repo_imp.dart';
 import 'package:naz_gem/features/splash_screen.dart';
 import 'package:naz_gem/features/subscrbtions/ui/get/subscrbtions_getx_controller.dart';
 import 'package:naz_gem/main_injections.dart';
-
-import 'core/get/general_getx_controller.dart';
 import 'core/translations/app_translations.dart';
-import 'features/auth/ui/get/auth_getx_controller.dart';
 
-void main() {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  GetStorage.init();
+  await GetStorage.init();
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
       .then((_) {
     runApp(const MyApp());

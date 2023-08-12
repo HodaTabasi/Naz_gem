@@ -133,7 +133,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               prsee: () async {
                                 if (GeneralGetxController.to.loginKey.currentState!
                                     .validate()) {
-                                  if (controller.appearOtp) {
+                                  if (controller.appearOtp  && controller.checkControllerEmpty()) {
                                     bool isLogin = await controller.login(phone: _mobileController.text,otp: GetStorage().read('otp'));
                                     print(isLogin);
                                     if(isLogin){
