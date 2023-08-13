@@ -34,6 +34,13 @@ class AuthGetxController extends GetxController {
     }
   }
 
+  despose(){
+    num1Controller.text = '';
+    num2Controller.text = '';
+    num3Controller.text = '';
+    num6Controller.text = '';
+  }
+
 
   Future<bool> login({phone, otp}) {
     EasyLoading.show(indicator: EasyLoading().indicatorWidget);

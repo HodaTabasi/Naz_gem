@@ -97,16 +97,19 @@ class _OTPRegisterScreenState extends State<OTPRegisterScreen> {
                           title: 'sure_otp'.tr,
                           color: btnColor,
                           prsee: () async {
-                            bool login = await controller.login(
-                                phone: controller.phone,
-                                otp: GetStorage().read('otp'));
-                            if(login){
-                              Get.offAll(() => const BottomNavigationPage(),
-                                  transition: Transition.downToUp,
-                                  duration: const Duration(milliseconds: 300));
-                            }else {
+                            if(controller.checkControllerEmpty()){
+                              bool login = await controller.login(
+                                  phone: controller.phone,
+                                  otp: GetStorage().read('otp'));
+                              if(login){
+                                Get.offAll(() => const BottomNavigationPage(),
+                                    transition: Transition.downToUp,
+                                    duration: const Duration(milliseconds: 300));
+                              }else {
 
+                              }
                             }
+
 
                           }),
                       // getSpace(h: 16.0.r),
@@ -134,5 +137,11 @@ class _OTPRegisterScreenState extends State<OTPRegisterScreen> {
         }
       ),
     );
+  }
+  @override
+  void dispose() {
+    AuthGetxController.to.despose();
+    GetStorage().remove("otp");
+    super.dispose();
   }
 }

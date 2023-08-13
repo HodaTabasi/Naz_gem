@@ -211,7 +211,6 @@ class _OtpFormState extends State<OtpForm>{
                     decoration: otpInputDecoration,
                     maxLength: 1,
                     onChanged: (value) {
-
                       if (value.isEmpty) {
                         previousField(value, pin3FocusNode!);
                       } else {

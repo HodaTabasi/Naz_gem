@@ -51,7 +51,7 @@ class _NewUserState extends State<NewUser> {
   Widget build(BuildContext context) {
     return Scaffold(
       extendBodyBehindAppBar: true,
-      resizeToAvoidBottomInset: false,
+      // resizeToAvoidBottomInset: false,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
@@ -246,7 +246,7 @@ class _NewUserState extends State<NewUser> {
                               prsee: () {
                                 Get.to(() => const LoginScreen(),
                                     transition: Transition.downToUp,
-                                    duration: const Duration(milliseconds: 500));
+                                    duration: const Duration(milliseconds: 300));
                               }),
                         ],
                       ),
@@ -259,5 +259,13 @@ class _NewUserState extends State<NewUser> {
         }
       ),
     );
+  }
+  @override
+  void dispose() {
+    _mobileController.dispose();
+    _firstNameController.dispose();
+    _lastNameController.dispose();
+    _emailController.dispose();
+    super.dispose();
   }
 }

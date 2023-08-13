@@ -183,4 +183,13 @@ class _LoginScreenState extends State<LoginScreen> {
       ),
     );
   }
+
+  @override
+  void dispose() {
+    AuthGetxController.to.despose();
+    AuthGetxController.to.appearOtp = false;
+    GetStorage().remove("otp");
+    _mobileController.dispose();
+    super.dispose();
+  }
 }

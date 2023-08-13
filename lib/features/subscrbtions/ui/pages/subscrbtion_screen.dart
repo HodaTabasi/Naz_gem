@@ -36,7 +36,7 @@ class _SubscrbtionsState extends State<Subscrbtions> {
       confirmText: 'حسنا',
       textDirection: TextDirection.rtl,
       helpText: 'حدد التاريخ',
-      firstDate: DateTime(1900),
+      firstDate: DateTime.now(),
       lastDate: DateTime(2050),
       builder: (context, child) {
         return Theme(

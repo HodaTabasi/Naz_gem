@@ -26,8 +26,8 @@ class _PaymentScreenState extends State<PaymentScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             // Load a Lottie file from your assets
-            // Lottie.asset('assets/images/json_images/animation_lk52989k.json'),
-            Image.asset('assets/images/done_pay.png'),
+            Lottie.asset('assets/images/json_images/animation_ll87n8b8.json'),
+            // Image.asset('assets/images/done_pay.png'),
             getSpace(h: 8.r),
             getText(
               'hint_meg'.tr,
@@ -35,10 +35,13 @@ class _PaymentScreenState extends State<PaymentScreen> {
               size: 16.sp,
             ),
             getSpace(h: 16.h),
-            BtnApp(title: 'connect'.tr,
-                prsee: (){
-              whatsapp();
-            }, color: btnColor),
+            Padding(
+              padding: EdgeInsets.all(16.0.r),
+              child: BtnApp(title: 'connect'.tr,
+                  prsee: (){
+                whatsapp();
+              }, color: btnColor),
+            ),
             TextButton(
                 onPressed: (){
               Get.offAll(()=>const BottomNavigationPage(),transition: Transition.downToUp,

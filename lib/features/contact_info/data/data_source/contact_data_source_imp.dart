@@ -24,7 +24,7 @@ class ContactDataSourceImp extends ContactDataSource {
       Uri.parse(baseUrl + logoutUser),
       headers: headers,
     );
-
+    print(response.body);
     if (response.statusCode == 200) {
 
       return  Future.value(unit);
