@@ -28,6 +28,7 @@ class _NewUserState extends State<NewUser> {
   late TextEditingController _lastNameController;
   late TextEditingController _emailController;
   bool checkValue = false;
+  final GlobalKey<FormState> newUserKey = GlobalKey<FormState>();
 
   User get user  {
     return User(
@@ -107,7 +108,7 @@ class _NewUserState extends State<NewUser> {
                   child: SingleChildScrollView(
                     physics: const BouncingScrollPhysics(),
                     child: Form(
-                      key: GeneralGetxController.to.newUserKey,
+                      key: newUserKey,
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         mainAxisAlignment: MainAxisAlignment.start,
@@ -214,7 +215,7 @@ class _NewUserState extends State<NewUser> {
                               title: 'sure_otp'.tr,
                               color: btnColor,
                               prsee: () async {
-                                if (GeneralGetxController.to.newUserKey.currentState!
+                                if (newUserKey.currentState!
                                     .validate()) {
                                   if(checkValue){
                                     bool result = await controller.createAccount(user: user);
@@ -266,6 +267,7 @@ class _NewUserState extends State<NewUser> {
     _firstNameController.dispose();
     _lastNameController.dispose();
     _emailController.dispose();
+     // newUserKey.currentState!.dispose();
     super.dispose();
   }
 }

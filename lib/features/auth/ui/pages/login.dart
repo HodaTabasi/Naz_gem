@@ -24,6 +24,7 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   late TextEditingController _mobileController;
+  final GlobalKey<FormState> loginKey = GlobalKey<FormState>();
 
 
   @override
@@ -92,7 +93,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   child: SingleChildScrollView(
                     physics: const BouncingScrollPhysics(),
                     child: Form(
-                      key: GeneralGetxController.to.loginKey,
+                      key: loginKey,
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         mainAxisAlignment: MainAxisAlignment.start,
@@ -131,7 +132,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               title: controller.appearOtp ? 'ok'.tr : 'sure_otp'.tr,
                               color: btnColor,
                               prsee: () async {
-                                if (GeneralGetxController.to.loginKey.currentState!
+                                if (loginKey.currentState!
                                     .validate()) {
                                   if (controller.appearOtp  && controller.checkControllerEmpty()) {
                                     bool isLogin = await controller.login(phone: _mobileController.text,otp: GetStorage().read('otp'));

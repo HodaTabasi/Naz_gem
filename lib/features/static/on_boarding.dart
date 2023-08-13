@@ -25,9 +25,10 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
     _timer = Timer.periodic(Duration(seconds: 3), (Timer timer) {
       if (_currentPage < 2) {
         _currentPage++;
-      } else {
-        _currentPage = 0;
       }
+      // else {
+      //   _currentPage = 0;
+      // }
 
       _pageController.animateToPage(
         _currentPage,

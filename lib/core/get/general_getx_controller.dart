@@ -4,9 +4,9 @@ import 'package:get/get.dart';
 class GeneralGetxController extends GetxController {
   RxString mobile = RxString('');
   RxString mobileErrorText = RxString('');
-  GlobalKey<FormState> loginKey = GlobalKey<FormState>();
-  GlobalKey<FormState> newUserKey = GlobalKey<FormState>();
-  GlobalKey<FormState> profileKey = GlobalKey<FormState>();
+  // final GlobalKey<FormState> loginKey = GlobalKey<FormState>();
+  // final GlobalKey<FormState> newUserKey = GlobalKey<FormState>();
+  final GlobalKey<FormState> profileKey = GlobalKey<FormState>();
 
   static GeneralGetxController get to =>
       Get.find<GeneralGetxController>();
