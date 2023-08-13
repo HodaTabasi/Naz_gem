@@ -284,8 +284,59 @@ Future<dynamic> buildImageDialog(BuildContext context, url) {
   return showDialog(
     context: context,
     builder: (context) {
-      return Center(
+      return Container(
+        color: Colors.black.withOpacity(0.6),
         child: SizedBox(
+          width: MediaQuery.of(context).size.width - 50.w,
+          // height: MediaQuery.of(context).size.height- 200.h,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              DecoratedBox(
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: Colors.white.withOpacity(0.5)
+                ),
+                child: Padding(
+                  padding:  EdgeInsets.all(5.0.r),
+                  child: InkWell(
+                    onTap: () {
+                      Navigator.pop(context);
+                    },
+                    child: const Icon(
+                      Icons.clear,
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+              ),
+
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 16.0.r,vertical: 5.r),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(15.r),
+                  child: DecoratedBox(
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      border: Border.all(color: mainColor, width: 0.5),
+                    ),
+                    child: Image.network(url,
+                        fit: BoxFit.fill,
+                        height: MediaQuery.of(context).size.height - 250.h),
+                  ),
+                ),
+              ),
+
+            ],
+          ),
+        ),
+      );
+    },
+  );
+}
+/*
+ SizedBox(
           width: MediaQuery.of(context).size.width - 20.w,
           // height: MediaQuery.of(context).size.height- 200.h,
           child: Stack(
@@ -329,7 +380,4 @@ Future<dynamic> buildImageDialog(BuildContext context, url) {
             ],
           ),
         ),
-      );
-    },
-  );
-}
+* */
