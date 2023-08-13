@@ -16,6 +16,7 @@ class ProfileItemWidgetDate extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return Column(
       children: [
         Container(
@@ -45,6 +46,9 @@ class ProfileItemWidgetDate extends StatelessWidget {
   }
 
   getAge(String text) {
+    if(text == 'dD/MM/YYYY'){
+      return '';
+    }
     return DateTime.now().year - int.parse(text.split("-").first);
   }
 }

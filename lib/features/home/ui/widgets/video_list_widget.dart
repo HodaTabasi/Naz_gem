@@ -48,22 +48,19 @@ class _VideosListWidgetState extends State<VideosListWidget> {
         itemBuilder: (context, index) {
           return InkWell(
             onTap: () {
-              Get.to(()=>VideoPlayerScreen(widget.videos[index].yotubeVedioUrl!.split("=").last));
-              // showDialog(
-              //   context: context,
-              //   builder: (context) {
-              //     return Dialog(
-              //       child: Container(
-              //         width: MediaQuery.of(context).size.width,
-              //         decoration: BoxDecoration(
-              //           color: Colors.transparent,
-              //           borderRadius: BorderRadiusDirectional.circular(20.r)
-              //         ),
-              //         child: ShowVideo(widget.videos[index].yotubeVedioUrl!.split("=").last),
-              //       ),
-              //     );
-              //   },
-              // );
+              // Get.to(()=>VideoPlayerScreen(widget.videos[index].yotubeVedioUrl!.split("=").last));
+              showDialog(
+                context: context,
+                builder: (context) {
+                  return Container(
+                    width: MediaQuery.of(context).size.width,
+                    decoration: BoxDecoration(
+                     color: Colors.black.withOpacity(0.7),
+                    ),
+                    child: VideoPlayerScreen(widget.videos[index].yotubeVedioUrl!.split("=").last),
+                  );
+                },
+              );
             },
             child: Padding(
               padding: EdgeInsets.all(8.0.r),

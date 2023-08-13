@@ -36,7 +36,7 @@ class LowerSectionWidget extends StatelessWidget {
                 text: controller.myUser.birthdate ?? 'dD/MM/YYYY',
                 icon: 'assets/images/birth.svg'),
             ProfileItemWidget(
-                text: '${controller.myUser.length ?? ''} سم ',
+                text: '${controller.myUser.length == "null" ?'':controller.myUser.length} سم ',
                 icon: 'assets/images/hh.svg'),
             ProfileItemWidget(
                 text: controller.myUser.bloodType ?? '',
