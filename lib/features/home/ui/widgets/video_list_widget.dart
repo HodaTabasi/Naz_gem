@@ -6,6 +6,7 @@ import 'package:naz_gem/features/home/ui/get/home_getx_controller.dart';
 import 'package:naz_gem/features/home/ui/pages/show_vedio.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
+import '../../../../core/widgets/app_widget.dart';
 import '../../domain/entities/gallery.dart';
 
 class VideosListWidget extends StatefulWidget {
@@ -42,56 +43,62 @@ class _VideosListWidgetState extends State<VideosListWidget> {
   Widget build(BuildContext context) {
     return SizedBox(
       height: 130,
-      child: ListView.builder(
-        itemCount: widget.videos.length,
-        scrollDirection: Axis.horizontal,
-        itemBuilder: (context, index) {
-          return InkWell(
-            onTap: () {
-              // Get.to(()=>VideoPlayerScreen(widget.videos[index].yotubeVedioUrl!.split("=").last));
-              showDialog(
-                context: context,
-                builder: (context) {
-                  return Container(
-                    width: MediaQuery.of(context).size.width,
-                    decoration: BoxDecoration(
-                     color: Colors.black.withOpacity(0.7),
-                    ),
-                    child: VideoPlayerScreen(widget.videos[index].yotubeVedioUrl!.split("=").last),
-                  );
-                },
-              );
-            },
-            child: Padding(
-              padding: EdgeInsets.all(8.0.r),
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(10.r),
-                child: Stack(
-                  children: [
-                    Image.network(
-                      widget.videos[index].thumbnailPath != null
-                          ? widget.videos[index].thumbnailPath!
-                          : "https://www.idonate.ie/images/newimage/sports-clubs-1.jpg",
-                      fit: BoxFit.cover,
-                      width: 120.w,
-                      height: 130.h,
-                    ),
-                    SizedBox(
-                      width: 120,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
+      child: widget.videos.isEmpty
+          ? buildCenterNoData('لا يوجد بيانات للعرض')
+          : ListView.builder(
+              itemCount: widget.videos.length,
+              scrollDirection: Axis.horizontal,
+              itemBuilder: (context, index) {
+                return InkWell(
+                  onTap: () {
+                    // Get.to(()=>VideoPlayerScreen(widget.videos[index].yotubeVedioUrl!.split("=").last));
+                    showDialog(
+                      context: context,
+                      builder: (context) {
+                        return Container(
+                          width: MediaQuery.of(context).size.width,
+                          decoration: BoxDecoration(
+                            color: Colors.black.withOpacity(0.7),
+                          ),
+                          child: VideoPlayerScreen(widget
+                              .videos[index].yotubeVedioUrl!
+                              .split("=")
+                              .last),
+                        );
+                      },
+                    );
+                  },
+                  child: Padding(
+                    padding: EdgeInsets.all(8.0.r),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(10.r),
+                      child: Stack(
                         children: [
-                          SvgPicture.asset("assets/images/vedio_icon.svg"),
+                          Image.network(
+                            widget.videos[index].thumbnailPath != null
+                                ? widget.videos[index].thumbnailPath!
+                                : "https://www.idonate.ie/images/newimage/sports-clubs-1.jpg",
+                            fit: BoxFit.cover,
+                            width: 120.w,
+                            height: 130.h,
+                          ),
+                          SizedBox(
+                            width: 120,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                SvgPicture.asset(
+                                    "assets/images/vedio_icon.svg"),
+                              ],
+                            ),
+                          )
                         ],
                       ),
-                    )
-                  ],
-                ),
-              ),
+                    ),
+                  ),
+                );
+              },
             ),
-          );
-        },
-      ),
     );
   }
 }

@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:naz_gem/features/home/ui/get/home_getx_controller.dart';
 import 'package:naz_gem/features/home/ui/widgets/widget_functions.dart';
 
+import '../../../../core/widgets/app_widget.dart';
 import '../../domain/entities/gallery.dart';
 
 class ImagesListWidget extends StatelessWidget {
@@ -15,7 +16,9 @@ class ImagesListWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       height: 130,
-      child: ListView.builder(
+      child:images.isEmpty
+          ? buildCenterNoData('لا يوجد بيانات للعرض')
+          :  ListView.builder(
         itemCount: images.length,
         scrollDirection: Axis.horizontal,
         itemBuilder: (context, index) {

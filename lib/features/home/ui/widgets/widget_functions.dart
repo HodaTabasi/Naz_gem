@@ -212,7 +212,12 @@ void showDitailsDialog(BuildContext context, Package currentPackag) {
 SizedBox buildSlider(HomeGetxController controller) {
   return SizedBox(
     height: 230.h,
-    child: ListView.builder(
+    child: controller.sliders.isEmpty
+        ? Padding(
+      padding: const EdgeInsets.all(16.0),
+      child: buildCenterNoData('لا يوجد اعلانات متاحة'),
+    )
+        :ListView.builder(
       itemCount: controller.sliders.length,
       scrollDirection: Axis.horizontal,
       shrinkWrap: true,

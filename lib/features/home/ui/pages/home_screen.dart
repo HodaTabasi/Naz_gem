@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:loading_indicator/loading_indicator.dart';
 import 'package:naz_gem/core/constants/app_colors.dart';
 import 'package:naz_gem/core/widgets/app_toggle.dart';
 import 'package:naz_gem/core/widgets/app_widget.dart';
 import 'package:naz_gem/features/home/ui/get/home_getx_controller.dart';
-import '../../../subscrbtions/ui/pages/subscrbtion_screen.dart';
 import '../widgets/image_list_widget.dart';
 import '../widgets/pakage_item_widget.dart';
 import '../widgets/video_list_widget.dart';
@@ -54,7 +52,12 @@ class _HomeScreenState extends State<HomeScreen> {
             AppToggle(),
             controller.packagesLoading.value
                 ? buildSizedBoxLoading(context)
-                : GridView.builder(
+                : controller.currentPackages.isEmpty
+                ? Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: buildCenterNoData('لا يوجد باقات متاحة'),
+                )
+                :GridView.builder(
                     padding: EdgeInsets.all(16.r),
                     physics: const NeverScrollableScrollPhysics(),
                     shrinkWrap: true,
