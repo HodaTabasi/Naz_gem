@@ -62,7 +62,7 @@ class onboardWidget extends StatelessWidget {
             padding:  EdgeInsets.all(16.0.r),
             child: BtnApp(title: 'login'.tr, color:mainColor ,textColor:blackTextColor, prsee: () {
               Get.offAll(()=>const LoginScreen(),transition: Transition.downToUp,
-                  duration: const Duration(milliseconds: 500));
+                  duration: const Duration(milliseconds: 300));
             }),
           ),
           getSpace(h: MediaQuery.of(context).size.height / 7)

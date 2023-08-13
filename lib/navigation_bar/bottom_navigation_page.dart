@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:naz_gem/core/constants/app_colors.dart';
 import 'package:naz_gem/features/bill/ui/pages/my_billes.dart';
 import 'package:naz_gem/features/booking/ui/pages/booking_screen.dart';
@@ -8,6 +10,7 @@ import 'package:naz_gem/features/more/ui/pages/more_page.dart';
 import 'package:naz_gem/features/profile/ui/pages/profile.dart';
 import 'package:naz_gem/features/subscrbtions/ui/pages/subscrbtion_screen.dart';
 
+import '../features/auth/ui/pages/login.dart';
 import 'TabBarMaterialWidget.dart';
 
 class BottomNavigationPage extends StatefulWidget {
@@ -29,10 +32,17 @@ class _BottomNavigationPaheState extends State<BottomNavigationPage> {
   int index = 0;
 
   void onChangedTab(int index) {
-    setState(() {
-      this.index = index;
-    });
+    if (GetStorage().hasData("token")) {
+      setState(() {
+        this.index = index;
+      });
+    } else {
+      Get.offAll(() => const LoginScreen(),
+          transition: Transition.downToUp,
+          duration: const Duration(milliseconds: 300));
+    }
   }
+
   late PageController _pageController;
 
   @override
@@ -65,20 +75,28 @@ class _BottomNavigationPaheState extends State<BottomNavigationPage> {
       ),
       floatingActionButton: FloatingActionButton(
         child: SvgPicture.asset('assets/images/bottom_images/calendar.svg'),
-        onPressed: () => _onItemTapped(2),//onChangedTab(2),
+        onPressed: () => _onItemTapped(2), //onChangedTab(2),
         backgroundColor: btnColor,
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
     );
   }
+
   void _onItemTapped(int ind) {
-    setState(() {
-      index = ind;
-      //
-      //
-      //using this page controller you can make beautiful animation effects
-      // _pageController.animateToPage(index,
-      //     duration: Duration(milliseconds: 300), curve: Curves.linear);
-    });
+    if (GetStorage().hasData("token")) {
+      setState(() {
+        index = ind;
+        //
+        //
+        //using this page controller you can make beautiful animation effects
+        // _pageController.animateToPage(index,
+        //     duration: Duration(milliseconds: 300), curve: Curves.linear);
+      });
+    } else {
+      Get.offAll(() => const LoginScreen(),
+          transition: Transition.downToUp,
+          duration: const Duration(milliseconds: 300));
+    }
+
   }
 }
