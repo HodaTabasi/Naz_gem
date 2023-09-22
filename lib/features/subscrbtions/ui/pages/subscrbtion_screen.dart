@@ -6,10 +6,15 @@ import 'package:naz_gem/core/widgets/app_widget.dart';
 import 'package:naz_gem/core/widgets/app_button.dart';
 import 'package:naz_gem/core/widgets/app_text_field.dart';
 import 'package:naz_gem/features/auth/ui/widget/date_text_field.dart';
+import 'package:naz_gem/features/subscrbtions/data/payment/payment_method.dart';
 import 'package:naz_gem/features/subscrbtions/ui/pages/payment_screen.dart';
 
 import '../../../../core/constants/app_colors.dart';
+import '../../../../core/constants/snackbar_message.dart';
+import '../../../../core/constants/utils.dart';
 import '../../../../core/widgets/app_date_text_field.dart';
+import '../../../home/ui/get/home_getx_controller.dart';
+import '../get/subscrbtions_getx_controller.dart';
 import '../widgets/PromoCodeWidget.dart';
 import '../widgets/TotalAmountWidget.dart';
 import '../widgets/chooeser_widget.dart';
@@ -22,9 +27,6 @@ class Subscrbtions extends StatefulWidget {
 class _SubscrbtionsState extends State<Subscrbtions> {
   int groupValue = 0;
 
-  var promoController;
-
-  var dateController;
   DateTime currentDate = DateTime.now();
 
 
@@ -59,7 +61,7 @@ class _SubscrbtionsState extends State<Subscrbtions> {
     if (pickedDate != null && pickedDate != currentDate)
       setState(() {
         currentDate = pickedDate;
-        dateController.text =
+        SubscrbtionGetxController.to.dateController.text =
         '${currentDate.year}-${currentDate.month}-${currentDate.day}';
       });
   }
@@ -67,8 +69,7 @@ class _SubscrbtionsState extends State<Subscrbtions> {
 
   @override
   void initState() {
-    promoController = TextEditingController();
-    dateController = TextEditingController();
+
     super.initState();
   }
 
@@ -91,7 +92,7 @@ class _SubscrbtionsState extends State<Subscrbtions> {
             size: 16.sp,
           ),
           ChooeserWidget(),
-          PromoCodeWidget(promoController: promoController),
+          PromoCodeWidget(),
           getSpace(h: 8.h),
           getText(
             'activate_date'.tr,
@@ -99,7 +100,7 @@ class _SubscrbtionsState extends State<Subscrbtions> {
             size: 16.sp,
           ),
           getSpace(h: 8.h),
-          DataTextField(textController: dateController,
+          DataTextField(textController: SubscrbtionGetxController.to.dateController,
             hint: '',
             prefixIcon: 'assets/images/calender.svg',
           onSubmitted:  () {
@@ -107,9 +108,19 @@ class _SubscrbtionsState extends State<Subscrbtions> {
           },),
           getSpace(h: 16.h),
           TotalAmountWidget(),
-          BtnApp(title: 'pay'.tr, prsee: () {
-            Get.to(() => PaymentScreen(), transition: Transition.downToUp,
-                duration: const Duration(milliseconds: 300));
+          BtnApp(title: 'pay'.tr, prsee: () async {
+            if(SubscrbtionGetxController.to.checkResponse == null){
+              SubscrbtionGetxController.to.amount = getDiscount(SubscrbtionGetxController.to.package)?? SubscrbtionGetxController.to.package.price;
+
+            }else {
+              SubscrbtionGetxController.to.amount = (SubscrbtionGetxController.to.checkResponse?.priceAfterPartnerDiscount ?? SubscrbtionGetxController.to.checkResponse?.priceAfterDiscount ?? SubscrbtionGetxController.to.checkResponse?.packagePrice).toString();
+            }
+              bool done = await SubscrbtionGetxController.to.checkSubscription(SubscrbtionGetxController.to.promoController.text,SubscrbtionGetxController.to.dateController.text,SubscrbtionGetxController.to.amount,SubscrbtionGetxController.to.package.id!);
+            if(done){
+              PaymentMethod(context).onBookClick(context, SubscrbtionGetxController.to.amount);
+              }else {
+              SnackBarMessage.showErrorSnackBar(message: SubscrbtionGetxController.to.responseMessage, context: context);
+            }
           }, color: btnColor)
         ],
       ),

@@ -100,7 +100,7 @@ class _OTPRegisterScreenState extends State<OTPRegisterScreen> {
                             if(controller.checkControllerEmpty()){
                               bool login = await controller.login(
                                   phone: controller.phone,
-                                  otp: GetStorage().read('otp'));
+                                  otp: controller.makeCode());
                               if(login){
                                 Get.offAll(() => const BottomNavigationPage(),
                                     transition: Transition.downToUp,

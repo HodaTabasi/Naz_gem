@@ -27,10 +27,10 @@ class UserModel extends User {
             profileImage: profileImage);
 
   factory UserModel.fromJson(Map<String, dynamic> json) {
-    print(json);
-    // print(json.containsKey('length'));
-    // print(json.containsKey('blood_type'));
-    // print(json.containsKey('profile_image'));
+    // print(json);
+    // // print(json.containsKey('length'));
+    // // print(json.containsKey('blood_type'));
+    // // print(json.containsKey('profile_image'));
 
     UserModel user = UserModel(
       phone: json['phone'],
@@ -54,7 +54,7 @@ class UserModel extends User {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
+    // data['id'] = this.id;
     data['first_name'] = this.firstName;
     data['last_name'] = this.lastName;
     data['phone'] = this.phone;
@@ -66,6 +66,4 @@ class UserModel extends User {
     data['profile_image'] = this.profileImage;
     return data;
   }
-
-
 }

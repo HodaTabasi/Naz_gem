@@ -8,3 +8,9 @@ var headers = {
   HttpHeaders.authorizationHeader:"Bearer ${GetStorage().read('token')}",
   'Accept':'application/json'
 };
+
+var headersWithOutToken = {
+  // HttpHeaders.authorizationHeader:"Bearer ${GetStorage().read('token')}",
+  'Accept':'application/json'
+};
+

@@ -46,7 +46,7 @@ Package package = SubscrbtionGetxController.to.package;
                     ),
                     getSpace(w: 16.r),
                     getText(
-                        " ${num.parse(controller.checkResponse!.discountAvg!) * num.parse(price) / 100} ريال",
+                        " ${controller.checkResponse!.priceAfterPartnerDiscount!} ريال",
                         color: blackTextColor,
                         size: 16.sp,
                         weight: FontWeight.w600,

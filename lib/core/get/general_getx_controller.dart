@@ -35,7 +35,7 @@ class GeneralGetxController extends GetxController {
   String? nameValidation(String? value) {
     if(value == null || value.isEmpty){
       return 'lenght_condation'.tr;
-    } else if(value.length < 4) {
+    } else if(value.length < 3) {
       return 'valid_name'.tr;
     }else {
       return null;

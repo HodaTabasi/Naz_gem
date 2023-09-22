@@ -4,9 +4,7 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:naz_gem/features/auth/data/repository/auth_repo_imp.dart';
 import 'package:naz_gem/features/splash_screen.dart';
-import 'package:naz_gem/features/subscrbtions/ui/get/subscrbtions_getx_controller.dart';
 import 'package:naz_gem/main_injections.dart';
 import 'core/translations/app_translations.dart';
 
@@ -23,7 +21,6 @@ Future<void> main() async {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
      return ScreenUtilInit(

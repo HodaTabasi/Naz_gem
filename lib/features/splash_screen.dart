@@ -35,11 +35,11 @@ class _SplashScreenState extends State<SplashScreen> {
                   if (GetStorage().read("token") != null) {
                     Get.offAll(() => BottomNavigationPage(),
                         transition: Transition.downToUp,
-                        duration: const Duration(milliseconds: 500));
+                        duration: const Duration(milliseconds: 300));
                   } else {
                     Get.offAll(() => OnBoardingScreen(),
                         transition: Transition.downToUp,
-                        duration: const Duration(milliseconds: 500));
+                        duration: const Duration(milliseconds: 300));
                   }
                 },
                 height: play ? MediaQuery.of(context).size.height / 1.5.h : 0,

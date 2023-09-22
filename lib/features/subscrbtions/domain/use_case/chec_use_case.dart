@@ -9,7 +9,7 @@ class CheckUseCase {
 
   CheckUseCase({required this.repository});
 
-  Future<Either<Failure, CheckResponse>> call(String promoCode) async {
-    return await repository.getCheck(promoCode);
+  Future<Either<Failure, CheckResponse>> call(String promoCode,int id) async {
+    return await repository.getCheckPartner(promoCode,id);
   }
 }

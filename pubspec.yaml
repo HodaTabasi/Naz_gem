@@ -59,6 +59,7 @@ dependencies:
 #  animations: ^2.0.7
   image_picker: ^1.0.1
   lottie: any
+  flutter_paytabs_bridge: ^2.3.0
 
 dev_dependencies:
   flutter_test:

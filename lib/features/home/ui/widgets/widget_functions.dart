@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:naz_gem/features/contact_info/ui/widgets/contact_class.dart';
 import 'package:naz_gem/features/home/domain/entities/packages.dart';
 import 'package:naz_gem/features/home/ui/get/home_getx_controller.dart';
@@ -12,6 +13,7 @@ import '../../../../core/constants/app_colors.dart';
 import '../../../../core/constants/utils.dart';
 import '../../../../core/widgets/app_button.dart';
 import '../../../../core/widgets/app_widget.dart';
+import '../../../auth/ui/pages/login.dart';
 import '../../../notifications/ui/pages/notificaion_page.dart';
 import '../../../subscrbtions/ui/get/subscrbtions_getx_controller.dart';
 import '../../../subscrbtions/ui/pages/subscrbtion_screen.dart';
@@ -186,8 +188,16 @@ void showDitailsDialog(BuildContext context, Package currentPackag) {
                     child: BtnApp(
                       title: 'sub'.tr,
                       prsee: () {
-                        SubscrbtionGetxController.to.package = currentPackag;
-                        Get.to(() => Subscrbtions());
+                        if (GetStorage().read("token") != null) {
+                          SubscrbtionGetxController.to.package = currentPackag;
+                          Get.to(() => Subscrbtions(),
+                              transition: Transition.downToUp,
+                              duration: const Duration(milliseconds: 300));
+                        } else {
+                          Get.offAll(() => const LoginScreen(),
+                              transition: Transition.downToUp,
+                              duration: const Duration(milliseconds: 300));
+                        }
                       },
                       color: btnColor,
                       textColor: Colors.white,
@@ -244,7 +254,7 @@ SizedBox buildSlider(HomeGetxController controller) {
                 top: 80.h,
                 start: 25.w,
                 child: getText(
-                  controller.sliders[index].description!,
+                  controller.sliders[index].description ?? '',
                   color: mainColor,
                   size: 18.sp,
                 ),
@@ -261,7 +271,7 @@ SizedBox buildSlider(HomeGetxController controller) {
                             borderRadius: BorderRadius.circular(8.r))),
                     onPressed: () {
                       launch(
-                          Uri.parse(controller.sliders[index].url!), context);
+                          Uri.parse(controller.sliders[index].url??''), context);
                     },
                     child: getText(
                       'join'.tr,

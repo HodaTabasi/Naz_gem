@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
+import 'package:naz_gem/features/auth/ui/pages/login.dart';
 import 'package:naz_gem/features/home/domain/entities/packages.dart';
 import 'package:naz_gem/features/home/ui/get/home_getx_controller.dart';
 import 'package:naz_gem/features/home/ui/widgets/widget_functions.dart';
@@ -76,10 +78,17 @@ class PakageItemWidget extends StatelessWidget {
             end: 0,
             child: InkWell(
               onTap: () {
-                SubscrbtionGetxController.to.package = currentPackag;
-                Get.to(() => Subscrbtions(),
-                    transition: Transition.downToUp,
-                    duration: const Duration(milliseconds: 300));
+                if (GetStorage().read("token") != null) {
+                  SubscrbtionGetxController.to.package = currentPackag;
+                  //print(SubscrbtionGetxController.to.package);
+                  Get.to(() => Subscrbtions(),
+                      transition: Transition.downToUp,
+                      duration: const Duration(milliseconds: 300));
+                } else {
+                  Get.offAll(() => const LoginScreen(),
+                      transition: Transition.downToUp,
+                      duration: const Duration(milliseconds: 300));
+                }
               },
               child: Container(
                 width: 85.w,

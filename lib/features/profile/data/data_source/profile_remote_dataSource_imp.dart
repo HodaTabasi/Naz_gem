@@ -24,7 +24,7 @@ class ProfileRemoteDataSourceImp extends ProfileRemoteDataSource {
         await client.get(Uri.parse(baseUrl + getProfile), headers: headers
             // headers: {"Content-Type": "application/json"},
             );
-
+    print(response.body);
     var decodedJson = json.decode(response.body);
     if (response.statusCode == 200) {
       return UserModel.fromJson(decodedJson['user']);
@@ -52,8 +52,9 @@ class ProfileRemoteDataSourceImp extends ProfileRemoteDataSource {
 
     request.headers[HttpHeaders.authorizationHeader] =
         "Bearer ${GetStorage().read('token')}";
+    request.headers['Accept'] = "application/json";
 
-    print(userModel);
+    print("fvdfv ${userModel}");
 
     var response = await request.send();
 

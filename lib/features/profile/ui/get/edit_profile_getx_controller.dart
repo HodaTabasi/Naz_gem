@@ -29,6 +29,7 @@ class EditProfileGetxController extends GetxController {
           isLoading = false;
               update();
             }, (user) async {
+          print(user);
           EasyLoading.dismiss();
           myUser =user;
           isLoading = false;
@@ -36,20 +37,20 @@ class EditProfileGetxController extends GetxController {
     }));
   }
 
-  updateUser({user}) {
+  Future<bool> updateUser({user}) async {
     EasyLoading.show(indicator: EasyLoading().indicatorWidget);
-    UpdateUserUseCase(repository: Get.find<ProfileRepoImp>())
+    return await UpdateUserUseCase(repository: Get.find<ProfileRepoImp>())
         .call(user)
         .then((value) => value.fold((failure) {
       EasyLoading.dismiss();
-        mapFailureToMessage(failure);
-        isUpdated = false;
+        responseMessage = mapFailureToMessage(failure);
       update();
+     return false;
     }, (user) async {
       EasyLoading.dismiss();
       myUser = user;
-      isUpdated = true;
       update();
+      return true;
     }));
   }
   changeImage(newFile){

@@ -9,12 +9,6 @@ import '../../../../core/widgets/app_widget.dart';
 import '../get/subscrbtions_getx_controller.dart';
 
 class PromoCodeWidget extends StatelessWidget {
-  final promoController;
-
-  const PromoCodeWidget({
-    super.key,
-    required this.promoController,
-  });
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +31,7 @@ class PromoCodeWidget extends StatelessWidget {
                     child: SizedBox(
                         height: 50.h,
                         child: AppTextField(
-                          textController: promoController,
+                          textController: SubscrbtionGetxController.to.promoController,
                           hint: '',
                           hasSufix: false,
                           textInputType: TextInputType.text,
@@ -48,8 +42,9 @@ class PromoCodeWidget extends StatelessWidget {
                       color: btnColor, borderRadius: BorderRadius.circular(5)),
                   child: IconButton(
                       onPressed: () async {
-                        bool done = await SubscrbtionGetxController.to.checkPromoCode(promoController.text);
+                        bool done = await SubscrbtionGetxController.to.checkPromoCode(SubscrbtionGetxController.to.promoController.text,SubscrbtionGetxController.to.package.id!);
                         if(done){
+                          SubscrbtionGetxController.to.promoCode = SubscrbtionGetxController.to.promoController.text;
                           SnackBarMessage.showSuccessSnackBar(message: 'تم تفعيل الاشتراك', context: context);
                         }else {
                           SnackBarMessage.showErrorSnackBar(message: SubscrbtionGetxController.to.responseMessage, context: context);

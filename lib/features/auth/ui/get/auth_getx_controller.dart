@@ -34,6 +34,14 @@ class AuthGetxController extends GetxController {
     }
   }
 
+  String makeCode(){
+    return '${num1Controller.text}${num2Controller.text}${num3Controller.text}${num6Controller.text}';
+  }
+
+  isSameOTP(){
+    return GetStorage().read('otp').toString() == makeCode();
+  }
+
   despose(){
     num1Controller.text = '';
     num2Controller.text = '';

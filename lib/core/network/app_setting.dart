@@ -30,6 +30,8 @@ const  String makeNewReserve = '/trainee/sessions/reservations';
 //Partners
 //post
 const  String checkPartner = '/trainee/partners/check-code';
+const  String checkMySubscription = '/trainee/payments/check';
+const  String sentBill = '/trainee/payments';
 
 //TrainingSession
 //get

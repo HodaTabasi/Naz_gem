@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:naz_gem/features/profile/ui/get/edit_profile_getx_controller.dart';
 
 import '../../../../core/constants/app_colors.dart';
+import '../../../../core/constants/snackbar_message.dart';
 import '../../../../core/get/general_getx_controller.dart';
 import '../../../../core/widgets/app_button.dart';
 import '../../../../core/widgets/app_date_text_field.dart';
@@ -269,12 +270,16 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                 BtnApp(
                     title: 'save'.tr,
                     color: btnColor,
-                    prsee: () {
+                    prsee: () async {
                       if (GeneralGetxController.to.profileKey.currentState!
                           .validate()) {
-                        controller.updateUser(user:user);
-                        if(controller.isUpdated){
+                        bool isUpdated = await controller.updateUser(user:user);
+                        if(isUpdated){
                           Get.back();
+                        }else {
+                          SnackBarMessage.showErrorSnackBar(
+                              message: controller.responseMessage,
+                              context: context);
                         }
                         //
                       }

@@ -37,4 +37,9 @@ class Package extends Equatable {
         category,
         discounts
       ];
+
+  @override
+  String toString() {
+    return 'Package{id: $id, name: $name, price: $price, sessionsCount: $sessionsCount, duration: $duration, durationTypeName: $durationTypeName, details: $details, categoryId: $categoryId, category: $category, discounts: $discounts}';
+  }
 }
