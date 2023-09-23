@@ -4,15 +4,16 @@ import 'package:get/get.dart';
 
 import '../../../../../core/constants/app_colors.dart';
 import '../../../../../core/widgets/app_widget.dart';
+import '../../../domain/entities/bill.dart';
 import 'ButtonWidget.dart';
 
 class ItemTwoWidget extends StatelessWidget {
   const ItemTwoWidget({
     super.key,
-    required this.index,
+    required this.bill,
   });
 
-  final int index;
+  final Bill bill;
 
   @override
   Widget build(BuildContext context) {
@@ -20,8 +21,8 @@ class ItemTwoWidget extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Visibility(
-          visible: index == 0,
-          child:  ButtonWidget(
+          visible: bill.subscription?.status == "active",
+          child: ButtonWidget(
             size: Size(110.w, 20.h),
             text: 'connect_now'.tr,
             color: mainColor,
@@ -29,10 +30,14 @@ class ItemTwoWidget extends StatelessWidget {
           ),
         ),
         Visibility(
-          visible: index != 0,
+          visible: bill.subscription?.status != "active",
           child: ButtonWidget(
             size: Size(75.w, 20.h),
-            text: 'expire'.tr,
+            text: bill.subscription?.status == "pending"
+                ? 'pending'.tr
+                : bill.subscription?.status == "paused"
+                    ? 'paused'.tr
+                    : 'expire'.tr,
             color: boarderColor,
             onPress: () {},
           ),
@@ -40,11 +45,10 @@ class ItemTwoWidget extends StatelessWidget {
         getSpace(h: 8.h),
         Text.rich(
           TextSpan(
-            style: TextStyle(
-                color: Colors.grey.shade500, fontSize: 12.sp),
+            style: TextStyle(color: Colors.grey.shade500, fontSize: 12.sp),
             children: [
               TextSpan(text: 'date'.tr),
-              TextSpan(text: '30.05.2023'),
+              TextSpan(text: '${bill.subscription?.startDate}'),
             ],
           ),
         )
@@ -52,4 +56,3 @@ class ItemTwoWidget extends StatelessWidget {
     );
   }
 }
-

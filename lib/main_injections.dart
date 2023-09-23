@@ -1,6 +1,10 @@
 import 'package:get/get.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:naz_gem/core/network/network_info.dart';
+import 'package:naz_gem/features/bill/data/data_source/bill_remote_dataSource_imp.dart';
+import 'package:naz_gem/features/bill/data/data_source/get_bill_remote_data_source.dart';
+import 'package:naz_gem/features/bill/data/repository/bill_repo_imp.dart';
+import 'package:naz_gem/features/bill/ui/get/bill_getx_controller.dart';
 import 'package:naz_gem/features/booking/data/data_source/avilable_training_session/training_seisson_remote_dataSource_imp.dart';
 import 'package:naz_gem/features/booking/data/data_source/trainees_training_session/trainee_training_seisson_remote_dataSource_imp.dart';
 import 'package:naz_gem/features/booking/domain/repository/avilabe_repo.dart';
@@ -46,6 +50,7 @@ class MainInjection implements Bindings {
     Get.put(HomeGetxController());
     Get.put(AvailableGetxController());
     Get.put(UserSessionGetxController());
+    Get.put(BillGetXController());
 
     Get.put(AuthRepoImpl(remoteDataSource: AuthRemoteDataSourceImp(client:connect),
         networkInfo: networkInfoImpl));
@@ -66,6 +71,8 @@ class MainInjection implements Bindings {
         networkInfo: networkInfoImpl));
 
     Get.put(TraineesRepoImp(trainingSessionRemoteDataSource: TraineesTrainingSessionRemoteDataSourceImp(client:connect),
+        networkInfo: networkInfoImpl));
+    Get.put(BillRepoImpl(remoteDataSource: BillRemoteDataSourceImp(client:connect),
         networkInfo: networkInfoImpl));
   }
 

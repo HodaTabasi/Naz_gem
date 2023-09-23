@@ -5,6 +5,7 @@ import 'package:naz_gem/core/constants/app_colors.dart';
 import 'package:naz_gem/features/bill/ui/widget/widget_const.dart';
 
 import '../../../../core/widgets/app_widget.dart';
+import '../get/bill_getx_controller.dart';
 import '../widget/billDetailsWidgets/BlockOneColumnWidget.dart';
 import '../widget/billDetailsWidgets/RowWidget.dart';
 
@@ -14,8 +15,10 @@ class BillDetails extends StatefulWidget {
 }
 
 class _BillDetailsState extends State<BillDetails> {
+  BillGetXController controller = Get.find<BillGetXController>();
   @override
   Widget build(BuildContext context) {
+    List discountData = controller.bill?.subscription?.toJsonDiscounts();
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: getAppBar(
@@ -36,16 +39,16 @@ class _BillDetailsState extends State<BillDetails> {
               children: [
                 BlockOneColumnWidget(
                   title1: 'bill_number'.tr,
-                  text1: '123456',
+                  text1: '${controller.bill?.invoiceNumber}',
                   title2: 'id_number'.tr,
-                  text2: '123456',
+                  text2: '${controller.bill?.userIdNumber}',
                 ),
                 Spacer(),
                 BlockOneColumnWidget(
                   title1: 'bill_date'.tr,
-                  text1: '123456',
+                  text1: '${controller.bill?.subscription?.startDate}',
                   title2: 'bill_d_num'.tr,
-                  text2: '123456',
+                  text2: '${controller.bill?.clubTaxNumber}',
                 ),
                 Spacer()
               ],
@@ -61,7 +64,7 @@ class _BillDetailsState extends State<BillDetails> {
                 style: TextStyle(color: blackTextColor, fontSize: 16.sp),
                 children: [
                   TextSpan(text: 'sub_type'.tr),
-                  TextSpan(text: ' شهر واحد  '),
+                  TextSpan(text: '  ${controller.bill?.subscription?.packageType}  '),
                 ],
               ),
             ),
@@ -74,24 +77,30 @@ class _BillDetailsState extends State<BillDetails> {
               child: Column(
                 children: [
                   RowWidget(
-                    text: '1200 ريال',
+                    text: '${controller.bill?.subscription?.subTotal}  ريال',
                     title: 'price'.tr,
                   ),
                   getSpace(h: 10.h),
-                  RowWidget(
-                    text: '0 ريال',
-                    title: 'descount'.tr,
-                  ),
+                  ListView.builder(
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    itemCount: discountData.length,
+                    itemBuilder: (context, index) {
+                    return  RowWidget(
+                      text: '${discountData[index]['discount_avg']} %',
+                      title: 'descount'.tr,
+                    );
+                  },),
                   getSpace(h: 10.h),
                   RowWidget(
-                    text: '100 ريال',
+                    text: '${controller.bill?.vat} ريال',
                     title: 'tax'.tr,
                   ),
                   getSpace(h: 16.h),
                   getDivider(),
                   getSpace(h: 8.h),
                   RowWidget(
-                    text: '100 ريال',
+                    text: '${controller.bill?.subscription?.total} ريال',
                     title: 'total'.tr,
                     flag: true,
                   ),

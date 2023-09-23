@@ -5,17 +5,21 @@ import 'package:naz_gem/features/bill/ui/widget/myBillWidgets/sub_item_widget1.d
 import 'package:naz_gem/features/bill/ui/widget/myBillWidgets/sub_item_widget2.dart';
 
 import '../../../../../core/constants/app_colors.dart';
+import '../../../domain/entities/bill.dart';
+import '../../get/bill_getx_controller.dart';
 import '../../pages/bill_details.dart';
 
 class MyItemWidget extends StatelessWidget {
-  final int index;
+  final Bill bill;
 
-  const MyItemWidget({super.key, required this.index});
+  const MyItemWidget({super.key, required this.bill});
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
+        print(bill);
+        BillGetXController.to.bill = bill;
         Get.to(() => BillDetails());
       },
       child: Container(
@@ -30,8 +34,8 @@ class MyItemWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              const ItemOneWidget(id: '123456', month: 'اشتراك شهر واحد'),
-              ItemTwoWidget(index: index),
+              ItemOneWidget(id: '${bill.userIdNumber}', month: 'اشتراك  ${bill.subscription?.totalDays}  يوم'),
+              ItemTwoWidget(bill: bill),
             ],
           )),
     );
