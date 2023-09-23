@@ -1,4 +1,5 @@
 import 'package:naz_gem/features/auth/domain/entities/user.dart';
+import 'package:naz_gem/features/bill/data/model/SubscriptionModel.dart';
 
 class UserModel extends User {
   UserModel(
@@ -12,6 +13,7 @@ class UserModel extends User {
       birthdate,
       bloodType,
       length,
+      activeSubscription,
       profileImage})
       : super(
             firstName: firstName,
@@ -24,6 +26,7 @@ class UserModel extends User {
             birthdate: birthdate,
             bloodType: bloodType,
             length: length,
+            activeSubscription: activeSubscription,
             profileImage: profileImage);
 
   factory UserModel.fromJson(Map<String, dynamic> json) {
@@ -41,8 +44,10 @@ class UserModel extends User {
       firstName: json['first_name'],
       length: json['length'].toString()??'',
       bloodType: json['blood_type']??'',
-      profileImage: json['profile_image']
-    );
+      profileImage: json['profile_image']);
+    if(json['active_subscription'] != null){
+      user.activeSubscription = SubscriptionModel.fromJson(json['active_subscription']);
+    }
     if (json.containsKey('birthdate')) {
       user.birthdate = json['birthdate'];
     }else if (json.containsKey('type')) {

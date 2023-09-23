@@ -9,6 +9,7 @@ class Subscription  extends Equatable{
   int? totalDays;
   String? sessionsCount;
   String? startDate;
+  String? endDate;
   String? subTotal;
   String? total;
   String? discounts;
@@ -29,6 +30,7 @@ class Subscription  extends Equatable{
         this.total,
         this.discounts,
         this.status,
+        this.endDate,
         this.remainingDays,
         this.remainingSessions,
         this.packageId});
@@ -48,7 +50,8 @@ class Subscription  extends Equatable{
     status,
     remainingDays,
     remainingSessions,
-    packageId
+    packageId,
+    endDate
   ];
 
   @override

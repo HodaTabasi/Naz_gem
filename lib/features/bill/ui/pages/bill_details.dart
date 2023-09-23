@@ -16,16 +16,13 @@ class BillDetails extends StatefulWidget {
 
 class _BillDetailsState extends State<BillDetails> {
   BillGetXController controller = Get.find<BillGetXController>();
+
   @override
   Widget build(BuildContext context) {
     List discountData = controller.bill?.subscription?.toJsonDiscounts();
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: getAppBar(
-        text: "bill_details".tr,
-        isBack: true,
-        height: 80.h
-      ),
+      appBar: getAppBar(text: "bill_details".tr, isBack: true, height: 80.h),
       body: ListView(
         padding: EdgeInsets.all(16.r),
         children: [
@@ -46,7 +43,9 @@ class _BillDetailsState extends State<BillDetails> {
                 Spacer(),
                 BlockOneColumnWidget(
                   title1: 'bill_date'.tr,
-                  text1: '${controller.bill?.subscription?.startDate}',
+                  text1: controller.bill?.subscription?.packageType == "public"
+                      ? '${controller.bill?.subscription?.endDate}'
+                      : '${controller.bill?.subscription?.remainingSessions}',
                   title2: 'bill_d_num'.tr,
                   text2: '${controller.bill?.clubTaxNumber}',
                 ),
@@ -64,14 +63,16 @@ class _BillDetailsState extends State<BillDetails> {
                 style: TextStyle(color: blackTextColor, fontSize: 16.sp),
                 children: [
                   TextSpan(text: 'sub_type'.tr),
-                  TextSpan(text: '  ${controller.bill?.subscription?.packageType}  '),
+                  TextSpan(
+                      text:
+                          '  ${controller.bill?.subscription?.packageType}  '),
                 ],
               ),
             ),
           ),
           getSpace(h: 16.r),
           Container(
-              margin:margin,
+              margin: margin,
               padding: padding,
               decoration: decoration,
               child: Column(
@@ -86,11 +87,12 @@ class _BillDetailsState extends State<BillDetails> {
                     physics: const NeverScrollableScrollPhysics(),
                     itemCount: discountData.length,
                     itemBuilder: (context, index) {
-                    return  RowWidget(
-                      text: '${discountData[index]['discount_avg']} %',
-                      title: 'descount'.tr,
-                    );
-                  },),
+                      return RowWidget(
+                        text: '${discountData[index]['discount_avg']} %',
+                        title: 'descount'.tr,
+                      );
+                    },
+                  ),
                   getSpace(h: 10.h),
                   RowWidget(
                     text: '${controller.bill?.vat} ريال',
@@ -112,4 +114,3 @@ class _BillDetailsState extends State<BillDetails> {
     );
   }
 }
-

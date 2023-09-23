@@ -15,6 +15,7 @@ class SubscriptionModel extends Subscription {
         status,
         remainingDays,
         remainingSessions,
+        endDate,
         packageId})
       : super(
       id:id,
@@ -29,6 +30,7 @@ class SubscriptionModel extends Subscription {
       status:status,
       remainingDays:remainingDays,
       remainingSessions:remainingSessions,
+      endDate:endDate,
       packageId:packageId);
 
   factory SubscriptionModel.fromJson(Map<String, dynamic> json){
@@ -43,6 +45,7 @@ class SubscriptionModel extends Subscription {
         total : json['total'],
         discounts : json['discounts'],
         status : json['status'],
+      endDate : json['end_date'],
         remainingDays : json['remaining_days'],
         remainingSessions : json['remaining_sessions'],
         packageId : json['package_id'],

@@ -5,6 +5,7 @@ import 'package:get_storage/get_storage.dart';
 import 'package:naz_gem/features/auth/ui/get/auth_getx_controller.dart';
 
 import '../../../../core/constants/app_colors.dart';
+import '../../../../core/constants/snackbar_message.dart';
 import '../../../../core/widgets/app_button.dart';
 import '../../../../core/widgets/app_widget.dart';
 import '../../../../navigation_bar/bottom_navigation_page.dart';
@@ -106,7 +107,9 @@ class _OTPRegisterScreenState extends State<OTPRegisterScreen> {
                                     transition: Transition.downToUp,
                                     duration: const Duration(milliseconds: 300));
                               }else {
-
+                                SnackBarMessage.showErrorSnackBar(
+                                    message: controller.responseMessage,
+                                    context: context);
                               }
                             }
 

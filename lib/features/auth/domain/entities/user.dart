@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:naz_gem/features/bill/domain/entities/subscription.dart';
 
 class User extends Equatable {
   late String firstName;
@@ -14,6 +15,7 @@ class User extends Equatable {
   String? length;
   String? bloodType;
   String? profileImage;
+  Subscription? activeSubscription;
 
   User(
       {required this.firstName,
@@ -26,6 +28,7 @@ class User extends Equatable {
       this.length,
       this.profileImage,
       this.birthdate,
+      this.activeSubscription,
       this.bloodType});
 
   @override
@@ -43,7 +46,8 @@ class User extends Equatable {
         birthdate,
         bloodType,
         profileImage,
-        length
+        length,
+        activeSubscription
       ];
 
   @override
