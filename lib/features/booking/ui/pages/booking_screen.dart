@@ -57,122 +57,129 @@ class _BookingScreenState extends State<BookingScreen> {
       backgroundColor: Colors.white,
       appBar: getAppBar(text: 'my_booking'.tr, isBack: false, height: 60.h),
       body: Obx(() {
-        return ListView(
-          padding: EdgeInsets.all(8.r),
-          children: [
-            HorizontalWeekCalendar(
-              // weekStartFrom: WeekStartFrom.Monday,
-              activeBackgroundColor:
-                  GetStorage().read("package_typ") == 1 ? mainColor : btnColor,
-              activeTextColor: GetStorage().read("package_typ") == 1
-                  ? blackTextColor
-                  : Colors.white,
-              inactiveBackgroundColor: Colors.grey.withOpacity(.2),
-              inactiveTextColor: Colors.grey,
-              disabledTextColor: blackTextColor,
-              disabledBackgroundColor: Colors.white.withOpacity(.3),
-              activeNavigatorColor: Colors.white,
-              inactiveNavigatorColor: Colors.grey,
-              // monthColor: Colors.purple,
-              onDateChange: (date) {
-                setState(() {
-                  UserSessionGetxController.to.currentDate.value =
-                      DateFormat('yyyy-MM-dd').format(date);
-                  print(UserSessionGetxController.to.currentDate.value);
-                });
-              },
-            ),
-            getSpace(h: 8.h),
-            UserSessionGetxController.to.userSessionLoading.value
-                ? buildSizedBoxLoading(context)
-                : UserSessionGetxController
-                        .to
-                        .map[UserSessionGetxController.to.currentDate.value]!
-                        .isEmpty
-                    ? buildCenterNoData('لا يوجد مواعيد متاحة')
-                    : ListView.builder(
-                        itemCount: UserSessionGetxController
-                            .to
-                            .map[UserSessionGetxController.to.currentDate.value]!.value
-                            .length,
-                        shrinkWrap: true,
-                        padding: EdgeInsets.all(8.r),
-                        physics: const NeverScrollableScrollPhysics(),
-                        itemBuilder: (context, index) {
-                          return ItemOneWidget(
-                            flag: flag,
-                            backgroundColor:
-                                GetStorage().read("package_typ") == 1
-                                    ? mainColor
-                                    : btnColor,
-                            reservationSession:
-                                UserSessionGetxController.to.map[
-                                    UserSessionGetxController
-                                        .to.currentDate.value]!.value[index],
-                          );
-                        },
-                      ),
-            getSpace(h: 8.h),
-            Padding(
-              padding: EdgeInsets.all(8.0.r),
-              child: getText(
-                'avilable_booking'.tr,
-                color: blackTextColor,
-                size: 16.sp,
+        return RefreshIndicator(
+          onRefresh:() async{
+              AvailableGetxController.to.getAllAvailableSessions(
+                  date: AvailableGetxController.to.currentDate, page: 1);
+              UserSessionGetxController.to.getUserSessions();
+          },
+          child: ListView(
+            padding: EdgeInsets.all(8.r),
+            children: [
+              HorizontalWeekCalendar(
+                // weekStartFrom: WeekStartFrom.Monday,
+                activeBackgroundColor:
+                    GetStorage().read("package_typ") == 1 ? mainColor : btnColor,
+                activeTextColor: GetStorage().read("package_typ") == 1
+                    ? blackTextColor
+                    : Colors.white,
+                inactiveBackgroundColor: Colors.grey.withOpacity(.2),
+                inactiveTextColor: Colors.grey,
+                disabledTextColor: blackTextColor,
+                disabledBackgroundColor: Colors.white.withOpacity(.3),
+                activeNavigatorColor: Colors.white,
+                inactiveNavigatorColor: Colors.grey,
+                // monthColor: Colors.purple,
+                onDateChange: (date) {
+                  setState(() {
+                    UserSessionGetxController.to.currentDate.value =
+                        DateFormat('yyyy-MM-dd').format(date);
+                    print(UserSessionGetxController.to.currentDate.value);
+                  });
+                },
               ),
-            ),
-            HorizontalWeekCalendar(
-              // weekStartFrom: WeekStartFrom.Monday,
-              activeBackgroundColor:
-                  GetStorage().read("package_typ") == 1 ? mainColor : btnColor,
-              activeTextColor: GetStorage().read("package_typ") == 1
-                  ? blackTextColor
-                  : Colors.white,
-              inactiveBackgroundColor: Colors.grey.withOpacity(.2),
-              inactiveTextColor: Colors.grey,
-              disabledTextColor: blackTextColor,
-              disabledBackgroundColor: Colors.white.withOpacity(.3),
-              activeNavigatorColor: Colors.white,
-              inactiveNavigatorColor: Colors.grey,
-              // monthColor: Colors.purple,
-              onDateChange: (date) {
-                setState(() {
-                  AvailableGetxController.to.getAllAvailableSessions(date:DateFormat('yyyy-MM-dd').format(date),page: 1);
-                });
-              },
-            ),
-            getSpace(h: 8.h),
-            AvailableGetxController.to.avilableSessionLoading.value
-                ? buildSizedBoxLoading(context)
-                : AvailableGetxController
-                        .to
-                        .sessionsDay
-                        .isEmpty
-                    ? SizedBox(child: buildCenterNoData('لا يوجد مواعيد متاحة'))
-                    : ListView.builder(
-                        itemCount: AvailableGetxController
-                            .to
-                            .sessionsDay.length,
-                        shrinkWrap: true,
-                        padding: EdgeInsets.all(8.r),
-                        physics: const NeverScrollableScrollPhysics(),
-                        itemBuilder: (context, index) {
-                          return ItemTwoWidget(
-                            image: GetStorage().read("package_typ") == 1
-                                ? 'assets/images/card_background.png'
-                                : 'assets/images/card_background2.png',
-                            backgroundColor:
-                                GetStorage().read("package_typ") == 1
-                                    ? mainColor
-                                    : btnColor,
-                            session: AvailableGetxController.to.sessionsDay[index],
-                          );
-                        },
-                      ),
-            getSpace(h: 10.h),
-            if (AvailableGetxController.to.isPageLoading.value)
-              buildSizedBoxLoading(context)
-          ],
+              getSpace(h: 8.h),
+              UserSessionGetxController.to.userSessionLoading.value
+                  ? buildSizedBoxLoading(context)
+                  : UserSessionGetxController
+                          .to
+                          .map[UserSessionGetxController.to.currentDate.value]!
+                          .isEmpty
+                      ? buildCenterNoData('لا يوجد مواعيد متاحة')
+                      : ListView.builder(
+                          itemCount: UserSessionGetxController
+                              .to
+                              .map[UserSessionGetxController.to.currentDate.value]!.value
+                              .length,
+                          shrinkWrap: true,
+                          padding: EdgeInsets.all(8.r),
+                          physics: const NeverScrollableScrollPhysics(),
+                          itemBuilder: (context, index) {
+                            return ItemOneWidget(
+                              flag: flag,
+                              backgroundColor:
+                                  GetStorage().read("package_typ") == 1
+                                      ? mainColor
+                                      : btnColor,
+                              reservationSession:
+                                  UserSessionGetxController.to.map[
+                                      UserSessionGetxController
+                                          .to.currentDate.value]!.value[index],
+                            );
+                          },
+                        ),
+              getSpace(h: 8.h),
+              Padding(
+                padding: EdgeInsets.all(8.0.r),
+                child: getText(
+                  'avilable_booking'.tr,
+                  color: blackTextColor,
+                  size: 16.sp,
+                ),
+              ),
+              HorizontalWeekCalendar(
+                // weekStartFrom: WeekStartFrom.Monday,
+                activeBackgroundColor:
+                    GetStorage().read("package_typ") == 1 ? mainColor : btnColor,
+                activeTextColor: GetStorage().read("package_typ") == 1
+                    ? blackTextColor
+                    : Colors.white,
+                inactiveBackgroundColor: Colors.grey.withOpacity(.2),
+                inactiveTextColor: Colors.grey,
+                disabledTextColor: blackTextColor,
+                disabledBackgroundColor: Colors.white.withOpacity(.3),
+                activeNavigatorColor: Colors.white,
+                inactiveNavigatorColor: Colors.grey,
+                // monthColor: Colors.purple,
+                onDateChange: (date) {
+                  setState(() {
+                    AvailableGetxController.to.getAllAvailableSessions(date:DateFormat('yyyy-MM-dd').format(date),page: 1);
+                  });
+                },
+              ),
+              getSpace(h: 8.h),
+              AvailableGetxController.to.avilableSessionLoading.value
+                  ? buildSizedBoxLoading(context)
+                  : AvailableGetxController
+                          .to
+                          .sessionsDay
+                          .isEmpty
+                      ? SizedBox(child: buildCenterNoData('لا يوجد مواعيد متاحة'))
+                      : ListView.builder(
+                          itemCount: AvailableGetxController
+                              .to
+                              .sessionsDay.length,
+                          shrinkWrap: true,
+                          padding: EdgeInsets.all(8.r),
+                          physics: const NeverScrollableScrollPhysics(),
+                          itemBuilder: (context, index) {
+                            return ItemTwoWidget(
+                              image: GetStorage().read("package_typ") == 1
+                                  ? 'assets/images/card_background.png'
+                                  : 'assets/images/card_background2.png',
+                              backgroundColor:
+                                  GetStorage().read("package_typ") == 1
+                                      ? mainColor
+                                      : btnColor,
+                              session: AvailableGetxController.to.sessionsDay[index],
+                            );
+                          },
+                        ),
+              getSpace(h: 10.h),
+              if (AvailableGetxController.to.isPageLoading.value)
+                buildSizedBoxLoading(context)
+            ],
+          ),
         );
       }),
     );

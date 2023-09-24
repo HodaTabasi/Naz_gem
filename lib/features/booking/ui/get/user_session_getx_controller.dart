@@ -10,6 +10,7 @@ import '../../domain/use_case/get_training_session_history.dart';
 import '../../domain/use_case/get_user_training_session_use_case.dart';
 import '../../domain/use_case/get_user_training_sessions_use_case.dart';
 import '../../domain/use_case/reservation_new_training_session_use_case.dart';
+import 'avaibale_getx_controller.dart';
 
 class UserSessionGetxController extends GetxController {
   var responseMessage = '';
@@ -17,7 +18,8 @@ class UserSessionGetxController extends GetxController {
   RxMap<String, RxList<ReservationSession>> map =
       <String, RxList<ReservationSession>>{}.obs;
   RxString currentDate = DateFormat('yyyy-MM-dd').format(DateTime.now()).obs;
-  RxMap<int,List<ReservationSession>> reservationHistory = <int,List<ReservationSession>>{}.obs;
+  RxMap<int, List<ReservationSession>> reservationHistory =
+      <int, List<ReservationSession>>{}.obs;
 
   static UserSessionGetxController get to =>
       Get.find<UserSessionGetxController>();
@@ -32,31 +34,38 @@ class UserSessionGetxController extends GetxController {
               responseMessage = mapFailureToMessage(failure);
               return false;
             }, (session) async {
-          print("object");
+              print("object");
               EasyLoading.dismiss();
-              map[session.trainingSession?.date]!.add(session);
+              AvailableGetxController.to.getAllAvailableSessions(
+                  date: AvailableGetxController.to.currentDate, page: 1);
+              UserSessionGetxController.to.getUserSessions();
+              // map[session.trainingSession?.date]!.add(session);
               update();
               return true;
             }));
   }
 
-  Future<bool> cancelUserSessions(String id,{date}) {
+  Future<bool> cancelUserSessions(String id, {date}) {
     EasyLoading.show(indicator: EasyLoading().indicatorWidget);
     return CancelSessionUseCase(repository: Get.find<TraineesRepoImp>())
         .call(id)
         .then((value) => value.fold((failure) {
-          EasyLoading.dismiss();
-          responseMessage = mapFailureToMessage(failure);
-          update();
-          return false;
-    }, (session) async {
-          EasyLoading.dismiss();
-          print(date);
-          map[date]?.removeWhere((element) => element.trainingSession?.date == date,);
-          map[date]?.refresh();
-          update();
-          return true;
-    }));
+              EasyLoading.dismiss();
+              responseMessage = mapFailureToMessage(failure);
+              update();
+              return false;
+            }, (session) async {
+              EasyLoading.dismiss();
+              print(date);
+              map[date]?.removeWhere(
+                (element) => element.trainingSession?.date == date,
+              );
+              AvailableGetxController.to.getAllAvailableSessions(
+                  date: AvailableGetxController.to.currentDate, page: 1);
+              map[date]?.refresh();
+              update();
+              return true;
+            }));
   }
 
   getUserSessions() {
@@ -67,7 +76,8 @@ class UserSessionGetxController extends GetxController {
               responseMessage = mapFailureToMessage(failure);
               userSessionLoading.value = false;
             }, (session) async {
-          print(session);
+               map.clear();
+              print(session);
               filtterByDate(session);
               userSessionLoading.value = false;
             }));
@@ -82,20 +92,19 @@ class UserSessionGetxController extends GetxController {
   getUserSessionsHistory() {
     userSessionLoading.value = true;
     EasyLoading.show(indicator: EasyLoading().indicatorWidget);
-    GetUserSessionsHistoryUseCase(
-        repository: Get.find<TraineesRepoImp>())
+    GetUserSessionsHistoryUseCase(repository: Get.find<TraineesRepoImp>())
         .call()
         .then((value) => value.fold((failure) {
-         userSessionLoading.value = false;
-         EasyLoading.dismiss();
-         responseMessage = mapFailureToMessage(failure);
-    }, (session) async {
-          getMapData(session);
-          EasyLoading.dismiss();
-      userSessionLoading.value = false;
-    }));
-  }
+              userSessionLoading.value = false;
+              EasyLoading.dismiss();
+              responseMessage = mapFailureToMessage(failure);
+            }, (session) async {
 
+              getMapData(session);
+              EasyLoading.dismiss();
+              userSessionLoading.value = false;
+            }));
+  }
 
   void filtterByDate(List<ReservationSession> session) {
     putDataToMap();
