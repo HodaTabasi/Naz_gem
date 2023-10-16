@@ -37,13 +37,13 @@ String mapFailureToMessage(Failure failure) {
     case OfflineFailure:
       return OFFLINE_FAILURE_MESSAGE;
     default:
-      return "Unexpected Error , Please try again later .";
+      return ".. خطا غير متوقع حاول في ما بعد";
   }
 }
 
-getDiscount(currentPackag){
-  if(currentPackag.discounts!.isNotEmpty){
-    var priceAfterDiscount = currentPackag.discounts!.first.ratio! * num.parse(currentPackag.price!) / 100;
+getDiscount(currentPackage){
+  if(currentPackage.discounts!.isNotEmpty){
+    var priceAfterDiscount =(1-(currentPackage.discounts!.first.ratio!/100))  * num.parse(currentPackage.price!);
     print(priceAfterDiscount);
     return priceAfterDiscount;
   }

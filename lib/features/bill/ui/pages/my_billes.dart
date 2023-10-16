@@ -30,7 +30,9 @@ class _MyBillesState extends State<MyBilles> {
       ),
       body: GetX<BillGetXController>(
         builder: (controller) {
-          return ListView.builder(
+          return controller.bills.isEmpty?
+              Center(child: buildCenterNoData("لا توجد فواتير "),)
+              :ListView.builder(
             itemCount: controller.bills.length,
             padding: EdgeInsets.all(16.r),
             itemBuilder: (context, index) {

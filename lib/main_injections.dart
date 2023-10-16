@@ -30,6 +30,7 @@ import 'features/booking/ui/get/user_session_getx_controller.dart';
 import 'features/contact_info/ui/get/contact_getx_controller.dart';
 import 'features/home/data/data_source/package_data_source.dart';
 import 'features/home/data/repository/home_repo_imp.dart';
+import 'features/notifications/ui/get/notification_getx_controller.dart';
 import 'features/profile/data/data_source/profile_remote_dataSource_imp.dart';
 import 'features/profile/ui/get/edit_profile_getx_controller.dart';
 import 'features/subscrbtions/data/data_source/partner_remote_dataSource_imp.dart';
@@ -51,6 +52,7 @@ class MainInjection implements Bindings {
     Get.put(AvailableGetxController());
     Get.put(UserSessionGetxController());
     Get.put(BillGetXController());
+    Get.put(NotificationGetxController());
 
     Get.put(AuthRepoImpl(remoteDataSource: AuthRemoteDataSourceImp(client:connect),
         networkInfo: networkInfoImpl));

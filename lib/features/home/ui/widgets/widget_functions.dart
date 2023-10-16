@@ -176,7 +176,7 @@ void showDitailsDialog(BuildContext context, Package currentPackag) {
                             SvgPicture.asset('assets/images/gem1.svg'),
                             getSpace(w: 10.w),
                             getText('${details[index]['value']}',
-                                size: 14.sp, color: blackTextColor),
+                                size: 14.sp, color: blackTextColor,maxLines: 5),
                           ],
                         ),
                       );

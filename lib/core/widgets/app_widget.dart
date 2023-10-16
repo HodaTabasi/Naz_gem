@@ -12,7 +12,7 @@ SizedBox getSpace({w = 0.0, h = 0.0}) {
   );
 }
 
-Text getText(text, {size, color, weight, family,align,decoration}) {
+Text getText(text, {size, color, weight, family,align,decoration,maxLines =1}) {
   return Text(text,
       style: TextStyle(
           color: color,
@@ -20,7 +20,8 @@ Text getText(text, {size, color, weight, family,align,decoration}) {
           fontWeight: weight,
           fontFamily: family,
       decoration:decoration )
-  ,textAlign: align,);
+  ,textAlign: align,
+  maxLines: maxLines,);
 }
 
 Widget getDivider(){

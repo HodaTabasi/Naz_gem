@@ -87,8 +87,8 @@ class ItemTwoWidget extends StatelessWidget {
                   bool done = await UserSessionGetxController.to
                       .reservationUserSessions(session.id.toString());
                   if (done) {
-                    AvailableGetxController.to
-                        .decreaseAvailableSession(session);
+                    // AvailableGetxController.to
+                    //     .decreaseAvailableSession(session);
                     showDialog(
                         context: context,
                         builder: (context) => CoustomDialog(
@@ -100,12 +100,13 @@ class ItemTwoWidget extends StatelessWidget {
                               flag: false,
                             ));
                   } else {
+                    String error = GetStorage().read("error_flag");
                     showDialog(
                         context: context,
                         builder: (context) => CoustomDialog(
                               title:
                                   '${UserSessionGetxController.to.responseMessage}',
-                              image: 'animation_lk527tw6.json',
+                              image: error == 'sad-emoji'?'animation_lk527tw6.json':'animation_lk51tnnl.json',
                               onClick: () {
                                 Get.back();
                               },

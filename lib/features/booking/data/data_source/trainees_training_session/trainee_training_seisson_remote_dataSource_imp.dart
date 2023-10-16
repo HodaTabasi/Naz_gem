@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:dartz/dartz.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:naz_gem/core/network/app_setting.dart';
 
 import 'package:http/http.dart' as http;
@@ -111,6 +112,7 @@ class TraineesTrainingSessionRemoteDataSourceImp extends TraineesTrainingSession
       return postModels;
     } else {
       SERVER_FAILURE_MESSAGE = decodedJson['message'] ;
+      GetStorage().write("error_flag", decodedJson['flag']);
       throw ServerException();
     }
   }
