@@ -6,11 +6,18 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:naz_gem/features/splash_screen.dart';
 import 'package:naz_gem/main_injections.dart';
+import 'core/constants/app_colors.dart';
+import 'core/notification/fb_notifications.dart';
 import 'core/translations/app_translations.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await GetStorage.init();
+  // await Firebase.initializeApp(
+  //   options: DefaultFirebaseOptions.currentPlatform,
+  // );
+  await FbNotifications.initNotifications();
+  await FbNotifications.getToken();
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
       .then((_) {
     runApp(const MyApp());
@@ -35,7 +42,7 @@ class MyApp extends StatelessWidget {
         locale: const Locale('ar'),
         // translations will be displayed in that locale
         fallbackLocale: const Locale('ar'),
-        theme: ThemeData(primarySwatch: Colors.lightBlue,fontFamily: 'br'),
+        theme: ThemeData(primarySwatch: primary,fontFamily: 'br'),
           builder:EasyLoading.init(builder: (context, child) {
             return MediaQuery(
                 data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
