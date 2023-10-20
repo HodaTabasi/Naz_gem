@@ -215,9 +215,11 @@ class _NewUserState extends State<NewUser> {
                               title: 'sure_otp'.tr,
                               color: btnColor,
                               prsee: () async {
+                                print("fffffffffff");
                                 if (newUserKey.currentState!
                                     .validate()) {
                                   if(checkValue){
+                                    print("Fgdfgd");
                                     bool result = await controller.createAccount(user: user);
                                     if(result){
                                       Get.to(() => OTPRegisterScreen(),
@@ -228,6 +230,7 @@ class _NewUserState extends State<NewUser> {
                                           message: controller.responseMessage, context: context);
                                     }
                                   }else {
+                                    print("sdsdf");
                                     SnackBarMessage.showErrorSnackBar(
                                         message: CHECK_MESSAGE, context: context);
                                   }

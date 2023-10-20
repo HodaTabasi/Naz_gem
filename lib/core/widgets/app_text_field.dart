@@ -44,6 +44,9 @@ class AppTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      onTap:(){
+        _textController.selection = TextSelection.fromPosition(TextPosition(offset: _textController.text.length));
+      },
       controller: _textController,
       keyboardType: _textInputType,
       textInputAction: _textInputAction,
@@ -76,6 +79,7 @@ class AppTextField extends StatelessWidget {
         fillColor: grayBackground,
         filled: !_isEnabled,
         enabled: _isEnabled,
+
         enabledBorder: buildOutlineInputBorder(color:boarderColor),
         focusedBorder: buildOutlineInputBorder(color: btnColor),
         disabledBorder: buildOutlineInputBorder(color: boarderColor),

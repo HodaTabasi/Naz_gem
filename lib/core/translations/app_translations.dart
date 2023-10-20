@@ -212,7 +212,7 @@ class TranslateWord extends Translations {
       'lenght_condation':' هذا الحقل اجباري ',
       'valid_phone':' يجب ان يحتوي رقم الهاتف على 10 ارقام ',
       'valid_email':' يجب ان يحتوي على صيغة ايميل ',
-      'valid_name':' يجب ان يكون طول النص اكبر من 4 احرف ',
+      'valid_name':' النص اقل من 3 احرف ',
     }
   };
 }

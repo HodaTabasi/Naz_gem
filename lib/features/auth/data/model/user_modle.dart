@@ -36,12 +36,12 @@ class UserModel extends User {
     // // print(json.containsKey('profile_image'));
 
     UserModel user = UserModel(
-      phone: json['phone'],
-      email: json['email'],
-      identifier: json['identifier'],
-      id: json['id'],
-      lastName: json['last_name'],
-      firstName: json['first_name'],
+      phone: json['phone'] ?? '',
+      email: json['email'] ?? '',
+      identifier: json['identifier']?? '',
+      id: json['id']?? '',
+      lastName: json['last_name']?? '',
+      firstName: json['first_name'] ?? '',
       length: json['length'].toString()??'',
       bloodType: json['blood_type']??'',
       profileImage: json['profile_image']);

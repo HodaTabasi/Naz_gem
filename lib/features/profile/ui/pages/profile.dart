@@ -1,15 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:naz_gem/core/constants/app_colors.dart';
 import 'package:naz_gem/features/profile/ui/get/edit_profile_getx_controller.dart';
 
-import '../../../../core/widgets/app_widget.dart';
 import '../widgets/lower_section/lower_section_widget.dart';
 import '../widgets/profile_functions.dart';
 import '../widgets/upper_section/upper_section_widget.dart';
-import 'edit_profile.dart';
 
 class ProfileScreen extends StatefulWidget {
   @override
