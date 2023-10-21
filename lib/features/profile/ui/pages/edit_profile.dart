@@ -141,7 +141,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                         ),
                       ),
                     ),
-                    getSpace(w: 23.w),
+                    getSpace(w: 10.w),
                     Expanded(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -273,7 +273,6 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                     title: 'save'.tr,
                     color: btnColor,
                     prsee: () async {
-                      print("fggggggg");
                       if (GeneralGetxController.to.profileKey.currentState!
                           .validate()) {
                         if(EditProfileGetxController.to.file?.path != null){

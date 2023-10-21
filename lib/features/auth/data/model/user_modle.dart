@@ -18,7 +18,7 @@ class UserModel extends User {
       : super(
             firstName: firstName,
             lastName: lastName,
-            id: id??0,
+            id: int.tryParse('$id')??0,
             identifier: identifier??'',
             email: email,
             phone: phone,

@@ -34,6 +34,9 @@ class _SubscrbtionsState extends State<Subscrbtions> {
     final DateTime? pickedDate = await showDatePicker(
       context: context,
       initialDate: currentDate,
+      errorFormatText: 'ادخل التاريخ بشكل صحيح',
+      errorInvalidText: 'ادخل التاريخ بشكل صحيح',
+      fieldLabelText: 'حدد التاريخ',
       cancelText: 'الغاء الامر',
       confirmText: 'حسنا',
       textDirection: TextDirection.rtl,
@@ -112,7 +115,7 @@ class _SubscrbtionsState extends State<Subscrbtions> {
           TotalAmountWidget(),
           BtnApp(title: 'pay'.tr, prsee: () async {
             if(SubscrbtionGetxController.to.checkResponse == null){
-              SubscrbtionGetxController.to.amount = (getDiscount(SubscrbtionGetxController.to.package)?? SubscrbtionGetxController.to.package.price).toString();
+              SubscrbtionGetxController.to.amount = getDiscount(SubscrbtionGetxController.to.package)?.toString()?? SubscrbtionGetxController.to.package.price.toString();
 
             }else {
               SubscrbtionGetxController.to.amount = (SubscrbtionGetxController.to.checkResponse?.priceAfterPartnerDiscount ?? SubscrbtionGetxController.to.checkResponse?.priceAfterDiscount ?? SubscrbtionGetxController.to.checkResponse?.packagePrice).toString();

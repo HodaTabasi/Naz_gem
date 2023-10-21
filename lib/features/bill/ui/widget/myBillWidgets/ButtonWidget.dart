@@ -6,12 +6,12 @@ import '../../../../../core/widgets/app_widget.dart';
 
 class ButtonWidget extends StatelessWidget {
   final Color color;
-  final Size size;
+  // final Size size;
   final VoidCallback onPress;
   final String text;
   const ButtonWidget({
     super.key,
-    required this.size ,
+    // required this.size ,
     required this.color ,
     required this.onPress ,
     required this.text ,
@@ -22,7 +22,7 @@ class ButtonWidget extends StatelessWidget {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
           elevation: 0,
-          fixedSize: size,
+          // fixedSize: size,
           disabledBackgroundColor: color,
           backgroundColor: color,
           shadowColor: Colors.transparent,
