@@ -64,7 +64,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
       cancelText: 'الغاء الامر',
       confirmText: 'حسنا',
       textDirection: TextDirection.rtl,
-      locale: const Locale('ar'),
+      // locale: const Locale('ar'),
       helpText: 'حدد التاريخ',
       firstDate: DateTime(1900),
       lastDate: DateTime(2050),

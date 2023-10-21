@@ -38,7 +38,7 @@ class _SubscrbtionsState extends State<Subscrbtions> {
       confirmText: 'حسنا',
       textDirection: TextDirection.rtl,
       helpText: 'حدد التاريخ',
-      locale: const Locale('ar'),
+      // locale: const Locale('ar'),
       firstDate: DateTime.now(),
       lastDate: DateTime(2050),
       builder: (context, child) {
