@@ -41,6 +41,7 @@ class _SubscrbtionsState extends State<Subscrbtions> {
       confirmText: 'حسنا',
       textDirection: TextDirection.rtl,
       helpText: 'حدد التاريخ',
+      // locale: const Locale('ar'),
       firstDate: DateTime.now(),
       lastDate: DateTime(2050),
       builder: (context, child) {
@@ -61,12 +62,13 @@ class _SubscrbtionsState extends State<Subscrbtions> {
         );
       },
     );
-    if (pickedDate != null && pickedDate != currentDate)
+    if (pickedDate != null && pickedDate != currentDate) {
       setState(() {
         currentDate = pickedDate;
         SubscrbtionGetxController.to.dateController.text =
         '${currentDate.year}-${currentDate.month}-${currentDate.day}';
       });
+    }
   }
 
 
@@ -113,7 +115,7 @@ class _SubscrbtionsState extends State<Subscrbtions> {
           TotalAmountWidget(),
           BtnApp(title: 'pay'.tr, prsee: () async {
             if(SubscrbtionGetxController.to.checkResponse == null){
-              SubscrbtionGetxController.to.amount = getDiscount(SubscrbtionGetxController.to.package)?.toString()?? SubscrbtionGetxController.to.package.price;
+              SubscrbtionGetxController.to.amount = getDiscount(SubscrbtionGetxController.to.package)?.toString()?? SubscrbtionGetxController.to.package.price.toString();
 
             }else {
               SubscrbtionGetxController.to.amount = (SubscrbtionGetxController.to.checkResponse?.priceAfterPartnerDiscount ?? SubscrbtionGetxController.to.checkResponse?.priceAfterDiscount ?? SubscrbtionGetxController.to.checkResponse?.packagePrice).toString();

@@ -1,6 +1,11 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
+import 'package:naz_gem/features/auth/data/model/user_modle.dart';
+import 'package:naz_gem/features/auth/domain/entities/user.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
 import '../../../../core/constants/app_colors.dart';
@@ -13,6 +18,13 @@ class QRScreen extends StatefulWidget {
 }
 
 class _QRScreenState extends State<QRScreen> {
+  late User user;
+  @override
+  void initState() {
+    String jsonString = GetStorage().read('user');
+    user = UserModel.fromJson(jsonDecode(jsonString));
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -57,7 +69,7 @@ class _QRScreenState extends State<QRScreen> {
                     TextStyle(color: Colors.black,fontSize: 20.sp),
                     children: [
                       TextSpan(text: 'id_number'.tr),
-                      TextSpan(text: '123456789'),
+                      TextSpan(text: '${user.identifier}'),
                     ],
                   ),
               ))

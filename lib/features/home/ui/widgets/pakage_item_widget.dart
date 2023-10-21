@@ -48,19 +48,21 @@ class PakageItemWidget extends StatelessWidget {
               // mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 getSpace(h: 25.h),
-                getText('${controller.getName(currentPackag)}',
+                getText('${currentPackag.name}',
                     color: grayTextColor, size: 13.sp, align: TextAlign.center),
                 getSpace(h: 10.h),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Visibility(
-                      visible:currentPackag.discounts!.isNotEmpty,
-                      child: getText("${currentPackag.price} ريال ",
-                          color: grayTextColor1,
-                          size: 15.sp,
-                          align: TextAlign.center,
-                          decoration: TextDecoration.lineThrough),
+                    Flexible(
+                      child: Visibility(
+                        visible:currentPackag.discounts!.isNotEmpty,
+                        child: getText("${currentPackag.price} ريال ",
+                            color: grayTextColor1,
+                            size: 15.sp,
+                            align: TextAlign.center,
+                            decoration: TextDecoration.lineThrough),
+                      ),
                     ),
                     getSpace(w: 10.w),
                     getText("${priceAfterDiscount ?? currentPackag.price} ريال",

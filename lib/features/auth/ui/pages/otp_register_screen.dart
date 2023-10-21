@@ -99,18 +99,30 @@ class _OTPRegisterScreenState extends State<OTPRegisterScreen> {
                           color: btnColor,
                           prsee: () async {
                             if(controller.checkControllerEmpty()){
-                              bool login = await controller.login(
-                                  phone: controller.phone,
-                                  otp: controller.makeCode());
-                              if(login){
-                                Get.offAll(() => const BottomNavigationPage(),
-                                    transition: Transition.downToUp,
-                                    duration: const Duration(milliseconds: 300));
-                              }else {
+                              if(controller.makeCode().toString().trim() != GetStorage().read("otp").toString().trim()){
+
                                 SnackBarMessage.showErrorSnackBar(
-                                    message: controller.responseMessage,
+                                    message: "تاكد من كتابه الكود بشكل صحيح",
                                     context: context);
+                              }else {
+                                bool login = await controller.login(
+                                    phone: controller.phone,
+                                    otp: controller.makeCode());
+                                if(login){
+                                  Get.offAll(() => const BottomNavigationPage(),
+                                      transition: Transition.downToUp,
+                                      duration: const Duration(milliseconds: 300));
+                                }else {
+                                  SnackBarMessage.showErrorSnackBar(
+                                      message: controller.responseMessage,
+                                      context: context);
+                                }
                               }
+
+                            }else {
+                              SnackBarMessage.showErrorSnackBar(
+                                  message: 'املا الحقول المطلوبة',
+                                  context: context);
                             }
 
 

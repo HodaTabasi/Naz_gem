@@ -46,11 +46,12 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
   @override
   void initState() {
     var controller = EditProfileGetxController.to;
+    print(controller.myUser.length);
     _mobileController = TextEditingController(text:controller.myUser.phone);
     _firstNameController = TextEditingController(text:controller.myUser.firstName);
     _lastNameController = TextEditingController(text:controller.myUser.lastName);
     _emailController = TextEditingController(text:controller.myUser.email);
-    _hgtController = TextEditingController(text:controller.myUser.length??'');
+    _hgtController = TextEditingController(text:controller.myUser.length == 'null'?'160 سم':'${controller.myUser.length}سم');
     _bdController = TextEditingController(text:controller.myUser.birthdate??'');
     _bloodController = TextEditingController(text:controller.myUser.bloodType??'AB-');
     super.initState();
@@ -63,6 +64,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
       cancelText: 'الغاء الامر',
       confirmText: 'حسنا',
       textDirection: TextDirection.rtl,
+      // locale: const Locale('ar'),
       helpText: 'حدد التاريخ',
       firstDate: DateTime(1900),
       lastDate: DateTime(2050),

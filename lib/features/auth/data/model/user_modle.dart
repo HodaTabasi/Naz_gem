@@ -39,7 +39,7 @@ class UserModel extends User {
       phone: json['phone'] ?? '',
       email: json['email'] ?? '',
       identifier: json['identifier']?? '',
-      id: json['id']?? '',
+      id: json['id']?? 0,
       lastName: json['last_name']?? '',
       firstName: json['first_name'] ?? '',
       length: json['length'].toString()??'',

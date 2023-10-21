@@ -6,7 +6,6 @@ import 'package:naz_gem/core/constants/app_colors.dart';
 import 'package:naz_gem/core/widgets/app_toggle.dart';
 import 'package:naz_gem/core/widgets/app_widget.dart';
 import 'package:naz_gem/features/home/ui/get/home_getx_controller.dart';
-import 'package:pull_to_refresh/pull_to_refresh.dart';
 import '../widgets/image_list_widget.dart';
 import '../widgets/pakage_item_widget.dart';
 import '../widgets/video_list_widget.dart';
@@ -32,35 +31,28 @@ class _HomeScreenState extends State<HomeScreen> {
     super.initState();
   }
 
-  Future<void> _refresh() async {
-    HomeGetxController.to.getSliders();
-    HomeGetxController.to.getGalleries();
-    HomeGetxController.to.getPackages();
-    _refreshController.refreshCompleted();
-  }
-
-  final RefreshController _refreshController =
-  RefreshController(initialRefresh: false);
-
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: buildAppBar(),
-      body: GetX<HomeGetxController>
-        (builder: (controller) {
-        return SmartRefresher(
-          primary: false,
-          controller: _refreshController,
-          onRefresh: _refresh,
-          header:  WaterDropHeader(
-            waterDropColor: Theme.of(context).primaryColor,
-            complete: Icon(
-              Icons.done,
-              color: Theme.of(context).primaryColor,
-            ),
-          ),
-          child: ListView(
+    return RefreshIndicator(
+      displacement: 250,
+      backgroundColor: mainColor,
+      color: blackTextColor,
+      strokeWidth: 3,
+      triggerMode: RefreshIndicatorTriggerMode.onEdge,
+      onRefresh: () async {
+        await Future.delayed(const Duration(milliseconds: 1500));
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          HomeGetxController.to.getSliders();
+          HomeGetxController.to.getGalleries();
+          HomeGetxController.to.getPackages();
+        });
+      },
+      child: Scaffold(
+        backgroundColor: Colors.white,
+        appBar: buildAppBar(),
+        body: GetX<HomeGetxController>
+          (builder: (controller) {
+          return ListView(
             children: [
               controller.slidersLoading.value
                   ? buildSizedBoxLoading(context)
@@ -108,9 +100,9 @@ class _HomeScreenState extends State<HomeScreen> {
                       ],
                     )
             ],
-          ),
-        );
-      }),
+          );
+        }),
+      ),
     );
   }
 

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "737027017295",
+    "project_id": "nazapp-980b0",
+    "storage_bucket": "nazapp-980b0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:737027017295:android:b2b43959cd94b18f4f383a",
+        "android_client_info": {
+          "package_name": "com.app.Naz.Gem.naz_gem"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDsont8ARcatya3jBewxbupNKSQHhVuwG4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
