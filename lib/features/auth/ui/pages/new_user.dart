@@ -122,6 +122,7 @@ class _NewUserState extends State<NewUser> {
 
                           getSpace(h: 16.0.r),
                           Row(
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Expanded(
                                 child: SizedBox(
@@ -194,18 +195,20 @@ class _NewUserState extends State<NewUser> {
                                     borderRadius: BorderRadius.circular(3.r)),
                                 activeColor: blackTextColor,
                               ),
-                              Text.rich(
-                                maxLines: 3,
-                                TextSpan(
-                                  style: TextStyle(color: btnColor),
-                                  children: [
-                                    TextSpan(
-                                        text: 'm1'.tr),
-                                    TextSpan(
-                                        text: 'm2'.tr,
-                                        style: TextStyle(color: sucndryColor)),
-                                    TextSpan(text: 'm3'.tr),
-                                  ],
+                              FittedBox(
+                                child: Text.rich(
+                                  maxLines: 3,
+                                  TextSpan(
+                                    style: TextStyle(color: btnColor),
+                                    children: [
+                                      TextSpan(
+                                          text: 'm1'.tr),
+                                      TextSpan(
+                                          text: 'm2'.tr,
+                                          style: TextStyle(color: sucndryColor)),
+                                      TextSpan(text: 'm3'.tr),
+                                    ],
+                                  ),
                                 ),
                               )
                             ],

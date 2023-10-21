@@ -18,16 +18,13 @@ class AuthGetxController extends GetxController {
   bool isCreated = false;
   String responseMessage = '';
   late String phone = '' ;
-  TextEditingController num1Controller = TextEditingController();
-  TextEditingController num2Controller = TextEditingController();
-  TextEditingController num3Controller = TextEditingController();
-  TextEditingController num6Controller = TextEditingController();
-
+  // TextEditingController num1Controller = TextEditingController();
+  // TextEditingController num2Controller = TextEditingController();
+  // TextEditingController num3Controller = TextEditingController();
+  // TextEditingController num6Controller = TextEditingController();
+  TextEditingController pinCodeController = TextEditingController();
   bool checkControllerEmpty(){
-    if(num1Controller.text.isNotEmpty &&
-    num2Controller.text.isNotEmpty &&
-    num3Controller.text.isNotEmpty &&
-    num6Controller.text.isNotEmpty){
+    if(pinCodeController.text.isNotEmpty){
       return true;
     }else {
       return false;
@@ -35,7 +32,8 @@ class AuthGetxController extends GetxController {
   }
 
   String makeCode(){
-    return '${num1Controller.text}${num2Controller.text}${num3Controller.text}${num6Controller.text}';
+    return pinCodeController.text;
+    // return '${num1Controller.text}${num2Controller.text}${num3Controller.text}${num6Controller.text}';
   }
 
   isSameOTP(){
@@ -43,10 +41,11 @@ class AuthGetxController extends GetxController {
   }
 
   despose(){
-    num1Controller.text = '';
-    num2Controller.text = '';
-    num3Controller.text = '';
-    num6Controller.text = '';
+    pinCodeController.text = '';
+    // num1Controller.text = '';
+    // num2Controller.text = '';
+    // num3Controller.text = '';
+    // num6Controller.text = '';
   }
 
 

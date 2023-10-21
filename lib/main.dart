@@ -16,8 +16,8 @@ Future<void> main() async {
   // await Firebase.initializeApp(
   //   options: DefaultFirebaseOptions.currentPlatform,
   // );
-  await FbNotifications.initNotifications();
-  await FbNotifications.getToken();
+  // await FbNotifications.initNotifications();
+  // await FbNotifications.getToken();
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
       .then((_) {
     runApp(const MyApp());

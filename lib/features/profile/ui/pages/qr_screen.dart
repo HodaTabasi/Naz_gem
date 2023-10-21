@@ -31,12 +31,12 @@ class _QRScreenState extends State<QRScreen> {
           decoration: BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.circular(15.r),
-            boxShadow: const [
-              BoxShadow(
-                color: Colors.white,
-                blurRadius: 15,
-              ),
-            ]
+            // boxShadow: const [
+            //   BoxShadow(
+            //     color: Colors.white,
+            //     blurRadius: 15,
+            //   ),
+            // ]
           ),
           child: Column(
             children: [

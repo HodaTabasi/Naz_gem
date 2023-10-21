@@ -15,7 +15,7 @@ class PakageInfoWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetBuilder<EditProfileGetxController>(
       builder: (controller) {
-        return Padding(
+        return controller.myUser.activeSubscription?.packageType == null ? const SizedBox():  Padding(
           padding:  EdgeInsets.all(16.0.r),
           child: IntrinsicHeight(
             child: Row(

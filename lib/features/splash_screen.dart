@@ -16,15 +16,19 @@ class _SplashScreenState extends State<SplashScreen> {
   bool play = false;
 
   @override
-  Widget build(BuildContext context) {
+  void initState() {
     Future.delayed(
-      Duration(milliseconds: 500),
-      () {
+      const Duration(milliseconds: 500),
+          () {
         play = true;
         setState(() {});
         // ;
       },
     );
+    super.initState();
+  }
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(

@@ -91,10 +91,9 @@ class _BookingScreenState extends State<BookingScreen> {
               getSpace(h: 8.h),
               UserSessionGetxController.to.userSessionLoading.value
                   ? buildSizedBoxLoading(context)
-                  : UserSessionGetxController
+                  : (UserSessionGetxController
                           .to
-                          .map[UserSessionGetxController.to.currentDate.value]!
-                          .isEmpty
+                          .map[UserSessionGetxController.to.currentDate.value]?.isEmpty ?? true)
                       ? buildCenterNoData('لا يوجد مواعيد متاحة')
                       : ListView.builder(
                           itemCount: UserSessionGetxController

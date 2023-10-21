@@ -23,7 +23,7 @@ class ItemTwoWidget extends StatelessWidget {
         Visibility(
           visible: bill.subscription?.status == "active",
           child: ButtonWidget(
-            size: Size(110.w, 20.h),
+            // size: Size(110.w, 20.h),
             text: 'connect_now'.tr,
             color: mainColor,
             onPress: () {},
@@ -32,7 +32,7 @@ class ItemTwoWidget extends StatelessWidget {
         Visibility(
           visible: bill.subscription?.status != "active",
           child: ButtonWidget(
-            size: Size(75.w, 20.h),
+            // size: Size(75.w, 20.h),
             text: bill.subscription?.status == "pending"
                 ? 'pending'.tr
                 : bill.subscription?.status == "paused"

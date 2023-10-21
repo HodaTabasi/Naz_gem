@@ -38,10 +38,11 @@ class ProfileRemoteDataSourceImp extends ProfileRemoteDataSource {
   Future<UserModel> updateUser(UserModel userModel) async {
     var request =
         http.MultipartRequest('POST', Uri.parse(baseUrl + updateProfile));
-    http.MultipartFile imageFile = await http.MultipartFile.fromPath(
+    http.MultipartFile? imageFile = userModel.profileImage == null ? null : await http.MultipartFile.fromPath(
         'image', userModel.profileImage!);
-
-    request.files.add(imageFile);
+    if (imageFile != null) {
+      request.files.add(imageFile);
+    }
     request.fields['first_name'] = userModel.firstName;
     request.fields['last_name'] = userModel.lastName;
     request.fields['phone'] = userModel.phone.toString();

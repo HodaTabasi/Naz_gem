@@ -39,7 +39,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
       birthdate:_bdController.text,
       bloodType: dropdownValue,
       length: _hgtController.text,
-      profileImage: EditProfileGetxController.to.file!.path
+      profileImage: EditProfileGetxController.to.file?.path
       );
   }
 
@@ -115,6 +115,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                 buildEditImageListTile(),
                 getSpace(h: 20.0.r),
                 Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Expanded(
                       child: Form(
@@ -139,7 +140,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                         ),
                       ),
                     ),
-                    getSpace(w: 23.w),
+                    getSpace(w: 10.w),
                     Expanded(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -173,7 +174,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                     hint: '',
                     text: '+966',
                     hasSufix: true,
-                    isEnabled: false,
+                    // isEnabled: false,
                     textInputType: TextInputType.number,
                     onSubmitted: GeneralGetxController.to.mobileValidation,
                   ),

@@ -6,6 +6,7 @@ import 'package:naz_gem/core/constants/app_colors.dart';
 import 'package:naz_gem/core/widgets/app_toggle.dart';
 import 'package:naz_gem/core/widgets/app_widget.dart';
 import 'package:naz_gem/features/home/ui/get/home_getx_controller.dart';
+import 'package:pull_to_refresh/pull_to_refresh.dart';
 import '../widgets/image_list_widget.dart';
 import '../widgets/pakage_item_widget.dart';
 import '../widgets/video_list_widget.dart';
@@ -31,6 +32,16 @@ class _HomeScreenState extends State<HomeScreen> {
     super.initState();
   }
 
+  Future<void> _refresh() async {
+    HomeGetxController.to.getSliders();
+    HomeGetxController.to.getGalleries();
+    HomeGetxController.to.getPackages();
+    _refreshController.refreshCompleted();
+  }
+
+  final RefreshController _refreshController =
+  RefreshController(initialRefresh: false);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,54 +49,66 @@ class _HomeScreenState extends State<HomeScreen> {
       appBar: buildAppBar(),
       body: GetX<HomeGetxController>
         (builder: (controller) {
-        return ListView(
-          children: [
-            controller.slidersLoading.value
-                ? buildSizedBoxLoading(context)
-                : buildSlider(controller),
-            getText('pakages'.tr,
-                color: blackTextColor,
-                size: 20.sp,
-                weight: FontWeight.w500,
-                align: TextAlign.center),
-            AppToggle(),
-            controller.packagesLoading.value
-                ? buildSizedBoxLoading(context)
-                : controller.currentPackages.isEmpty
-                ? Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: buildCenterNoData('لا يوجد باقات متاحة'),
-                )
-                :GridView.builder(
-                    padding: EdgeInsets.all(16.r),
-                    physics: const NeverScrollableScrollPhysics(),
-                    shrinkWrap: true,
-                    gridDelegate: buildSliverGridDelegate(),
-                    itemCount: controller.currentPackages.length,
-                    itemBuilder: (context, index) {
-                      return PakageItemWidget(
-                          controller.currentPackages[index]);
-                    },
-                  ),
-            controller.galleriesLoading.value
-                ? buildSizedBoxLoading(context)
-                : Column(
-                    children: [
-                      getText('images'.tr,
-                          color: blackTextColor,
-                          weight: FontWeight.w500,
-                          size: 20.sp,
-                          align: TextAlign.center),
-                      ImagesListWidget(controller),
-                      getText('vedios'.tr,
-                          color: blackTextColor,
-                          size: 20.sp,
-                          weight: FontWeight.w500,
-                          align: TextAlign.center),
-                      VideosListWidget(controller),
-                    ],
+        return SmartRefresher(
+          primary: false,
+          controller: _refreshController,
+          onRefresh: _refresh,
+          header:  WaterDropHeader(
+            waterDropColor: Theme.of(context).primaryColor,
+            complete: Icon(
+              Icons.done,
+              color: Theme.of(context).primaryColor,
+            ),
+          ),
+          child: ListView(
+            children: [
+              controller.slidersLoading.value
+                  ? buildSizedBoxLoading(context)
+                  : buildSlider(controller),
+              getText('pakages'.tr,
+                  color: blackTextColor,
+                  size: 20.sp,
+                  weight: FontWeight.w500,
+                  align: TextAlign.center),
+              AppToggle(),
+              controller.packagesLoading.value
+                  ? buildSizedBoxLoading(context)
+                  : controller.currentPackages.isEmpty
+                  ? Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: buildCenterNoData('لا يوجد باقات متاحة'),
                   )
-          ],
+                  :GridView.builder(
+                      padding: EdgeInsets.all(16.r),
+                      physics: const NeverScrollableScrollPhysics(),
+                      shrinkWrap: true,
+                      gridDelegate: buildSliverGridDelegate(),
+                      itemCount: controller.currentPackages.length,
+                      itemBuilder: (context, index) {
+                        return PakageItemWidget(
+                            controller.currentPackages[index]);
+                      },
+                    ),
+              controller.galleriesLoading.value
+                  ? buildSizedBoxLoading(context)
+                  : Column(
+                      children: [
+                        getText('images'.tr,
+                            color: blackTextColor,
+                            weight: FontWeight.w500,
+                            size: 20.sp,
+                            align: TextAlign.center),
+                        ImagesListWidget(controller),
+                        getText('vedios'.tr,
+                            color: blackTextColor,
+                            size: 20.sp,
+                            weight: FontWeight.w500,
+                            align: TextAlign.center),
+                        VideosListWidget(controller),
+                      ],
+                    )
+            ],
+          ),
         );
       }),
     );
