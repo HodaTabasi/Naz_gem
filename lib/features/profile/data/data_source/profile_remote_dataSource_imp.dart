@@ -68,4 +68,31 @@ class ProfileRemoteDataSourceImp extends ProfileRemoteDataSource {
       throw ServerException();
     }
   }
+
+  Future<UserModel> updateUserWithOutImage(UserModel userModel) async {
+    Uri url = Uri.parse(baseUrl + updateProfile);
+    var map = {
+      'first_name':userModel.firstName,
+      'last_name':userModel.lastName,
+      'phone':userModel.phone.toString(),
+      'email':userModel.email,
+      'birthdate':userModel.birthdate ?? '',
+      'length':userModel.length.toString(),
+      'blood_type':userModel.bloodType ?? '',
+    };
+
+    http.Response response = await http.post(url,body: map,headers: headers);
+
+
+    print("fvdfv ${userModel}");
+
+    var decodedJson = jsonDecode(response.body);
+    print(decodedJson);
+    if (response.statusCode == 200) {
+      return UserModel.fromJson(decodedJson['user']);
+    } else {
+      SERVER_FAILURE_MESSAGE = decodedJson['message'];
+      throw ServerException();
+    }
+  }
 }

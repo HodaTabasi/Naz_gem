@@ -42,6 +42,20 @@ class ProfileRepoImp extends ProfileRepo {
     }
   }
 
+  @override
+  Future<Either<Failure, User>> updateUserWithoutImage(User userModel) async {
+    if (await networkInfo.isConnected) {
+      try {
+        final remotePosts = await remoteDataSource.updateUserWithOutImage(user(userModel));
+        return Right(remotePosts);
+      } on ServerException {
+        return Left(ServerFailure());
+      }
+    } else {
+      return Left(OfflineFailure());
+    }
+  }
+
   UserModel user(userModel) {
     return UserModel(
         phone: userModel.phone,

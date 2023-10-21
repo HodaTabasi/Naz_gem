@@ -8,6 +8,7 @@ import 'package:naz_gem/features/profile/domain/use_case/update_user_use_case.da
 import '../../../../core/constants/utils.dart';
 import '../../../auth/domain/entities/user.dart';
 import '../../domain/use_case/get_user_use_case.dart';
+import '../../domain/use_case/update_user_without_image_use_case.dart';
 
 class EditProfileGetxController extends GetxController {
   static EditProfileGetxController get to =>
@@ -53,6 +54,24 @@ class EditProfileGetxController extends GetxController {
       return true;
     }));
   }
+
+  Future<bool> updateUserWithOutImage({user}) async {
+    EasyLoading.show(indicator: EasyLoading().indicatorWidget);
+    return await UpdateUserWithoutImageUseCase(repository: Get.find<ProfileRepoImp>())
+        .call(user)
+        .then((value) => value.fold((failure) {
+      EasyLoading.dismiss();
+      responseMessage = mapFailureToMessage(failure);
+      update();
+      return false;
+    }, (user) async {
+      EasyLoading.dismiss();
+      myUser = user;
+      update();
+      return true;
+    }));
+  }
+
   changeImage(newFile){
     file = newFile;
     update();

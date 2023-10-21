@@ -39,7 +39,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
       birthdate:_bdController.text,
       bloodType: dropdownValue,
       length: _hgtController.text,
-      profileImage: EditProfileGetxController.to.file!.path
+      // profileImage: EditProfileGetxController.to.file?.path
       );
   }
 
@@ -273,17 +273,33 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                     title: 'save'.tr,
                     color: btnColor,
                     prsee: () async {
+                      print("fggggggg");
                       if (GeneralGetxController.to.profileKey.currentState!
                           .validate()) {
-                        bool isUpdated = await controller.updateUser(user:user);
-                        if(isUpdated){
-                          Get.back();
+                        if(EditProfileGetxController.to.file?.path != null){
+                          bool isUpdated = await controller.updateUser(user:user);
+                          if(isUpdated){
+                            Get.back();
+                          }else {
+                            SnackBarMessage.showErrorSnackBar(
+                                message: controller.responseMessage,
+                                context: context);
+                          }
                         }else {
-                          SnackBarMessage.showErrorSnackBar(
-                              message: controller.responseMessage,
-                              context: context);
+                          user.profileImage =EditProfileGetxController.to.file?.path;
+                          bool isUpdated = await controller.updateUserWithOutImage(user:user);
+                          if(isUpdated){
+                            Get.back();
+                          }else {
+                            SnackBarMessage.showErrorSnackBar(
+                                message: controller.responseMessage,
+                                context: context);
+                          }
                         }
-                        //
+                      }else {
+                        SnackBarMessage.showErrorSnackBar(
+                            message: 'يجب اكمال الحقول الفارغة',
+                            context: context);
                       }
                     }),
                 // getSpace(h: 16.0.r),
