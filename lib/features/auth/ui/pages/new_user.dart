@@ -215,13 +215,12 @@ class _NewUserState extends State<NewUser> {
                               title: 'sure_otp'.tr,
                               color: btnColor,
                               prsee: () async {
-                                print("fffffffffff");
                                 if (newUserKey.currentState!
                                     .validate()) {
                                   if(checkValue){
-                                    print("Fgdfgd");
                                     bool result = await controller.createAccount(user: user);
                                     if(result){
+                                      controller.phone = _mobileController.text;
                                       Get.to(() => OTPRegisterScreen(),
                                           transition: Transition.downToUp,
                                           duration: const Duration(milliseconds: 300));

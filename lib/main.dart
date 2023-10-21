@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
@@ -9,15 +10,17 @@ import 'package:naz_gem/main_injections.dart';
 import 'core/constants/app_colors.dart';
 import 'core/notification/fb_notifications.dart';
 import 'core/translations/app_translations.dart';
+import 'firebase_options.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await GetStorage.init();
-  // await Firebase.initializeApp(
-  //   options: DefaultFirebaseOptions.currentPlatform,
-  // );
+  await Firebase.initializeApp(
+   options: DefaultFirebaseOptions.currentPlatform,
+   );
   await FbNotifications.initNotifications();
   await FbNotifications.getToken();
+
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
       .then((_) {
     runApp(const MyApp());

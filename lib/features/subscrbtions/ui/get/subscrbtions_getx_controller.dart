@@ -109,6 +109,5 @@ class SubscrbtionGetxController extends GetxController {
     }else{
       responseMessage = "failed transaction";
     }
-
   }
 }

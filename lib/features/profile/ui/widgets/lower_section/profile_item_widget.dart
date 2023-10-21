@@ -16,7 +16,6 @@ class ProfileItemWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print("gdg $text");
     return Column(
       children: [
         Container(

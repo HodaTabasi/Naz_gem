@@ -26,6 +26,7 @@ class TrainingSessionRemoteDataSourceImp extends TrainingSessionRemoteDataSource
       );
       final  decodedJson = json.decode(response.body);
       if (response.statusCode == 200) {
+        print("fgfg ${decodedJson}");
         GetStorage().write('lastPage',decodedJson['meta']['last_page']);
         final List<SessionModel> listModels = decodedJson['data']
             .map<SessionModel>((jsonPostModel) => SessionModel.fromJson(jsonPostModel))

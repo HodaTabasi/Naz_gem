@@ -51,6 +51,7 @@ class AuthGetxController extends GetxController {
 
 
   Future<bool> login({phone, otp}) {
+    print("dfgdf ${phone}");
     EasyLoading.show(indicator: EasyLoading().indicatorWidget);
     return LoginUseCase(repository: Get.find<AuthRepoImpl>())
         .call(phone,otp.toString())
@@ -98,8 +99,7 @@ class AuthGetxController extends GetxController {
 
     }, (user) async {
       EasyLoading.dismiss();
-
-      phone = user.phone;
+      // phone = user.phone;
       update();
       return true;
     }));

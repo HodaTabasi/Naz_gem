@@ -28,7 +28,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   void initState() {
-    _mobileController = TextEditingController(text: '05921511052138');
+    _mobileController = TextEditingController(text: '05921511052185');
     super.initState();
   }
 
@@ -137,21 +137,28 @@ class _LoginScreenState extends State<LoginScreen> {
                             prsee: () async {
                               if (loginKey.currentState!.validate()) {
                                 if (controller.appearOtp && controller.checkControllerEmpty()) {
-                                  bool isLogin = await controller.login(
-                                      phone: _mobileController.text,
-                                      otp: controller.makeCode());
-                                  print(isLogin);
-                                  if (isLogin) {
-                                    Get.offAll(
-                                        () => const BottomNavigationPage(),
-                                        transition: Transition.downToUp,
-                                        duration:
-                                            const Duration(milliseconds: 300));
-                                  } else {
+                                  if(controller.makeCode().toString().trim() != GetStorage().read("otp").toString().trim()){
                                     SnackBarMessage.showErrorSnackBar(
-                                        message: controller.responseMessage,
+                                        message: "تاكد من كتابه الكود بشكل صحيح",
                                         context: context);
+                                  }else {
+                                    bool isLogin = await controller.login(
+                                        phone: _mobileController.text,
+                                        otp: controller.makeCode());
+                                    print(isLogin);
+                                    if (isLogin) {
+                                      Get.offAll(
+                                              () => const BottomNavigationPage(),
+                                          transition: Transition.downToUp,
+                                          duration:
+                                          const Duration(milliseconds: 300));
+                                    } else {
+                                      SnackBarMessage.showErrorSnackBar(
+                                          message: controller.responseMessage,
+                                          context: context);
+                                    }
                                   }
+
                                 } else {
                                   bool sended = await controller.sendOtp(
                                       phone: _mobileController.text);
