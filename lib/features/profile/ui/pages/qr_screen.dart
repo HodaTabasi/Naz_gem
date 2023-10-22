@@ -12,19 +12,24 @@ import '../../../../core/constants/app_colors.dart';
 import '../../../../core/widgets/app_widget.dart';
 
 class QRScreen extends StatefulWidget {
+  final User user;
+  const QRScreen({Key? key, required this.user}) : super(key: key);
 
   @override
   State<QRScreen> createState() => _QRScreenState();
 }
 
 class _QRScreenState extends State<QRScreen> {
-  late User user;
-  @override
-  void initState() {
-    String jsonString = GetStorage().read('user');
-    user = UserModel.fromJson(jsonDecode(jsonString));
-    super.initState();
-  }
+  //THE USER RETURNED FROM GETSTORAGE IS NULL FOR SOME REASON SO I USED THE USER FROM THE PREVIOUS SCREEN
+  //(I work with provider not GETX)
+
+  // late User user;
+  // @override
+  // void initState() {
+  //   String jsonString = GetStorage().read('user');
+  //   user = UserModel.fromJson(jsonDecode(jsonString));
+  //   super.initState();
+  // }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -69,7 +74,7 @@ class _QRScreenState extends State<QRScreen> {
                     TextStyle(color: Colors.black,fontSize: 20.sp),
                     children: [
                       TextSpan(text: 'id_number'.tr),
-                      TextSpan(text: '${user.identifier}'),
+                      TextSpan(text: '${widget.user.identifier}'),
                     ],
                   ),
               ))

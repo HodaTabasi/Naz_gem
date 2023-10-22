@@ -17,7 +17,7 @@ class AppTextField extends StatelessWidget {
     bool isEnabled = true,
     TextDirection direction = TextDirection.rtl,
     TextInputAction textInputAction = TextInputAction.next,
-    String? Function(String? value)? onSubmitted,
+    String? Function(String? value)? onSubmitted, Widget? suffixWidget,
   })  : _textController = textController,
         _hint = hint,
         _textInputType = textInputType,
@@ -26,6 +26,7 @@ class AppTextField extends StatelessWidget {
         _onSubmitted = onSubmitted,
         _text = text,
         _isEnabled = isEnabled,
+        _suffixWidget = suffixWidget,
   _hasSufix = hasSufix,
         _direction = direction,
         super(key: key);
@@ -39,6 +40,7 @@ class AppTextField extends StatelessWidget {
   final bool _hasSufix;
   final bool _isEnabled;
   final TextInputAction _textInputAction;
+  final Widget? _suffixWidget;
   final String? Function(String? value)? _onSubmitted;
 
   @override
@@ -63,6 +65,7 @@ class AppTextField extends StatelessWidget {
         hintText: _hint,
         hintStyle: const TextStyle(),
         contentPadding:  EdgeInsets.symmetric(vertical: 13.0.r, horizontal: 13.0.r),
+        suffix: _suffixWidget,
         prefixIcon: _hasSufix ?SizedBox(
           width: 60.w,
           child: Align(

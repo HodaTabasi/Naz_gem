@@ -96,7 +96,8 @@ class _MyTimePageState extends State<MyTimePage> {
             controller.userSessionLoading.value
                 ? const Center()
                 : Expanded(
-                    child:  controller.reservationHistory[currentIndex]!.isEmpty?
+                    child:  (controller.reservationHistory[currentIndex]?.isEmpty??true)
+                        ?
                     buildCenterNoData('لا يوجد حجوزات سابقة')
                         :ListView.builder(
                       itemCount: controller.reservationHistory[currentIndex]!.length,

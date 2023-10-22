@@ -44,7 +44,7 @@ class PersonalInfoWidget extends StatelessWidget {
         ),
         trailing: InkWell(
             onTap: () {
-              Get.to(() => QRScreen(),
+              Get.to(() => QRScreen(user: controller.myUser),
                   transition: Transition.downToUp,
                   duration: const Duration(milliseconds: 500));
             },

@@ -51,7 +51,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
     _firstNameController = TextEditingController(text:controller.myUser.firstName);
     _lastNameController = TextEditingController(text:controller.myUser.lastName);
     _emailController = TextEditingController(text:controller.myUser.email);
-    _hgtController = TextEditingController(text:controller.myUser.length == 'null'?'160 سم':'${controller.myUser.length}سم');
+    _hgtController = TextEditingController(text:controller.myUser.length == 'null'?'160':'${controller.myUser.length}');
     _bdController = TextEditingController(text:controller.myUser.birthdate??'');
     _bloodController = TextEditingController(text:controller.myUser.bloodType??'AB-');
     super.initState();
@@ -218,6 +218,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                   // height: 50.h,
                   child: AppTextField(
                     textController: _hgtController,
+                    suffixWidget: Text('سم', style: TextStyle(fontSize: 14.sp,fontWeight: FontWeight.w500),),
                     hint: '',
                     textInputType: TextInputType.number,
                     onSubmitted: GeneralGetxController.to.nameValidation,
